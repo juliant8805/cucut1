@@ -1,0 +1,335 @@
+<!doctype html>
+
+<html lang="es">
+    <head>
+        <title>::GESSTOR::</title>
+        <!--<div id="carga"><img id="gifini" src="./image/gif_gestor_mediano.gif"><p></p></div>-->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="src/jquery/jquery-ui-1.11.2/jquery-ui.css">
+        <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="src/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="src/ol3/ol.css">
+        <link rel="stylesheet" href="src/css/Popup.css">
+        <link rel="stylesheet" href="src/css/LayersControl.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="icon" type="image/ico" href="http://www.ideepcucuta.com/imagenes/favicon.ico" />
+        <script src="src/ol3/ol-debug.js"></script>
+        <script src="src/jquery/jquery.min.js"></script>
+        <script src="src/bootstrap/js/bootstrap.min.js"></script>
+        <script src="src/jquery/jquery-1.12.4.js"></script>
+        <script src="src/jquery/jquery-ui-1.11.2/jquery-ui.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="sql/jsSearch.js"></script>
+        <script src="src/app/Popup.js"></script>
+        <script src="src/app/LayersControl.js"></script>
+        <script src="src/app/index_evt/index_evt.js"></script>
+        <script src="src/app/index_evt/validaringreso.js"></script>
+        <script src="export/export.js"></script>
+        <!--<script src="src/app/HeadMap.js"></script>-->
+        <script src="src/highcharts/js/highcharts.js"></script>
+        <script src="src/highcharts/js/modules/exporting.js"></script>
+        <script src="sql/webserviceh.js"></script>
+        <script src="sql/js_sql.js"></script>
+        <script type="text/javascript">
+       
+    </script>
+    <div id="carga2" hidden="hidden"><img id="imgprocess" src="./image/procesando.gif"></div>
+    <div id="carga3" hidden="hidden"><img src="./image/cargando.png" style="top:30%; left:30%; width:auto; height:auto; position:absolute"></div>
+    <div id="completo" hidden="hidden">		
+    </div>
+</head>
+<body>
+
+    <div id="map"> 
+        <div id="popup" class="ol-popup"></div>    
+    </div>
+    <header>
+        <input type="checkbox" id="btn-menu">
+        <label for = "btn-menu"><img src="imagenes/icono-menu.png" alt=""></label>
+        <nav class="menu" id="catastro" hidden="hidden">
+            <ul>
+                <li id="Avance" name="predio" onclick="rango(id, name)"><a>Revisar Avance</a></li>
+                <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2012)	
+                        <div id="barratransparencia">
+                            <input type="range" min="0" max="1" step="0.1" value="0" onchange="ortofoto2012.setOpacity(Number(this.value))"/>
+                        </div></a></li>
+            </ul>		
+        </nav>
+        
+        <nav class="menu" id="hacienda" hidden="hidden">
+            <ul>
+            	<li>Consultas Hacienda</li>
+            </ul>
+        </nav>
+    </header>
+    
+    
+        <div id="info" style="display: none;"></div>
+
+  
+   
+      <input id="track" type="checkbox" value="track">
+        <label for="track"></label>
+    
+    
+    
+    
+    <script>
+    
+         var view = new ol.View({
+        center: [0, 0],
+        zoom: 2
+      });
+        
+        
+    // gps en el mapa 
+    var geolocation = new ol.Geolocation({
+        projection: view.getProjection()
+      });
+
+      function el(id) {
+        return document.getElementById(id);
+      }
+
+      el('track').addEventListener('change', function() {
+          geolocation.setTracking(true);
+        geolocation.setTracking(this.checked);
+       
+      });
+
+      // update the HTML page when the position changes.
+   /*   geolocation.on('change', function() {
+
+      });*/
+
+      // handle geolocation error.
+    /*  geolocation.on('error', function(error) {
+        var info = document.getElementById('info');
+        info.innerHTML = error.message;
+        info.style.display = '';
+      });*/
+
+      var accuracyFeature = new ol.Feature();
+      geolocation.on('change:accuracyGeometry', function() {
+        accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
+      });
+
+      var positionFeature = new ol.Feature();
+      positionFeature.setStyle(new ol.style.Style({
+        image: new ol.style.Circle({
+          radius: 6,
+          fill: new ol.style.Fill({
+            color: '#3399CC'
+          }),
+          stroke: new ol.style.Stroke({
+            color: '#fff',
+            width: 2
+          })
+        })
+      }));
+        
+      
+
+      geolocation.on('change:position', function() {
+          
+        var coordinates = geolocation.getPosition();
+        positionFeature.setGeometry(coordinates ?
+          new ol.geom.Point(coordinates) : null);  
+          var vectorSource = new ol.source.Vector({features: [accuracyFeature, positionFeature]});
+          var thing = new ol.geom.Point(coordinates);
+          var feat = new ol.Feature({
+        name: "Thing",
+        geometry: thing
+         });
+          var view = map.getView();
+
+    view.setCenter(coordinates);
+    view.setZoom(16);
+    highlight.setStyle(gpsStyle);
+    vectorSource = new ol.source.Vector({
+        features: [feat]
+    });
+    vectorLayer = new ol.layer.Vector({
+        source: vectorSource
+    });
+    var markerSource = highlight.getSource();
+    markerSource.clear();
+    markerSource.addFeature(feat);
+      });
+        
+        
+/*
+      new ol.layer.Vector({
+        map: map,
+        source: new ol.source.Vector({
+          features: [accuracyFeature, positionFeature]
+        })
+      });*/
+
+        
+        
+        
+   /*function addmarker(long, lat) {
+    document.getElementById("radcoo").value = lat+";" +long;
+    var vectorSource = new ol.source.Vector({});
+    var thing = new ol.geom.Point(ol.proj.transform([lat, long], 'EPSG:4326', 'EPSG:3857'));
+    var feat = new ol.Feature({
+        name: "Thing",
+        geometry: thing
+    });
+    var view = map.getView();
+    view.setCenter(ol.proj.transform([lat, long], 'EPSG:4326', 'EPSG:3857'));
+    view.setZoom(18);
+    highlight.setStyle(flagStyle);
+    vectorSource = new ol.source.Vector({
+        features: [feat]
+    });
+    vectorLayer = new ol.layer.Vector({
+        source: vectorSource
+    });
+    var markerSource = highlight.getSource();
+    markerSource.clear();
+    markerSource.addFeature(feat);
+}// END addmarkerr() */    
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    </script>
+    
+    
+    
+    
+    
+    
+     <div class="contenedor" id="contenedorg" hidden="hidden">
+        <button id="botonminimizar" onclick="ocultarpanelatributos();" style="background:url('./imagenes/minimizar.png'); background-repeat:no-repeat;"></button>
+        <div id="pestanas">
+            <ul id=lista>
+                <li id="pestana1"><a href='javascript:cambiarPestanna(pestanas,pestana1);'>Atributos</a></li>
+                <li id="pestana2"><a href='javascript:cambiarPestanna(pestanas,pestana2);'>Estadisticas</a></li>   
+            </ul>
+        </div> 
+        <div id="contenidopestanas">
+            <div id="cpestana1">
+                <div id="panel_atr">
+                    <table class="table table-striped table-bordered table-condensed" id="tblatt" style="color: black;"></table>
+                    <!--<button id="botonminimizar" hidden="hidden" onclick="ocultarpanelatributos();" style="background:url('./imagenes/minimizar.png'); background-repeat:no-repeat;"></button>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div id="cpestana2">      
+                <div class="col-md-3" id="statistics"></div>
+                <img hidden="hidden" id="excel" src="./imagenes/excel.png" onclick="exportar();" style="position:absolute; top:40em; right:2em; cursor:pointer;"/>
+					 <img hidden="hidden" id="pie" src="./imagenes/pie.png" onclick="rango(value,id);" style="position:absolute; height:2.5em; cursor:pointer;"/>
+                     <img hidden="hidden" id="barras" src="./imagenes/barras.png" onclick="rango(value,id);" style="position:absolute; height:2.5em; width:2.5em; cursor:pointer;"/>
+                <div id="div_heatmap" hidden="hidden">
+                    <img id="icono_headmap" src="./imagenes/heatmap.png" onclick="generateheatmap();"/>
+                </div>                
+            </div>
+        </div>
+    </div>
+    
+
+
+    <button id="botonocultarstatistics" hidden="hidden" onclick="ocultarstatistics();" style="background:url('./imagenes/ocultarstatistics.png'); background-repeat:no-repeat;"></button>
+    <button id="botonmostrarstatistics" hidden="hidden" onclick="mostrarstatistics();" style="background:url('./imagenes/mostrarstatistics.png'); background-repeat:no-repeat;"></button>
+    <button id="botonmostrarpanelatributos" hidden="hidden" onclick="mostrarpanelatributos();" style="background:url('./imagenes/mostrarstatistics.png'); background-repeat:no-repeat;"></button>
+    <button id="botonocultarpanelatributos" hidden="hidden" onclick="ocultarpanelatributos();" style="background:url('./imagenes/ocultarstatistics.png'); background-repeat:no-repeat;"></button>
+    <div id="mouse-position" hidden="hidden"></div>
+
+
+    <div id="panel_atr" hidden="hidden" style="background-color:rgba(128, 128, 128, 0.6);">
+        <div class="form">
+        <form id="formulario" enctype="multipart/form-data" action="./principal/form.php" method="POST">
+        <table class="table table-striped table-bordered table-condensed" id="tblatt" style="background-color:#f2f2f2;"></table>
+        </form>
+        </div>
+        <button id="botonminimizar"  onclick="ocultarpanelatributos();" style="background:url('./imagenes/minimizar.png'); background-repeat:no-repeat;"></button>     
+    </div>
+
+
+    <button id="botonmaximizar" hidden="hidden" onclick="mostrarpanelatributos();" style="background:url('./imagenes/maximizar.png'); background-repeat:no-repeat;"></button>
+
+
+    <button id="botonmaximizarhasusos" hidden="hidden" onclick="mostrarpanelatributoshasusos();" style="background:url('./imagenes/maximizar.png'); background-repeat:no-repeat;"></button>
+
+
+    <div id="posicionbarra">
+        <div class="navbar navbar-inverse navbar-fixed-top" id="barra_general">
+            <div class="input-group input-group-xs" id="lista_general" >					
+                <span class="input-group-addon" id="botonlista">
+                    <input id="barras" onclick="lista()" class="dropbtn">
+                </span>		
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#" id="consulta_direccion" onclick="mostrar(id)">Consulta Direccion</a>
+                    <!--<a href="#" id="consulta_barrio" onclick="mostrar(id)">Consulta Barrio</a>
+                    <a href="#" id="consulta_manzana" onclick="mostrar(id)">Consulta Manzana</a>-->
+                    <a href="#" id="consulta_codigo" onclick="mostrar(id)">Consulta Codigo Catastral</a> 
+                    <a href="#" id="consulta_sitio" onclick="mostrar(id)">Consulta Sitio</a>        
+                </div>
+                <div id='barra_direccion'>
+                    <input class="direccion" id="direccion" style="border-width: 0px 0px 0px 0px; border-color:grey; padding-left:30px; box-shadow: 1px 2px #d8d8d8;" type="text" class="form-control" placeholder="Buscar Direccion">
+                </div>
+                <div id='barra_sitio' style='display:none;'>
+                    <input type="text" id="address1" style="border-width: 0px 0px 0px 0px; border-color:grey; padding-left:30px; box-shadow: 1px 2px #d8d8d8;" class="form-control" placeholder="Buscar Sitio">
+                </div>
+                <div id='barra_barrio' style='display:none;'>
+                    <input id="barrio" type="text" style="border-width: 0px 0px 0px 0px; border-color:grey; padding-left:30px; box-shadow: 1px 2px #d8d8d8;" class="form-control" placeholder="Buscar Barrio">
+                </div>
+                <div id='barra_manzana' style='display:none;'>
+                    <input id="manzana" type="text" style="border-width: 0px 0px 0px 0px; border-color:grey; padding-left:30px; box-shadow: 1px 2px #d8d8d8;" class="form-control" placeholder="Buscar manzana">
+                </div>  
+                <div id='barra_codigo' style='display:none;'>
+                    <input id="codigo" type="text" style="border-width: 0px 0px 0px 0px; border-color:grey; padding-left:30px; box-shadow: 1px 2px #d8d8d8;" class="form-control" placeholder="Buscar Codigo Catastral">
+                </div>  
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <!--<iframe name="marco" hidden="hidden" id="marco"></iframe>-->
+        <iframe name="marco2" hidden="hidden" id="marco2"></iframe>
+        <button id="botoncerrarstreetview" hidden="hidden" onclick="ocultarstreetview();" style="background:url('./imagenes/ocultar.png'); background-repeat:no-repeat; "></button>
+        <button id="botonmostrarstreetview" hidden="hidden" onclick="mostrarstreetview();" style="background:url('./imagenes/mostrar.png'); background-repeat:no-repeat; "></button>
+    </div>
+    <div id="mensaje" hidden="hidden"></div>
+    <img id="boton_limpiar" src="imagenes/limpiar.png" onclick="limpiar_consulta()" title="Limpiar Consulta">
+    <a href="index.html"><img id="salir" src="./iconos/salir.png"></a>
+   <!-- <img id="boton_medir" name="boton_medir" src="imagenes/icono_medir.png" onclick="medir()"> -->
+   <!-- <form id="type" style="position: absolute; top:4em; right: 4em;">
+       <input type="radio" name="gender" value="length" checked> Distancia<br>
+       <input type="radio" name="gender" value="area"> Area<br>        
+    </form> -->
+    <img id="manual" src="./imagenes/manual.png" onclick="abrir_manual()" title="Manual de Usuario"> 
+    <img id="coordenadas" src="./imagenes/gps_checked.png" onclick="vercoordenadas()" style="position:absolute; top:34em; right:2.5em;"> 
+    <img id="gesstor" src="./imagenes/gesstor.png">
+   <!-- <img id="sisepuede" src="./imagenes/sisepuedeprogresar.png"> -->
+
+
+
+
+    <!--<div id="herramientas" class='container'>
+        <div id="layertree" class="tree"><img class="btn btn-success" style="background-color:#198c19; border: 0px solid" ></div> 
+    </div> -->
+
+    <script src="src/app/Consultas/consultas_simples.js"></script>
+    <script src="src/app/Consultas/consulta_direccion_boton.js"></script>
+    <script src="src/app/Consultas/sinconsulta.js"></script>
+    <script src="src/app/Consultas/Estadistica.js"></script>
+    <script src="src/app/ConsultasCatastro.js"></script>
+    <script src="src/app/app.js"></script>
+   
+
+
+</body>
+</html>
