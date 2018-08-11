@@ -11,26 +11,25 @@
         <script src="sql/jsSearch.js"></script>
         <script src="src/jquery/jquery.min.js"></script>
         <script src="src/bootstrap/js/bootstrap.min.js"></script>
-         <div id="imagen_ini" hidden="hidden"><img src="/imagenes/fondo_inippp.jpg" style="top:0%; left:0%; height:100%; width:auto; position:absolute"></div> 
-        <video id="video" hidden="hidden" width="100%" auto loop autoplay>
+    <div id="imagen_ini" hidden="hidden"><img src="/imagenes/fondo_inippp.jpg" style="top:0%; left:0%; height:100%; width:auto; position:absolute"></div> 
+    <video id="video" hidden="hidden" width="100%" auto loop autoplay>
         <source src="demo.mp4#t=5" type="video/mp4">
         Por favor utilice otro navegador (Chrome, Mozilla, Safari, Explorer).
-        </video>
-        <!--<video id="video_baja" hidden="hidden" width="100%" controls autoplay>
-        <source src="demo_baja.mp4" type="video/mp4">
-        Por favor utilice otro navegador (Chrome, Mozilla, Safari, Explorer).
-        </video>-->
-        <script>
-        var tamañopantalla = screen.width>800; 
-        if (tamañopantalla===true){
-           //alert("grande"); 
+    </video>
+    <!--<video id="video_baja" hidden="hidden" width="100%" controls autoplay>
+    <source src="demo_baja.mp4" type="video/mp4">
+    Por favor utilice otro navegador (Chrome, Mozilla, Safari, Explorer).
+    </video>-->
+    <script>
+        var tamañopantalla = screen.width > 800;
+        if (tamañopantalla === true) {
+            //alert("grande"); 
             document.getElementById("video").style.display = "block";
-        }
-        else{
-           //alert("pequeña");
+        } else {
+            //alert("pequeña");
             document.getElementById("imagen_ini").style.display = "block";
-            }
-        </script>     
+        }
+    </script>     
 </head>
 <body onload="onload()">
     <div class="modal fade" id="myModal" role="dialog">
@@ -86,13 +85,19 @@
         </form>
     </div>
     <script>
-		function ampliarlogin() {
-			if(screen.width<768){
-           $("body").css("zoom", window.innerWidth / 500);			
-			}
-		}    
+        function ampliarlogin() {
+            if (screen.width < 768) {
+                $("body").css("zoom", window.innerWidth / 500);
+            }
+        }
     </script>
     <script src="js/index.js"></script>
+    <script src="sql/wsDatosBasicos.php"></script>
+    <script src="sql/wsHistoricoPagos.php"></script>
+    <script src="sql/wsHistoricoAbonos.php"></script>
+    <script src="sql/wsAcuerdoPago.php"></script>
+    <script src="sql/wsLiquidacion.php"></script>
+    <script src="sql/wsEstadoCuenta.php"></script>
     <script src="js/md5.inc.js"></script>
     <script src="principal/load.js"></script>
 </body>

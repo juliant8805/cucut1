@@ -1270,22 +1270,30 @@ select{
     left:0em;  
     font-size:11px;
 }
-#panel_atr{
+#panel_atributos{
     position:absolute;
+    width: 26em;
+    height: 25em;
+    top:6em;
+    left:0em;  
+    font-size:11px;
+}
+#panel_atr2{
+    
     max-width:36em;
-    max-height:45em;
+    max-height:38em;
     top:6em;
     left:3em;  
     font-size:11px;
     overflow:scroll;
 }
-#panel_atributos_ph{
-    position:absolute;
-    max-width: 35em;
-    max-height: 45em;
-    top:10em;
-    left:0em;  
-    font-size:10px;
+#panel_atr{
+    
+    max-width:36em;
+    max-height:38em;
+    top:6em;
+    left:3em;  
+    font-size:11px;
     overflow:scroll;
 }
 #panel_atributos_sui{
