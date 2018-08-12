@@ -840,6 +840,13 @@ function addressSelect(event, ui) {
                     var matricula = "Sin Informacion";
 
                 }
+                try {
+                    var cod_nacion = search("cucuta:cod_nacion", ui.item.direccionoriginal);
+
+                } catch (err) {
+                    var cod_nacion = "Sin Informacion";
+
+                }
 
                 if (tipoUsuario === "catastro") {
                     select[0] = "<b>Codigo Manzana</b>";
@@ -865,7 +872,7 @@ function addressSelect(event, ui) {
                     select[19] = "<b>Barrio</b>";
                     select[20] = "<b>Fotografias</b>";
                     sel[0] = values.manzana_co;
-                    sel[1] = values.codigo;
+                    sel[1] = cod_nacion["0"]["0"];
                     sel[2] = ui.item.codigooriginal;
                     sel[3] = matricula;
                     sel[4] = ui.item.direccionoriginal;
