@@ -153,11 +153,12 @@ map.on('singleclick', function (evt) {
                     if (ph >= 800) {
                         if (tipoUsuario === "catastro") {
                             var table = document.getElementById("tblatt");
-                        }
-                        if (tipoUsuario === "hacienda") {
+                        } else if (tipoUsuario === "hacienda") {
                             var table = document.getElementById("tablaP");
                             document.getElementById("tblatt").style.visibility = "hidden";
                             document.getElementById("panel_atr").style.height = "0px";
+                        } else if (tipoUsuario === "totem") {
+                            alert("ph totem");
                         }
                         table.innerHTML = "";
                         var row = table.insertRow(0);
@@ -359,9 +360,99 @@ map.on('singleclick', function (evt) {
                                     cell2.innerHTML = sel[i];
                                 }
                             }
-                        }
+                        } else if (tipoUsuario === "totem") {
+                            select[0] = "<b>Codigo Catastral Nuevo</b>";
+                            select[1] = "<b>Codigo Catastral Anterior</b>";
+                            select[2] = "<b>Matricula Inmobiliaria</b>";
+                            select[3] = "<b>Dirección</b>";
+                            select[4] = "<b>Uso Acueducto</b>";
+                            select[5] = "<b>Uso Alcantarillado</b>";
+                            select[6] = "<b>Uso Aseo</b>";
+                            select[7] = "<b>Estrato Hacienda</b>";
+                            select[8] = "<b>Estrato Acueducto</b>";
+                            select[9] = "<b>Estrato Alcantarillado</b>";
+                            select[10] = "<b>Estrato Aseo</b>";
+                            select[11] = "<b>Avalúo Catastral 2018</b>";
+                            select[12] = "<b>Area de Terreno</b>";
+                            select[13] = "<b>Area Construida</b>";
+                            select[14] = "<b>Barrio</b>";
+                            select[15] = "<b>Codigo Postal</b>";
+                            select[16] = "<b>Cuadrante CAI</b>";
+                            select[17] = "<b>Nombre CAI</b>";
+                            select[18] = "<b>Telefono CAI</b>";
+                            select[19] = "<b>Fotografias</b>";
+                            sel[0] = values.codigo;
+                            sel[1] = cod;
+                            sel[2] = matricula;
+                            sel[3] = direccion[0];
+                            sel[4] = uso_acueducto;
+                            sel[5] = uso_alcantarillado;
+                            sel[6] = uso_aseo;
+                            sel[7] = simplestabla["0"][5];
+                            sel[8] = values.estrato_acueducto;
+                            sel[9] = values.estrato_alcantarillado;
+                            sel[10] = values.estrato_aseo;
+                            sel[11] = avaluo2018;
+                            sel[12] = simplestabla["0"][1] + "m2";
+                            sel[13] = simplestabla["0"][2] + "m2";
+                            sel[14] = values.cod_barrio;
+                            sel[15] = values.cod_postal;
+                            sel[16] = values.cuadrante;
+                            sel[17] = values.nombre_cai;
+                            sel[18] = values.telefono;
+                            sel[19] = document.createElement("a");
+                            sel[19].id = "img1";
+                            sel[19].style = "width: 30px; height: 50px;";
+                            sel[19].target = "marco2";
+                            sel[19].setAttribute("onclick", "open_streetview()");
+                            sel[19].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            imag[19] = document.createElement("img");
+                            imag[19].id = "im1";
+                            imag[19].className = "pequeña";
+                            imag[19].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            stv[19] = document.createElement("a");
+                            stv[19].id = "imgstreet1";
+                            stv[19].target = "marco";
+                            stv[19].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
+                            stv[19].setAttribute("onclick", "open_streetview()");
+                            ig[19] = document.createElement("img");
+                            ig[19].src = "./imagenes/streetview.png";
+                            for (i = 0; i < select.length; i++) {
+                                row = table.insertRow(i + 1);
+                                cell1 = row.insertCell(0);
+                                cell2 = row.insertCell(1);
+                                cell1.innerHTML = select[i];
+                                if (i === 19) {
+                                    cell2.appendChild(sel[i]);
+                                    //cell2.appendChild(imag[i]);
+                                    sel[i].appendChild(imag[i]);
+                                    cell2.appendChild(stv[i]);
+                                    //cell2.appendChild(ig[i]);
+                                    stv[i].appendChild(ig[i]);
 
-                        if (tipoUsuario === "hacienda") {
+                                } else {
+                                    cell2.innerHTML = sel[i];
+                                }
+                            }
+                            try {
+                                document.getElementById("tablaP").deleteRow(0);
+                            } catch (err) {
+                            }
+                            var fila = "<tr><td><H5><b>IMPRIMIR FACTURA</b></H5></td><td>";
+                            var btn = document.createElement("TR");
+                            btn.innerHTML = fila;
+                            document.getElementById("tablaP").value = sel[1];
+                            document.getElementById("tablaP").setAttribute("onclick", "factura(this.value)");
+                            document.getElementById("tablaP").appendChild(btn);
+                            document.getElementById("contenedorg").style.display = "block";
+                            document.getElementById("panel_atr").style.display = "block";
+                            document.getElementById("cpestana1").style.display = "block";
+                            document.getElementById("pestana2").style.display = "none";
+                            document.getElementById("cpestana2").style.display = "none";
+                            document.getElementById("pestana1").style.backgroundColor = "#EAC102";
+                            document.getElementById("pestana2").style.backgroundColor = "#A9A9A9";
+                            document.getElementById("botonminimizar").style.display = "block";
+                        } else if (tipoUsuario === "hacienda") {
                             document.getElementById("tblatt").style.visibility = "visible";
                             document.getElementById("tblatt").style.display = "initial";
                             document.getElementById("tblatt").style.height = "auto";
@@ -374,7 +465,7 @@ map.on('singleclick', function (evt) {
                             document.getElementById("tablaP").style.visibility = "visible";
                             document.getElementById("tablaP").style.display = "initial";
                             document.getElementById("tablaP").style.height = "auto";
-                            
+
                             ref_cat = values.codigo_ant.substring(5, 21);
                             ref_cat = "'" + ref_cat + "'";
                             function enviarRef(referencia) {
@@ -819,7 +910,7 @@ map.on('singleclick', function (evt) {
                 }
             },
             complete: function () {
-                if (tamañopantalla == true) {
+                if (tamañopantalla === true) {
                     quitgif();
                 } else {
                     document.getElementById("carga3").style.display = "none";

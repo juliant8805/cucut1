@@ -10,12 +10,18 @@ $(document).on('ready', function () {
         location.href = "index.html?ig=error";
     }
 //registro de ingreso de usuarios
-    else if (select[0][6]==="catastro"){
-		//console.log(select);
-		document.getElementById("catastro").style.display = "block";
-    }else if (select[0][6]==="hacienda"){
-		//console.log(select);
-		document.getElementById("hacienda").style.display = "block";
+    else if (select[0][6] === "catastro") {
+        //console.log(select);
+        document.getElementById("catastro").style.display = "block";
+        document.getElementById("posicionbarra").style.display = "block";
+    } else if (select[0][6] === "hacienda") {
+        //console.log(select);
+        document.getElementById("hacienda").style.display = "block";
+        document.getElementById("posicionbarra").style.display = "block";
+    } else if (select[0][6] === "totem") {
+        document.getElementById("menu_totem").style.display = "block";
+        importarScript("src/app/totem/ConsultaTotem.js");
+        
     }
 });
 function validacionusuarios() {
@@ -31,4 +37,9 @@ function validacionusuarios() {
         }
         return(select);
     }
+}
+function importarScript(nombre) {
+    var s = document.createElement("script");
+    s.src = nombre;
+    document.querySelector("head").appendChild(s);
 }

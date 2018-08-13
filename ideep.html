@@ -124,7 +124,7 @@
     
     <input type="checkbox" id="mover_streetview" name="mover_streetview" value="mover_streetview"><label id="label_street" style="display:none;" for="mover_streetview"></label>
 
-    <div class="contenedor" id="contenedorg" hidden="hidden">
+    <div class="contenedor" id="contenedorg" hidden="hidden" style="z-index: 1">
         <button id="botonminimizar" onclick="ocultarpanelatributos();" style="background:url('./imagenes/minimizar.png'); background-repeat:no-repeat;"></button>
         <div id="pestanas">
             <ul id=lista>
@@ -147,7 +147,8 @@
             <div id="cpestana2">      
                 <div class="col-md-3" id="statistics"></div>
                 <img hidden="hidden" id="excel" src="./imagenes/excel.png" onclick="exportar();" style="position:absolute; top:40em; right:2em; cursor:pointer;"/>
-					 <img hidden="hidden" id="pie" src="./imagenes/pie.png" onclick="rango(value,id);" style="position:absolute; height:2.5em; cursor:pointer;"/>
+                <img hidden="hidden" id="pie" src="./imagenes/pie.png" onclick="rango(value,id);" style="position:absolute; height:2.5em; cursor:pointer;"/>
+                <img hidden="hidden" id="barrass" src="./imagenes/brr.png" onclick="rango(value,id);" style="position:absolute; height:2.5em; cursor:pointer;"/>
                 <div id="div_heatmap" hidden="hidden">
                     <img id="icono_headmap" src="./imagenes/heatmap.png" onclick="generateheatmap();"/>
                 </div>                
@@ -191,9 +192,9 @@
 
 
 
-    <div id="posicionbarra">
+    <div id="posicionbarra" hidden="hidden">
         <div class="navbar navbar-inverse navbar-fixed-top" id="barra_general">
-            <div class="input-group input-group-xs" id="lista_general" >					
+            <div class="input-group input-group-xs" id="lista_general">					
                 <span class="input-group-addon" id="botonlista">
                     <input id="barras" onclick="lista()" class="dropbtn">
                 </span>		
@@ -290,9 +291,28 @@
     <div id="herramientas" class='container'>
         <div id="layertree" class="tree"><img class="btn btn-success" style="background-color:#198c19; border: 0px solid" ></div> 
     </div> 
-
-
-
+    <!--Menu totem-->
+    <div id="menu_totem" hidden="hidden">
+        <ul>
+            <li id="direcciontotem" onclick="mostrartotem(id)">Dirección</li>    
+            <!--<li id="referencia" onclick="mostrartotem(id)">Referencia Catastral</li>-->
+            <li id="sitiototem" onclick="mostrartotem(id)">Sitio de Interés</li>
+            <!--<li id="localidad" onclick="mostrartotem(id)">Localidad</li>-->
+            <li id="barrio" onclick="mostrartotem(id)">Barrio</li>
+            <li id="manzana" onclick="mostrartotem(id)">Manzana</li>
+        </ul>
+    </div>
+    <div id="consultas_totem" hidden="hidden" style="position:absolute; top:40%; left:40%; width:28%; background-color:rgba(229,227,230,0.6)">
+        <img id="cerrardir" style="position:absolute; top:0px; right:0px; width:7%; height:auto;" src="./imagenes/limpiar.png" onclick="cerrardirec()">
+        <div>
+            <!---<img id="giftotem" src="image/avatar_02.gif" style="width:150px; height:auto;">-->
+            <div class="input-group textarea" style="position:absolute; top:5%; left:0%; width:100%;"><input type="text" hidden="hidden" class="direccion" id="inputdirecciontotem" style="position:absolute; top:5%; left:30%; width:60%" placeholder="Ejem: C 19 22 21 ó K 24 56 32"></div>
+            <input type="text" hidden="hidden" id="inputsitiototem" style="position:absolute; top:23%; left:30%; width:60%" placeholder="Ejem: Alcaldía">
+            <input type="text" hidden="hidden" id="inputbarriototem" style="position:absolute; top:23%; left:30%; width:60%" placeholder="Ejem: La Laguna">
+            <input type="text" hidden="hidden" id="inputmanzanatotem" style="position:absolute; top:23%; left:30%; width:60%" placeholder="Ejem: 5400101....">
+        </div>
+    </div>
+    
     <script src="src/app/Consultas/consultas_simples.js"></script>
     <script src="src/app/Consultas/consulta_direccion_boton.js"></script>
     <!--<script src="src/app/Consultas/rangos.js"></script>-->

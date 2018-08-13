@@ -893,7 +893,7 @@ function comparacion()
 function cerrardirec()
 {
     document.getElementById("consultas_totem").style.display = "none";
-    document.getElementById("exp1").style.display = "none";
+    //document.getElementById("exp1").style.display = "none";
 }
 function existeUrl(url) {
     var http = new XMLHttpRequest();
@@ -1315,17 +1315,3 @@ function medir_off() {
     document.getElementById("boton_medir_off").style.display = "block";  
     document.getElementById("medidas").style.display = "none";  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

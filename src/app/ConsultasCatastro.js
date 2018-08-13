@@ -16,6 +16,7 @@ var rangoarea = async function (x) { // async function expression assigned to a 
     await quitgif();
 };
 function rango(style,id) {
+    //console.log(style);
     puntos_obras.setVisible(false);
     obras.setVisible(false);
     ejeobras.setVisible(false);
