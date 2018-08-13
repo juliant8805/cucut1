@@ -21,7 +21,9 @@ $(document).on('ready', function () {
     } else if (select[0][6] === "totem") {
         document.getElementById("menu_totem").style.display = "block";
         importarScript("src/app/totem/ConsultaTotem.js");
-        
+    } else if (select[0][6] === "planeacion") {
+        document.getElementById("planeacion").style.display = "block";
+        document.getElementById("posicionbarra").style.display = "block";
     }
 });
 function validacionusuarios() {

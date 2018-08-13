@@ -140,25 +140,25 @@ function estdistica(select, titulo, param, totales, id) {
             } else if (param[i][0] === 'Otro Propietario') {
                 color[i] = '#7CEB98';
             } else if (param[i][0] === 'Estrato 1') {
-                color[i] = '#7CEB98';
+                color[i] = '#F9A8A5';
             } else if (param[i][0] === 'Estrato 2') {
-                color[i] = '#EDEF85';
+                color[i] = '#FFFAA4';
             } else if (param[i][0] === 'Estrato 3') {
-                color[i] = '#FFBBFF';
+                color[i] = '#B2FEE9';
             } else if (param[i][0] === 'Estrato 4') {
-                color[i] = '#FF8A8A';
+                color[i] = '#CDF57A';
             } else if (param[i][0] === 'Estrato 5') {
-                color[i] = '#9999FF';
+                color[i] = '#FFB203';
             } else if (param[i][0] === 'Estrato 6') {
-                color[i] = '#FF4AFF';
+                color[i] = '#89CD66';
             } else if (param[i][0] === 'PH o Comercial') {
-                color[i] = '#5b5b5b';
+                color[i] = '#fff7f3';
             } else if (param[i][0] === 'Diferencia mayor a 10%') {
                 color[i] = '#FF0000';
             } else if (param[i][0] === 'Areas Iguales') {
                 color[i] = '#EDEF85';
             } else if (param[i][0] === 'PH o Sin Informacion') {
-                color[i] = '#BFBFBF';
+                color[i] = '#e5e5e5';
             }
 
 
