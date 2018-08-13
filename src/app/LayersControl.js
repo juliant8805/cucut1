@@ -168,6 +168,106 @@ var ejeobras = new ol.layer.Tile({
     }), name: 'Eje de Obras'
 });
 
+//CAPAS POT 2011
+
+var anillovialoccidental = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_anillo_vial_occidental', STYLES: ''}
+    }), name: 'Anillo Vial Occidental'
+});
+
+var cabecerasvecinas = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_cabeceras_vecinas', STYLES: ''}
+    }), name: 'Cabeceras Vecinas'
+});
+
+var conjuntoareaurbano = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_mapa_en_conjunto_area_urbano', STYLES: ''}
+    }), name: 'Conjunto Area Urbano'
+});
+
+var nomenclaturavial2011 = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_nomenclatura_vial', STYLES: ''}
+    }), name: 'Nomenclatura Vial 2011'
+});
+
+var perimetroacuerdo20 = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_perimetro_acuerdo_020_de_2013', STYLES: ''}
+    }), name: 'Perimetro Acuerdo 020 de 2013'
+});
+
+var perimetromunicipalpot2011 = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_perimetro_municipal', STYLES: ''}
+    }), name: 'Perimetro Municipal POT 2011'
+});
+
+var prediosincorporados020 = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_predios_incorporados_decreto_020_de_2013', STYLES: ''}
+    }), name: 'Predios Incorporados Decreto 020 de 2013'
+});
+
+var rios2011 = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_rios', STYLES: ''}
+    }), name: 'Rios POT 2011'
+});
+
+var sueloproteccion = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_suelo_de_proteccion', STYLES: ''}
+    }), name: 'Suelo Proteccion'
+});
+
+var toponimiabarrios = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_toponimia_de_barrios', STYLES: ''}
+    }), name: 'Toponimia Barrios'
+});
+
+var verticesperimetro202 = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_vertices_perimetro_202_de_2013', STYLES: ''}
+    }), name: 'Vertices Perimetro 202 de 2013'
+});
 
 //CAPS GROUP
 var layerCatastro = new ol.layer.Group({
@@ -175,9 +275,9 @@ var layerCatastro = new ol.layer.Group({
     name: 'Catastro'
 });
 
-var layerPot = new ol.layer.Group({
-    layers: [barrios, barrios],
-    name: 'POT'
+var layerPot2011 = new ol.layer.Group({
+    layers: [verticesperimetro202, toponimiabarrios, sueloproteccion, rios2011, prediosincorporados020, perimetromunicipalpot2011, perimetroacuerdo20, nomenclaturavial2011, conjuntoareaurbano, cabecerasvecinas, anillovialoccidental, barrios, barrios],
+    name: 'POT_2011'
 });
 
 var layerBing = new ol.layer.Group({
