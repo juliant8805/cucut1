@@ -269,10 +269,107 @@ var verticesperimetro202 = new ol.layer.Tile({
     }), name: 'Vertices Perimetro 202 de 2013'
 });
 
+//CAPAS POT 2001
+
+var amoblamientourbano = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2001_amoblamiento_urbano', STYLES: ''}
+    }), name: 'Amoblamiento Urbano'
+});
+
+var anticlinalesysinclinales = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2001_anticlinales_y_sinclinales', STYLES: ''}
+    }), name: 'Anticlinales y Sinclinales'
+});
+
+var arealimite = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2001_area_limite', STYLES: ''}
+    }), name: 'Area Limite'
+});
+
+var areaterrenolibre = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2001_areas_de_terreno_libres', STYLES: ''}
+    }), name: 'Areas de Terreno Libres'
+});
+
+var areasmorfologicashomogeneas = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2001_areas_morfologicas_homgeneas', STYLES: ''}
+    }), name: 'Areas Morfologicas Homogeneas'
+});
+
+var asentamientossubnormales = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2001_asentamientos_subnormales', STYLES: ''}
+    }), name: 'Asentamientos Subnormales'
+});
+
+var atipicas = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2001_atipicas', STYLES: ''}
+    }), name: 'Atipicas'
+});
+
+var barrios2001 = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2001_barrio', STYLES: ''}
+    }), name: 'Barrios 2001'
+});
+
+var canalaguaslluvias = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2001_canal_aguas_lluvias', STYLES: ''}
+    }), name: 'Canal Aguas Lluvias'
+});
+
+var canales3y4 = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2001_canales_3_y_4', STYLES: ''}
+    }), name: 'Canales 3 y 4'
+});
+
 //CAPS GROUP
 var layerCatastro = new ol.layer.Group({
     layers: [manzanas, predio, vias, construcciones, n_domiciliaria, heatmap, highlightfeatures],
     name: 'Catastro'
+});
+
+var layerPot2001 = new ol.layer.Group({
+    layers: [canales3y4, canalaguaslluvias, barrios2001, atipicas, asentamientossubnormales, areasmorfologicashomogeneas, areaterrenolibre, arealimite, anticlinalesysinclinales, amoblamientourbano, barrios],
+    name: 'POT_2001'
 });
 
 var layerPot2011 = new ol.layer.Group({
