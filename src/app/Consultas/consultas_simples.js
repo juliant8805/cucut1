@@ -512,7 +512,7 @@ function addressSource(requestString, responseFunc) {
                         codigo: data.features[i].properties.codigo,
                         value: data.features[i].properties.ref_catastral,
                         feature: data,
-                        direccion: data.features[i].properties.direccion,
+                        direccion: data.features[i].properties.direccion
                     });
                 }
             } else {
@@ -934,38 +934,44 @@ function addressSelect(event, ui) {
                 }
                 //totem
                 else if (tipoUsuario === "totem") {
-                    select[0] = "<b>Codigo Catastral Nuevo</b>";
-                    select[1] = "<b>Codigo Catastral Anterior</b>";
-                    select[2] = "<b>Matricula Inmobiliaria</b>";
-                    select[3] = "<b>Dirección</b>";
-                    select[4] = "<b>Uso Acueducto</b>";
-                    select[5] = "<b>Uso Alcantarillado</b>";
-                    select[6] = "<b>Uso Aseo</b>";
-                    select[7] = "<b>Estrato Hacienda</b>";
-                    select[8] = "<b>Estrato Acueducto</b>";
-                    select[9] = "<b>Estrato Alcantarillado</b>";
-                    select[10] = "<b>Estrato Aseo</b>";
-                    select[11] = "<b>Avalúo Catastral 2018</b>";
-                    select[12] = "<b>Area de Terreno</b>";
-                    select[13] = "<b>Area Construida</b>";
-                    select[14] = "<b>Barrio</b>";
-                    select[15] = "<b>Codigo Postal</b>";
-                    select[16] = "<b>Cuadrante CAI</b>";
-                    select[17] = "<b>Nombre CAI</b>";
-                    select[18] = "<b>Telefono CAI</b>";
-                    select[19] = "<b>Fotografias</b>";
-                    sel[0] = cod_nacion["0"]["0"];
-                    sel[1] = ui.item.codigooriginal;
-                    console.log(values);
-                    sel[2] = matricula;
-                    sel[3] = ui.item.direccionoriginal;
-                    sel[4] = uso_acueducto;
+                    //select[0] = "<b>Codigo Catastral Nuevo</b>";
+                    select[0] = "<b>Codigo Catastral</b>";
+                    select[1] = "<b>Matricula Inmobiliaria</b>";
+                    select[2] = "<b>Dirección</b>";
+                    select[3] = "<b>Deuda</b>";
+                    /*select[5] = "<b>Uso Alcantarillado</b>";sel[0] = "<FONT SIZE=2 color='red'><b>POR PAGAR</b></font>";
+                     select[6] = "<b>Uso Aseo</b>";
+                     select[7] = "<b>Estrato Hacienda</b>";
+                     select[8] = "<b>Estrato Acueducto</b>";
+                     select[9] = "<b>Estrato Alcantarillado</b>";
+                     select[10] = "<b>Estrato Aseo</b>";*/
+                    select[4] = "<b>Destino Económico</b>";
+                    select[5] = "<b>Avalúo Catastral 2018</b>";
+                    select[6] = "<b>Area de Terreno</b>";
+                    select[7] = "<b>Area Construida</b>";
+                    select[8] = "<b>Barrio</b>";
+                    select[8] = "<b>Codigo Postal</b>";
+                    select[10] = "<b>Cuadrante CAI</b>";
+                    select[11] = "<b>Nombre CAI</b>";
+                    select[12] = "<b>Telefono CAI</b>";
+                    select[13] = "<b>Fotografias</b>";
+                    //sel[0] = cod_nacion["0"]["0"];
+                    sel[0] = ui.item.codigooriginal;
+                    sel[1] = matricula;
+                    sel[2] = ui.item.direccionoriginal;
+                    if (values.deuda_2018 > 0) {
+                        sel[3] = "<FONT SIZE=2 color='red'><b>POR PAGAR</b></font>";
+                    } else {
+                        sel[3] = "<FONT SIZE=2 color='green'><b>NO POSEE DEUDA CON EL MUNICIPIO</b></font>";
+                    }
+                    sel[4] = simplestabla["0"]["0"];
+                    /*sel[4] = uso_acueducto;
                     sel[5] = uso_alcantarillado;
                     sel[6] = uso_aseo;
                     sel[7] = simplestabla["0"][5];
                     sel[8] = estrato_acued;
                     sel[9] = estrato_aseo;
-                    sel[10] = values.estrato_aseo;
+                    sel[10] = values.estrato_aseo;*/
                     sel[11] = avaluo2018;
                     sel[12] = simplestabla["0"][1] + "m2";
                     sel[13] = simplestabla["0"][2] + "m2";
@@ -1003,14 +1009,15 @@ function addressSelect(event, ui) {
                             cell2.appendChild(stv[i]);
                             //cell2.appendChild(ig[i]);
                             stv[i].appendChild(ig[i]);
-                            
+
                         } else {
                             cell2.innerHTML = sel[i];
                         }
                     }
-                    try{
+                    try {
                         document.getElementById("tablaP").deleteRow(0);
-                    }catch (err){}
+                    } catch (err) {
+                    }
                     var fila = "<tr><td><H5><b>IMPRIMIR FACTURA</b></H5></td><td>";
                     var btn = document.createElement("TR");
                     btn.innerHTML = fila;

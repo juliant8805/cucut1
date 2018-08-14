@@ -361,68 +361,74 @@ map.on('singleclick', function (evt) {
                                 }
                             }
                         } else if (tipoUsuario === "totem") {
-                            select[0] = "<b>Codigo Catastral Nuevo</b>";
-                            select[1] = "<b>Codigo Catastral Anterior</b>";
-                            select[2] = "<b>Matricula Inmobiliaria</b>";
-                            select[3] = "<b>Dirección</b>";
-                            select[4] = "<b>Uso Acueducto</b>";
-                            select[5] = "<b>Uso Alcantarillado</b>";
+                            //select[0] = "<b>Codigo Catastral Nuevo</b>";
+                            select[0] = "<b>Codigo Catastral</b>";
+                            select[1] = "<b>Matricula Inmobiliaria</b>";
+                            select[2] = "<b>Dirección</b>";
+                            select[3] = "<b>Deuda</b>";
+                            /*select[5] = "<b>Uso Alcantarillado</b>";sel[0] = "<FONT SIZE=2 color='red'><b>POR PAGAR</b></font>";
                             select[6] = "<b>Uso Aseo</b>";
                             select[7] = "<b>Estrato Hacienda</b>";
                             select[8] = "<b>Estrato Acueducto</b>";
                             select[9] = "<b>Estrato Alcantarillado</b>";
-                            select[10] = "<b>Estrato Aseo</b>";
-                            select[11] = "<b>Avalúo Catastral 2018</b>";
-                            select[12] = "<b>Area de Terreno</b>";
-                            select[13] = "<b>Area Construida</b>";
-                            select[14] = "<b>Barrio</b>";
-                            select[15] = "<b>Codigo Postal</b>";
-                            select[16] = "<b>Cuadrante CAI</b>";
-                            select[17] = "<b>Nombre CAI</b>";
-                            select[18] = "<b>Telefono CAI</b>";
-                            select[19] = "<b>Fotografias</b>";
-                            sel[0] = values.codigo;
-                            sel[1] = cod;
-                            sel[2] = matricula;
-                            sel[3] = direccion[0];
-                            sel[4] = uso_acueducto;
-                            sel[5] = uso_alcantarillado;
+                            select[10] = "<b>Estrato Aseo</b>";*/
+                            select[4] = "<b>Destino Económico</b>";
+                            select[5] = "<b>Avalúo Catastral 2018</b>";
+                            select[6] = "<b>Area de Terreno</b>";
+                            select[7] = "<b>Area Construida</b>";
+                            select[8] = "<b>Barrio</b>";
+                            select[8] = "<b>Codigo Postal</b>";
+                            select[10] = "<b>Cuadrante CAI</b>";
+                            select[11] = "<b>Nombre CAI</b>";
+                            select[12] = "<b>Telefono CAI</b>";
+                            select[13] = "<b>Fotografias</b>";
+                            //sel[0] = values.codigo;
+                            sel[0] = cod;
+                            sel[1] = matricula;
+                            sel[2] = direccion[0];
+                            if (values.deuda_2018 > 0){
+                                sel[3] = "<FONT SIZE=2 color='red'><b>POR PAGAR</b></font>";
+                            } else{
+                                sel[3] = "<FONT SIZE=2 color='green'><b>NO POSEE DEUDA CON EL MUNICIPIO</b></font>";
+                            }
+                            /*sel[5] = uso_alcantarillado;
                             sel[6] = uso_aseo;
                             sel[7] = simplestabla["0"][5];
                             sel[8] = values.estrato_acueducto;
                             sel[9] = values.estrato_alcantarillado;
-                            sel[10] = values.estrato_aseo;
-                            sel[11] = avaluo2018;
-                            sel[12] = simplestabla["0"][1] + "m2";
-                            sel[13] = simplestabla["0"][2] + "m2";
-                            sel[14] = values.cod_barrio;
-                            sel[15] = values.cod_postal;
-                            sel[16] = values.cuadrante;
-                            sel[17] = values.nombre_cai;
-                            sel[18] = values.telefono;
-                            sel[19] = document.createElement("a");
-                            sel[19].id = "img1";
-                            sel[19].style = "width: 30px; height: 50px;";
-                            sel[19].target = "marco2";
-                            sel[19].setAttribute("onclick", "open_streetview()");
-                            sel[19].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                            imag[19] = document.createElement("img");
-                            imag[19].id = "im1";
-                            imag[19].className = "pequeña";
-                            imag[19].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                            stv[19] = document.createElement("a");
-                            stv[19].id = "imgstreet1";
-                            stv[19].target = "marco";
-                            stv[19].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
-                            stv[19].setAttribute("onclick", "open_streetview()");
-                            ig[19] = document.createElement("img");
-                            ig[19].src = "./imagenes/streetview.png";
+                            sel[10] = values.estrato_aseo;*/
+                            sel[4] = simplestabla["0"]["0"];
+                            sel[5] = avaluo2018;
+                            sel[6] = simplestabla["0"][1] + "m2";
+                            sel[7] = simplestabla["0"][2] + "m2";
+                            sel[8] = values.cod_barrio;
+                            sel[9] = values.cod_postal;
+                            sel[10] = values.cuadrante;
+                            sel[11] = values.nombre_cai;
+                            sel[12] = values.telefono;
+                            sel[13] = document.createElement("a");
+                            sel[13].id = "img1";
+                            sel[13].style = "width: 30px; height: 50px;";
+                            sel[13].target = "marco2";
+                            sel[13].setAttribute("onclick", "open_streetview()");
+                            sel[13].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            imag[13] = document.createElement("img");
+                            imag[13].id = "im1";
+                            imag[13].className = "pequeña";
+                            imag[13].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            stv[13] = document.createElement("a");
+                            stv[13].id = "imgstreet1";
+                            stv[13].target = "marco";
+                            stv[13].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
+                            stv[13].setAttribute("onclick", "open_streetview()");
+                            ig[13] = document.createElement("img");
+                            ig[13].src = "./imagenes/streetview.png";
                             for (i = 0; i < select.length; i++) {
                                 row = table.insertRow(i + 1);
                                 cell1 = row.insertCell(0);
                                 cell2 = row.insertCell(1);
                                 cell1.innerHTML = select[i];
-                                if (i === 19) {
+                                if (i === 13) {
                                     cell2.appendChild(sel[i]);
                                     //cell2.appendChild(imag[i]);
                                     sel[i].appendChild(imag[i]);
