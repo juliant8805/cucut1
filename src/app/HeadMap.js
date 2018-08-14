@@ -187,8 +187,8 @@ function generateheatmap() {
     else if (styleheatmap === "Estratificacion") {
             heatmap.setVisible(false);
             alert("GESSTOR INFORMA:</br></br>Esta funcionalidad no esta disponible para esta consulta</br></br>");
-      }
-     else if (styleheatmap === "DiferenciaArea") {
+    }
+    else if (styleheatmap === "DiferenciaArea") {
             alert("GESSTOR INFORMA:</br></br>Este mapa muestra la concentracion de predios donde el área de registro y el área gráfica difiere en un porcentaje mayor a 10%</br></br>");
             var valor1 = "'" + 11 + "'";
             var valor2 = "'" + 10000 + "'";
@@ -196,5 +196,15 @@ function generateheatmap() {
             heatmap.getSource().updateParams({'STYLES': 'heatmapcre', 'CQL_FILTER':eval(filtro)});  
             map.getView().fitExtent(pgetextentheatmap2, map.getSize());     
      }
+    else if (styleheatmap === "Remoción en Masa") {
+            alert("GESSTOR INFORMA:</br></br>Este mapa muestra la concentracion de predios con muy alto riesgo de Remoción en Masa</br></br>");
+            var valor1 = "'" + 11 + "'";
+            var valor2 = "'" + 10000 + "'";
+            var valor = "'" + "Muy Alto Riesgo" + "'";
+            var filtro = '"remocion=' + valor + '"';   
+            heatmap.getSource().updateParams({'STYLES': 'heatmapcre', 'CQL_FILTER':eval(filtro)});  
+            map.getView().fitExtent(pgetextentheatmap2, map.getSize());     
+     }
+    
 
 }

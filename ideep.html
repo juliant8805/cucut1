@@ -58,15 +58,15 @@
                </li>
        
                 <li id="Tipo Construccion" name="predio" onclick="rango(id, name)"><a>Propiedad Horizontal</a></li>	
-                <li id="Estratificacion" name="Estratificacion" onclick="rango(id, name)"><a>Estratificacion Oficial</a></li>
+              <!--  <li id="Estratificacion" name="Estratificacion" onclick="rango(id, name)"><a>Estratificacion Oficial</a></li> -->
 
-               <li><select style="background:#4E9AAB; height:100%;width:100%;" id="Uso_oficial_vs_AAA" name=prestadores onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
+             <!--  <li><select style="background:#4E9AAB; height:100%;width:100%;" id="Uso_oficial_vs_AAA" name=prestadores onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
                         <option value="seleccione" disabled selected><a>Comparacion Uso</a>
                         <option value="Acueducto" style="font-weight: bold; color: white;  font-size:small;">Acueducto
                         <option value="Alcantarillado" style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
                         <option value="Aseo" style="font-weight: bold; color: white;  font-size:small;">Aseo
                     </select> 
-                </li>
+                </li> -->
 
 
                 <li><select style="background:#4E9AAB;height:100%;width:100%;" id="valorizacion" name="valorizacion" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
@@ -90,21 +90,21 @@
                     </select>
                 </li>
 
-					<li><select style="background:#4E9AAB;height:100%;width:100%;" id="oficial_vs_AAA" name=prestadores onchange="rangoarea(id, name)" >
+				<!--	<li><select style="background:#4E9AAB;height:100%;width:100%;" id="oficial_vs_AAA" name=prestadores onchange="rangoarea(id, name)" >
                         <option value="seleccione" selected><a>Comparacion Estrato</a>
                         <option value="Acueducto" style="font-weight: bold; color:white; font-size:small;">Acueducto
                         <option value="Alcantarillado" style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
                         <option value="Aseo" style="font-weight: bold; color: white;  font-size:small;">Aseo
                     </select>
-                </li>
+                </li> -->
 
-					<li><select hidden="hidden" style="background:#BFBFBF;height:100%;width:100%;" id="Saneamiento" name="Saneamiento" onchange="rangoarea(id, name)" >
+				<!--	<li><select hidden="hidden" style="background:#BFBFBF;height:100%;width:100%;" id="Saneamiento" name="Saneamiento" onchange="rangoarea(id, name)" >
                         <option value="seleccione" disabled selected><a>Saneamiento Basico</a>
                         <option value="Acueducto" disabled style="font-weight: bold; color:white; font-size:small;">Acueducto
                         <option value="Alcantarillado" disabled style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
                         <option value="Aseo" /*disabled*/ style="font-weight: bold; color: white;  font-size:small;">Aseo
                     </select>
-                </li>
+                </li> -->
 
 
                 <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2018)	
@@ -124,15 +124,16 @@
         <nav class="menu" id="planeacion" hidden="hidden">
             <ul>
                 <li id="Estratificacion" name="Estratificacion" onclick="rango(id, name)"><a>Estratificacion Oficial</a></li>
+                <li id="Remoción en Masa" name="Remoción en Masa" onclick="rango(id, name)"><a>Riesgo Remoción en Masa</a></li>
                  
-                <li><select style="background:#4E9AAB; height:100%;width:100%;" id="Uso_oficial_vs_AAA" name=prestadores onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
+                <li><select style="background:#4E9AAB; height:100%;width:100%;" id="Uso_oficial_vs_AAA" name="prestadores" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
                         <option value="seleccione" disabled selected><a>Comparacion Uso</a>
                         <option value="Acueducto" style="font-weight: bold; color: white;  font-size:small;">Acueducto
                         <option value="Alcantarillado" style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
                         <option value="Aseo" style="font-weight: bold; color: white;  font-size:small;">Aseo
                     </select> 
                 </li>
-                <li><select style="background:#4E9AAB;height:100%;width:100%;" id="oficial_vs_AAA" name=prestadores onchange="rangoarea(id, name)" >
+                <li><select style="background:#4E9AAB;height:100%;width:100%;" id="oficial_vs_AAA" name="prestadoresP" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
                         <option value="seleccione" selected><a>Comparacion Estrato</a>
                         <option value="Acueducto" style="font-weight: bold; color:white; font-size:small;">Acueducto
                         <option value="Alcantarillado" style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
@@ -140,7 +141,7 @@
                     </select>
                 </li>
 
-					<li><select style="background:#BFBFBF;height:100%;width:100%;" id="Saneamiento" name="Saneamiento" onchange="rangoarea(id, name)" >
+					<li><select style="background:#4E9AAB;height:100%;width:100%;" id="Saneamiento" name="SaneamientoP" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
                         <option value="seleccione" ><a>Saneamiento Basico</a>
                         <option value="Acueducto" style="font-weight: bold; color:white; font-size:small;">Acueducto
                         <option value="Alcantarillado" style="font-weight: bold; color: white;  font-size:small;">Alcantarillado

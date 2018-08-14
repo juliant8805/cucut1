@@ -77,6 +77,46 @@ function rango(style,id) {
             queryexport = style;
         }         
     }
+      else if (style === "Remoción en Masa") { 
+        predio.setVisible(true);
+        construcciones.setVisible(false);
+          if (document.getElementById("barrio").value === '' && document.getElementById("manzana").value === '') {
+            var select = search("cucuta:TotalPrediosHacienda");
+            var param = [['Muy Alto Riesgo'], ['Alto Riesgo'], ['Medio Riesgo'], ['Bajo Riesgo'], ['Sin Riesgo']];
+            var total1 = search("cucuta:Remocion", 'Muy Alto Riesgo');
+            var total2 = search("cucuta:Remocion", 'Alto Riesgo');
+            var total3 = search("cucuta:Remocion", 'Medio Riesgo');
+            var total4 = search("cucuta:Remocion", 'Bajo Riesgo');
+            var total5 = search("cucuta:Remocion", 'Sin Riesgo');
+              
+            var totales = total1.concat(total2, total3, total4, total5);
+            predio.getSource().updateParams({'STYLES': 'Remocion'});
+            estdistica(select, style, param, totales, id);
+            map.getView().fitExtent(pgetextent, map.getSize()); 
+            queryexport = style + ' G';
+     }   
+         
+     else {
+            var select = search("cucuta:TotalPrediosSinConsulta", values);
+            var param = [['Muy Alto Riesgo'], ['Alto Riesgo'], ['Medio Riesgo'], ['Bajo Riesgo'], ['Sin Riesgo']];
+            var total1 = search("cucuta:RemocionFiltro", values, 'Muy Alto Riesgo');
+            var total2 = search("cucuta:RemocionFiltro", values, 'Alto Riesgo');
+            var total3 = search("cucuta:RemocionFiltro", values, 'Medio Riesgo');
+            var total4 = search("cucuta:RemocionFiltro", values, 'Bajo Riesgo');
+            var total5 = search("cucuta:RemocionFiltro", values, 'Sin Riesgo');
+            
+            var totales = total1.concat(total2, total3, total4, total5);
+            estdistica(select, style, param, totales, id);
+            var valor = "'" + values + "'";
+            if (document.getElementById("barrio").value !== '') {
+            var filtro = '"cod_barrio=' + valor + '"';   
+            }  else if (document.getElementById("manzana").value !== '') {
+                var filtro = '"manzana_co=' + valor + '"';    
+            }
+            predio.getSource().updateParams({'STYLES': 'Remocion', 'CQL_FILTER': eval(filtro)});
+            queryexport = style;
+        }         
+    }
     // consultas comparacion estrato y destino 
      else if (style === "oficial_vs_AAA") {
             document.getElementById("statistics").style.display = "none";
@@ -528,7 +568,7 @@ function rango(style,id) {
          }
         }
          
-         else if (document.getElementById("Saneamiento").value === "franjaavaluo") {
+      /*   else if (document.getElementById("Saneamiento").value === "franjaavaluo") {
             if (document.getElementById("barrio").value === '' && document.getElementById("manzana").value === '') {
             var select = search("cucuta:TotalPredios");
             var param = [['AGUAS KPITAL'], ['Sin Prestador de Alcantarillado']];
@@ -558,7 +598,7 @@ function rango(style,id) {
             predio.getSource().updateParams({'STYLES': 'Disponibilidad Alcantarillado Cucuta', 'CQL_FILTER': eval(filtro)});
             queryexport = style + ' AlcantarilladoF';  
            }   
-         } 
+         } */
            
          else if (document.getElementById("Avaluo Catastral").value === "avaluoporrangos") {        
             document.getElementById("statistics").style.display = "none";

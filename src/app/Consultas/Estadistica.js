@@ -159,9 +159,19 @@ function estdistica(select, titulo, param, totales, id) {
                 color[i] = '#EDEF85';
             } else if (param[i][0] === 'PH o Sin Informacion') {
                 color[i] = '#e5e5e5';
+            } else if (param[i][0] === 'Muy Alto Riesgo') {
+                color[i] = '#a69bcc';
+            } else if (param[i][0] === 'Alto Riesgo') {
+                color[i] = '#e5afb1';
+            } else if (param[i][0] === 'Medio Riesgo') {
+                color[i] = '#FFBE00';
+            } else if (param[i][0] === 'Bajo Riesgo') {
+                color[i] = '#7ceb98';
+            } else if (param[i][0] === 'Sin Riesgo') {
+                color[i] = '#d8d8d8';
             }
-
-
+        
+            
             dat[i] = new Array(param.length);
             for (j = 0; j < param.length; j++) {
                 if (i === j) {
