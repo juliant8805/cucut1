@@ -361,6 +361,15 @@ var canales3y4 = new ol.layer.Tile({
     }), name: 'Canales 3 y 4'
 });
 
+var zonasriesgoimproas = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2001_zonas_de_riesgo_improas', STYLES: ''}
+    }), name: 'Riesgo Remocion en Masa'
+});
+
 //CAPS GROUP
 var layerCatastro = new ol.layer.Group({
     layers: [manzanas, predio, vias, construcciones, n_domiciliaria, heatmap, highlightfeatures],
@@ -368,7 +377,7 @@ var layerCatastro = new ol.layer.Group({
 });
 
 var layerPot2001 = new ol.layer.Group({
-    layers: [canales3y4, canalaguaslluvias, barrios2001, atipicas, asentamientossubnormales, areasmorfologicashomogeneas, areaterrenolibre, arealimite, anticlinalesysinclinales, amoblamientourbano, barrios],
+    layers: [zonasriesgoimproas, canales3y4, canalaguaslluvias, barrios2001, atipicas, asentamientossubnormales, areasmorfologicashomogeneas, areaterrenolibre, arealimite, anticlinalesysinclinales, amoblamientourbano, barrios],
     name: 'POT_2001'
 });
 

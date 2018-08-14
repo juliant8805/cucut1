@@ -17,6 +17,20 @@ function file() {
         }
     }
     
+     else if (queryexport.substring(0, 16) === "Remoción en Masa"){
+         var titulo = JSON.stringify([["PREDIOS CON RIESGO DE REMOCION EN MASA"],["Codigo Predial Catastral", "Direccion", "Barrio", "Nivel de Riesgo"]]);
+        if (queryexport === 'Remoción en Masa G') {
+            alert("GESSTOR INFORMA:</br></br>El reporte corresponde a los predios que tienen riesgo de remoción en masa</br>");
+            var select = search("cucuta:ReportRemociong");
+            quitgif();
+        } else {
+            alert("GESSTOR INFORMA:</br></br>El reporte corresponde a los datos de riesgo de remoción en masa de los predios consultados</br>");
+            var select = search("cucuta:ReportRemocion", values);
+        }
+    }
+    
+    
+    
     else if (queryexport.substring(0, 24) === "Disponibilidad Acueducto"){
          var titulo = JSON.stringify([["PREDIOS CON COBERTURA DE ACUEDUCTO"],["Codigo Predial Catastral", "Direccion", "Barrio", "Prestador Acueducto", "# Predios"]]);
         if (queryexport === 'Disponibilidad Acueducto G') {
