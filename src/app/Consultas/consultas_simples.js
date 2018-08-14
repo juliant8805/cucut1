@@ -356,7 +356,7 @@ function addressSource(requestString, responseFunc) {
     //globalstyle = "sinconsulta";
     predio.setVisible(true);
     //try{
-    if (requestString.term !== null) {
+    if (requestString.term !== null && requestString.term !== undefined) {
         var querystr = requestString.term;
         //}catch (err){
     } else {

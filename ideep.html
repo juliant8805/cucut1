@@ -50,23 +50,23 @@
         <label for = "btn-menu"><img src="imagenes/icono-menu.png" alt=""></label>
         <nav class="menu" id="catastro" hidden="hidden">
             <ul>
-         
-            	<li><select style="background:#4E9AAB; height:100%;width:100%;" id="DiferenciaArea" name=DiferenciaArea onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
+
+                <li><select style="background:#4E9AAB; height:100%;width:100%;" id="DiferenciaArea" name=DiferenciaArea onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
                         <option value="seleccione" disabled selected><a>Rango de Area</a>
                         <option value="AreaTerreno" style="font-weight: bold; color: white;  font-size:small;">Area Terreno
                     </select> 
-               </li>
-       
-                <li id="Tipo Construccion" name="predio" onclick="rango(id, name)"><a>Propiedad Horizontal</a></li>	
-              <!--  <li id="Estratificacion" name="Estratificacion" onclick="rango(id, name)"><a>Estratificacion Oficial</a></li> -->
+                </li>                
 
-             <!--  <li><select style="background:#4E9AAB; height:100%;width:100%;" id="Uso_oficial_vs_AAA" name=prestadores onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
-                        <option value="seleccione" disabled selected><a>Comparacion Uso</a>
-                        <option value="Acueducto" style="font-weight: bold; color: white;  font-size:small;">Acueducto
-                        <option value="Alcantarillado" style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
-                        <option value="Aseo" style="font-weight: bold; color: white;  font-size:small;">Aseo
-                    </select> 
-                </li> -->
+                <li id="Tipo Construccion" name="predio" onclick="rango(id, name)"><a>Propiedad Horizontal</a></li>	
+                <!--  <li id="Estratificacion" name="Estratificacion" onclick="rango(id, name)"><a>Estratificacion Oficial</a></li> -->
+
+                <!--  <li><select style="background:#4E9AAB; height:100%;width:100%;" id="Uso_oficial_vs_AAA" name=prestadores onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
+                           <option value="seleccione" disabled selected><a>Comparacion Uso</a>
+                           <option value="Acueducto" style="font-weight: bold; color: white;  font-size:small;">Acueducto
+                           <option value="Alcantarillado" style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
+                           <option value="Aseo" style="font-weight: bold; color: white;  font-size:small;">Aseo
+                       </select> 
+                   </li> -->
 
 
                 <li><select style="background:#4E9AAB;height:100%;width:100%;" id="valorizacion" name="valorizacion" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
@@ -86,25 +86,25 @@
                         <option value="pagopredial2018" disabled style="font-weight: bold; color: white;  font-size:small;">Pago Predial 2018
                         <option value="cambiosavaluo2017" style="font-weight: bold; color: white;  font-size:small;">Resoluciones Cambios Avaluo
                         <option value="cambiosavaluo" style="font-weight: bold; color: white;  font-size:small;">Cambios Avaluo Catastral
-								<option value="prediosmunicipio" disabled style="font-weight: bold; color: white;  font-size:small;">Predios Municipio                    
+                        <option value="prediosmunicipio" disabled style="font-weight: bold; color: white;  font-size:small;">Predios Municipio                    
                     </select>
                 </li>
 
-				<!--	<li><select style="background:#4E9AAB;height:100%;width:100%;" id="oficial_vs_AAA" name=prestadores onchange="rangoarea(id, name)" >
-                        <option value="seleccione" selected><a>Comparacion Estrato</a>
-                        <option value="Acueducto" style="font-weight: bold; color:white; font-size:small;">Acueducto
-                        <option value="Alcantarillado" style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
-                        <option value="Aseo" style="font-weight: bold; color: white;  font-size:small;">Aseo
-                    </select>
-                </li> -->
+                <!--	<li><select style="background:#4E9AAB;height:100%;width:100%;" id="oficial_vs_AAA" name=prestadores onchange="rangoarea(id, name)" >
+        <option value="seleccione" selected><a>Comparacion Estrato</a>
+        <option value="Acueducto" style="font-weight: bold; color:white; font-size:small;">Acueducto
+        <option value="Alcantarillado" style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
+        <option value="Aseo" style="font-weight: bold; color: white;  font-size:small;">Aseo
+    </select>
+</li> -->
 
-				<!--	<li><select hidden="hidden" style="background:#BFBFBF;height:100%;width:100%;" id="Saneamiento" name="Saneamiento" onchange="rangoarea(id, name)" >
-                        <option value="seleccione" disabled selected><a>Saneamiento Basico</a>
-                        <option value="Acueducto" disabled style="font-weight: bold; color:white; font-size:small;">Acueducto
-                        <option value="Alcantarillado" disabled style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
-                        <option value="Aseo" /*disabled*/ style="font-weight: bold; color: white;  font-size:small;">Aseo
-                    </select>
-                </li> -->
+                <!--	<li><select hidden="hidden" style="background:#BFBFBF;height:100%;width:100%;" id="Saneamiento" name="Saneamiento" onchange="rangoarea(id, name)" >
+        <option value="seleccione" disabled selected><a>Saneamiento Basico</a>
+        <option value="Acueducto" disabled style="font-weight: bold; color:white; font-size:small;">Acueducto
+        <option value="Alcantarillado" disabled style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
+        <option value="Aseo" /*disabled*/ style="font-weight: bold; color: white;  font-size:small;">Aseo
+    </select>
+</li> -->
 
 
                 <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2018)	
@@ -115,17 +115,6 @@
         </nav>
         <nav class="menu" id="hacienda" hidden="hidden">
             <ul>
-            	<li id="Tipo Construccion" name="predio" ><a>Impuesto Predial</a></li>	
-                <li id="Estratificacion" name="Estratificacion" ><a>Valorización</a></li>      
-                <li id="Estratificacion" name="Estratificacion" ><a>Corponor</a></li>
-            </ul>
-        </nav>
-        
-        <nav class="menu" id="planeacion" hidden="hidden">
-            <ul>
-                <li id="Estratificacion" name="Estratificacion" onclick="rango(id, name)"><a>Estratificacion Oficial</a></li>
-                <li id="Remoción en Masa" name="Remoción en Masa" onclick="rango(id, name)"><a>Riesgo Remoción en Masa</a></li>
-                 
                 <li><select style="background:#4E9AAB; height:100%;width:100%;" id="Uso_oficial_vs_AAA" name="prestadores" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
                         <option value="seleccione" disabled selected><a>Comparacion Uso</a>
                         <option value="Acueducto" style="font-weight: bold; color: white;  font-size:small;">Acueducto
@@ -141,7 +130,43 @@
                     </select>
                 </li>
 
-					<li><select style="background:#4E9AAB;height:100%;width:100%;" id="Saneamiento" name="SaneamientoP" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
+                <li><select style="background:#4E9AAB; height:100%;width:100%;" id="DiferenciaAreaH" name=DiferenciaAreaH onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
+                        <option value="seleccione" disabled selected><a>Rango de Area</a>
+                        <option value="AreaTerrenoH" style="font-weight: bold; color: white;  font-size:small;">Area Terreno
+                    </select> 
+                </li>
+                <li id="Tipo Construccion" name="predio" onclick="rango(id, name)"><a>Propiedad Horizontal</a></li>
+                <li id="Tipo Construccion" name="predio" ><a>Impuesto Predial</a></li>	
+                <li id="Estratificacion" name="Estratificacion" ><a>Valorización</a></li>      
+                <li id="Estratificacion" name="Estratificacion" ><a>Corponor</a></li>
+                <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2018)	
+                        <div id="barratransparencia">
+                            <input type="range" min="0" max="1" step="0.1" value="0" onchange="ortofoto2017.setOpacity(Number(this.value))"/>
+                        </div></a></li>
+            </ul>
+        </nav>
+
+        <nav class="menu" id="planeacion" hidden="hidden">
+            <ul>
+                <li id="Estratificacion" name="Estratificacion" onclick="rango(id, name)"><a>Estratificacion Oficial</a></li>
+                <li id="Remoción en Masa" name="Remoción en Masa" onclick="rango(id, name)"><a>Riesgo Remoción en Masa</a></li>
+
+                <li><select style="background:#4E9AAB; height:100%;width:100%;" id="Uso_oficial_vs_AAA" name="prestadores" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
+                        <option value="seleccione" disabled selected><a>Comparacion Uso</a>
+                        <option value="Acueducto" style="font-weight: bold; color: white;  font-size:small;">Acueducto
+                        <option value="Alcantarillado" style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
+                        <option value="Aseo" style="font-weight: bold; color: white;  font-size:small;">Aseo
+                    </select> 
+                </li>
+                <li><select style="background:#4E9AAB;height:100%;width:100%;" id="oficial_vs_AAA" name="prestadoresP" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
+                        <option value="seleccione" selected><a>Comparacion Estrato</a>
+                        <option value="Acueducto" style="font-weight: bold; color:white; font-size:small;">Acueducto
+                        <option value="Alcantarillado" style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
+                        <option value="Aseo" style="font-weight: bold; color: white;  font-size:small;">Aseo
+                    </select>
+                </li>
+
+                <li><select style="background:#4E9AAB;height:100%;width:100%;" id="Saneamiento" name="SaneamientoP" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
                         <option value="seleccione" ><a>Saneamiento Basico</a>
                         <option value="Acueducto" style="font-weight: bold; color:white; font-size:small;">Acueducto
                         <option value="Alcantarillado" style="font-weight: bold; color: white;  font-size:small;">Alcantarillado
@@ -154,10 +179,10 @@
                         </div></a></li>
             </ul>
         </nav>
-        
-        
+
+
     </header>
-    
+
     <input type="checkbox" id="mover_streetview" name="mover_streetview" value="mover_streetview"><label id="label_street" style="display:none;" for="mover_streetview"></label>
 
     <div class="contenedor" id="contenedorg" hidden="hidden" style="z-index: 1">
@@ -171,9 +196,9 @@
         <div id="contenidopestanas">
             <div id="cpestana1">
                 <div id="panel_atr2">
-                <table class="table table-striped table-bordered table-condensed" id="tablaP" style="color: black;"></table>
+                    <table class="table table-striped table-bordered table-condensed" id="tablaP" style="color: black;"></table>
                 </div>
-                
+
                 <div id="panel_atr">          
                     <table class="table table-striped table-bordered table-condensed" id="tblatt" style="color: black;"></table>
                     <!--<button id="botonminimizar" hidden="hidden" onclick="ocultarpanelatributos();" style="background:url('./imagenes/minimizar.png'); background-repeat:no-repeat;"></button>-->
@@ -183,8 +208,8 @@
             <div id="cpestana2">      
                 <div class="col-md-3" id="statistics"></div>
                 <img hidden="hidden" id="excel" src="./imagenes/excel.png" onclick="exportar();" style="position:absolute; top:40em; right:2em; cursor:pointer;"/>
-                <img hidden="hidden" id="pie" src="./imagenes/pie.png" onclick="rango(value,id);" style="position:absolute; height:2.5em; cursor:pointer;"/>
-                <img hidden="hidden" id="barrass" src="./imagenes/brr.png" onclick="rango(value,id);" style="position:absolute; height:2.5em; cursor:pointer;"/>
+                <img hidden="hidden" id="pie" src="./imagenes/pie.png" onclick="rango(value, id);" style="position:absolute; height:2.5em; cursor:pointer;"/>
+                <img hidden="hidden" id="barrass" src="./imagenes/brr.png" onclick="rango(value, id);" style="position:absolute; height:2.5em; cursor:pointer;"/>
                 <div id="div_heatmap" hidden="hidden">
                     <img id="icono_headmap" src="./imagenes/heatmap.png" onclick="generateheatmap();"/>
                 </div>                
@@ -296,28 +321,28 @@
     <!--<iframe name="marco_imagenes" hidden="hidden" id="marco_imagenes" src="map.control.swipe.html"></iframe>-->
 
     <!--<img id="cerrar_submenu" hidden="hidden" src="./imagenes/cerrar_submenu.png" onclick="cerrar_menu()">-->
-    
-    
+
+
     <!--<img id="logos_cabezote" src="./imagenes/logos_cabezote.png" hidden="hidden">-->
     <!--<<img id="logos_cabezote" src="./imagenes/logos_cabezote.png" data-toggle="modal" data-target="#charge">-->
     <img id="boton_limpiar" src="imagenes/limpiar.png" onclick="limpiar_consulta()" title="Limpiar Consulta">
     <a href="index.html"><img id="salir" src="./iconos/salir.png"></a>
     <img id="boton_comparacion" name="boton_comparacion" src="imagenes/icono_comparaciones.png" onclick="comparacion()">
-    
+
     <img id="boton_medir_off" name="boton_medir" src="imagenes/icono_medir_off.png" onclick="medir()">
     <img id="boton_medir" hidden="hidden" name="boton_medir" src="imagenes/icono_medir.png" onclick="medir_off()">
-    
-    
-    
+
+
+
     <form id="medidas" style="display: none">
-       <input type="radio" name="gender" value="length" checked> Distancia<br>
-       <input type="radio" name="gender" value="area"> Area<br>        
+        <input type="radio" name="gender" value="length" checked> Distancia<br>
+        <input type="radio" name="gender" value="area"> Area<br>        
     </form>
-    
-    
-    
+
+
+
     <img id="manual" src="./imagenes/manual.png" onclick="abrir_manual()" title="Manual de Usuario">
-    
+
     <img id="gesstor" src="./imagenes/gesstor.png">
     <img id="sisepuede" src="./imagenes/sisepuedeprogresar.png">
 
@@ -348,22 +373,23 @@
             <input type="text" hidden="hidden" id="inputmanzanatotem" style="position:absolute; top:23%; left:30%; width:60%" placeholder="Ejem: 5400101....">
         </div>
     </div>
-    
+
     <script src="src/app/Consultas/consultas_simples.js"></script>
     <script src="src/app/Consultas/consulta_direccion_boton.js"></script>
     <!--<script src="src/app/Consultas/rangos.js"></script>-->
     <script src="src/app/Consultas/sinconsulta.js"></script>
     <script src="src/app/Consultas/Estadistica.js"></script>
     <script src="src/app/ConsultasCatastro.js"></script>
+    <script src="src/app/ConsultasHacienda.js"></script>
     <script src="src/app/dinamicmap.js"></script>
 
     <!--<script src="lib/app.js"></script>-->
     <script src="src/app/app.js"></script>
     <!--<script src="src/app/chat.js"></script>-->
     <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
-   <!--<script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVqdOguCkHRfnpdFmfkFqL6SdPyBpYZQw">
-    </script>-->
+    <!--<script async defer
+             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVqdOguCkHRfnpdFmfkFqL6SdPyBpYZQw">
+     </script>-->
 
 
 

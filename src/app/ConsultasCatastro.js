@@ -983,5 +983,45 @@ function rango(style,id) {
             queryexport = style + ' DifAreaTF';  
         }
     } 
+    
+    
+    else if (document.getElementById("DiferenciaAreaH").value === "AreaTerrenoH") {     
+            document.getElementById("statistics").style.display = "none";
+            document.getElementById("botonocultarstatistics").style.display = "none";
+            document.getElementById("botonmostrarstatistics").style.display = "none";
+            construcciones.setVisible(false); 
+            predio.setVisible(true);
+            if (document.getElementById("barrio").value === '' && document.getElementById("manzana").value === '') {
+            var select = search("cucuta:TotalPrediosHacienda");
+            var param = [['Diferencia mayor a 10%'], ['Areas Iguales'], ['PH o Sin Informacion']];
+            var total1 = search("cucuta:DiferenciaAreaTerreno", 11, 100000);
+            var total2 = search("cucuta:DiferenciaAreaTerreno", 0, 10); 
+            var total3 = search("cucuta:DiferenciaAreaTerreno", -10, -1); 
+            var titulo = "Comparacion Area Registro vs Area Grafica";       
+            var totales = total1.concat(total2,total3);
+            predio.getSource().updateParams({'STYLES': 'DifAreaT'});
+            estdistica(select, titulo, param, totales, id);
+            map.getView().fitExtent(pgetextent, map.getSize());
+            queryexport = style + ' DifAreaTG';     
+          } 
+      else {
+            var select = search("cucuta:TotalPrediosSinConsulta", values);
+            var param = [['Diferencia mayor a 10%'], ['Areas Iguales'], ['PH o Sin Informacion']];
+            var total1 = search("cucuta:DiferenciaAreaTerrenoFiltro", values, 11, 10000);
+            var total2 = search("cucuta:DiferenciaAreaTerrenoFiltro", values, 0, 10); 
+            var total3 = search("cucuta:DiferenciaAreaTerrenoFiltro", values, -10, -1); 
+            var titulo = "Comparacion Area Registro vs Area Grafica";        
+            var totales = total1.concat(total2,total3);
+            var valor = "'" + values + "'";
+            estdistica(select, titulo, param, totales, id);
+            if (document.getElementById("barrio").value !== '') {
+            var filtro = '"cod_barrio=' + valor + '"';  
+            }  else if (document.getElementById("manzana").value !== '') {
+               var filtro = '"manzana_co=' + valor + '"';    
+            }
+            predio.getSource().updateParams({'STYLES': 'DifAreaT', 'CQL_FILTER': eval(filtro)});
+            queryexport = style + ' DifAreaTF';  
+        }
+    } 
                    
 }
