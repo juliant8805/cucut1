@@ -335,6 +335,7 @@ function limpiar_consulta() {
     //document.getElementById('codigo').value = "";
     document.getElementById("marco").style.display = "none";
 	document.getElementById("marco2").style.display = "none";
+    document.getElementById("marco3").style.display = "none";
     document.getElementById("statistics").style.display = "none"; 
     document.getElementById("excel").style.display = "none";
     document.getElementById("pie").style.display = "none"; 

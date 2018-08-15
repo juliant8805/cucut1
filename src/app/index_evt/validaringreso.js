@@ -19,6 +19,8 @@ $(document).on('ready', function () {
         document.getElementById("hacienda").style.display = "block";
         document.getElementById("posicionbarra").style.display = "block";
     } else if (select[0][6] === "totem") {
+        document.getElementById("boton_comparacion").style.display = "none";
+        document.getElementById("manual").style.display = "none";
         document.getElementById("menu_totem").style.display = "block";
         importarScript("src/app/totem/ConsultaTotem.js");
     } else if (select[0][6] === "planeacion") {

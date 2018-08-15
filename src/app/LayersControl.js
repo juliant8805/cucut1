@@ -170,6 +170,15 @@ var ejeobras = new ol.layer.Tile({
 
 //CAPAS POT 2011
 
+var predios_campo = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:u_terreno', STYLES: 'predios_campo'}
+    }), name: 'Predios Campo'
+});
+
 var anillovialoccidental = new ol.layer.Tile({
     //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
     visible: false,
@@ -400,7 +409,7 @@ var layerPot2001 = new ol.layer.Group({
 });
 
 var layerPot2011 = new ol.layer.Group({
-    layers: [verticesperimetro202, toponimiabarrios, sueloproteccion, rios2011, prediosincorporados020, perimetromunicipalpot2011, perimetroacuerdo20, nomenclaturavial2011, conjuntoareaurbano, cabecerasvecinas, anillovialoccidental, propuestabarrios, barrioslegalizados, barrios, barrios],
+    layers: [verticesperimetro202, toponimiabarrios, sueloproteccion, rios2011, prediosincorporados020, perimetromunicipalpot2011, perimetroacuerdo20, nomenclaturavial2011, conjuntoareaurbano, cabecerasvecinas, anillovialoccidental, propuestabarrios, barrioslegalizados, barrios, predios_campo, barrios],
     name: 'POT_2011'
 });
 
