@@ -210,6 +210,12 @@ function estdistica(select, titulo, param, totales, id) {
     if (id !== "pie") {
         document.getElementById('pie').style.display = 'block';
         document.getElementById('barrass').style.display = 'none';
+        if (param[0][0] === 'No debe' || param[1][0] === 'Debe') {
+            subtitulo = '<span style="color: red">Total deuda al municipio: ' + "$" + Intl.NumberFormat().format(select[0]) + '</span>'
+        }
+        else {
+            subtitulo='<span style="color: red">Total Predios: ' + select[0] + '</span>'
+        }
         $(function () {
             Highcharts.chart('statistics', {
                 chart: {
@@ -219,7 +225,8 @@ function estdistica(select, titulo, param, totales, id) {
                     text: titulo
                 },
                 subtitle: {
-                    text: '<span style="color: red">Total Predios: ' + select[0] + '</span>'
+                    
+                    text: subtitulo
                 },
                 xAxis: {
                     categories: param
@@ -250,7 +257,6 @@ function estdistica(select, titulo, param, totales, id) {
             });
         });
     } else {
-        console.log(select);
         document.getElementById('pie').style.display = 'none';
         document.getElementById('barrass').style.display = 'block';
         $(function () {

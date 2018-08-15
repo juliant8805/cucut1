@@ -55,7 +55,7 @@ function rango(style, id) {
             var total2 = search("cucuta:PropiedadHorizontal", 1, 1);
             var totales = total1.concat(total2);
             predio.getSource().updateParams({'STYLES': "Tipo Construccion"});
-            estdistica(139094, style, param, totales, id);
+            estdistica(select, style, param, totales, id);
             map.getView().fitExtent(pgetextent, map.getSize());
             queryexport = style + ' G';
         } else {
@@ -82,7 +82,7 @@ function rango(style, id) {
         construcciones.setVisible(false);
         if (document.getElementById("barrio").value === '' && document.getElementById("manzana").value === '') {
             var select = search("cucuta:TotalPrediosHacienda");
-            select[0][0]=139094;
+            select[0][0]=82506368500;
             //var select = search("cucuta:TotalPrediosSinConsulta");
             var param = [['No debe'], ['Debe']];
             var total1 = search("cucuta:ImpuestoPredial0");
@@ -93,7 +93,7 @@ function rango(style, id) {
             map.getView().fitExtent(pgetextent, map.getSize());
             queryexport = style + ' G';
         } else {
-            var select = search("cucuta:TotalPrediosSinConsulta", values);
+            var select = search("cucuta:predialDeuda", values);
             var param = [['No debe'], ['Debe']];
             var total1 = search("cucuta:ImpuestoPredial00", values);
             var total2 = search("cucuta:ImpuestoPredial11", values);
@@ -105,7 +105,6 @@ function rango(style, id) {
             } else if (document.getElementById("manzana").value !== '') {
                 var filtro = '"manzana_co=' + valor + '"';
             }
-            //console.log(filtro);
             predio.getSource().updateParams({'STYLES': style, 'CQL_FILTER': eval(filtro)});
             queryexport = style;
         }
