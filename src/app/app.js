@@ -603,21 +603,21 @@ map.on('singleclick', function (evt) {
                             stv3[20].id = "img";
                             stv3[20].target = "marco2";
                             stv3[20].setAttribute("onclick", "open_streetview()");
-                            stv3[20].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_3.jpg";
+                            stv3[20].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_1.jpg";
                             ig3[20] = document.createElement("img");
                             ig3[20].id = "im3";
                             ig3[20].className = "pequeña";
-                            ig3[20].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_3.jpg";
+                            ig3[20].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_1.jpg";
                             
                             stv4[20] = document.createElement("a");
                             stv4[20].id = "img";
                             stv4[20].target = "marco2";
                             stv4[20].setAttribute("onclick", "open_streetview()");
-                            stv4[20].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_4.jpg";
+                            stv4[20].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_2.jpg";
                             ig4[20] = document.createElement("img");
                             ig4[20].id = "im4";
                             ig4[20].className = "pequeña";
-                            ig4[20].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_4.jpg";
+                            ig4[20].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_2.jpg";
                             
                             stv5[20] = document.createElement("a");
                             stv5[20].id = "img";
