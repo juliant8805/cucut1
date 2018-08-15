@@ -113,6 +113,8 @@ function rango(style, id) {
     
     else if (style === "Remoción en Masa") {
         predio.setVisible(true);
+        document.getElementById('marco3').style.display = 'block';
+        document.getElementById('marco3').src = "http://www.ideepcucuta.com/3D/POT3D.html";
         construcciones.setVisible(false);
         if (document.getElementById("barrio").value === '' && document.getElementById("manzana").value === '') {
             var select = search("cucuta:TotalPrediosHacienda");

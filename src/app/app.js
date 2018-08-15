@@ -151,15 +151,13 @@ map.on('singleclick', function (evt) {
                         direccion[0] = "Sin Información";
                     }
                     if (ph >= 800) {
-                        if (tipoUsuario === "catastro" || tipoUsuario === "planeacion") {
+                        if (tipoUsuario === "catastro" || tipoUsuario === "planeacion" || tipoUsuario === "totem") {
                             var table = document.getElementById("tblatt");
                         } else if (tipoUsuario === "hacienda") {
                             var table = document.getElementById("tablaP");
                             document.getElementById("tblatt").style.visibility = "hidden";
                             document.getElementById("panel_atr").style.height = "0px";
-                        } else if (tipoUsuario === "totem") {
-                            alert("ph totem");
-                        }
+                        } 
                         table.innerHTML = "";
                         var row = table.insertRow(0);
                         var cell1 = row.insertCell(0);
@@ -223,6 +221,14 @@ map.on('singleclick', function (evt) {
                         var imag = [];
                         var stv = [];
                         var ig = [];
+                        var stv3 = [];
+                        var ig3 = [];
+                        var stv4 = [];
+                        var ig4 = [];
+                        var stv5 = [];
+                         var ig5 = [];
+                        
+                        
                         //var avaluohacienda = formatNumber(values.avaluo);
                         // var codfoto = values.codigo_ant.substring(0, 17);
                         if (values.estrato_acueducto == '1' || values.estrato_acueducto == '2' || values.estrato_acueducto == '3' || values.estrato_acueducto == '4' || values.estrato_acueducto == '5' || values.estrato_acueducto == '6')
@@ -343,6 +349,42 @@ map.on('singleclick', function (evt) {
                             stv[20].setAttribute("onclick", "open_streetview()");
                             ig[20] = document.createElement("img");
                             ig[20].src = "./imagenes/streetview.png";
+                            
+                            
+                            if(values.campo=='CAPTURADO'){
+                            stv3[20] = document.createElement("a");
+                            stv3[20].id = "img";
+                            stv3[20].target = "marco2";
+                            stv3[20].setAttribute("onclick", "open_streetview()");
+                            stv3[20].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_3.jpg";
+                            ig3[20] = document.createElement("img");
+                            ig3[20].id = "im3";
+                            ig3[20].className = "pequeña";
+                            ig3[20].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_3.jpg";
+                            
+                            stv4[20] = document.createElement("a");
+                            stv4[20].id = "img";
+                            stv4[20].target = "marco2";
+                            stv4[20].setAttribute("onclick", "open_streetview()");
+                            stv4[20].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_4.jpg";
+                            ig4[20] = document.createElement("img");
+                            ig4[20].id = "im4";
+                            ig4[20].className = "pequeña";
+                            ig4[20].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_4.jpg";
+                            
+                            stv5[20] = document.createElement("a");
+                            stv5[20].id = "img";
+                            stv5[20].target = "marco2";
+                            stv5[20].setAttribute("onclick", "open_streetview()");
+                            stv5[20].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_5.jpg";
+                            ig5[20] = document.createElement("img");
+                            ig5[20].id = "im4";
+                            ig5[20].className = "pequeña";
+                            ig5[20].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_5.jpg";
+                            }
+                            
+                            
+                            
                             var campos = 20;
                             for (i = 0; i < select.length; i++) {
                                 row = table.insertRow(i + 1);
@@ -356,11 +398,37 @@ map.on('singleclick', function (evt) {
                                     cell2.appendChild(stv[i]);
                                     //cell2.appendChild(ig[i]);
                                     stv[i].appendChild(ig[i]);
+                                    
+                                 if(values.campo=='CAPTURADO'){
+                                cell2.appendChild(stv3[i]);
+                                cell2.appendChild(ig3[i]);
+                                stv3[i].appendChild(ig3[i]);
+                                
+                                cell2.appendChild(stv4[i]);
+                                cell2.appendChild(ig4[i]);
+                                stv4[i].appendChild(ig4[i]);
+                                
+                                cell2.appendChild(stv5[i]);
+                                cell2.appendChild(ig5[i]);
+                                stv5[i].appendChild(ig5[i]);
+                                 }
+                                    
+                                    
                                 } else {
                                     cell2.innerHTML = sel[i];
                                 }
                             }
                         } else if (tipoUsuario === "totem") {
+                             try {
+                            var destino = simplestabla["0"]["0"];
+                            var areat = simplestabla["0"][1] + "m2";
+                            var areac = simplestabla["0"][2] + "m2";
+                             } catch (err) {
+                            var destino = "Sin Informacion";  
+                            var areat = "Sin Informacion";
+                            var areac = "Sin Informacion";
+                           }
+                            
                             //select[0] = "<b>Codigo Catastral Nuevo</b>";
                             select[0] = "<b>Codigo Catastral</b>";
                             select[1] = "<b>Matricula Inmobiliaria</b>";
@@ -397,10 +465,10 @@ map.on('singleclick', function (evt) {
                             sel[8] = values.estrato_acueducto;
                             sel[9] = values.estrato_alcantarillado;
                             sel[10] = values.estrato_aseo;*/
-                            sel[4] = simplestabla["0"]["0"];
+                            sel[4] = destino;
                             sel[5] = avaluo2018;
-                            sel[6] = simplestabla["0"][1] + "m2";
-                            sel[7] = simplestabla["0"][2] + "m2";
+                            sel[6] = areat;
+                            sel[7] = areac;
                             sel[8] = values.cod_barrio;
                             sel[9] = values.cod_postal;
                             sel[10] = values.cuadrante;
@@ -444,7 +512,7 @@ map.on('singleclick', function (evt) {
                                 document.getElementById("tablaP").deleteRow(0);
                             } catch (err) {
                             }
-                            var fila = "<tr><td><H5><b>IMPRIMIR FACTURA</b></H5></td><td>";
+                            var fila = "<tr><td><H5 style='color: #1A0DAB; text-decoration: underline; cursor:pointer;'><b>IMPRIMIR FACTURA</b></H5></td><td>";
                             var btn = document.createElement("TR");
                             btn.innerHTML = fila;
                             document.getElementById("tablaP").value = sel[1];
@@ -464,7 +532,13 @@ map.on('singleclick', function (evt) {
                             var riesgo = riesgo["0"]["0"];
                              } catch (err) {
                             var riesgo = "Sin Informacion";  
-                           } 
+                           }
+                             try {
+                            var destino = simplestabla["0"]["0"];
+                             } catch (err) {
+                            var destino = "Sin Informacion";  
+                           }
+                            
                             select[0] = "<b>Codigo Manzana</b>";
                             select[1] = "<b>Codigo Catastral Nuevo</b>";
                             select[2] = "<b>Codigo Catastral Anterior</b>";
@@ -491,7 +565,7 @@ map.on('singleclick', function (evt) {
                             sel[2] = cod;
                             sel[3] = matricula;
                             sel[4] = direccion[0];
-                            sel[5] = simplestabla["0"]["0"];
+                            sel[5] = destino;
                             sel[6] = uso_acueducto;
                             sel[7] = uso_alcantarillado;
                             sel[8] = uso_aseo;
@@ -522,6 +596,42 @@ map.on('singleclick', function (evt) {
                             stv[20].setAttribute("onclick", "open_streetview()");
                             ig[20] = document.createElement("img");
                             ig[20].src = "./imagenes/streetview.png";
+                            
+                            
+                            if(values.campo=='CAPTURADO'){
+                            stv3[20] = document.createElement("a");
+                            stv3[20].id = "img";
+                            stv3[20].target = "marco2";
+                            stv3[20].setAttribute("onclick", "open_streetview()");
+                            stv3[20].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_1.jpg";
+                            ig3[20] = document.createElement("img");
+                            ig3[20].id = "im3";
+                            ig3[20].className = "pequeña";
+                            ig3[20].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_1.jpg";
+                            
+                            stv4[20] = document.createElement("a");
+                            stv4[20].id = "img";
+                            stv4[20].target = "marco2";
+                            stv4[20].setAttribute("onclick", "open_streetview()");
+                            stv4[20].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_2.jpg";
+                            ig4[20] = document.createElement("img");
+                            ig4[20].id = "im4";
+                            ig4[20].className = "pequeña";
+                            ig4[20].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_2.jpg";
+                            
+                            stv5[20] = document.createElement("a");
+                            stv5[20].id = "img";
+                            stv5[20].target = "marco2";
+                            stv5[20].setAttribute("onclick", "open_streetview()");
+                            stv5[20].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_5.jpg";
+                            ig5[20] = document.createElement("img");
+                            ig5[20].id = "im4";
+                            ig5[20].className = "pequeña";
+                            ig5[20].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" +  values.codigo + "_5.jpg";
+                            }
+                            
+                            
+                            
                             var campos = 20;
                             for (i = 0; i < select.length; i++) {
                                 row = table.insertRow(i + 1);
@@ -535,6 +645,22 @@ map.on('singleclick', function (evt) {
                                     cell2.appendChild(stv[i]);
                                     //cell2.appendChild(ig[i]);
                                     stv[i].appendChild(ig[i]);
+                                    
+                                    if(values.campo=='CAPTURADO'){
+                                    cell2.appendChild(stv3[i]);
+                                    cell2.appendChild(ig3[i]);
+                                    stv3[i].appendChild(ig3[i]);
+
+                                    cell2.appendChild(stv4[i]);
+                                    cell2.appendChild(ig4[i]);
+                                    stv4[i].appendChild(ig4[i]);
+
+                                    cell2.appendChild(stv5[i]);
+                                    cell2.appendChild(ig5[i]);
+                                    stv5[i].appendChild(ig5[i]);
+                                 }
+                                    
+                                    
                                 } else {
                                     cell2.innerHTML = sel[i];
                                 }

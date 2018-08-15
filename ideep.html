@@ -313,6 +313,7 @@
 
         <iframe name="marco" hidden="hidden" id="marco"></iframe>
         <iframe name="marco2" hidden="hidden" id="marco2"></iframe>
+        <iframe name="marco3" hidden="hidden" id="marco3"></iframe>
         <!-- <img id="botoncerrarstreetview" src="./imagenes/ocultar.png">-->
         <button id="botoncerrarstreetview" hidden="hidden" onclick="ocultarstreetview();" style="background:url('./imagenes/ocultar.png'); background-repeat:no-repeat; "></button>
         <button id="botonmostrarstreetview" hidden="hidden" onclick="mostrarstreetview();" style="background:url('./imagenes/mostrar.png'); background-repeat:no-repeat; "></button>
@@ -342,6 +343,23 @@
 
 
     <img id="manual" src="./imagenes/manual.png" onclick="abrir_manual()" title="Manual de Usuario">
+    <img id="coordinates" src="./imagenes/input_coordinates.png" onclick="formcoordenadas()">
+    
+    
+    <div id="menu_coordenadas" hidden="hidden" style="position:absolute; background-color: rgba(128,128,128,0.5); height:100%; width: 100%; top:0px;left:0px; z-index:100;">
+          <div class="col-xs-3" style="margin-top:10%; margin-left:20%;">
+            <label for="ex1">Latitud:</label>
+            <input class="form-control" id="ex1" type="text" placeholder="7.883755799">
+            <button type="button" style="margin-top:0.5em; margin-left:5em;" class="btn btn-primary btn-lg" onclick="input_coordinates()">Ir al Punto</button>
+          </div>
+          <div class="col-xs-3" style="margin-top:10%;">
+            <label for="ex2">Longitud:</label>
+            <input class="form-control" style="margin-left:0.5em" id="ex2" type="text" placeholder="-72.5074563"> 
+              <button type="button" style="margin:0.5em" class="btn btn-danger btn-lg" onclick="limpiar_consulta()">Cerrar</button>
+          </div>
+    </div>
+    
+    
 
     <img id="gesstor" src="./imagenes/gesstor.png">
     <img id="sisepuede" src="./imagenes/sisepuedeprogresar.png">

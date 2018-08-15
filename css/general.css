@@ -69,6 +69,24 @@ color: white;
 border-radius: 10px;
 }
 
+#coordinates{
+position: absolute;
+top:38em;
+right: 2.5em;
+height: 2em;
+background-color: #7B98BC;
+padding: 0em;
+color: white;
+border-radius: 10px;
+cursor:pointer;  
+}
+
+#menu_coordenadas{
+    position: absolute;
+    top:18em;
+    left:20em;
+ }  
+
 
 #layers {
     position: absolute;
@@ -105,6 +123,16 @@ border-radius: 10px;
     height: 48%;
     z-index: 2;
 }
+
+#marco3{
+    position: absolute;
+    bottom: 0em;
+    right: 0em;
+    width: 30%; 
+    height: 90%;
+    z-index: 1;
+}
+
 #botoncerrarstreetview{
     position: absolute;
     top:20%;
@@ -2031,6 +2059,8 @@ height: auto;
     height: 30%;
     z-index: 2;
 }
+
+
 
 #botoncerrarstreetview{
     position: absolute;

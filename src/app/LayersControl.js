@@ -170,6 +170,15 @@ var ejeobras = new ol.layer.Tile({
 
 //CAPAS POT 2011
 
+var predios_campo = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:u_terreno', STYLES: 'predios_campo'}
+    }), name: 'Predios Campo'
+});
+
 var anillovialoccidental = new ol.layer.Tile({
     //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
     visible: false,
@@ -269,6 +278,24 @@ var verticesperimetro202 = new ol.layer.Tile({
     }), name: 'Vertices Perimetro 202 de 2013'
 });
 
+
+var barrioslegalizados = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:barrios_legalizados_segun_decreto_564-2006', STYLES: ''}
+    }), name: 'Barrios Legalizados Decreto 564 2006'
+});
+
+var propuestabarrios = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:propuesta_actualizacion_de_barrios', STYLES: ''}
+    }), name: 'Propuesta Actualizacion de Barrios'
+});
 //CAPAS POT 2001
 
 var amoblamientourbano = new ol.layer.Tile({
@@ -382,7 +409,7 @@ var layerPot2001 = new ol.layer.Group({
 });
 
 var layerPot2011 = new ol.layer.Group({
-    layers: [verticesperimetro202, toponimiabarrios, sueloproteccion, rios2011, prediosincorporados020, perimetromunicipalpot2011, perimetroacuerdo20, nomenclaturavial2011, conjuntoareaurbano, cabecerasvecinas, anillovialoccidental, barrios, barrios],
+    layers: [verticesperimetro202, toponimiabarrios, sueloproteccion, rios2011, prediosincorporados020, perimetromunicipalpot2011, perimetroacuerdo20, nomenclaturavial2011, conjuntoareaurbano, cabecerasvecinas, anillovialoccidental, propuestabarrios, barrioslegalizados, barrios, predios_campo, barrios],
     name: 'POT_2011'
 });
 
