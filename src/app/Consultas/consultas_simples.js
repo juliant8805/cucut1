@@ -1021,7 +1021,7 @@ function addressSelect(event, ui) {
                     var fila = "<tr><td><H5><b>IMPRIMIR FACTURA</b></H5></td><td>";
                     var btn = document.createElement("TR");
                     btn.innerHTML = fila;
-                    document.getElementById("tablaP").value = sel[1];
+                    document.getElementById("tablaP").value = sel[0];
                     document.getElementById("tablaP").setAttribute("onclick", "factura(this.value)");
                     document.getElementById("tablaP").appendChild(btn);
                     document.getElementById("contenedorg").style.display = "block";
