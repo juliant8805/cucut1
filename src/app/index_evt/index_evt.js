@@ -315,6 +315,7 @@ function limpiar_consulta() {
     ejeobras.setVisible(false);
     heatmap.setVisible(false);
     predio.getSource().updateParams({'STYLES': 'predios_sin_consulta_cucuta', 'CQL_FILTER': null});
+    document.getElementById('menu_coordenadas').style.display = "none";
     document.getElementById('label_street').style.display = "none";
     document.getElementById("contenedorg").style.display = "none";
     document.getElementById('panel_atr').style.display = 'none'; 
@@ -1314,4 +1315,36 @@ function medir_off() {
     document.getElementById("boton_medir").style.display = "none";
     document.getElementById("boton_medir_off").style.display = "block";  
     document.getElementById("medidas").style.display = "none";  
+}
+
+function formcoordenadas() {
+    
+     document.getElementById("menu_coordenadas").style.display = "block"; 
+}
+
+function input_coordinates() {
+    document.getElementById("menu_coordenadas").style.display = "none"; 
+    var view = map.getView();
+    var lat = document.getElementById('ex1').value;
+    var long = document.getElementById('ex2').value;
+    //console.log(lat);
+    //console.log(long);
+    //var lat = 7.883755799999989;
+    //var long = -72.50745639999995;
+    console.log("Long: " + long + " Lat: " + lat);
+    map.getView().setCenter(ol.proj.transform([long, eval(lat)], 'EPSG:4326', 'EPSG:3857'));
+    map.getView().setZoom(18); 
+    var iconFeatures = [];
+    var iconFeature = new ol.Feature({
+    geometry: new ol.geom.Point(ol.proj.transform([long, eval(lat)], 'EPSG:4326',
+      'EPSG:3857')),
+    name: 'Null Island',
+    population: 4000,
+    rainfall: 500
+  });
+    
+    highlight.setStyle(flagStyle);
+    var markerSource = highlight.getSource();
+    markerSource.clear();
+    markerSource.addFeature(iconFeature);   
 }

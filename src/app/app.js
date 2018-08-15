@@ -361,6 +361,11 @@ map.on('singleclick', function (evt) {
                                 }
                             }
                         } else if (tipoUsuario === "totem") {
+                             try {
+                            var destino = simplestabla["0"]["0"];
+                             } catch (err) {
+                            var destino = "Sin Informacion";  
+                           }
                             //select[0] = "<b>Codigo Catastral Nuevo</b>";
                             select[0] = "<b>Codigo Catastral</b>";
                             select[1] = "<b>Matricula Inmobiliaria</b>";
@@ -397,7 +402,7 @@ map.on('singleclick', function (evt) {
                             sel[8] = values.estrato_acueducto;
                             sel[9] = values.estrato_alcantarillado;
                             sel[10] = values.estrato_aseo;*/
-                            sel[4] = simplestabla["0"]["0"];
+                            sel[4] = destino;
                             sel[5] = avaluo2018;
                             sel[6] = simplestabla["0"][1] + "m2";
                             sel[7] = simplestabla["0"][2] + "m2";
@@ -464,7 +469,13 @@ map.on('singleclick', function (evt) {
                             var riesgo = riesgo["0"]["0"];
                              } catch (err) {
                             var riesgo = "Sin Informacion";  
-                           } 
+                           }
+                             try {
+                            var destino = simplestabla["0"]["0"];
+                             } catch (err) {
+                            var destino = "Sin Informacion";  
+                           }
+                            console.log();
                             select[0] = "<b>Codigo Manzana</b>";
                             select[1] = "<b>Codigo Catastral Nuevo</b>";
                             select[2] = "<b>Codigo Catastral Anterior</b>";
@@ -491,7 +502,7 @@ map.on('singleclick', function (evt) {
                             sel[2] = cod;
                             sel[3] = matricula;
                             sel[4] = direccion[0];
-                            sel[5] = simplestabla["0"]["0"];
+                            sel[5] = destino;
                             sel[6] = uso_acueducto;
                             sel[7] = uso_alcantarillado;
                             sel[8] = uso_aseo;

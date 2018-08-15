@@ -69,6 +69,24 @@ color: white;
 border-radius: 10px;
 }
 
+#coordinates{
+position: absolute;
+top:38em;
+right: 2.5em;
+height: 2em;
+background-color: #7B98BC;
+padding: 0em;
+color: white;
+border-radius: 10px;
+cursor:pointer;  
+}
+
+#menu_coordenadas{
+    position: absolute;
+    top:18em;
+    left:20em;
+ }  
+
 
 #layers {
     position: absolute;
