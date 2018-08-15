@@ -25,6 +25,10 @@ function estdistica(select, titulo, param, totales, id) {
                 color[i] = '#A3FF73';
             } else if (param[i][0] === 'NPH') {
                 color[i] = '#6699CD';
+            }else if (param[i][0] === 'No debe') {
+                color[i] = '#088A29';
+            } else if (param[i][0] === 'Debe') {
+                color[i] = '#FF3C33';
             } else if (param[i][0] === 'Est. Coincidentes') {
                 color[i] = '#7CEB98';
             } else if (param[i][0] === 'Est. Prestador Mas Alto') {
@@ -246,6 +250,7 @@ function estdistica(select, titulo, param, totales, id) {
             });
         });
     } else {
+        console.log(select);
         document.getElementById('pie').style.display = 'none';
         document.getElementById('barrass').style.display = 'block';
         $(function () {
