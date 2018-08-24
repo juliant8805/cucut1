@@ -23,6 +23,7 @@ $(document).on('ready', function () {
         document.getElementById("manual").style.display = "none";
         document.getElementById("menu_totem").style.display = "block";
         document.getElementById("ortofotototem").style.display = "block";
+        document.getElementById("totemmenu").style.display = "block";
         importarScript("src/app/totem/ConsultaTotem.js");
     } else if (select[0][6] === "planeacion") {
         document.getElementById("planeacion").style.display = "block";
