@@ -73,12 +73,14 @@ var highlightt = new ol.layer.Vector({
 });
 
 var mousePositionControl = new ol.control.MousePosition({
-    coordinateFormat: ol.coordinate.createStringXY(4),
+    coordinateFormat: function (coord) {return ol.coordinate.toStringHDMS(coord);
+    },
     projection: 'EPSG:4326',
     className: 'custom-mouse-position',
     target: document.getElementById('mouse-position'),
     undefinedHTML: '&nbsp;'
 });
+$("#mouse-position").removeAttr("hidden").show();
 var tipoUsuario = validacionusuarios()[0][6];
 map = new ol.Map({
     controls: ol.control.defaults().extend([new ol.control.ScaleLine(), new ol.control.ZoomToExtent({

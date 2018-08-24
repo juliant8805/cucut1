@@ -1549,6 +1549,13 @@ function addressSelect(event, ui) {
                     }
                 }
             }
+                    document.getElementById("contenedorg").style.display = "block";
+                    document.getElementById("panel_atr").style.display = "block";
+                    document.getElementById("cpestana1").style.display = "block";
+                    document.getElementById("cpestana2").style.display = "none";
+                    document.getElementById("pestana1").style.backgroundColor = "#EAC102";
+                    document.getElementById("pestana2").style.backgroundColor = "#A9A9A9";
+                    document.getElementById("botonminimizar").style.display = "block";
         }
     });
 }

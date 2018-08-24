@@ -1326,13 +1326,27 @@ function formcoordenadas() {
 function input_coordinates() {
     document.getElementById("menu_coordenadas").style.display = "none"; 
     var view = map.getView();
-    var lat = document.getElementById('ex1').value;
-    var long = document.getElementById('ex2').value;
+    //var lat = document.getElementById('ex1').value;
+    //var long = document.getElementById('ex2').value;
     //console.log(lat);
     //console.log(long);
     //var lat = 7.883755799999989;
     //var long = -72.50745639999995;
-    console.log("Long: " + long + " Lat: " + lat);
+    //console.log("Long: " + long + " Lat: " + lat);
+    var latgrados = document.getElementById('ex1').value;
+    var latminutos = document.getElementById('ex2').value;
+    var latsegundos = document.getElementById('ex3').value;
+
+    
+    var loggrados = document.getElementById('ex4').value;
+    var logminutos = document.getElementById('ex5').value;
+    var logsegundos = document.getElementById('ex6').value;
+    
+    var long = parseInt(loggrados) + parseInt(logminutos) / 60 + parseInt(logsegundos) / 3600;
+    var lat = parseInt(latgrados) + parseInt(latminutos) / 60 + parseInt(latsegundos) / 3600;
+    var long = long * -1;
+
+    
     map.getView().setCenter(ol.proj.transform([long, eval(lat)], 'EPSG:4326', 'EPSG:3857'));
     map.getView().setZoom(18); 
     var iconFeatures = [];

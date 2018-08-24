@@ -87,6 +87,18 @@ cursor:pointer;
     left:20em;
  }  
 
+#mouse-position {
+position: absolute;
+top: 10em;
+right: 2em;
+font-size: 0.83em;
+background-color: rgba(78,154,171,1);
+color: #F8F8F8;
+width: 15em;
+height: 3em;
+text-align: center;
+-webkit-border-radius:1em;
+}
 
 #layers {
     position: absolute;
@@ -160,20 +172,7 @@ cursor:pointer;
     height: 800%;
     z-index: 2;
 }*/
-@media handheld, only screen and (min-width: 900px) {
-    #mouse-position {
-        position: absolute;
-        top: 2em;
-        right: 20em;
-        font-size: 0.83em;
-        background-color: rgba(0,173,65,1);
-        color: #F8F8F8;
-        width: 15em !important;
-        height: 3em;
-        text-align: center;
-        -webkit-border-radius: 1em;
-    }
-}
+
 
 
 @media handheld, only screen and (max-width: 900px) {

@@ -31031,9 +31031,9 @@ ol.control.MousePosition.prototype.updateHTML_ = function(pixel) {
       if (goog.isDef(coordinateFormat)) {
        // html = "lat"+coordinateFormat(coordinate)+"prueba";
 		  var v = coordinateFormat(coordinate).split(",");
-		  var lat ="Lat"+ v[1];
-		  var lon ="Long"+ v[0];
-		  html = "<strong>MAGNA - SIRGAS</strong>" + "<br>"+lat + " , " + lon;
+		  var lat =v[1];
+		  var lon =v[0];
+		  html = "<strong>MAGNA - SIRGAS</strong>" + "<br>" + lon;
       } else {
         html = coordinate.toString();
       }
