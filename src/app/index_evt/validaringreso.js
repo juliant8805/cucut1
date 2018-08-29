@@ -2,7 +2,7 @@ $(document).on('ready', function () {
 //codigo aquí
     //alert(1);
     var select = validacionusuarios();
-    //console.log(select);
+    console.log(select[0][6]);
     if (navigator.vendor !== "Google Inc.") {
         location.href = "cucuta.html?ig=navegador";
     }
@@ -28,6 +28,16 @@ $(document).on('ready', function () {
     } else if (select[0][6] === "planeacion") {
         document.getElementById("planeacion").style.display = "block";
         document.getElementById("posicionbarra").style.display = "block";
+    } else if (select[0][6] === "demo") {
+        document.getElementById("posicionbarra").style.display = "block";
+        document.getElementById("boton_comparacion").style.display = "none";
+        document.getElementById("layertree").style.display = "none";
+        document.getElementById("manual").style.display = "none";
+        document.getElementById("coordinates").style.display = "none";
+        document.getElementById("consulta_matricula").style.display = "none";
+        document.getElementById("consulta_propietario").style.display = "none";
+        document.getElementById("consulta_id_propietario").style.display = "none";
+        document.getElementById("pestana2").style.display = "none";
     }
 });
 function validacionusuarios() {

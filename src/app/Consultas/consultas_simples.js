@@ -1548,6 +1548,88 @@ function addressSelect(event, ui) {
                         }
                     }
                 }
+                
+                     else if (tipoUsuario === "demo") {
+                     try {
+                            var riesgo = search("cucuta:buscar_riesgo", ui.item.codigooriginal);
+                            var riesgo = riesgo["0"]["0"];
+                             } catch (err) {
+                            var riesgo = "Sin Informacion";  
+                           } 
+                            select[0] = "<b>Codigo Manzana</b>";
+                            select[1] = "<b>Codigo Catastral Nuevo</b>";
+                            select[2] = "<b>Codigo Catastral Anterior</b>";
+                            select[3] = "<b>Dirección</b>";
+                            select[4] = "<b>Uso del Suelo Según Acuerdo</b>";
+                            select[5] = "<b>Uso Actual del Suelo Urbano</b>";
+                            select[6] = "<b>Suelo de Protección</b>";
+                            select[7] = "<b>Conflictos de Uso Urbano</b>";
+                            select[8] = "<b>Tratamiento del Suelo</b>";
+                            select[9] = "<b>Riesgo Remoción</b>";
+                            select[10] = "<b>Area de Terreno</b>";
+                            select[11] = "<b>Area Construida</b>";
+                            select[12] = "<b>Barrio</b>";
+                            select[13] = "<b>Fotografias</b>";
+                            sel[0] = values.manzana_co;
+                            sel[1] = cod_nacion["0"]["0"];
+                            sel[2] = ui.item.codigooriginal;
+                            sel[3] = ui.item.direccionoriginal;
+                            sel[4] = values.uso_del_suelo_segun_acuerdo;
+                            sel[5] = values.uso_actual_del_suelo_urbano;
+                            sel[6] = values.suelo_de_proteccion;
+                            sel[7] = values.conflictos_de_uso_urbano;
+                            sel[8] = values.tratamiento_del_suelo;
+                            sel[9] = riesgo;
+                            sel[10] = simplestabla["0"][1] + "m2";
+                            sel[11] = simplestabla["0"][2] + "m2";
+                            sel[12] = values.cod_barrio;
+                            sel[13] = document.createElement("a");
+                            sel[13].id = "img1";
+                            sel[13].target = "marco2";
+                            sel[13].setAttribute("onclick", "open_streetview()");
+                            sel[13].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            imag[13] = document.createElement("img");
+                            imag[13].id = "im1";
+                            imag[13].className = "pequeña";
+                            imag[13].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            stv[13] = document.createElement("a");
+                            stv[13].id = "imgstreet1";
+                            stv[13].target = "marco";
+                            stv[13].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
+                            stv[13].setAttribute("onclick", "open_streetview()");
+                            ig[13] = document.createElement("img");
+                            ig[13].src = "./imagenes/streetview.png";
+
+                    for (i = 0; i < select.length; i++) {
+                        row = table.insertRow(i + 1);
+                        cell1 = row.insertCell(0);
+                        cell2 = row.insertCell(1);
+                        cell1.innerHTML = select[i];
+                        if (i === 13) {
+                            cell2.appendChild(sel[i]);
+                            //cell2.appendChild(imag[i]);
+                            sel[i].appendChild(imag[i]);
+                            cell2.appendChild(stv[i]);
+                            //cell2.appendChild(ig[i]);
+                            stv[i].appendChild(ig[i]);
+                        } else {
+                            cell2.innerHTML = sel[i];
+                        }
+                    }
+                    document.getElementById("contenedorg").style.display = "block";
+                    document.getElementById("panel_atr").style.display = "block";
+                    document.getElementById("cpestana1").style.display = "block";
+                    document.getElementById("cpestana2").style.display = "none";
+                    document.getElementById("pestana1").style.backgroundColor = "#EAC102";
+                    document.getElementById("pestana2").style.backgroundColor = "#A9A9A9";
+                    document.getElementById("botonminimizar").style.display = "block";
+                }
+                
+                
+                
+                
+                
+                
             }
                     document.getElementById("contenedorg").style.display = "block";
                     document.getElementById("panel_atr").style.display = "block";
