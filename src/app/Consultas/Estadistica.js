@@ -29,6 +29,10 @@ function estdistica(select, titulo, param, totales, id) {
                 color[i] = '#088A29';
             } else if (param[i][0] === 'Debe') {
                 color[i] = '#FF3C33';
+            }else if (param[i][0] === 'Area Construida > 0') {
+                color[i] = '#A9F5E1';
+            } else if (param[i][0] === 'Area Construida = 0 y Si Prestadores') {
+                color[i] = '#ff33cc';                
             } else if (param[i][0] === 'Est. Coincidentes') {
                 color[i] = '#7CEB98';
             } else if (param[i][0] === 'Est. Prestador Mas Alto') {

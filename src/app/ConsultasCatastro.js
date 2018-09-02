@@ -75,7 +75,39 @@ function rango(style, id) {
             queryexport = style;
         }
     }
-    
+
+    //Área construida vs prestadores
+    if (style === "Área Construida Prestadores") {
+        predio.setVisible(true);
+        construcciones.setVisible(false);
+        if (document.getElementById("barrio").value === '' && document.getElementById("manzana").value === '') {
+            var select = search("cucuta:TotalPrediosHacienda");
+            var param = [['Area Construida > 0'], ['Area Construida = 0 y Si Prestadores']];
+            var total1 = search("cucuta:areaCvsNPrest_igac");
+            var total2 = search("cucuta:areaCvsPrest_igac");
+            var totales = total1.concat(total2);
+            predio.getSource().updateParams({'STYLES': "areaCvsPrest"});
+            estdistica(select, style, param, totales, id);
+            map.getView().fitExtent(pgetextent, map.getSize());
+            queryexport = style + ' G';
+        } else {
+            var select = search("cucuta:areaCvsPrestQ", values);
+            var param = [['Area Construida > 0'], ['Area Construida = 0 y Si Prestadores']];
+            var total1 = search("cucuta:areaCvsNPrestQ", values, 0, 0);
+            var total2 = search("areaCvsPrestQQ", values, 1, 1);
+            var totales = total1.concat(total2);
+            estdistica(select, style, param, totales, id);
+            var valor = "'" + values + "'";
+            if (document.getElementById("barrio").value !== '') {
+                var filtro = '"cod_barrio=' + valor + '"';
+            } else if (document.getElementById("manzana").value !== '') {
+                var filtro = '"manzana_co=' + valor + '"';
+            }
+            predio.getSource().updateParams({'STYLES': "areaCvsPrest", 'CQL_FILTER': eval(filtro)});
+            queryexport = style;
+        }
+    }
+
     //deuda
     else if (style === "Impuesto Predial") {
         predio.setVisible(true);
