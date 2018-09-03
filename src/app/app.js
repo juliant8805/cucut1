@@ -1241,12 +1241,6 @@ map.on('singleclick', function (evt) {
 
                         }
 
-
-
-
-
-
-
                     }
                     document.getElementById("contenedorg").style.display = "block";
                     document.getElementById("panel_atr").style.display = "block";
@@ -1263,16 +1257,7 @@ map.on('singleclick', function (evt) {
                         feature.values_.geom.flatCoordinates[i + 1] = a;
                     }
                     feature.getGeometry().transform('EPSG:4326', 'EPSG:3857');
-                    if (ph >= 800) {
-                        highlightfeatures.setStyle(PredioStyle);
-                    } else {
-                        if (arregloDeSubCadenas[1].length > 1) {
-                            highlightfeatures.setStyle(PredioDebe);
-                        } else {
-                            highlightfeatures.setStyle(PredioStyle);
-                        }
-                    }
-
+                    highlightfeatures.setStyle(PredioStyle);
                     var markerSourcenoph = highlightfeatures.getSource();
                     markerSourcenoph.clear();
                     markerSourcenoph.addFeature(feature);
