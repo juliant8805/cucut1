@@ -1257,7 +1257,15 @@ map.on('singleclick', function (evt) {
                         feature.values_.geom.flatCoordinates[i + 1] = a;
                     }
                     feature.getGeometry().transform('EPSG:4326', 'EPSG:3857');
-                    highlightfeatures.setStyle(PredioStyle);
+                    if (tipoUsuario === "hacienda" && ph < 800) {
+                        if (arregloDeSubCadenas[1].length > 1 ) {
+                            highlightfeatures.setStyle(PredioDebe);
+                        } else {
+                            highlightfeatures.setStyle(PredioStyle);
+                        }
+                    } else {
+                        highlightfeatures.setStyle(PredioStyle);
+                    }
                     var markerSourcenoph = highlightfeatures.getSource();
                     markerSourcenoph.clear();
                     markerSourcenoph.addFeature(feature);
