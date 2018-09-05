@@ -2,7 +2,7 @@ $(document).on('ready', function () {
 //codigo aquí
     //alert(1);
     var select = validacionusuarios();
-    console.log(select[0][6]);
+    //console.log(select[0][6]);
     if (navigator.vendor !== "Google Inc.") {
         location.href = "cucuta.html?ig=navegador";
     }
