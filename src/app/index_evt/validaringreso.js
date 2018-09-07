@@ -38,6 +38,9 @@ $(document).on('ready', function () {
         document.getElementById("consulta_propietario").style.display = "none";
         document.getElementById("consulta_id_propietario").style.display = "none";
         document.getElementById("pestana2").style.display = "none";
+        document.getElementById("leyenda_actividades").style.display = "block";
+        construcciones.setVisible(false);
+        predio.getSource().updateParams({'STYLES': "zonas_actividad"});
     }
 });
 function validacionusuarios() {
