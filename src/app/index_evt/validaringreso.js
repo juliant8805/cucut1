@@ -10,25 +10,25 @@ $(document).on('ready', function () {
         location.href = "index.html?ig=error";
     }
 //registro de ingreso de usuarios
-    else if (select[0][6] === "catastro") {
+    else if (select[0][6] === "Catastro") {
         //console.log(select);
         document.getElementById("catastro").style.display = "block";
         document.getElementById("posicionbarra").style.display = "block";
-    } else if (select[0][6] === "hacienda") {
+    } else if (select[0][6] === "Hacienda") {
         //console.log(select);
         document.getElementById("hacienda").style.display = "block";
         document.getElementById("posicionbarra").style.display = "block";
-    } else if (select[0][6] === "totem") {
+    } else if (select[0][6] === "Totem") {
         document.getElementById("boton_comparacion").style.display = "none";
         document.getElementById("manual").style.display = "none";
         document.getElementById("menu_totem").style.display = "block";
         document.getElementById("ortofotototem").style.display = "block";
         document.getElementById("totemmenu").style.display = "block";
         importarScript("src/app/totem/ConsultaTotem.js");
-    } else if (select[0][6] === "planeacion") {
+    } else if (select[0][6] === "Planeacion") {
         document.getElementById("planeacion").style.display = "block";
         document.getElementById("posicionbarra").style.display = "block";
-    } else if (select[0][6] === "demo") {
+    } else if (select[0][6] === "Demo") {
         document.getElementById("posicionbarra").style.display = "block";
         document.getElementById("boton_comparacion").style.display = "none";
         document.getElementById("layertree").style.display = "none";
