@@ -120,7 +120,7 @@ map.on('singleclick', function (evt) {
     coordinates = evt;
     document.getElementById("panel_atr").style.display = "none";
     document.getElementById("panel_atr2").style.display = "none";
-    if (tipoUsuario === "catastro") {
+    if (tipoUsuario === "Catastro") {
         document.getElementById("panel_atr2").style.visibility = "hidden";
         document.getElementById("panel_atr2").style.height = "0px";
         document.getElementById("tablaP").style.visibility = "hidden";
@@ -153,9 +153,9 @@ map.on('singleclick', function (evt) {
                         direccion[0] = "Sin Información";
                     }
                     if (ph >= 800) {
-                        if (tipoUsuario === "Catastro" || tipoUsuario === "Planeacion" || tipoUsuario === "totem") {
+                        if (tipoUsuario === "Catastro" || tipoUsuario === "Planeacion" || tipoUsuario === "Totem") {
                             var table = document.getElementById("tblatt");
-                        } else if (tipoUsuario === "hacienda") {
+                        } else if (tipoUsuario === "Hacienda") {
                             var table = document.getElementById("tablaP");
                             document.getElementById("tblatt").style.visibility = "hidden";
                             document.getElementById("panel_atr").style.height = "0px";
