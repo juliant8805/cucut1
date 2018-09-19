@@ -118,8 +118,10 @@ map.getLayerGroup().set('name', 'CAPAS');
 // based on WMS GetFeatureInfo
 map.on('singleclick', function (evt) {
     coordinates = evt;
-    document.getElementById("panel_atr").style.display = "none";
-    document.getElementById("panel_atr2").style.display = "none";
+    if (document.getElementById("boton_medir").style.display == "none"){
+        document.getElementById("panel_atr").style.display = "none";
+        document.getElementById("panel_atr2").style.display = "none";
+    }
     if (tipoUsuario === "catastro") {
         document.getElementById("panel_atr2").style.visibility = "hidden";
         document.getElementById("panel_atr2").style.height = "0px";
