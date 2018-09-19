@@ -1104,7 +1104,7 @@ function medir() {
 
     
     
-   var sketch;
+      var sketch;
       var helpTooltipElement;
       var helpTooltip;
       var measureTooltipElement;
