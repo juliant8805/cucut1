@@ -5,7 +5,7 @@
         <script src="sql/jsSearch.js"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.8.10/themes/smoothness/jquery-ui.css" type="text/css">
         <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.min.js"></script>
-        <title>Geoportal Barranquilla</title>
+        <title>Geoportal Cucuta</title>
     </head>
     <body>
         <script>
@@ -17,9 +17,8 @@
                     if (select === null || select.length === 0) {
                         location.href = "index.html?ig=error";
                     }
-                    //if (select[0][11] === true) {
-                    //    location.href = "administracion.html";
-                    //}
+                } else if (select[0][6] === "Administracion") {
+                    location.href = "admin.html";
                 } else {
                     location.href = "ideep.html";
                 }
