@@ -858,7 +858,7 @@ function addressSelect(event, ui) {
                     var cod_nacion = "Sin Informacion";
 
                 }
-                if (tipoUsuario === "catastro") {
+                if (tipoUsuario === "Catastro") {
                     select[0] = "<b>Codigo Manzana</b>";
                     select[1] = "<b>Codigo Catastral Nuevo</b>";
                     select[2] = "<b>Codigo Catastral Anterior</b>";
@@ -944,7 +944,7 @@ function addressSelect(event, ui) {
                     document.getElementById("botonminimizar").style.display = "block";
                 }
                 //totem
-                else if (tipoUsuario === "totem") {
+                else if (tipoUsuario === "Totem") {
                     //select[0] = "<b>Codigo Catastral Nuevo</b>";
                     select[0] = "<b>Codigo Catastral</b>";
                     select[1] = "<b>Matricula Inmobiliaria</b>";
@@ -1047,7 +1047,7 @@ function addressSelect(event, ui) {
 
                 //planeacion
 
-                else if (tipoUsuario === "planeacion") {
+                else if (tipoUsuario === "Planeacion") {
                     try {
                         var riesgo = search("cucuta:buscar_riesgo", ui.item.codigooriginal);
                         var riesgo = riesgo["0"]["0"];
@@ -1148,7 +1148,7 @@ function addressSelect(event, ui) {
                 }
 
                 //Hacienda
-                else if (tipoUsuario === "hacienda") {
+                else if (tipoUsuario === "Hacienda") {
                     document.getElementById("tblatt").style.visibility = "visible";
                     document.getElementById("panel_atr").style.height = "auto";
                     function enviarRef(referencia) {
@@ -1573,7 +1573,7 @@ function addressSelect(event, ui) {
                     } else {
                         highlightfeatures.setStyle(PredioStyle);
                     }
-                } else if (tipoUsuario === "demo") {
+                } else if (tipoUsuario === "Demo") {
                     try {
                         var riesgo = search("cucuta:buscar_riesgo", ui.item.codigooriginal);
                         var riesgo = riesgo["0"]["0"];

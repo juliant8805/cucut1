@@ -118,8 +118,10 @@ map.getLayerGroup().set('name', 'CAPAS');
 // based on WMS GetFeatureInfo
 map.on('singleclick', function (evt) {
     coordinates = evt;
-    document.getElementById("panel_atr").style.display = "none";
-    document.getElementById("panel_atr2").style.display = "none";
+    if (document.getElementById("boton_medir").style.display == "none"){
+        document.getElementById("panel_atr").style.display = "none";
+        document.getElementById("panel_atr2").style.display = "none";
+    }
     if (tipoUsuario === "catastro") {
         document.getElementById("panel_atr2").style.visibility = "hidden";
         document.getElementById("panel_atr2").style.height = "0px";
@@ -153,9 +155,9 @@ map.on('singleclick', function (evt) {
                         direccion[0] = "Sin Información";
                     }
                     if (ph >= 800) {
-                        if (tipoUsuario === "catastro" || tipoUsuario === "planeacion" || tipoUsuario === "totem") {
+                        if (tipoUsuario === "Catastro" || tipoUsuario === "Planeacion" || tipoUsuario === "Totem") {
                             var table = document.getElementById("tblatt");
-                        } else if (tipoUsuario === "hacienda") {
+                        } else if (tipoUsuario === "Hacienda") {
                             var table = document.getElementById("tablaP");
                             document.getElementById("tblatt").style.visibility = "hidden";
                             document.getElementById("panel_atr").style.height = "0px";
@@ -295,7 +297,7 @@ map.on('singleclick', function (evt) {
                             var matricula = "Sin Informacion";
                         }
 
-                        if (tipoUsuario === "catastro") {
+                        if (tipoUsuario === "Catastro") {
                             select[0] = "<b>Codigo Manzana</b>";
                             select[1] = "<b>Codigo Catastral Nuevo</b>";
                             select[2] = "<b>Codigo Catastral Anterior</b>";
@@ -422,7 +424,7 @@ map.on('singleclick', function (evt) {
                                     cell2.innerHTML = sel[i];
                                 }
                             }
-                        } else if (tipoUsuario === "totem") {
+                        } else if (tipoUsuario === "Totem") {
                             try {
                                 var destino = simplestabla["0"]["0"];
                                 var areat = simplestabla["0"][1] + "m2";
@@ -530,7 +532,7 @@ map.on('singleclick', function (evt) {
                             document.getElementById("pestana1").style.backgroundColor = "#EAC102";
                             document.getElementById("pestana2").style.backgroundColor = "#A9A9A9";
                             document.getElementById("botonminimizar").style.display = "block";
-                        } else if (tipoUsuario === "planeacion") {
+                        } else if (tipoUsuario === "Planeacion") {
                             try {
                                 var riesgo = search("cucuta:buscar_riesgo", cod);
                                 var riesgo = riesgo["0"]["0"];
@@ -680,7 +682,7 @@ map.on('singleclick', function (evt) {
                                 }
                             }
 
-                        } else if (tipoUsuario === "hacienda") {
+                        } else if (tipoUsuario === "Hacienda") {
                             document.getElementById("tblatt").style.visibility = "visible";
                             document.getElementById("tblatt").style.display = "initial";
                             document.getElementById("tblatt").style.height = "auto";
@@ -1114,7 +1116,7 @@ map.on('singleclick', function (evt) {
                                     }
                                 }
                             }
-                        } else if (tipoUsuario === "demo") {
+                        } else if (tipoUsuario === "Demo") {
                             try {
                                 var riesgo = search("cucuta:buscar_riesgo", cod);
                                 var riesgo = riesgo["0"]["0"];
