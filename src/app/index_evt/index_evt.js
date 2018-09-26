@@ -1346,8 +1346,11 @@ function input_coordinates() {
     var lat = parseInt(latgrados) + parseInt(latminutos) / 60 + parseInt(latsegundos) / 3600;
     var long = long * -1;
 
-    
+    var x = 842061;
+    var y = 1364403;
+    //map.getView().setCenter([1364403, 842061]);
     map.getView().setCenter(ol.proj.transform([long, eval(lat)], 'EPSG:4326', 'EPSG:3857'));
+    //map.getView().setCenter(ol.proj.transform([842061, 1364403], 'EPSG:4326', 'EPSG:3857'));
     map.getView().setZoom(18); 
     var iconFeatures = [];
     var iconFeature = new ol.Feature({
