@@ -672,7 +672,6 @@ function addressSelect(event, ui) {
         url: url,
         success: function (data) {
             var features = format[0].readFeatures(data);
-            //console.log(format[0]);
             if (features && features.length >= 1 && features[0]) {
                 var feature = features[0];
                 var values = feature.getProperties();

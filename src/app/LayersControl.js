@@ -25,35 +25,42 @@ var mapabase = new ol.layer.Tile({
 var streetmap = new ol.layer.Tile({
     source: new ol.source.OSM(),
     visible: true,
-    minResolution:2,
-  //maxResolution:20,
+    minResolution: 2,
+    //maxResolution:20,
     name: 'Street Map'
 });
 
 
 
 var bing = new ol.layer.Tile({
-    visible: false,
-    //opacity: 0,
+    visible: true,
+    opacity: 0,
     source: new ol.source.BingMaps({
-        key: 'LAx1oGVyN8TZwSTH1RC1~hnxyYFGev93MbI6hBUQOZQ~AjSJCfyU_TmBIhT5SRRpRIOBHVnA0zTKFRKEVuP-XHE3LAMKr-1ZcqtTq4YTRLds',
+        key: 'AmTXzzix65q59DqR4_iobPZa9sNRcXtL4gkAsH-uww3RYpVFHGGejnUQTJev9ixC',
         imagerySet: 'Aerial'
     }), name: 'Satelite'
 });
 
+/*var bing = new ol.layer.Tile({
+ visible: false,
+ //opacity: 0,
+ source: new ol.source.XYZ({
+ url: "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
+ }), name: 'Satelite'
+ });*/
 var ortofoto2012 = new ol.layer.Tile({
-visible: false,
-source:new ol.source.XYZ({
-url:"http://35.184.176.7:8081/dashboard/ortofoto2012/{z}/{x}/{y}.png"
-}), name:'Ortofoto 2012'
+    visible: false,
+    source: new ol.source.XYZ({
+        url: "http://35.184.176.7:8081/dashboard/ortofoto2012/{z}/{x}/{y}.png"
+    }), name: 'Ortofoto 2012'
 });
 
 var ortofoto2017 = new ol.layer.Tile({
-visible: true,
-opacity: 0,
-source:new ol.source.XYZ({
-url:"http://35.184.176.7:8081/dashboard/ortofoto2017/{z}/{x}/{y}.jpg"
-}), name:'Ortofoto 2017'
+    visible: true,
+    opacity: 0,
+    source: new ol.source.XYZ({
+        url: "http://35.184.176.7:8081/dashboard/ortofoto2017/{z}/{x}/{y}.jpg"
+    }), name: 'Ortofoto 2017'
 });
 
 var predio = new ol.layer.Tile({
@@ -84,7 +91,7 @@ var construcciones = new ol.layer.Tile({
     visible: true,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS: 'preproduccion:u_construccion', 'TILED':true, STYLES: ''}
+        params: {LAYERS: 'preproduccion:u_construccion', 'TILED': true, STYLES: ''}
     }), name: 'Construcciones'
 });
 
@@ -92,7 +99,7 @@ var vias = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS: 'preproduccion:u_nomenclatura_vial', 'TILED':true, STYLES: ''}
+        params: {LAYERS: 'preproduccion:u_nomenclatura_vial', 'TILED': true, STYLES: ''}
     }), name: 'Vias'
 });
 
@@ -100,7 +107,7 @@ var n_domiciliaria = new ol.layer.Tile({
     visible: true,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS: 'preproduccion:u_nomenclatura_domiciliaria', 'TILED':true, STYLES: ''}
+        params: {LAYERS: 'preproduccion:u_nomenclatura_domiciliaria', 'TILED': true, STYLES: ''}
     }), name: 'Nomenclatura Domiciliaria'
 });
 
@@ -108,7 +115,7 @@ var manzanas = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS: 'preproduccion:u_manzana', 'TILED':true, STYLES: ''}
+        params: {LAYERS: 'preproduccion:u_manzana', 'TILED': true, STYLES: ''}
     }), name: 'Manzanas'
 });
 
@@ -457,7 +464,7 @@ var centrosecundarioactividadmultiple = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_centro_secundario_barrio_actividad_multiple', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_centro_secundario_barrio_actividad_multiple', STYLES: ''}
     }), name: 'Centro Secundario Actividad Multiple'
 });
 
@@ -466,7 +473,7 @@ var sitiodeinteresurbano = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_sitio_de_interes_urbano', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_sitio_de_interes_urbano', STYLES: ''}
     }), name: 'Sitio de Interes Urbano'
 });
 
@@ -475,7 +482,7 @@ var usodelsuelozonaindustrial = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_uso_de_suelo_zona_industrial', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_uso_de_suelo_zona_industrial', STYLES: ''}
     }), name: 'Uso del Suelo Zona Industrial'
 });
 
@@ -484,7 +491,7 @@ var fallasgeologicas = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_fallas_geologicas', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_fallas_geologicas', STYLES: ''}
     }), name: 'Fallas Geologicas'
 });
 
@@ -493,7 +500,7 @@ var limitedebarriotemporal = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_limite_de_barrio_temporal', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_limite_de_barrio_temporal', STYLES: ''}
     }), name: 'Limite de Barrio Temporal'
 });
 
@@ -502,7 +509,7 @@ var limitedecomunaperimetro = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_limite_de_comuna_perimetro', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_limite_de_comuna_perimetro', STYLES: ''}
     }), name: 'Limite de Comuna Perimetro'
 });
 
@@ -511,7 +518,7 @@ var pasoselevados = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_pasos_elevados', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_pasos_elevados', STYLES: ''}
     }), name: 'Pasos Elevados'
 });
 
@@ -520,7 +527,7 @@ var perimetroalcantarillado = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_perimetro_de_alcantarillado', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_perimetro_de_alcantarillado', STYLES: ''}
     }), name: 'Perimetro de Alcantarillado'
 });
 
@@ -529,7 +536,7 @@ var sistemapluvial = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_sistema_pluvial', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_sistema_pluvial', STYLES: ''}
     }), name: 'Sistema Pluvial'
 });
 
@@ -538,7 +545,7 @@ var viascongestionadas = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_vias_congestionadas', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_vias_congestionadas', STYLES: ''}
     }), name: 'Vias Congestionadas'
 });
 
@@ -547,7 +554,7 @@ var clasificaciondelsuelo = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_clasificacion_del_suelo', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_clasificacion_del_suelo', STYLES: ''}
     }), name: 'Clasificacion del Suelo'
 });
 
@@ -556,7 +563,7 @@ var coberturadeaseo = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_cobertura_de_aseo', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_cobertura_de_aseo', STYLES: ''}
     }), name: 'Cobertura de Aseo'
 });
 
@@ -565,7 +572,7 @@ var comuna = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_comuna', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_comuna', STYLES: ''}
     }), name: 'Comuna'
 });
 
@@ -574,7 +581,7 @@ var conflictodeusourbano = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_conflictos_de_uso_urbano', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_conflictos_de_uso_urbano', STYLES: ''}
     }), name: 'Conflicto de Uso Urbano'
 });
 
@@ -583,7 +590,7 @@ var cordondeproteccion = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_cordon_de_proteccion', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_cordon_de_proteccion', STYLES: ''}
     }), name: 'Cordon de Proteccion'
 });
 
@@ -592,16 +599,16 @@ var equipamentosmetropolitanos = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_equipamentos_metropolitanos', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_equipamentos_metropolitanos', STYLES: ''}
     }), name: 'Equipamentos Metropolitanos'
 });
-	
+
 var espaciopublico = new ol.layer.Tile({
     //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_espacio_publico', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_espacio_publico', STYLES: ''}
     }), name: 'Espacio Publico'
 });
 
@@ -610,7 +617,7 @@ var estratificacionsocioeconomica = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_estratificacion_socioeconomica', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_estratificacion_socioeconomica', STYLES: ''}
     }), name: 'Estratificacion Socioeconomica'
 });
 
@@ -619,7 +626,7 @@ var geologiaurbana = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_geologia_urbana', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_geologia_urbana', STYLES: ''}
     }), name: 'Geologia Urbana'
 });
 
@@ -628,7 +635,7 @@ var infraestructuraalcantarillado = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_infraestructura_de_alcantarillado', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_infraestructura_de_alcantarillado', STYLES: ''}
     }), name: 'Infraestructura de Alcantarillado'
 });
 
@@ -637,7 +644,7 @@ var modelodeocupacion = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_modelo_de_ocupacion', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_modelo_de_ocupacion', STYLES: ''}
     }), name: 'Modelo de Ocupacion'
 });
 
@@ -646,7 +653,7 @@ var nucleoseducativos = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_nucleos_educativos', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_nucleos_educativos', STYLES: ''}
     }), name: 'Nucleos Educativos'
 });
 
@@ -655,7 +662,7 @@ var parquerio = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_parque_rio', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_parque_rio', STYLES: ''}
     }), name: 'Parque Río'
 });
 
@@ -664,7 +671,7 @@ var programadegestion = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_programa_de_gestion', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_programa_de_gestion', STYLES: ''}
     }), name: 'Programa de Gestion'
 });
 
@@ -673,7 +680,7 @@ var riesgosestudios = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_riesgos_estudios99', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_riesgos_estudios99', STYLES: ''}
     }), name: 'Riesgos Estudios 99'
 });
 
@@ -682,7 +689,7 @@ var tratamientodelsuelo = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_tratamiento_del_suelo', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_tratamiento_del_suelo', STYLES: ''}
     }), name: 'Tratamiento del Suelo'
 });
 
@@ -691,7 +698,7 @@ var usoactualdelsuelo = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_uso_actual_del_suelo', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_uso_actual_del_suelo', STYLES: ''}
     }), name: 'Uso Actual del Suelo'
 });
 
@@ -700,43 +707,43 @@ var usoactualdelsuelourbano = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_uso_actual_del_suelo_urbano', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_uso_actual_del_suelo_urbano', STYLES: ''}
     }), name: 'Uso Actual del Suelo Urbano'
-});	
+});
 
 var usodelsuelosegunacuerdo = new ol.layer.Tile({
     //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_uso_del_suelo_segun_acuerdo', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_uso_del_suelo_segun_acuerdo', STYLES: ''}
     }), name: 'Uso del Suelo Segun Acuerdo'
-});	
+});
 
 var zonadeactividadresidencial = new ol.layer.Tile({
     //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_zona_de_actividad_residencial', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_zona_de_actividad_residencial', STYLES: ''}
     }), name: 'Zona de Actividad Residencial'
-});	
+});
 
 var zonacondisponibilidaddeservicios = new ol.layer.Tile({
     //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_zonas_con_disponibilidad_de_servicios', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_zonas_con_disponibilidad_de_servicios', STYLES: ''}
     }), name: 'Zonas con Disponibilidad de Servicios'
-});	
+});
 
 var zonasderiesgo = new ol.layer.Tile({
     //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_zonas_de_riesgo', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_zonas_de_riesgo', STYLES: ''}
     }), name: 'Zonas de Riesgo'
 });
 
@@ -745,7 +752,7 @@ var zonasderiesgoimproas = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_zonas_de_riesgo_improas', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_zonas_de_riesgo_improas', STYLES: ''}
     }), name: 'Zonas de Riesgo Improas'
 });
 
@@ -754,7 +761,7 @@ var zonashomogeneasgeoeconomicas = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS:'cucuta:pot_2001_zonas_homogeneas_geoeconomica', STYLES: ''}
+        params: {LAYERS: 'cucuta:pot_2001_zonas_homogeneas_geoeconomica', STYLES: ''}
     }), name: 'Zonas Homogeneas Geoeconomicas'
 });
 
@@ -776,7 +783,7 @@ var layerPot2011 = new ol.layer.Group({
 
 var layerBing = new ol.layer.Group({
     layers: [bing, highlightfeatures],
-    name: 'Satelite'
+    name: 'Sat'
 });
 
 var layerOrtofoto2017 = new ol.layer.Group({
@@ -786,7 +793,7 @@ var layerOrtofoto2017 = new ol.layer.Group({
 
 
 var layerBase = new ol.layer.Group({
-    layers: [streetmap, mapabase, ortofoto2012 ,highlightfeatures],
+    layers: [streetmap, mapabase, ortofoto2012, highlightfeatures],
     name: 'Capas Base'
 });
 
@@ -803,7 +810,7 @@ function buildLayerTree(layer) {
         if (layer.values_.visible == true && layer.get('name') != 'CAPAS') {
             var div = "<li data-layerid='" + name + "'>" + "<span><img src='image/" + layer.get('name') + ".jpg' alt='Smiley face' height='20' width='20' >" + layer.get('name') + "</span>" + "<i class='glyphicon glyphicon-check'></i> ";
         } else if (layer.get('name') == 'CAPAS') {
-            var div = "<li data-layerid='" + name + "'>" + "<span><img src='image/" + layer.get('name') + ".png' alt='Smiley face' height='30' width='100'>" /*+ layer.get('name') */+ "</span>";
+            var div = "<li data-layerid='" + name + "'>" + "<span><img src='image/" + layer.get('name') + ".png' alt='Smiley face' height='30' width='100'>" /*+ layer.get('name') */ + "</span>";
         } else {
             var div = "<li data-layerid='" + name + "'>" + "<span><img src='image/" + layer.get('name') + ".jpg' alt='Smiley face' height='20' width='20'>" + layer.get('name') + "</span>" + "<i class='glyphicon glyphicon-unchecked'></i> ";
         }

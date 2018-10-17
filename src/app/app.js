@@ -84,7 +84,8 @@ $("#mouse-position").removeAttr("hidden").show();
 var tipoUsuario = validacionusuarios()[0][6];
 map = new ol.Map({
     controls: ol.control.defaults().extend([new ol.control.ScaleLine(), new ol.control.ZoomToExtent({
-            extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457]
+            //ajuste rural
+            //extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457]
         }),
         new ol.control.OverviewMap({
             className: 'ol-overviewmap ol-custom-overviewmap',
@@ -108,8 +109,10 @@ map = new ol.Map({
     view: new ol.View({
         center: center,
         zoom: zoom,
-        extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457],
-        maxZoom: 21, minZoom: 12
+        //ajuste rural
+        //extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457],
+        //maxZoom: 21, minZoom: 12
+        maxZoom: 21, minZoom: 8
     })
 });
 
@@ -214,8 +217,9 @@ map.on('singleclick', function (evt) {
                             ell.value = direccion[i];
                             //ell.onclick = function() {addressSource(direccion[i]);};
                         }
-
-                    } else if (ph < 800) {
+                    //ajuste rural
+                    //} else if (ph < 800) {
+                    } else {
                         var table = document.getElementById("tblatt");
                         table.innerHTML = "";
                         var row = table.insertRow(0);
