@@ -95,7 +95,8 @@ $("#mouse-position").removeAttr("hidden").show();
 var tipoUsuario = validacionusuarios()[0][6];
 map = new ol.Map({
     controls: ol.control.defaults().extend([new ol.control.ScaleLine(), new ol.control.ZoomToExtent({
-            extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457]
+            //ajuste rural
+            //extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457]
         }),
         new ol.control.OverviewMap({
             className: 'ol-overviewmap ol-custom-overviewmap',
@@ -119,8 +120,10 @@ map = new ol.Map({
     view: new ol.View({
         center: center,
         zoom: zoom,
-        extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457],
-        maxZoom: 21, minZoom: 12
+        //ajuste rural
+        //extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457],
+        //maxZoom: 21, minZoom: 12
+        maxZoom: 21, minZoom: 8
     })
 });
 
@@ -740,6 +743,11 @@ map.on('singleclick', function (evt) {
                             }
 
                         } else if (tipoUsuario === "Hacienda") {
+                            try {
+                            var matricula = search("cucuta:consultamatricula", cod);
+                        } catch (err) {
+                            var matricula = "Sin Informacion";
+                        }
                             document.getElementById("tblatt").style.visibility = "visible";
                             document.getElementById("tblatt").style.display = "initial";
                             document.getElementById("tblatt").style.height = "auto";
@@ -852,40 +860,42 @@ map.on('singleclick', function (evt) {
                             select[1] = "<b>Nombre del Propietario</b>";
                             select[2] = "<b>Dirección</b>";
                             select[3] = "<b>Destino</b>";
-                            select[4] = "<b>Area de Terreno</b>";
-                            select[5] = "<b>Area de Construcción</b>";
-                            select[6] = "<b>Avaluo</b>";
-                            select[7] = "<b>Estrato</b>";
-                            select[8] = "<b>Clase de Predio</b>";
-                            select[9] = "<b>Tipo de Predio</b>";
-                            select[10] = "<b>Fotografias</b>";
+                            select[4] = "<b>Matricula</b>";
+                            select[5] = "<b>Area de Terreno</b>";
+                            select[6] = "<b>Area de Construcción</b>";
+                            select[7] = "<b>Avaluo</b>";
+                            select[8] = "<b>Estrato</b>";
+                            select[9] = "<b>Clase de Predio</b>";
+                            select[10] = "<b>Tipo de Predio</b>";
+                            select[11] = "<b>Fotografias</b>";
                             sel[0] = arregloDeSubCadenas[0][5];
                             sel[1] = arregloDeSubCadenas[0][7];
                             sel[2] = arregloDeSubCadenas[0][6];
                             sel[3] = arregloDeSubCadenas[0][4];
-                            sel[4] = Intl.NumberFormat().format(arregloDeSubCadenas[0][1]) + " M2";
-                            sel[5] = simplestabla["0"][2] + " M2";
-                            sel[6] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[0][2]);
-                            sel[7] = arregloDeSubCadenas[0][9];
-                            sel[8] = arregloDeSubCadenas[0][3];
-                            sel[9] = arregloDeSubCadenas[0][8];
-                            sel[10] = document.createElement("a");
-                            sel[10].id = "img1";
-                            sel[10].target = "marco2";
-                            sel[10].setAttribute("onclick", "open_streetview()");
-                            sel[10].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                            imag[10] = document.createElement("img");
-                            imag[10].id = "im1";
-                            imag[10].className = "pequeña";
-                            imag[10].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                            stv[10] = document.createElement("a");
-                            stv[10].id = "imgstreet1";
-                            stv[10].target = "marco";
-                            stv[10].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
-                            stv[10].setAttribute("onclick", "open_streetview()");
-                            ig[10] = document.createElement("img");
-                            ig[10].src = "./imagenes/streetview.png";
-                            var campos = 10;
+                            sel[4] = matricula;
+                            sel[5] = Intl.NumberFormat().format(arregloDeSubCadenas[0][1]) + " M2";
+                            sel[6] = simplestabla["0"][2] + " M2";
+                            sel[7] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[0][2]);
+                            sel[8] = arregloDeSubCadenas[0][9];
+                            sel[9] = arregloDeSubCadenas[0][3];
+                            sel[10] = arregloDeSubCadenas[0][8];
+                            sel[11] = document.createElement("a");
+                            sel[11].id = "img1";
+                            sel[11].target = "marco2";
+                            sel[11].setAttribute("onclick", "open_streetview()");
+                            sel[11].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            imag[11] = document.createElement("img");
+                            imag[11].id = "im1";
+                            imag[11].className = "pequeña";
+                            imag[11].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            stv[11] = document.createElement("a");
+                            stv[11].id = "imgstreet1";
+                            stv[11].target = "marco";
+                            stv[11].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
+                            stv[11].setAttribute("onclick", "open_streetview()");
+                            ig[11] = document.createElement("img");
+                            ig[11].src = "./imagenes/streetview.png";
+                            var campos = 11;
                             for (i = 0; i < select.length; i++) {
                                 row = tableP.insertRow(i + 1);
                                 cell1 = row.insertCell(0);
