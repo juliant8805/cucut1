@@ -359,6 +359,10 @@ function limpiar_consulta() {
     document.getElementById("botonminimizarph").style.display = "none";
     document.getElementById("panel_atributos_ph").style.display = "none";
     document.getElementById("tablaatributosprediosph").style.display = "none";
+    
+    document.getElementById("tabladir1").style.display = "none";
+    document.getElementById("diry1").style.display = "none";
+    document.getElementById("diry").style.display = "none";
 }
 function busqueda_personalizada() {
     if (document.getElementById('personalizada').style.display === "" || document.getElementById('personalizada').style.display === "none")

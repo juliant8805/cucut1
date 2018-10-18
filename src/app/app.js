@@ -18,6 +18,17 @@ var proj = new ol.proj.Projection({
 var format = [];
 var wmsSource = [];
 
+var ddlItems = document.getElementById("selBarrio");
+var listaBarrios = search("cucuta:barriosGeo");
+for (var i = 0; i < listaBarrios.length; i++) {
+    var opt = listaBarrios[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    ddlItems.appendChild(el);
+}
+
+
 function putgif() {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -117,6 +128,12 @@ map.getLayerGroup().set('name', 'CAPAS');
 // register a single click listener on the map and show a popup
 // based on WMS GetFeatureInfo
 map.on('singleclick', function (evt) {
+    document.getElementById("tabladir1").style.visibility = "hidden";
+    document.getElementById("diry1").style.visibility = "hidden";
+    document.getElementById("diry").style.visibility = "hidden";
+    var markerSource = highlight.getSource();
+    markerSource.clear();
+    //markerSource.clear();
     coordinates = evt;
     if (document.getElementById("boton_medir").style.display == "none"){
         document.getElementById("panel_atr").style.display = "none";
@@ -157,6 +174,26 @@ map.on('singleclick', function (evt) {
                     if (ph >= 800) {
                         if (tipoUsuario === "Catastro" || tipoUsuario === "Planeacion" || tipoUsuario === "Totem") {
                             var table = document.getElementById("tblatt");
+                            document.getElementById("tblatt").style.visibility = "visible";
+                            document.getElementById("tblatt").style.display = "initial";
+                            document.getElementById("tblatt").style.height = "auto";
+                            document.getElementById("panel_atr").style.visibility = "visible";
+                            document.getElementById("panel_atr").style.display = "initial";
+                            document.getElementById("panel_atr").style.height = "auto";
+                            document.getElementById("panel_atr2").style.visibility = "visible";
+                            document.getElementById("panel_atr2").style.display = "initial";
+                            document.getElementById("panel_atr2").style.height = "auto";
+                            document.getElementById("cpestana1").style.visibility = "visible";
+                            document.getElementById("cpestana1").style.display = "initial";
+                            document.getElementById("cpestana1").style.height = "auto";                            
+                            document.getElementById("cpestana2").style.visibility = "visible";
+                            document.getElementById("cpestana2").style.display = "initial";
+                            document.getElementById("cpestana2").style.height = "auto";                              
+                            document.getElementById("panel_atr2").style.display = "block";
+                            document.getElementById("panel_atr2").style.height = "0px";     
+                            document.getElementById("contenedorg").style.display = "initial";
+                            document.getElementById("contenedorg").style.visibility = "visible";
+                            document.getElementById("contenedorg").style.height = "auto";  
                         } else if (tipoUsuario === "Hacienda") {
                             var table = document.getElementById("tablaP");
                             document.getElementById("tblatt").style.visibility = "hidden";
@@ -216,6 +253,26 @@ map.on('singleclick', function (evt) {
                         }
 
                     } else if (ph < 800) {
+                        document.getElementById("tblatt").style.visibility = "visible";
+                        document.getElementById("tblatt").style.display = "initial";
+                        document.getElementById("tblatt").style.height = "auto";
+                        document.getElementById("panel_atr").style.visibility = "visible";
+                        document.getElementById("panel_atr").style.display = "initial";
+                        document.getElementById("panel_atr").style.height = "auto";
+                        document.getElementById("panel_atr2").style.visibility = "visible";
+                        document.getElementById("panel_atr2").style.display = "initial";
+                        document.getElementById("panel_atr2").style.height = "auto";
+                        document.getElementById("cpestana1").style.visibility = "visible";
+                        document.getElementById("cpestana1").style.display = "initial";
+                        document.getElementById("cpestana1").style.height = "auto";                            
+                        document.getElementById("cpestana2").style.visibility = "visible";
+                        document.getElementById("cpestana2").style.display = "initial";
+                        document.getElementById("cpestana2").style.height = "auto";                              
+                        document.getElementById("panel_atr2").style.display = "block";
+                        document.getElementById("panel_atr2").style.height = "0px";     
+                        document.getElementById("contenedorg").style.display = "initial";
+                        document.getElementById("contenedorg").style.visibility = "visible";
+                        document.getElementById("contenedorg").style.height = "auto";                          
                         var table = document.getElementById("tblatt");
                         table.innerHTML = "";
                         var row = table.insertRow(0);
@@ -962,7 +1019,7 @@ map.on('singleclick', function (evt) {
                                 sel[9] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][1]);
                                 sel[10] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][2]);
                                 sel[11] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][3]);
-                                sel[12] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][4]);
+                                sel[12] = "<FONT SIZE=2>$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][4]) + "</font>";
                                 for (i = 9; i <= 12; i++) {
                                     row = table.insertRow(i);
                                     cell1 = row.insertCell(0);
@@ -981,7 +1038,7 @@ map.on('singleclick', function (evt) {
                                 sel[14] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][9]);
                                 sel[15] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][10]);
                                 sel[16] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][11]);
-                                sel[17] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][12]);
+                                sel[17] = "<FONT SIZE=2>$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][12]) + "</font>";
                                 for (i = 14; i <= 17; i++) {
                                     row = table.insertRow(i);
                                     cell1 = row.insertCell(0);
@@ -1000,7 +1057,7 @@ map.on('singleclick', function (evt) {
                                 sel[19] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][5]);
                                 sel[20] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][6]);
                                 sel[21] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][7]);
-                                sel[22] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][8]);
+                                sel[22] = "<FONT SIZE=2>$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][8]) + "</font>";
                                 for (i = 19; i <= 22; i++) {
                                     row = table.insertRow(i);
                                     cell1 = row.insertCell(0);
@@ -1249,7 +1306,7 @@ map.on('singleclick', function (evt) {
                         feature.values_.geom.flatCoordinates[i + 1] = a;
                     }
                     feature.getGeometry().transform('EPSG:4326', 'EPSG:3857');
-                    if (tipoUsuario === "hacienda" && ph < 800) {
+                    if (tipoUsuario === "Hacienda" && ph < 800) {
                         if (arregloDeSubCadenas[1].length > 1 ) {
                             highlightfeatures.setStyle(PredioDebe);
                         } else {

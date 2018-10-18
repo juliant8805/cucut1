@@ -5,190 +5,187 @@
 
 
 
-function validarFormulario(){
-   jQuery.validator.messages.required = 'Este campo es obligatorio';
-   jQuery.validator.messages.number = 'Este campo debe ser num&eacute;rico.';
-   jQuery.validator.messages.email = 'La direcci&oacute;n de correo es incorrecta.';
-   $("#formulario").validate();
- }
-       $(document).ready(function(){
-          validarFormulario();
-       });
+function validarFormulario() {
+    jQuery.validator.messages.required = 'Este campo es obligatorio';
+    jQuery.validator.messages.number = 'Este campo debe ser num&eacute;rico.';
+    jQuery.validator.messages.email = 'La direcci&oacute;n de correo es incorrecta.';
+    $("#formulario").validate();
+}
+$(document).ready(function () {
+    validarFormulario();
+});
 
-var openFile = function(event) {
+var openFile = function (event) {
     document.getElementById('labelfoto1').style.display = 'block';
     document.getElementById('output1').style.width = '40%';
     document.getElementById('output1').style.height = 'auto';
     document.getElementById('output1').style.border = '1px solid #62BAD3';
-    
-  
-     var input = event.target;
-    
-     var reader = new FileReader();
-     reader.onload = function(){
-      var dataURL = reader.result;
-         console.log(dataURL);
-      var output = document.getElementById('output1');
-      output.src = dataURL;
-      
+
+
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function () {
+        var dataURL = reader.result;
+        console.log(dataURL);
+        var output = document.getElementById('output1');
+        output.src = dataURL;
+
     };
     reader.readAsDataURL(input.files[0]);
-  };
-var openFile2 = function(event) {
+};
+var openFile2 = function (event) {
     document.getElementById('labelfoto2').style.display = 'block';
     document.getElementById('output2').style.width = '40%';
     document.getElementById('output2').style.height = 'auto';
     document.getElementById('output2').style.border = '1px solid #62BAD3';
     var input = event.target;
     var reader = new FileReader();
-    reader.onload = function(){
-      var dataURL = reader.result;
-      var output = document.getElementById('output2');
-      output.src = dataURL;
-      
+    reader.onload = function () {
+        var dataURL = reader.result;
+        var output = document.getElementById('output2');
+        output.src = dataURL;
+
     };
     reader.readAsDataURL(input.files[0]);
-  };
-var openFile3 = function(event) {
+};
+var openFile3 = function (event) {
     document.getElementById('labelfoto3').style.display = 'block';
     document.getElementById('output3').style.width = '40%';
     document.getElementById('output3').style.height = 'auto';
     document.getElementById('output3').style.border = '1px solid #62BAD3';
     var input = event.target;
     var reader = new FileReader();
-    reader.onload = function(){
-      var dataURL = reader.result;
-      var output = document.getElementById('output3');
-      output.src = dataURL;
-      
+    reader.onload = function () {
+        var dataURL = reader.result;
+        var output = document.getElementById('output3');
+        output.src = dataURL;
+
     };
     reader.readAsDataURL(input.files[0]);
-  };
-var openFile4 = function(event) {
+};
+var openFile4 = function (event) {
     document.getElementById('labelfoto4').style.display = 'block';
     document.getElementById('output4').style.width = '40%';
     document.getElementById('output4').style.height = 'auto';
     document.getElementById('output4').style.border = '1px solid #62BAD3';
     var input = event.target;
     var reader = new FileReader();
-    reader.onload = function(){
-      var dataURL = reader.result;
-      var output = document.getElementById('output4');
-      output.src = dataURL;
-      
+    reader.onload = function () {
+        var dataURL = reader.result;
+        var output = document.getElementById('output4');
+        output.src = dataURL;
+
     };
     reader.readAsDataURL(input.files[0]);
-  };
-var openFile5 = function(event) {
+};
+var openFile5 = function (event) {
     document.getElementById('labelfoto5').style.display = 'block';
     document.getElementById('output5').style.width = '40%';
     document.getElementById('output5').style.height = 'auto';
     document.getElementById('output5').style.border = '1px solid #62BAD3';
     var input = event.target;
     var reader = new FileReader();
-    reader.onload = function(){
-      var dataURL = reader.result;
-      var output = document.getElementById('output5');
-      output.src = dataURL;
-      
+    reader.onload = function () {
+        var dataURL = reader.result;
+        var output = document.getElementById('output5');
+        output.src = dataURL;
+
     };
     reader.readAsDataURL(input.files[0]);
-  };
+};
 
 
 
 function getLocation() {
     document.getElementById("track").checked = false;
-     navigator.geolocation.getCurrentPosition(showPosition);
-  }
+    navigator.geolocation.getCurrentPosition(showPosition);
+}
 
-function showPosition(position) {  
-   var latitud = position.coords.latitude;
-   var longitud = position.coords.longitude;
-   document.getElementById("label_latitud").style.display = 'block';
-   document.getElementById("label_longitud").style.display = 'block';
-   document.getElementById('input_coord1').value= latitud;
-   document.getElementById('input_coord2').value= longitud;    
+function showPosition(position) {
+    var latitud = position.coords.latitude;
+    var longitud = position.coords.longitude;
+    document.getElementById("label_latitud").style.display = 'block';
+    document.getElementById("label_longitud").style.display = 'block';
+    document.getElementById('input_coord1').value = latitud;
+    document.getElementById('input_coord2').value = longitud;
 }
 
 
 function saveform() {
-    if(cod_recolector.value/* && cod_supervisor && tipo_predio && uso_predio && via_acceso && input_coord && foto1.value && foto2.value && foto3.value*/){      
-       // var prueba = update_query("SELECT Count(*) FROM u_terreno");
-       // select_query
-        
+    if (cod_recolector.value/* && cod_supervisor && tipo_predio && uso_predio && via_acceso && input_coord && foto1.value && foto2.value && foto3.value*/) {
+        // var prueba = update_query("SELECT Count(*) FROM u_terreno");
+        // select_query
+
         actualizar();
         //guardar();
-        
-       //alert("formulario guardado"); 
-    }
-    
-    else{
+
+        //alert("formulario guardado"); 
+    } else {
         alert("faltan campos");
     }
-    
+
 }
 
 function verfotos() {
-    
-    
-   
-    
-  //  mostrarfotos.innerHTML = "<img src=\"./imagenes/manual.png\" width=\"400px\" height=\"150px\">"; 
-    var openFile = function(event) {
-    var input = event.target;
 
-    var reader = new FileReader();
-    reader.onload = function(){
-      var dataURL = reader.result;
-      if (foto1.value){
-      var output = document.getElementById('output');
-      }
-      else if(foto2.value){
-      var output = document.getElementById('output2');
-      }
-      output.src = dataURL;
+
+
+
+    //  mostrarfotos.innerHTML = "<img src=\"./imagenes/manual.png\" width=\"400px\" height=\"150px\">"; 
+    var openFile = function (event) {
+        var input = event.target;
+
+        var reader = new FileReader();
+        reader.onload = function () {
+            var dataURL = reader.result;
+            if (foto1.value) {
+                var output = document.getElementById('output');
+            } else if (foto2.value) {
+                var output = document.getElementById('output2');
+            }
+            output.src = dataURL;
+        };
+        reader.readAsDataURL(input.files[0]);
     };
-    reader.readAsDataURL(input.files[0]);
-  };
-    
-    
-    /*
-    var foto1 = document.getElementById ("foto1");
-    var preview = document.querySelector('img');
-    var file    = document.querySelector('input[type=file]').files[0];
 
-    reader.onloadend = function () {
-    preview.src = reader.result;
-  }
-    
-    
-    var foto2 = document.getElementById ("foto2");
-    var foto3 = document.getElementById ("foto3");
-    if (foto1.value || foto2.value || foto3.value){
-            if (foto1.value && foto2.value && foto3.value) {           
-              //mostrarfotos.innerHTML = "<img src=\'./imagenes/foto_opt1.png\' width=\"120px\" >";  
-                reader.readAsDataURL(file);
-            }
-            else if (foto1.value && foto2.value && foto3.value) {           
-              mostrarfotos.innerHTML = "<img id='manual' src='./imagenes/manual.png' >";      
-            }
-            else if (foto1.value && foto2.value && foto3.value) {           
-              mostrarfotos.innerHTML = "<img id='manual' src='./imagenes/manual.png' >";      
-            }
-            else if (foto1.value && foto2.value && foto3.value) {           
-              mostrarfotos.innerHTML = "<img id='manual' src='./imagenes/manual.png' >";      
-            }
- 
-      }
-    
-    else{
-      mostrarfotos.innerHTML = "No Existen Fotografías Cargadas";
-    }  */
-  }
+
+    /*
+     var foto1 = document.getElementById ("foto1");
+     var preview = document.querySelector('img');
+     var file    = document.querySelector('input[type=file]').files[0];
+     
+     reader.onloadend = function () {
+     preview.src = reader.result;
+     }
+     
+     
+     var foto2 = document.getElementById ("foto2");
+     var foto3 = document.getElementById ("foto3");
+     if (foto1.value || foto2.value || foto3.value){
+     if (foto1.value && foto2.value && foto3.value) {           
+     //mostrarfotos.innerHTML = "<img src=\'./imagenes/foto_opt1.png\' width=\"120px\" >";  
+     reader.readAsDataURL(file);
+     }
+     else if (foto1.value && foto2.value && foto3.value) {           
+     mostrarfotos.innerHTML = "<img id='manual' src='./imagenes/manual.png' >";      
+     }
+     else if (foto1.value && foto2.value && foto3.value) {           
+     mostrarfotos.innerHTML = "<img id='manual' src='./imagenes/manual.png' >";      
+     }
+     else if (foto1.value && foto2.value && foto3.value) {           
+     mostrarfotos.innerHTML = "<img id='manual' src='./imagenes/manual.png' >";      
+     }
+     
+     }
+     
+     else{
+     mostrarfotos.innerHTML = "No Existen Fotografías Cargadas";
+     }  */
+}
 
 function vercoordenadas() {
-coordenadas.setVisible(true);
+    coordenadas.setVisible(true);
 }
 
 function actualizar() {
@@ -221,7 +218,7 @@ function actualizar() {
         }
     });
 }
-function guardar() { 
+function guardar() {
     var prueba = "prueba";
     var arrayResult = '<Transaction xmlns="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:formulario="formulario" xmlns:gml="http://www.opengis.net/gml" version="1.1.0" service="WFS" xsi:schemaLocation="http://35.184.176.7:8081/geoserver">\
      <Insert xmlns="http://www.opengis.net/wfs">\
@@ -244,14 +241,14 @@ function guardar() {
         }
     });
     /*if (res.responseText.substring(0, 62) === '<?xml version="1.0" encoding="UTF-8"?><wfs:TransactionResponse') {
-        var urls = "./mail/envio_mail.php";
-        var req = new ajaxRequest();
-        var url = urls + "?c=" + document.getElementById('email').value + "&u=" + nomg + "&p=" + cont;
-        req.open("GET", url, false);
-        req.send();
-    } else {
-        alert("El usuario o correo electronico ya se encuentra registrado");
-    }*/
+     var urls = "./mail/envio_mail.php";
+     var req = new ajaxRequest();
+     var url = urls + "?c=" + document.getElementById('email').value + "&u=" + nomg + "&p=" + cont;
+     req.open("GET", url, false);
+     req.send();
+     } else {
+     alert("El usuario o correo electronico ya se encuentra registrado");
+     }*/
 }
 
 
@@ -290,7 +287,7 @@ function guardar() {
 
 
 function mostrar(consulta) {
-var prueba = select_query("SELECT Count(*) FROM u_terreno");
+    var prueba = select_query("SELECT Count(*) FROM u_terreno");
     console.log(prueba);
 
 
@@ -300,26 +297,26 @@ var prueba = select_query("SELECT Count(*) FROM u_terreno");
 
 function mostrar(consulta) {
     document.getElementById("myDropdown").classList.toggle("show");
-    document.getElementById('barra_sitio').style.display = 'none'; 
+    document.getElementById('barra_sitio').style.display = 'none';
     document.getElementById('barra_barrio').style.display = 'none';
     document.getElementById('barra_manzana').style.display = 'none';
     document.getElementById('barra_direccion').style.display = 'none';
     document.getElementById('barra_codigo').style.display = 'none';
     document.getElementById('direccion').value = "";
     document.getElementById('address1').value = "";
-    document.getElementById('barrio').value = ""; 
+    document.getElementById('barrio').value = "";
     document.getElementById('manzana').value = "";
     document.getElementById('direccion').value = "";
     document.getElementById('codigo').value = "";
     if (consulta === 'consulta_direccion') {
         document.getElementById('barra_direccion').style.display = 'block';
-       // localidad.setVisible(false);
-       // manzana.setVisible(false);
+        // localidad.setVisible(false);
+        // manzana.setVisible(false);
         //barrio.setVisible(false);
     } else if (consulta === 'consulta_sitio') {
         document.getElementById('barra_sitio').style.display = 'block';
-       //localidad.setVisible(false);
-       // manzana.setVisible(false);
+        //localidad.setVisible(false);
+        // manzana.setVisible(false);
         barrios.setVisible(false);
     } else if (consulta === 'consulta_propietario') {
         document.getElementById('barra_propietario').style.display = 'block';
@@ -592,9 +589,9 @@ function limpiar_consulta() {
     var x = document.getElementById("marco2");
     var y = (x.contentWindow || x.contentDocument);
     /*if (y.document)y = y.document;
-    y.body.style.display = "none";	*/
-	
-    globalstyle = "sinconsulta"; 
+     y.body.style.display = "none";	*/
+
+    globalstyle = "sinconsulta";
     predio.setVisible(true);
     barrios.setVisible(false);
     coordenadas.setVisible(false);
@@ -605,10 +602,10 @@ function limpiar_consulta() {
     //heatmap.setVisible(false);
     predio.getSource().updateParams({'STYLES': 'u_terreno_formulario', 'CQL_FILTER': null});
     document.getElementById("contenedorg").style.display = "none";
-    document.getElementById('panel_atr').style.display = 'none'; 
+    document.getElementById('panel_atr').style.display = 'none';
     document.getElementById('botoncerrarstreetview').style.display = 'none';
     document.getElementById('botonmostrarstreetview').style.display = 'none';
-    document.getElementById('mensaje').style.display = 'none'; 
+    document.getElementById('mensaje').style.display = 'none';
     var markerSource = highlightfeatures.getSource();
     markerSource.clear();
     var markerSource1 = highlight.getSource();
@@ -621,7 +618,7 @@ function limpiar_consulta() {
     document.getElementById('direccion').value = "";
     //document.getElementById('codigo').value = "";
     //document.getElementById("marco").style.display = "none";
-	document.getElementById("marco2").style.display = "none";
+    document.getElementById("marco2").style.display = "none";
 
     document.getElementById("botonocultarpanelatributos").style.display = "none";
     //document.getElementById("panel_atributos").style.display = "none";
@@ -635,7 +632,10 @@ function limpiar_consulta() {
     document.getElementById("botonmostrarpanelatributos").style.display = "none";
     document.getElementById("botonmostrarstatistics").style.display = "none";
     document.getElementById("botonocultarstatistics").style.display = "none";
-   
+
+    document.getElementById("tabladir1").style.display = "none";
+    document.getElementById("diry1").style.display = "none";
+
 }
 function busqueda_personalizada() {
     if (document.getElementById('personalizada').style.display === "" || document.getElementById('personalizada').style.display === "none")
@@ -754,35 +754,35 @@ function lista() {
 }
 
 function abrir_manual() {
-    
-        window.open('./documentos/manual.pdf', '_blank');
-        
+
+    window.open('./documentos/manual.pdf', '_blank');
+
 }
 
 
 // Close the dropdown menu if the user clicks outside of it
 /*window.onclick = function (event) {
-	if (document.getElementById("marco").style.display === "block"){
-		document.body.style.cursor = 'crosshair';
-		var transf = ol.proj.transform(coordinates.coordinate,'EPSG:3857','EPSG:4326');
-		document.getElementById('marco').src = "street_view.html?coordenadas="+transf[1]+','+transf[0];
-	}else {
-		document.body.style.cursor = 'default';
-    	try {
-      	  if (!event.target.matches('.dropbtn')) {
-         	   var dropdowns = document.getElementsByClassName("dropdown-content");
-            	var i;
-            	for (i = 0; i < dropdoforwns.length; i++) {
-               	var openDropdown = dropdowns[i];
-               	if (openDropdown.classList.contains('show')) {
-                  	openDropdown.classList.remove('show');
-                	}
-            	}
-        	}
-    	} catch (err) {
-    	}
-    }
-};*/
+ if (document.getElementById("marco").style.display === "block"){
+ document.body.style.cursor = 'crosshair';
+ var transf = ol.proj.transform(coordinates.coordinate,'EPSG:3857','EPSG:4326');
+ document.getElementById('marco').src = "street_view.html?coordenadas="+transf[1]+','+transf[0];
+ }else {
+ document.body.style.cursor = 'default';
+ try {
+ if (!event.target.matches('.dropbtn')) {
+ var dropdowns = document.getElementsByClassName("dropdown-content");
+ var i;
+ for (i = 0; i < dropdoforwns.length; i++) {
+ var openDropdown = dropdowns[i];
+ if (openDropdown.classList.contains('show')) {
+ openDropdown.classList.remove('show');
+ }
+ }
+ }
+ } catch (err) {
+ }
+ }
+ };*/
 function marcado() {
     if (document.getElementById("termin").checked === true) {
         document.getElementById('completo').style.display = 'none';
@@ -794,58 +794,51 @@ function marcado() {
 
 function changeImage(id) {
     /*if (id === "Tipo Construccion") {
-        document.getElementById('Tipo Construccion').style = "background:url('./imagenes/botones_consultas/propiedad_horizontal/propiedad_horizontal.png'); background-color:#EAC102; min-height: 40px; border:0px; background-repeat:no-repeat; background-position: 50%; min-height:45px; width:150px; margin: 0.5em 0em 1em 1em;";
-    } else*/
+     document.getElementById('Tipo Construccion').style = "background:url('./imagenes/botones_consultas/propiedad_horizontal/propiedad_horizontal.png'); background-color:#EAC102; min-height: 40px; border:0px; background-repeat:no-repeat; background-position: 50%; min-height:45px; width:150px; margin: 0.5em 0em 1em 1em;";
+     } else*/
     if (id === "DiferenciaArea") {
-        document.getElementById('DiferenciaArea').style = "background-color:#366777;height:100%;width:100%;"; 
+        document.getElementById('DiferenciaArea').style = "background-color:#366777;height:100%;width:100%;";
         document.getElementById("DiferenciaArea").value = "seleccione";
-    }
-    else if (id === "oficial_vs_AAA") {
-        document.getElementById('oficial_vs_AAA').style = "background-color:#366777;height:100%;width:100%;"; 
+    } else if (id === "oficial_vs_AAA") {
+        document.getElementById('oficial_vs_AAA').style = "background-color:#366777;height:100%;width:100%;";
         document.getElementById("oficial_vs_AAA").value = "seleccione";
     } else if (id === "Uso_oficial_vs_AAA") {
-        document.getElementById('Uso_oficial_vs_AAA').style = "background-color:#366777;height:100%;width:100%;"; 
+        document.getElementById('Uso_oficial_vs_AAA').style = "background-color:#366777;height:100%;width:100%;";
         document.getElementById("Uso_oficial_vs_AAA").value = "seleccione";
     } /*else if (id === "exentos") {
-        document.getElementById('exentos').style = "background:url('./imagenes/botones_consultas/exentos/exentos.png'); background-color:#EAC102; border:0px; background-repeat:no-repeat; background-position: 50%; min-height:45px; width:150px; margin: 0.5em 0em 1em 1em;";
-    } */
+     document.getElementById('exentos').style = "background:url('./imagenes/botones_consultas/exentos/exentos.png'); background-color:#EAC102; border:0px; background-repeat:no-repeat; background-position: 50%; min-height:45px; width:150px; margin: 0.5em 0em 1em 1em;";
+     } */
     else if (id === "Saneamiento") {
-       document.getElementById("Saneamiento").style = "background-color:#366777;height:100%;width:100%;"; 
-       document.getElementById("Saneamiento").value = "seleccione";
-    }
-    else if (id === "Avaluo Catastral") {
-        document.getElementById("Avaluo Catastral").style = "background-color:#366777;height:100%;width:100%;"; 
+        document.getElementById("Saneamiento").style = "background-color:#366777;height:100%;width:100%;";
+        document.getElementById("Saneamiento").value = "seleccione";
+    } else if (id === "Avaluo Catastral") {
+        document.getElementById("Avaluo Catastral").style = "background-color:#366777;height:100%;width:100%;";
         document.getElementById("Avaluo Catastral").value = "seleccione";
-    } 
-    else if (id === "valorizacion") {
-        document.getElementById("valorizacion").style = "background-color:#366777;height:100%;width:100%;"; 
+    } else if (id === "valorizacion") {
+        document.getElementById("valorizacion").style = "background-color:#366777;height:100%;width:100%;";
         document.getElementById("valorizacion").value = "seleccione";
-    }  
+    }
 }
 
 function normalImage(id) {
-  /*  if (id === "Tipo Construccion") {
-        document.getElementById('Tipo Construccion').style = "background:url('./imagenes/botones_consultas/propiedad_horizontal/propiedad_horizontal.png'); background-color:#00BCD4; min-height: 40px; border:0px; background-repeat:no-repeat; background-position: 50%; min-height: 40px; width:120px; margin: 0.5em 0em 1em 1em;";
-    } else */
+    /*  if (id === "Tipo Construccion") {
+     document.getElementById('Tipo Construccion').style = "background:url('./imagenes/botones_consultas/propiedad_horizontal/propiedad_horizontal.png'); background-color:#00BCD4; min-height: 40px; border:0px; background-repeat:no-repeat; background-position: 50%; min-height: 40px; width:120px; margin: 0.5em 0em 1em 1em;";
+     } else */
     if (id === "DiferenciaArea") {
         document.getElementById('DiferenciaArea').style = "background-color:#4E9AAB;height:100%;width:100%;";
-    }
-    else if (id === "oficial_vs_AAA") {
+    } else if (id === "oficial_vs_AAA") {
         document.getElementById('oficial_vs_AAA').style = "background-color:#4E9AAB;height:100%;width:100%;";
-    } 
-    else if (id === "Uso_oficial_vs_AAA") {
+    } else if (id === "Uso_oficial_vs_AAA") {
         document.getElementById('Uso_oficial_vs_AAA').style = "background-color:#4E9AAB;height:100%;width:100%;";
     } /*else if (id === "exentos") {
-        document.getElementById('exentos').style = "background:url('./imagenes/botones_consultas/exentos/exentos.png'); background-color:#00BCD4; min-height: 40px; border:0px; background-repeat:no-repeat; background-position: 50%; min-height: 40px; width:120px; margin: 0.5em 0em 1em 1em;";
-    } */else if (id === "Saneamiento") {
+     document.getElementById('exentos').style = "background:url('./imagenes/botones_consultas/exentos/exentos.png'); background-color:#00BCD4; min-height: 40px; border:0px; background-repeat:no-repeat; background-position: 50%; min-height: 40px; width:120px; margin: 0.5em 0em 1em 1em;";
+     } */else if (id === "Saneamiento") {
         document.getElementById('Saneamiento').style = "background-color:#4E9AAB;height:100%;width:100%;";
-    }
-    else if (id === "Avaluo Catastral") {
-       document.getElementById('Avaluo Catastral').style = "background-color:#4E9AAB;height:100%;width:100%;";
-    } 
-    else if (id === "valorizacion") {
+    } else if (id === "Avaluo Catastral") {
+        document.getElementById('Avaluo Catastral').style = "background-color:#4E9AAB;height:100%;width:100%;";
+    } else if (id === "valorizacion") {
         document.getElementById('valorizacion').style = "background-color:#4E9AAB;height:100%;width:100%;";
-    } 
+    }
 }
 
 
@@ -890,7 +883,7 @@ function mostrarpanelatributos() {
     //document.getElementById("tablaatributos").style.display = "block";
     document.getElementById("botonmostrarpanelatributos").style.display = "none";
     //document.getElementById("botonocultarpanelatributos").style.display = "block";
-    document.getElementById("contenedorg").style.display = "block";  
+    document.getElementById("contenedorg").style.display = "block";
 }
 
 function mapposi(coord, giro) {
@@ -1049,11 +1042,11 @@ function enviargesstor() {
         if (cont !== 0)
         {
             $('#notmsn').text(cont);
-        }else{
+        } else {
             $('#notmsn').text('');
         }
         hideMe();
-        document.getElementById('butt1').disabled=true;
+        document.getElementById('butt1').disabled = true;
     } else if (modulo === "catastro") {
         var postData = '<Transaction service="WFS" xmlns="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs http://35.184.3.4:8080/geoserver/schemas/wfs/1.1.0/wfs.xsd">\
                     <Update typeName="user:gestor">\
@@ -1099,12 +1092,12 @@ function enviargesstor() {
         if (cont !== 0)
         {
             $('#notmsn').text(cont);
-        }else{
+        } else {
             $('#notmsn').text('');
         }
         highlight.getSource().clear();
         hideMe();
-        document.getElementById('butt1').disabled=true;
+        document.getElementById('butt1').disabled = true;
     } else if (modulo === "hacienda") {
         var postData = '<Transaction service="WFS" xmlns="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs http://35.184.3.4:8080/geoserver/schemas/wfs/1.1.0/wfs.xsd">\
                     <Update typeName="user:gestor">\
@@ -1150,12 +1143,12 @@ function enviargesstor() {
         if (cont !== 0)
         {
             $('#notmsn').text(cont);
-        }else{
+        } else {
             $('#notmsn').text('');
         }
         highlight.getSource().clear();
         hideMe();
-        document.getElementById('butt1').disabled=true;
+        document.getElementById('butt1').disabled = true;
     }
 }
 function comparacion()
@@ -1327,160 +1320,159 @@ function formatNumber(n) {
 }
 
 
-function cambiarPestanna(pestannas,pestanna) {
-    
-    if (pestanna.id == 'pestana1'){
+function cambiarPestanna(pestannas, pestanna) {
+
+    if (pestanna.id == 'pestana1') {
         document.getElementById("cpestana1").style.display = "block";
         document.getElementById("cpestana2").style.display = "none";
         document.getElementById("pestana1").style.backgroundColor = "#EAC102";
         document.getElementById("pestana2").style.backgroundColor = "#A9A9A9";
-    }
-    else if (pestanna.id == 'pestana2'){ 
+    } else if (pestanna.id == 'pestana2') {
         document.getElementById("cpestana2").style.display = "block";
         document.getElementById("cpestana1").style.display = "none";
         document.getElementById("pestana2").style.backgroundColor = "#EAC102";
         document.getElementById("pestana1").style.backgroundColor = "#A9A9A9";
-    }   
+    }
 }
 
 
 function medir() {
-    
-    
-    var wgs84Sphere = new ol.Sphere(6378137);
-     var source = new ol.source.Vector();
 
-      var vector = new ol.layer.Vector({
+
+    var wgs84Sphere = new ol.Sphere(6378137);
+    var source = new ol.source.Vector();
+
+    var vector = new ol.layer.Vector({
         source: source,
         style: new ol.style.Style({
-          fill: new ol.style.Fill({
-            color: 'rgba(255, 255, 255, 0.2)'
-          }),
-          stroke: new ol.style.Stroke({
-            color: '#ffcc33',
-            width: 2
-          }),
-          image: new ol.style.Circle({
-            radius: 7,
             fill: new ol.style.Fill({
-              color: '#ffcc33'
+                color: 'rgba(255, 255, 255, 0.2)'
+            }),
+            stroke: new ol.style.Stroke({
+                color: '#ffcc33',
+                width: 2
+            }),
+            image: new ol.style.Circle({
+                radius: 7,
+                fill: new ol.style.Fill({
+                    color: '#ffcc33'
+                })
             })
-          })
         })
-      });
-    
-    
-    
-    
-    
-   var sketch;
-      var helpTooltipElement;
-      var helpTooltip;
-      var measureTooltipElement;
-      var measureTooltip;
-      var continuePolygonMsg = 'Click to continue drawing the polygon';
-      var continueLineMsg = 'Click to continue drawing the line';
-      var pointerMoveHandler = function(evt) {
+    });
+
+
+
+
+
+    var sketch;
+    var helpTooltipElement;
+    var helpTooltip;
+    var measureTooltipElement;
+    var measureTooltip;
+    var continuePolygonMsg = 'Click to continue drawing the polygon';
+    var continueLineMsg = 'Click to continue drawing the line';
+    var pointerMoveHandler = function (evt) {
         if (evt.dragging) {
-          return;
+            return;
         }
         /** @type {string} */
         var helpMsg = 'Click to start drawing';
 
         if (sketch) {
-          var geom = (sketch.getGeometry());
-          if (geom instanceof ol.geom.Polygon) {
-            helpMsg = continuePolygonMsg;
-          } else if (geom instanceof ol.geom.LineString) {
-            helpMsg = continueLineMsg;
-          }
+            var geom = (sketch.getGeometry());
+            if (geom instanceof ol.geom.Polygon) {
+                helpMsg = continuePolygonMsg;
+            } else if (geom instanceof ol.geom.LineString) {
+                helpMsg = continueLineMsg;
+            }
         }
 
         helpTooltipElement.innerHTML = helpMsg;
         helpTooltip.setPosition(evt.coordinate);
 
         helpTooltipElement.classList.remove('hidden');
-      };
+    };
 
 
-     
 
-      map.on('pointermove', pointerMoveHandler);
 
-      map.getViewport().addEventListener('mouseout', function() {
+    map.on('pointermove', pointerMoveHandler);
+
+    map.getViewport().addEventListener('mouseout', function () {
         helpTooltipElement.classList.add('hidden');
-      });
+    });
 
-      var typeSelect = document.getElementById('type');
-      var draw; // global so we can remove it later
-      /*var formatLength = function(line) {
-      var length = ol.Sphere.getLength(line);
-      var output;
+    var typeSelect = document.getElementById('type');
+    var draw; // global so we can remove it later
+    /*var formatLength = function(line) {
+     var length = ol.Sphere.getLength(line);
+     var output;
+     if (length > 100) {
+     output = (Math.round(length / 1000 * 100) / 100) +
+     ' ' + 'km';
+     } else {
+     output = (Math.round(length * 100) / 100) +
+     ' ' + 'm';
+     }
+     return output;
+     };*/
+
+
+    var formatLength = function (line) {
+        var length;
+        length = Math.round(line.getLength() * 100) / 100;
+        var output;
         if (length > 100) {
-          output = (Math.round(length / 1000 * 100) / 100) +
-              ' ' + 'km';
+            output = (Math.round(length / 1000 * 100) / 100) + ' ' + 'km';
         } else {
-          output = (Math.round(length * 100) / 100) +
-              ' ' + 'm';
+            output = (Math.round(length * 100) / 100) + ' ' + 'm';
         }
         return output;
-      };*/
-    
-    
-    var formatLength = function (line) {
-    var length;
-    length = Math.round(line.getLength() * 100) / 100;
-    var output;
-    if (length > 100) {
-        output = (Math.round(length / 1000 * 100) / 100) + ' ' + 'km';
-    } else {
-        output = (Math.round(length * 100) / 100) + ' ' + 'm';
-    }
-    return output;
-};
-    
-    
+    };
 
-      var formatArea = function(polygon) {
-      var area;
-          area = Math.round(polygon.getArea() * 100) / 100;
+
+
+    var formatArea = function (polygon) {
+        var area;
+        area = Math.round(polygon.getArea() * 100) / 100;
         var output;
         if (area > 10000) {
-          output = (Math.round(area / 1000000 * 100) / 100) +
-              ' ' + 'km<sup>2</sup>';
+            output = (Math.round(area / 1000000 * 100) / 100) +
+                    ' ' + 'km<sup>2</sup>';
         } else {
-          output = (Math.round(area * 100) / 100) +
-              ' ' + 'm<sup>2</sup>';
+            output = (Math.round(area * 100) / 100) +
+                    ' ' + 'm<sup>2</sup>';
         }
         return output;
-      };
+    };
 
-     
-      function addInteraction() { 
-          var radioSelect = $('input[name=gender]:checked', '#type').val();
-          var type = (radioSelect == 'area' ? 'Polygon' : 'LineString');
-          draw = new ol.interaction.Draw({
-          source: source,
-          type: type,
-          style: new ol.style.Style({
-            fill: new ol.style.Fill({
-              color: 'rgba(255, 255, 255, 0.2)'
-            }),
-            stroke: new ol.style.Stroke({
-              color: 'rgba(0, 0, 0, 0.5)',
-              lineDash: [10, 10],
-              width: 2
-            }),
-            image: new ol.style.Circle({
-              radius: 5,
-              stroke: new ol.style.Stroke({
-                color: 'rgba(0, 0, 0, 0.7)'
-              }),
-              fill: new ol.style.Fill({
-                color: 'rgba(255, 255, 255, 0.2)'
-              })
+
+    function addInteraction() {
+        var radioSelect = $('input[name=gender]:checked', '#type').val();
+        var type = (radioSelect == 'area' ? 'Polygon' : 'LineString');
+        draw = new ol.interaction.Draw({
+            source: source,
+            type: type,
+            style: new ol.style.Style({
+                fill: new ol.style.Fill({
+                    color: 'rgba(255, 255, 255, 0.2)'
+                }),
+                stroke: new ol.style.Stroke({
+                    color: 'rgba(0, 0, 0, 0.5)',
+                    lineDash: [10, 10],
+                    width: 2
+                }),
+                image: new ol.style.Circle({
+                    radius: 5,
+                    stroke: new ol.style.Stroke({
+                        color: 'rgba(0, 0, 0, 0.7)'
+                    }),
+                    fill: new ol.style.Fill({
+                        color: 'rgba(255, 255, 255, 0.2)'
+                    })
+                })
             })
-          })
         });
         map.addInteraction(draw);
 
@@ -1489,102 +1481,102 @@ function medir() {
 
         var listener;
         draw.on('drawstart',
-            function(evt) {
-              // set sketch
-              sketch = evt.feature;
+                function (evt) {
+                    // set sketch
+                    sketch = evt.feature;
 
-              /** @type {ol.Coordinate|undefined} */
-              var tooltipCoord = evt.coordinate;
+                    /** @type {ol.Coordinate|undefined} */
+                    var tooltipCoord = evt.coordinate;
 
-              listener = sketch.getGeometry().on('change', function(evt) {
-                var geom = evt.target;
-                var output;
-                if (geom instanceof ol.geom.Polygon) {
-                  output = formatArea(geom);
-                  tooltipCoord = geom.getInteriorPoint().getCoordinates();
-                } else if (geom instanceof ol.geom.LineString) {
-                  output = formatLength(geom);
-                  tooltipCoord = geom.getLastCoordinate();
-                }
-                measureTooltipElement.innerHTML = output;
-                measureTooltip.setPosition(tooltipCoord);
-              });
-            }, this);
+                    listener = sketch.getGeometry().on('change', function (evt) {
+                        var geom = evt.target;
+                        var output;
+                        if (geom instanceof ol.geom.Polygon) {
+                            output = formatArea(geom);
+                            tooltipCoord = geom.getInteriorPoint().getCoordinates();
+                        } else if (geom instanceof ol.geom.LineString) {
+                            output = formatLength(geom);
+                            tooltipCoord = geom.getLastCoordinate();
+                        }
+                        measureTooltipElement.innerHTML = output;
+                        measureTooltip.setPosition(tooltipCoord);
+                    });
+                }, this);
 
         draw.on('drawend',
-            function() {
-              measureTooltipElement.className = 'tooltip tooltip-static';
-              measureTooltip.setOffset([0, -7]);
-              // unset sketch
-              sketch = null;
-              // unset tooltip so that a new one can be created
-              measureTooltipElement = null;
-              createMeasureTooltip();
-              ol.Observable.unByKey(listener);
-            }, this);
-      }
+                function () {
+                    measureTooltipElement.className = 'tooltip tooltip-static';
+                    measureTooltip.setOffset([0, -7]);
+                    // unset sketch
+                    sketch = null;
+                    // unset tooltip so that a new one can be created
+                    measureTooltipElement = null;
+                    createMeasureTooltip();
+                    ol.Observable.unByKey(listener);
+                }, this);
+    }
 
 
-      /**
-       * Creates a new help tooltip
-       */
-      function createHelpTooltip() {
+    /**
+     * Creates a new help tooltip
+     */
+    function createHelpTooltip() {
         if (helpTooltipElement) {
-          helpTooltipElement.parentNode.removeChild(helpTooltipElement);
+            helpTooltipElement.parentNode.removeChild(helpTooltipElement);
         }
         helpTooltipElement = document.createElement('div');
         helpTooltipElement.className = 'tooltip hidden';
         helpTooltip = new ol.Overlay({
-          element: helpTooltipElement,
-          offset: [15, 0],
-          positioning: 'center-left'
+            element: helpTooltipElement,
+            offset: [15, 0],
+            positioning: 'center-left'
         });
         map.addOverlay(helpTooltip);
-      }
+    }
 
 
-    
-    
 
-   
-    
-    
-    
-    
-    
-      /**
-       * Creates a new measure tooltip
-       */
-      function createMeasureTooltip() {
+
+
+
+
+
+
+
+
+    /**
+     * Creates a new measure tooltip
+     */
+    function createMeasureTooltip() {
         if (measureTooltipElement) {
-          measureTooltipElement.parentNode.removeChild(measureTooltipElement);
+            measureTooltipElement.parentNode.removeChild(measureTooltipElement);
         }
         measureTooltipElement = document.createElement('div');
         measureTooltipElement.className = 'tooltip tooltip-measure';
         measureTooltip = new ol.Overlay({
-          element: measureTooltipElement,
-          offset: [0, -15],
-          positioning: 'bottom-center'
+            element: measureTooltipElement,
+            offset: [0, -15],
+            positioning: 'bottom-center'
         });
         map.addOverlay(measureTooltip);
-      }
+    }
 
 
-      /**
-       * Let user change the geometry type.
-       */
-      typeSelect.onchange = function() {
+    /**
+     * Let user change the geometry type.
+     */
+    typeSelect.onchange = function () {
         map.removeInteraction(draw);
         addInteraction();
-      };
+    };
 
-      addInteraction(); 
-    
-    
-   
-    
-    
-    
+    addInteraction();
+
+
+
+
+
+
 }
 
 

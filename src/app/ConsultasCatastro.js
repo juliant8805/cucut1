@@ -334,6 +334,41 @@ function rango(style, id) {
                 predio.getSource().updateParams({'STYLES': 'Oficial vs AAA Uso Acueducto', 'CQL_FILTER': eval(filtro)});
                 queryexport = style + ' AcueductoF';
             }
+////////////////////////////////////
+        } else if (document.getElementById("Uso_oficial_vs_AAA").value === "Energia") {
+            if (document.getElementById("barrio").value === '' && document.getElementById("manzana").value === '') {
+                var select = search("cucuta:TotalPrediosHacienda");
+                var param = [['Uso Coincidente'], ['P.Comercial-D.Residencial'], ['P.Residencial-D.Comercial'], ['Sin Informacion']];
+                var total1 = search("cucuta:censcoincidente");
+                var total2 = search("cucuta:censpcomercial");
+                var total3 = search("cucuta:censpresidencial");
+                var total4 = search("cucuta:censsininfo");
+                var totales = total1.concat(total2, total3, total4);
+                predio.getSource().updateParams({'STYLES': 'Oficial vs AAA Uso Acueducto'});
+                var titulo = "Destino Economico vs Uso Energia";
+                estdistica(select, titulo, param, totales, id);
+                map.getView().fitExtent(pgetextent, map.getSize());
+                queryexport = style + ' GAcueducto';
+            } else {
+                var select = search("cucuta:areaCvsPrestQ", values);
+                var param = [['Uso Coincidente'], ['P.Comercial-D.Residencial'], ['P.Residencial-D.Comercial'], ['Sin Informacion']];
+                var total1 = search("cucuta:censcoincidentef", values);
+                var total2 = search("cucuta:censpcomercialf", values);
+                var total3 = search("cucuta:censpresidencialf", values);
+                var total4 = search("cucuta:censsininfof", values);
+                var totales = total1.concat(total2, total3, total4);
+                var titulo = "Destino Economico vs Uso Energia (Cabecera Municipal)";
+                estdistica(select, titulo, param, totales, id);
+                var valor = "'" + values + "'";
+                if (document.getElementById("barrio").value !== '') {
+                    var filtro = '"cod_barrio=' + valor + '"';
+                } else if (document.getElementById("manzana").value !== '') {
+                    var filtro = '"manzana_co=' + valor + '"';
+                }
+                predio.getSource().updateParams({'STYLES': 'Oficial vs AAA Uso Acueducto', 'CQL_FILTER': eval(filtro)});
+                queryexport = style + ' AcueductoF';
+            }
+///////////////////////////////////////        
         } else if (document.getElementById("Uso_oficial_vs_AAA").value === "Alcantarillado") {
             if (document.getElementById("barrio").value === '' && document.getElementById("manzana").value === '') {
                 var select = search("cucuta:TotalPrediosHacienda");

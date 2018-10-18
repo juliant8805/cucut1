@@ -1,28 +1,35 @@
-function search(param, request, request1, request2) {
+function search(param, request, request1, request2, request3) {
     var url = 'http://35.184.176.7:8081/geoserver/ows?';
     /*if (request === undefined || request === '') {
         return;
     } else*/
-    if (request === undefined && request1 === undefined && request2 === undefined) {
+    if (request === undefined && request1 === undefined && request2 === undefined && request3 === undefined) {
         var viewParamsStr = viewparamsToStr({});
     }
-    else if (request1 === undefined && request2 === undefined) {
+    else if (request1 === undefined && request2 === undefined && request3 === undefined) {
         var viewParamsStr = viewparamsToStr({
             query: request
         });
-    } else if (request2 === undefined) {
+    } else if (request2 === undefined && request3 === undefined) {
         var viewParamsStr = viewparamsToStr({
             query: request,
             query1: request1
         });
-    } else {
+    } else if (request3 === undefined ) {
         var viewParamsStr = viewparamsToStr({
             query: request,
             query1: request1,
             query2: request2
+        });      
+    } else {
+        var viewParamsStr = viewparamsToStr({
+            query: request,
+            query1: request1,
+            query2: request2,
+            query3: request3
+            
         });
     }
-    //console.log(viewParamsStr);
     var wfsParams = {
         service: 'WFS',
         version: '2.0.0',
@@ -45,7 +52,7 @@ function search(param, request, request1, request2) {
             //console.log(msg);
         }
     });
-    //console.log(temp);
+    //console.log(temp.responseJSON);
     var arr = [];
     for (i = 0; i < temp.responseJSON.features.length; i++) {
         arr[i] = [];
