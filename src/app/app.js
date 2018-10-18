@@ -255,7 +255,7 @@ map.on('singleclick', function (evt) {
                             //ell.onclick = function() {addressSource(direccion[i]);};
                         }
 
-                    } else if (ph < 800) {
+                    } else /*if (ph < 800)*/ {
                         document.getElementById("tblatt").style.visibility = "visible";
                         document.getElementById("tblatt").style.display = "initial";
                         document.getElementById("tblatt").style.height = "auto";
