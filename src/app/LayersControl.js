@@ -66,9 +66,9 @@ var ortofoto2017 = new ol.layer.Tile({
 var predio = new ol.layer.Tile({
     visible: true,
     //preload: Infinity,
-    minResolution: -0.420066992284,
-    maxResolution: 56.5679014489,
-    extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457],
+    //minResolution: -0.420066992284,
+    //maxResolution: 56.5679014489,
+    //extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457],
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
         params: {LAYERS: 'preproduccion:u_terreno', STYLES: ''}
