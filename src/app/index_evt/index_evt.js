@@ -707,7 +707,7 @@ function alertDGC(mensaje) {
     $('.dgcVentana').css('top', ((alNav - alVentana) / 2 + supNav - 100) + 'px');
     $('.dgcAlert').css('display', 'block');
     $('.dgcAlert').animate({opacity: 1}, dgcTiempo);
-    $('.dgcCerrar,.dgcAceptar').click(function (e) {
+    $('.dgcCerrar,.dgcAceptar, .dgcCerrar2').click(function (e) {
         $('.dgcAlert').animate({opacity: 0}, dgcTiempo);
         setTimeout("$('.dgcAlert').remove()", dgcTiempo);
     });
