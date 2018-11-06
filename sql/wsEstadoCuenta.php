@@ -1,6 +1,7 @@
 <?php
 $ref = $_POST['ref'];//referencia catastral enviada
 //$ref = '010401680003000';
+//$ref = '010701950019000';
 $servicio="http://201.245.170.148:8585/predial/wsPredial.svc?wsdl"; //url del servicio
 $parametros=array(); //parametros de la llamada
 $parametros['codigoPredial']=$ref;
@@ -30,27 +31,27 @@ if (count($servicio)>0) {
         if ($Liquidacion[$i]['concepto']=='00') {             
             $predial = $predial + (int) $Liquidacion[$i]['valor'];
             $interesP = $interesP + (int) $Liquidacion[$i]['interes'];
-            $dctoP = $dctoP + (int) $Liquidacion[$i]['descuento'];
+            $dctoP = $dctoP + (int) $Liquidacion[$i]['dscto_inter'];
             $vigencia = $vigencia + 1;
         }
         if ($Liquidacion[$i]['concepto']=='04') {                 
             $valorizacion = $valorizacion + (int) $Liquidacion[$i]['valor'];
             $interesV = $interesV + (int) $Liquidacion[$i]['interes'];
-            $dctoV = $dctoV + (int) $Liquidacion[$i]['descuento'];
+            $dctoV = $dctoV + (int) $Liquidacion[$i]['dscto_inter'];
         }
         if ($Liquidacion[$i]['concepto']=='05') {                 
             $valorizacion = $valorizacion + (int) $Liquidacion[$i]['valor'];
             $interesV = $interesV + (int) $Liquidacion[$i]['interes'];
-            $dctoV = $dctoV + (int) $Liquidacion[$i]['descuento'];
+            $dctoV = $dctoV + (int) $Liquidacion[$i]['dscto_inter'];
         }        
         if ($Liquidacion[$i]['concepto']=='02') {                 
             $corpo = $corpo + (int) $Liquidacion[$i]['valor'];
             $interesC = $interesC + (int) $Liquidacion[$i]['interes'];
-            $dctoC = $dctoC + (int) $Liquidacion[$i]['descuento'];
+            $dctoC = $dctoC + (int) $Liquidacion[$i]['dscto_inter'];
         }        
     }
         for ($i = 0; $i <= $ultimoE-1; $i++) {
-            $descuento = $descuento + (int) $Liquidacion[$i]['descuento'];
+            $descuento = $descuento + (int) $Liquidacion[$i]['dscto_inter'];
             $valorImp = $valorImp + (int) $Liquidacion[$i]['valor'];
             $interes = $interes + (int) $Liquidacion[$i]['interes'];
         }    

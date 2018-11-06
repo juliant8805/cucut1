@@ -66,9 +66,9 @@ var ortofoto2017 = new ol.layer.Tile({
 var predio = new ol.layer.Tile({
     visible: true,
     //preload: Infinity,
-    minResolution: -0.420066992284,
-    maxResolution: 56.5679014489,
-    extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457],
+    //minResolution: -0.420066992284,
+    //maxResolution: 56.5679014489,
+    //extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457],
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
         params: {LAYERS: 'preproduccion:u_terreno', STYLES: ''}
@@ -311,6 +311,160 @@ var clasificacionusosuelo2011 = new ol.layer.Tile({
         params: {LAYERS: 'cucuta:pot_2011_clasificacion_uso_del_suelo', STYLES: ''}
     }), name: 'Clasificacion Uso del Suelo'
 });
+
+var usoactualdelsuelo2011 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:cucuta:pot_2011_uso_actual_del_suelo', STYLES: ''}
+    }), name: 'Uso Actual del Suelo'
+});
+
+var usoactualdelsuelourbano2011 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:cucuta:pot_2011_uso_actual_del_suelo_urbano', STYLES: ''}
+    }), name: 'Uso Actual del Suelo Urbano'
+});
+
+var usoactualdelsuelorural2011 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_uso_del_suelo_rural', STYLES: ''}
+    }), name: 'Uso Actual del Suelo Rural'
+});
+
+var actividadesdelsuelourbano2011 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_actividades_del_suelo_urbano', STYLES: ''}
+    }), name: 'Actividades del Suelo Urbano'
+});
+
+var tratamientodelsuelourbano2011 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_actividades_del_suelo_urbano', STYLES: ''}
+    }), name: 'Tratamiento del Suelo Urbano'
+});
+
+var corregimientosrurales =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_centros_poblados_rurales', STYLES: ''}
+    }), name: 'Corregimientos Rurales'
+});
+
+var unidadesdeplanificacionrural =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_areas_estrategicas', STYLES: ''}
+    }), name: 'Unidades de Planificacion Rural'
+});
+
+var suceptibilidaddeamenazasrural =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_uso_del_suelo_rural', STYLES: ''}
+    }), name: 'Suceptibilidad de Amenazas Rural'
+});
+
+var modeloocupacionurbano2011 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: '	cucuta:pot_2011_modelo_ocupacion_urbano', STYLES: ''}
+    }), name: 'Modelo de Ocupacion Urbano'
+});
+
+var zonasgeoeconomicas2011 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_zonas_geoeconomicas', STYLES: ''}
+    }), name: 'Zonas Geoeconomicas 2011'
+});
+
+var plusvalia2011 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_plusvalia', STYLES: ''}
+    }), name: 'Plusvalia'
+});
+
+var indiceocup083 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_hg_3_indice_ocup_083', STYLES: ''}
+    }), name: 'HG indice ocup 083'
+});
+
+var indiceconts083 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_hg_3_indice_conts_083', STYLES: ''}
+    }), name: 'HG indice conts 083'
+});
+	
+var indiceocup089 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_hg_3_indice_ocup_089', STYLES: ''}
+    }), name: 'HG indice ocup 089'
+});
+
+var indiceconts089 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'pot_2011_hg_3_indice_conts_089', STYLES: ''}
+    }), name: 'HG indice const 089'
+});
+
+var indiceocup083vs089 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'pot_2011_modelo_ocupacion_urbano', STYLES: ''}
+    }), name: 'HG 3 Indice Ocupacion 083 vs 089 Res'
+});
+
+var indiceconst083vs089 =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'pot_2011_modelo_ocupacion_urbano', STYLES: ''}
+    }), name: 'HG 3 Indice Construccion 083 vs 089 Res'
+});
+
+var indiceocup083vs089nores =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'pot_2011_hg_3_indc_ocup_083vs089_no_residencial', STYLES: ''}
+    }), name: 'HG 3 Indice Ocup 083 vs 089 No Res'
+});
+
+var indiceconst083vs089nores =  new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'pot_2011_hg_3_indc_ocup_083vs089_no_residencial', STYLES: ''}
+    }), name: 'HG 3 Indice Const 083 vs 089 No Res'
+});
+
+
 
 //CAPAS POT 2001
 
@@ -765,9 +919,18 @@ var zonashomogeneasgeoeconomicas = new ol.layer.Tile({
     }), name: 'Zonas Homogeneas Geoeconomicas'
 });
 
+var usoyactividades083de2001 = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2001_zonas_homogeneas_geoeconomica', STYLES: ''}
+    }), name: 'Uso y Actividades 083 de 2001'
+});
+
 //CAPS GROUP
 var layerCatastro = new ol.layer.Group({
-    layers: [manzanas, predio, vias, construcciones, n_domiciliaria, heatmap, highlightfeatures],
+    layers: [manzanas, predio, vias, construcciones, n_domiciliaria, heatmap, predios_campo, highlightfeatures],
     name: 'Catastro'
 });
 
@@ -777,7 +940,7 @@ var layerPot2001 = new ol.layer.Group({
 });
 
 var layerPot2011 = new ol.layer.Group({
-    layers: [verticesperimetro202, toponimiabarrios, sueloproteccion, rios2011, prediosincorporados020, perimetromunicipalpot2011, perimetroacuerdo20, nomenclaturavial2011, conjuntoareaurbano, cabecerasvecinas, anillovialoccidental, propuestabarrios, barrioslegalizados, barrios, clasificacionusosuelo2011, predios_campo, barrios],
+    layers: [zonasgeoeconomicas2011, verticesperimetro202, toponimiabarrios, tratamientodelsuelourbano2011, usoactualdelsuelorural2011, usoactualdelsuelourbano2011, usoactualdelsuelo2011, unidadesdeplanificacionrural, sueloproteccion, suceptibilidaddeamenazasrural, rios2011, plusvalia2011, prediosincorporados020, perimetromunicipalpot2011, perimetroacuerdo20, nomenclaturavial2011, modeloocupacionurbano2011, conjuntoareaurbano, cabecerasvecinas, anillovialoccidental, propuestabarrios, indiceconts083, indiceocup083, indiceocup089, indiceconts089, indiceconst083vs089, indiceocup083vs089, indiceocup083vs089nores, indiceconst083vs089nores, barrioslegalizados, barrios, corregimientosrurales, clasificacionusosuelo2011, actividadesdelsuelourbano2011, barrios],
     name: 'POT_2011'
 });
 
