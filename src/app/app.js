@@ -324,7 +324,6 @@ map.on('singleclick', function (evt) {
                         } else {
                             var uso_aseo = "Sin Informacion";
                         }
-
                         var cod = values.codigo_ant.substring(5, 20);
                         var simplestabla = search("cucuta:simplestabla", cod);
                         try {
@@ -357,6 +356,8 @@ map.on('singleclick', function (evt) {
                             var matricula = "Sin Informacion";
                         }
 
+                       
+                        
                         if (tipoUsuario === "Catastro") {
                             select[0] = "<b>Código Manzana</b>";
                             select[1] = "<b>Código Catastral Nuevo</b>";

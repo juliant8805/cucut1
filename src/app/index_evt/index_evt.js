@@ -315,7 +315,11 @@ function limpiar_consulta() {
     ejeobras.setVisible(false);
     heatmap.setVisible(false);
     predio.getSource().updateParams({'STYLES': 'predios_sin_consulta_cucuta', 'CQL_FILTER': null});
-    document.getElementById('menu_coordenadas').style.display = "none";
+    document.getElementById("menu_coordenadas_wgs84").style.display = "none"; 
+    document.getElementById("menu_coordenadas_3116").style.display = "none"; 
+    document.getElementById("menu_coordenadas_3117").style.display = "none";
+    document.getElementById("menu_coordenadas_21897").style.display = "none"; 
+    document.getElementById("menu_coordenadas_21898").style.display = "none"; 
     document.getElementById('label_street').style.display = "none";
     document.getElementById("contenedorg").style.display = "none";
     document.getElementById('panel_atr').style.display = 'none'; 
@@ -1323,50 +1327,140 @@ function medir_off() {
 }
 
 function formcoordenadas() {
-    
-     document.getElementById("menu_coordenadas").style.display = "block"; 
+     //document.getElementById("menu_coordenadas").style.display = "block"; 
+     document.getElementById("opc_coord").style.display = "block"; 
 }
 
+function formcoordenadas2() {
+     var button1 = document.getElementById('button1a');
+     var button2 = document.getElementById('button2b');
+     var button3 = document.getElementById('button3c');
+     var button4 = document.getElementById('button4d');
+     var button5 = document.getElementById('button5e');
+     document.getElementById("opc_coord").style.display = "none";
+     if (button1.checked == true){
+     document.getElementById("menu_coordenadas_wgs84").style.display = "block"; 
+     }
+     if (button2.checked == true){
+        document.getElementById("menu_coordenadas_3116").style.display = "block"; 
+     }
+    if (button3.checked == true){
+        document.getElementById("menu_coordenadas_3117").style.display = "block"; 
+     }
+    if (button4.checked == true){
+        document.getElementById("menu_coordenadas_21897").style.display = "block"; 
+     }
+    if (button5.checked == true){
+        document.getElementById("menu_coordenadas_21898").style.display = "block"; 
+     }
+}
+
+
 function input_coordinates() {
-    document.getElementById("menu_coordenadas").style.display = "none"; 
-    var view = map.getView();
-    //var lat = document.getElementById('ex1').value;
-    //var long = document.getElementById('ex2').value;
-    //console.log(lat);
-    //console.log(long);
-    //var lat = 7.883755799999989;
-    //var long = -72.50745639999995;
-    //console.log("Long: " + long + " Lat: " + lat);
-    var latgrados = document.getElementById('ex1').value;
-    var latminutos = document.getElementById('ex2').value;
-    var latsegundos = document.getElementById('ex3').value;
+    //alert(button1.checked?"Button1 is checked":"Button2 is checked");
+     document.getElementById("menu_coordenadas_wgs84").style.display = "none"; 
+     document.getElementById("menu_coordenadas_3116").style.display = "none"; 
+     document.getElementById("menu_coordenadas_3117").style.display = "none"; 
+     document.getElementById("menu_coordenadas_21897").style.display = "none"; 
+     document.getElementById("menu_coordenadas_21898").style.display = "none"; 
+     var button1 = document.getElementById('button1a');
+     var button2 = document.getElementById('button2b');
+     var button3 = document.getElementById('button3c');
+     var button4 = document.getElementById('button4d');
+     var button5 = document.getElementById('button5e');
+     document.getElementById("opc_coord").style.display = "none";
+     if (button1.checked == true){
+            var view = map.getView();
+            var latgrados = document.getElementById('ex1').value;
+            var latminutos = document.getElementById('ex2').value;
+            var latsegundos = document.getElementById('ex3').value;
 
-    
-    var loggrados = document.getElementById('ex4').value;
-    var logminutos = document.getElementById('ex5').value;
-    var logsegundos = document.getElementById('ex6').value;
-    
-    var long = parseInt(loggrados) + parseInt(logminutos) / 60 + parseInt(logsegundos) / 3600;
-    var lat = parseInt(latgrados) + parseInt(latminutos) / 60 + parseInt(latsegundos) / 3600;
-    var long = long * -1;
+            var loggrados = document.getElementById('ex4').value;
+            var logminutos = document.getElementById('ex5').value;
+            var logsegundos = document.getElementById('ex6').value;
 
-    var x = 842061;
-    var y = 1364403;
-    //map.getView().setCenter([1364403, 842061]);
-    map.getView().setCenter(ol.proj.transform([long, eval(lat)], 'EPSG:4326', 'EPSG:3857'));
-    //map.getView().setCenter(ol.proj.transform([842061, 1364403], 'EPSG:4326', 'EPSG:3857'));
-    map.getView().setZoom(18); 
-    var iconFeatures = [];
-    var iconFeature = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.transform([long, eval(lat)], 'EPSG:4326',
-      'EPSG:3857')),
-    name: 'Null Island',
-    population: 4000,
-    rainfall: 500
-  });
-    
-    highlight.setStyle(flagStyle);
-    var markerSource = highlight.getSource();
-    markerSource.clear();
-    markerSource.addFeature(iconFeature);   
+            var long = parseInt(loggrados) + parseInt(logminutos) / 60 + parseInt(logsegundos) / 3600;
+            var lat = parseInt(latgrados) + parseInt(latminutos) / 60 + parseInt(latsegundos) / 3600;
+            var long = long * -1;
+
+            var x = 842061;
+            var y = 1364403;
+            //map.getView().setCenter([1364403, 842061]);
+            map.getView().setCenter(ol.proj.transform([long, eval(lat)], 'EPSG:4326', 'EPSG:3857'));
+            //map.getView().setCenter(ol.proj.transform([842061, 1364403], 'EPSG:4326', 'EPSG:3857'));
+            map.getView().setZoom(18); 
+            var iconFeatures = [];
+            var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.transform([long, eval(lat)], 'EPSG:4326',
+              'EPSG:3857')),
+            name: 'Null Island',
+            population: 4000,
+            rainfall: 500
+          });
+            
+     }
+     if (button2.checked == true){
+            var view = map.getView();
+            var x = document.getElementById('ex7').value;
+            var y = document.getElementById('ex8').value;
+            map.getView().setCenter(ol.proj.transform([x, y], 'EPSG:3116', 'EPSG:3857'));
+            map.getView().setZoom(18); 
+            var iconFeatures = [];
+            var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.transform([x, y], 'EPSG:3116',
+              'EPSG:3857')),
+            name: 'magnacolombiabogota',
+            population: 4000,
+            rainfall: 500
+          });             
+     }
+    if (button3.checked == true){
+            var view = map.getView();
+            var x = document.getElementById('ex9').value;
+            var y = document.getElementById('ex10').value;
+            map.getView().setCenter(ol.proj.transform([x, y], 'EPSG:3117', 'EPSG:3857'));
+            map.getView().setZoom(18); 
+            var iconFeatures = [];
+            var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.transform([x, y], 'EPSG:3117',
+              'EPSG:3857')),
+            name: 'magnacolombiaeste',
+            population: 4000,
+            rainfall: 500
+          });       
+     }
+    if (button4.checked == true){
+            var view = map.getView();
+            var x = document.getElementById('ex11').value;
+            var y = document.getElementById('ex12').value;
+            map.getView().setCenter(ol.proj.transform([x, y], 'EPSG:21897', 'EPSG:3857'));
+            map.getView().setZoom(18); 
+            var iconFeatures = [];
+            var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.transform([x, y], 'EPSG:21897',
+              'EPSG:3857')),
+            name: 'magnacolombiaeste',
+            population: 4000,
+            rainfall: 500
+          });       
+     }
+    if (button5.checked == true){
+            var view = map.getView();
+            var x = document.getElementById('ex13').value;
+            var y = document.getElementById('ex14').value;
+            map.getView().setCenter(ol.proj.transform([x, y], 'EPSG:21898', 'EPSG:3857'));
+            map.getView().setZoom(18); 
+            var iconFeatures = [];
+            var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.transform([x, y], 'EPSG:21898',
+              'EPSG:3857')),
+            name: 'magnacolombiaeste',
+            population: 4000,
+            rainfall: 500
+          });       
+     }
+      highlight.setStyle(flagStyle);
+      var markerSource = highlight.getSource();
+      markerSource.clear();
+      markerSource.addFeature(iconFeature);  
 }

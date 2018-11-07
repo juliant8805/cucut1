@@ -29,6 +29,11 @@
         <script src="src/app/index_evt/validaringreso.js"></script>
         <script src="export/export.js"></script>
         <script src="src/app/HeadMap.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.3/proj4.js"></script>
+        <script src="http://epsg.io/3116.js"></script>
+        <script src="http://epsg.io/3117.js"></script>
+        <script src="http://epsg.io/21897.js"></script>
+        <script src="http://epsg.io/21898.js"></script>
         <!--<script src="https://ajax.googleapis.com/ajax/lib/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
         <!--Highcharts-->
@@ -370,39 +375,6 @@
             </ul>
         </nav>
         
-    <div id="menu_coordenadas" hidden="hidden" style="position:absolute; background-color: rgba(128,128,128,0.5); height:100%; width: 100%; top:0px;left:0px; z-index:100;">
-
-        <h3 style="position: absolute; top: 14%; left: 20%;">Latitud:</h3>      
-        <div class="col-xs-1" style="margin-top:10%; margin-left:20%;"> 
-            <label for="ex1">grados:</label>
-            <input class="form-control" id="ex1" type="text" placeholder="7">
-            <button type="button" style="margin-top:0.5em; margin-left:5em;" class="btn btn-primary btn-lg" onclick="input_coordinates()">Ir al Punto</button>
-        </div>
-        <div class="col-xs-1" style="margin-top:10%;">
-            <label for="ex2">minutos:</label>
-            <input class="form-control" id="ex2" type="text" placeholder="54">
-        </div>
-        <div class="col-xs-1" style="margin-top:10%;">
-            <label for="ex3">segundos:</label>
-            <input class="form-control" id="ex3" type="text" placeholder="37">
-        </div> 
-
-        <h3 style="position: absolute; top: 14%; left: 49%;">Longitud(Oeste):</h3> 
-        <div class="col-xs-1" style="margin-top:10%; margin-left: 5em;">
-            <label for="ex2">grados:</label>
-            <input class="form-control" id="ex4" type="text" placeholder="72"> 
-        </div>  
-        <div class="col-xs-1" style="margin-top:10%;">
-            <label for="ex2">minutos:</label>
-            <input class="form-control" id="ex5" type="text" placeholder="29"> 
-        </div>  
-        <div class="col-xs-1" style="margin-top:10%;">
-            <label for="ex2">segundos:</label>
-            <input class="form-control" id="ex6" type="text" placeholder="50"> 
-            <button type="button" style="margin:0.5em" class="btn btn-danger btn-lg" onclick="limpiar_consulta()">Cerrar</button>
-        </div>
-    </div>
-
     <div id="mouse-position" hidden="hidden"></div>
 
     <img id="gesstor" src="./imagenes/gesstor.png">
@@ -522,6 +494,120 @@
             <input type="text" hidden="hidden" id="inputbarriototem" style="position:absolute; top:23%; left:30%; width:60%" placeholder="Ejem: La Laguna">
             <input type="text" hidden="hidden" id="inputmanzanatotem" style="position:absolute; top:23%; left:30%; width:60%" placeholder="Ejem: 5400101....">
         </div>
+    </div>
+    
+    <div id="opc_coord" hidden="hidden" style="position:absolute; background-color: rgba(128,128,128,0.5); height:100%; width: 100%; top:0px;left:0px; z-index:100;">
+        <div style="position: absolute; top:30%; left: 40%;">
+        <h2>Seleccione el Sistema de Referencia</h2>
+        <form>
+        <div class="radio">
+          <label><input type="radio" id ="button1a" name="sel_src" value='1'>Coordenadas Geográficas(WGS84)</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" id="button2b" name="sel_src" value='2'>Magna Colombia Bogota</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" id="button3c" name="sel_src" value='3'>Magna Colombia Este</label>
+        </div> 
+        <div class="radio">
+          <label><input type="radio" id="button4d" name="sel_src" value='4'>Colombia Bogota Zone</label>
+        </div> 
+        <div class="radio">
+          <label><input type="radio" id="button5e" name="sel_src" value='5'>Colombia Este Central</label>
+        </div> 
+        <button type="button" onclick="formcoordenadas2()">Aceptar</button>
+      </form>
+       </div>  
+    </div>
+    
+     <div id="menu_coordenadas_wgs84" hidden="hidden" style="position:absolute; background-color: rgba(128,128,128,0.5); height:100%; width: 100%; top:0px;left:0px; z-index:100;">
+
+        <h3 style="position: absolute; top: 12%; left: 20%;">Latitud:</h3>      
+        <div class="col-xs-1" style="margin-top:12%; margin-left:20%;"> 
+            <label for="ex1">grados:</label>
+            <input class="form-control" id="ex1" type="text" placeholder="7">
+            <button type="button" style="margin-top:0.5em; margin-left:5em;" class="btn btn-primary btn-lg" onclick="input_coordinates()">Ir al Punto</button>
+        </div>
+        <div class="col-xs-1" style="margin-top:12%;">
+            <label for="ex2">minutos:</label>
+            <input class="form-control" id="ex2" type="text" placeholder="54">
+        </div>
+        <div class="col-xs-1" style="margin-top:12%;">
+            <label for="ex3">segundos:</label>
+            <input class="form-control" id="ex3" type="text" placeholder="37">
+        </div> 
+
+        <h3 style="position: absolute; top: 12%; left: 49%;">Longitud(Oeste):</h3> 
+        <div class="col-xs-1" style="margin-top:12%; margin-left: 5em;">
+            <label for="ex2">grados:</label>
+            <input class="form-control" id="ex4" type="text" placeholder="72"> 
+        </div>  
+        <div class="col-xs-1" style="margin-top:12%;">
+            <label for="ex2">minutos:</label>
+            <input class="form-control" id="ex5" type="text" placeholder="29"> 
+        </div>  
+        <div class="col-xs-1" style="margin-top:12%;">
+            <label for="ex2">segundos:</label>
+            <input class="form-control" id="ex6" type="text" placeholder="50"> 
+            <button type="button" style="margin:0.5em" class="btn btn-danger btn-lg" onclick="limpiar_consulta()">Cerrar</button>
+        </div>
+    </div>
+    
+    
+     <div id="menu_coordenadas_3116" hidden="hidden" style="position:absolute; background-color: rgba(128,128,128,0.5); height:100%; width: 100%; top:0px;left:0px; z-index:100;">
+        <h3 style="position: absolute; top: 20%; left: 35%;">Magna Colombia Bogota:</h3>      
+        <div class="col-xs-1" style="margin-top:15%; margin-left:35%;"> 
+            <label for="ex1">Coordenada X:</label>
+            <input class="form-control" id="ex7" type="text" placeholder="1172938">
+            <button type="button" style="margin-top:0.5em; margin-left:1em;" class="btn btn-primary btn-lg" onclick="input_coordinates()">Ir al Punto</button>
+        </div>
+        <div class="col-xs-1" style="margin-top:15%; margin-left: 5em;">
+            <label for="ex2">Coordenada Y:</label>
+            <input class="form-control" id="ex8" type="text" placeholder="1364984"> 
+            <button type="button" style="margin:0.5em" class="btn btn-danger btn-lg" onclick="limpiar_consulta()">Cerrar</button>
+        </div>      
+    </div>
+    
+    <div id="menu_coordenadas_3117" hidden="hidden" style="position:absolute; background-color: rgba(128,128,128,0.5); height:100%; width: 100%; top:0px;left:0px; z-index:100;">
+        <h3 style="position: absolute; top: 20%; left: 35%;">Magna Colombia Este:</h3>      
+        <div class="col-xs-1" style="margin-top:15%; margin-left:35%;"> 
+            <label for="ex1">Coordenada X:</label>
+            <input class="form-control" id="ex9" type="text" placeholder="842090">
+            <button type="button" style="margin-top:0.5em; margin-left:1em;" class="btn btn-primary btn-lg" onclick="input_coordinates()">Ir al Punto</button>
+        </div>
+        <div class="col-xs-1" style="margin-top:15%; margin-left: 5em;">
+            <label for="ex2">Coordenada Y:</label>
+            <input class="form-control" id="ex10" type="text" placeholder="1364946"> 
+            <button type="button" style="margin:0.5em" class="btn btn-danger btn-lg" onclick="limpiar_consulta()">Cerrar</button>
+        </div>  
+    </div>
+    
+    <div id="menu_coordenadas_21897" hidden="hidden" style="position:absolute; background-color: rgba(128,128,128,0.5); height:100%; width: 100%; top:0px;left:0px; z-index:100;">
+        <h3 style="position: absolute; top: 20%; left: 35%;">Colombia Bogota Zone:</h3>      
+        <div class="col-xs-1" style="margin-top:15%; margin-left:35%;"> 
+            <label for="ex1">Coordenada X:</label>
+            <input class="form-control" id="ex11" type="text" placeholder="1173325">
+            <button type="button" style="margin-top:0.5em; margin-left:1em;" class="btn btn-primary btn-lg" onclick="input_coordinates()">Ir al Punto</button>
+        </div>
+        <div class="col-xs-1" style="margin-top:15%; margin-left: 5em;">
+            <label for="ex2">Coordenada Y:</label>
+            <input class="form-control" id="ex12" type="text" placeholder="1364698"> 
+            <button type="button" style="margin:0.5em" class="btn btn-danger btn-lg" onclick="limpiar_consulta()">Cerrar</button>
+        </div>  
+    </div>
+    
+    <div id="menu_coordenadas_21898" hidden="hidden" style="position:absolute; background-color: rgba(128,128,128,0.5); height:100%; width: 100%; top:0px;left:0px; z-index:100;">
+        <h3 style="position: absolute; top: 20%; left: 35%;">Colombia Este Central:</h3>      
+        <div class="col-xs-1" style="margin-top:15%; margin-left:35%;"> 
+            <label for="ex1">Coordenada X:</label>
+            <input class="form-control" id="ex13" type="text" placeholder="842460">
+            <button type="button" style="margin-top:0.5em; margin-left:1em;" class="btn btn-primary btn-lg" onclick="input_coordinates()">Ir al Punto</button>
+        </div>
+        <div class="col-xs-1" style="margin-top:15%; margin-left: 5em;">
+            <label for="ex2">Coordenada Y:</label>
+            <input class="form-control" id="ex14" type="text" placeholder="1364634"> 
+            <button type="button" style="margin:0.5em" class="btn btn-danger btn-lg" onclick="limpiar_consulta()">Cerrar</button>
+        </div>  
     </div>
 
     <script src="src/app/Consultas/consultas_simples.js"></script>
