@@ -1610,6 +1610,25 @@ cursor:pointer;
     cursor:pointer;       
 }
 
+#boton_menuedicion{   
+    position:absolute;
+    right:2.5em;
+    top:36em;
+    height:2em;
+    cursor:pointer;       
+}
+
+#boton_menuedicion_off{   
+    position:absolute;
+    right:2.5em;
+    top:36em;
+    height:2em;
+    cursor:pointer;       
+}
+
+
+
+
 #formsolicitud{
     position:absolute;
     right:40%;
@@ -1906,6 +1925,47 @@ height: auto;
 }
 
 
+#btnPoint {
+  position: absolute;
+  top: 80px;
+  left: 10px;
+}
+
+#btnLine {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+}
+
+#btnArea {
+  position: absolute;
+  top: 80px;
+  left: 150px;
+  z-index: 2;
+}
+
+#btnEdit {
+  position: absolute;
+  top: 80px;
+  left: 220px;
+  z-index: 2;
+}
+
+#btnDelete {
+  position: absolute;
+  top: 80px;
+  left: 290px;  
+  z-index: 2;
+}
+
+.btn-active {
+  background-color: #0d47a1 !important;
+  z-index: 2;
+}
+
+
+
+
 /* menu responsive*/
 @media (max-width:768px){
 	
@@ -2157,6 +2217,8 @@ width: 0em;
  #manual{
         visibility: hidden;
     }
+    
+
 
 	
 }

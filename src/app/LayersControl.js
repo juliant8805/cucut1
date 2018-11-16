@@ -928,9 +928,79 @@ var usoyactividades083de2001 = new ol.layer.Tile({
     }), name: 'Uso y Actividades 083 de 2001'
 });
 
+/*var sourceWFS = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    //visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/prueba/ows',
+        params: {LAYERS: 'prueba:wfs_prueba_xml', STYLES: ''}
+    }), name: 'Poligonos Edicion'
+});*/
+
+var countryStyle = new ol.style.Style({
+        fill: new ol.style.Fill({
+          color: [203, 194, 185, 1]
+        }),
+        stroke: new ol.style.Stroke({
+          color: [177, 163, 148, 0.5],
+          width: 2,
+          lineCap: 'round'
+        })
+      });
+
+
+var sourceWFS = new ol.source.Vector({
+    loader: function (extent) {
+        $.ajax('http://35.184.176.7:8081/geoserver/prueba/ows', {
+            type: 'GET',
+            data: {
+                service: 'WFS',
+                version: '1.1.0',
+                request: 'GetFeature',
+                typename: 'wfs_prueba_xml',
+                srsname: 'EPSG:3857',
+                bbox: extent.join(',') + ',EPSG:3857'
+            }
+        }).done(function (response) {
+            sourceWFS.addFeatures(formatWFS.readFeatures(response));
+        });
+    }, 
+    //strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ()),
+    strategy: ol.loadingstrategy.bbox,
+    projection: 'EPSG:3857'
+});
+
+var layerWFS = new ol.layer.Vector({
+    /*style: new ol.style.Style({
+        stroke: new ol.style.Stroke({
+            color: '#00FFFF',
+            width: 3
+        })
+    }),*/
+  visible: true,
+  source: sourceWFS,
+  name: 'Poligonos Edicion'
+    //style: countryStyle
+})
+
+//sourceWFS.getGeometry().transform('EPSG:4326', 'EPSG:3857');
+
+//console.log(highlightfeatures);
+
+
+
+
+
+
+
+
+
+
 //CAPS GROUP
+
+
 var layerCatastro = new ol.layer.Group({
-    layers: [manzanas, predio, vias, construcciones, n_domiciliaria, heatmap, predios_campo, highlightfeatures],
+    layers: [layerWFS, manzanas, predio, vias, construcciones, n_domiciliaria, heatmap, predios_campo, highlightfeatures],
     name: 'Catastro'
 });
 

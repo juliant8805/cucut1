@@ -13,11 +13,18 @@
         <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="src/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="src/ol3/ol.css">
+        <!--<link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css">-->
         <link rel="stylesheet" href="src/css/Popup.css">
         <link rel="stylesheet" href="src/css/LayersControl.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="icon" type="image/ico" href="http://www.ideepcucuta.com/imagenes/favicon.ico" />
-        <script src="src/ol3/ol-debug.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!--<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">-->
+        <!--<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/build/ol.js"></script>-->
+        <!--<script src="src/ol3/ol-debug.js"></script>-->
+        <script src="src/ol3/prueba/ol-debug.js"></script>
+
+        
         <script src="src/jquery/jquery.min.js"></script>
         <script src="src/bootstrap/js/bootstrap.min.js"></script>
         <script src="src/jquery/jquery-1.12.4.js"></script>
@@ -29,21 +36,23 @@
         <script src="src/app/index_evt/validaringreso.js"></script>
         <script src="export/export.js"></script>
         <script src="src/app/HeadMap.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.3/proj4.js"></script>
-        <script src="http://epsg.io/3116.js"></script>
+        <script src="src/app/wfs.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.3/proj4.js"></script>-->
+        <!--<script src="src/ol3/coordenadas.js"></script>-->
+        <!--<script src="http://epsg.io/3116.js"></script>
         <script src="http://epsg.io/3117.js"></script>
         <script src="http://epsg.io/21897.js"></script>
-        <script src="http://epsg.io/21898.js"></script>
+        <script src="http://epsg.io/21898.js"></script>-->
         <!--<script src="https://ajax.googleapis.com/ajax/lib/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
         <!--Highcharts-->
         <script src="src/highcharts/js/highcharts.js"></script>
         <script src="src/highcharts/js/modules/exporting.js"></script>
-        <!-- <script src="src/googlecharts/googlecharts.js"></script>-->
     <div id="carga2" hidden="hidden"><img id="imgprocess" src="./image/procesando.gif"></div>
     <div id="carga3" hidden="hidden"><img src="./image/cargando.png" style="top:30%; left:30%; width:auto; height:auto; position:absolute"></div>
-    <div id="completo" hidden="hidden">		
-    </div>
+    <div id="completo" hidden="hidden"></div>
+        
+      
 </head>
 <body>
 
@@ -53,9 +62,23 @@
     <header>
         <input type="checkbox" id="btn-menu">
         <label for = "btn-menu"><img src="imagenes/icono-menu.png" alt=""></label>
+        
+        
+        <div id="menu_edicion" hidden="hidden">
+        <button id="btnArea" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+        <i class="material-icons">signal_cellular_null</i>
+        </button>
+        <button id="btnEdit" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+        <i class="material-icons">build</i>
+        </button> 
+        <button id="btnDelete" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+        <i class="material-icons">delete</i>
+        </button>
+        </div>
+        
+        
         <nav class="menu" id="catastro" hidden="hidden">
             <ul>
-
                 <li><select style="background:#4E9AAB; height:100%;width:100%;" id="DiferenciaArea" name=DiferenciaArea onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
                         <option value="seleccione" disabled selected><a>Rango de Area</a>
                         <option value="AreaTerreno" style="font-weight: bold; color: white;  font-size:small;">Area Terreno
@@ -352,7 +375,8 @@
     <img id="boton_medir" hidden="hidden" name="boton_medir" src="imagenes/icono_medir.png" onclick="medir_off()">
     <img id="leyenda_actividades" hidden="hidden" src="imagenes/leyenda_actividades_suelo.png" style="position: absolute; top:5em; left: 1em; height: 90%">
 
-
+    <img id="boton_menuedicion" src="imagenes/icono_dibujar_off.png" onclick="mostraredicion()">
+    <img id="boton_menuedicion_off" hidden="hidden" src="imagenes/icono_dibujar.png" onclick="ocultaredicion()">  
 
 
     <form id="medidas" style="display: none">
@@ -609,6 +633,8 @@
             <button type="button" style="margin:0.5em" class="btn btn-danger btn-lg" onclick="limpiar_consulta()">Cerrar</button>
         </div>  
     </div>
+    
+    
 
     <script src="src/app/Consultas/consultas_simples.js"></script>
     <script src="src/app/Consultas/consulta_direccion_boton.js"></script>

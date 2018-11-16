@@ -1326,6 +1326,22 @@ function medir_off() {
     document.getElementById("medidas").style.display = "none";  
 }
 
+function mostraredicion() {
+   document.getElementById("boton_menuedicion_off").style.display = "block";
+   document.getElementById("boton_menuedicion").style.display = "none";
+   document.getElementById("menu_edicion").style.display = "block"; 
+}
+
+function ocultaredicion() {
+    document.getElementById("boton_menuedicion").style.display = "block";
+    document.getElementById("boton_menuedicion_off").style.display = "none";  
+    document.getElementById("menu_edicion").style.display = "none";  
+    map.removeInteraction(interaction);
+    interactionSelect.getFeatures().clear();
+    map.removeInteraction(interactionSelect);
+}
+
+
 function formcoordenadas() {
      //document.getElementById("menu_coordenadas").style.display = "block"; 
      document.getElementById("opc_coord").style.display = "block"; 

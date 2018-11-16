@@ -116,7 +116,7 @@ map = new ol.Map({
     target: document.getElementById('map'),
     // use the Canvas renderer
     renderer: 'canvas',
-    layers: [layerBase, layerPot2001, layerPot2011, layerBing, layerCatastro, layerOrtofoto2017, sitios, layerValorizacion, highlight],
+    layers: [layerBase, layerPot2001, layerPot2011, layerBing, layerCatastro, ortofoto2017, sitios, layerValorizacion, highlight],
     view: new ol.View({
         center: center,
         zoom: zoom,
@@ -153,7 +153,7 @@ map.on('singleclick', function (evt) {
             {'INFO_FORMAT': infoFormat}
     );
     var tamañopantalla = screen.width > 800;
-    if (url && predio.values_.visible == true && viewResolution < 2 && document.getElementById("medidas").style.display == "none") {
+    if (url && predio.values_.visible == true && viewResolution < 2 && document.getElementById("medidas").style.display == "none" && document.getElementById("menu_edicion").style.display == "none") {
         $.ajax({
             url: url,
             beforeSend: function () {
