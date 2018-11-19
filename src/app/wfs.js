@@ -35,9 +35,9 @@ var interactionSelect = new ol.interaction.Select({
     })
 });
 
-var interactionSnap = new ol.interaction.Snap({
+/*var interactionSnap = new ol.interaction.Snap({
     source: layerWFS.getSource()
-});       
+});  */     
         
         
         
@@ -85,7 +85,6 @@ var transactWFS = function (mode, f) {
             var payload = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:wfs="http://www.opengis.net/wfs" xmlns:prueba="http://prueba" xmlns:gml="http://www.opengis.net/gml"><wfs:Insert>                        <prueba:wfs_prueba_xml><prueba:geom><gml:MultiPolygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857"><gml:polygonMember><gml:Polygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857">                   <gml:outerBoundaryIs><gml:LinearRing><gml:coordinates decimal="." cs="," ts=" ">' + coordinates + /*" " + coordinates5 +*/ '</gml:coordinates></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:polygonMember></gml:MultiPolygon></prueba:geom></prueba:wfs_prueba_xml></wfs:Insert></wfs:Transaction>';
             
             //predio.setVisible(false);
-            
 
             break;
         case 'update':
@@ -135,7 +134,7 @@ $('button').click(function () {
                 features: interactionSelect.getFeatures()
             });
             map.addInteraction(interaction);
-            map.addInteraction(interactionSnap);
+            //map.addInteraction(interactionSnap);
             dirty = {};
             interactionSelect.getFeatures().on('add', function (e) {
                 e.element.on('change', function (e) {

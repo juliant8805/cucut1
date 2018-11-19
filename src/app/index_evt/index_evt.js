@@ -15,8 +15,7 @@ function mostrar(consulta) {
     document.getElementById('address1').value = "";
     document.getElementById('propietarios').value = "";
     document.getElementById('cedul').value = "";
-    document.getElementById('barrio').value = "";
-    
+    document.getElementById('barrio').value = "";  
     document.getElementById('comuna').value = "";
     document.getElementById('localidad').value = "";
     document.getElementById('manzana').value = "";
@@ -305,7 +304,6 @@ function limpiar_consulta() {
     var y = (x.contentWindow || x.contentDocument);
     if (y.document)y = y.document;
     y.body.style.display = "none";	
-	
     globalstyle = "sinconsulta"; 
     predio.setVisible(true);
     barrios.setVisible(false);
@@ -314,7 +312,38 @@ function limpiar_consulta() {
     obras.setVisible(false);
     ejeobras.setVisible(false);
     heatmap.setVisible(false);
+    redvialrural.setVisible(false);
+    centrospoblados.setVisible(false);
+    nodosregionales.setVisible(false);
+    modelonodos.setVisible(false);
+    subsistemavialrural.setVisible(false);
+    ejesintegracionbinacional.setVisible(false);
+    ejesintegracionnacional.setVisible(false);
+    ejesintegracionregional.setVisible(false);
+    suelodeproteccion.setVisible(false);
+    hidrografia.setVisible(false);
+    cabecerasmunicipalesvecinas.setVisible(false);
+    perimetromunicipal.setVisible(false);
+    perimetrodeexpansion.setVisible(false);
+    cuerposdeagua.setVisible(false);
+    cabecerasmunicipalescolombia.setVisible(false);
+    clasesdesuelo.setVisible(false);
+    perimetro2015.setVisible(false);
+    toponimiabarrios.setVisible(false);
+    anillovial.setVisible(false);
+    lineascomplementarias2015.setVisible(false);
+    nomenclaturapot2011.setVisible(false);
+    mapaconjuntoactualizado2015.setVisible(false);
+    categoriasdelsuelourbano.setVisible(false); 
+         
+    
+    
+    
+    
+    
     predio.getSource().updateParams({'STYLES': 'predios_sin_consulta_cucuta', 'CQL_FILTER': null});
+    document.getElementById('plano_01').style.display = "none";
+    document.getElementById('plano_03').style.display = "none";
     document.getElementById("menu_coordenadas_wgs84").style.display = "none"; 
     document.getElementById("menu_coordenadas_3116").style.display = "none"; 
     document.getElementById("menu_coordenadas_3117").style.display = "none";

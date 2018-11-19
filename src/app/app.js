@@ -96,7 +96,7 @@ var tipoUsuario = validacionusuarios()[0][6];
 map = new ol.Map({
     controls: ol.control.defaults().extend([new ol.control.ScaleLine(), new ol.control.ZoomToExtent({
             //ajuste rural
-            //extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457]
+            extent: [-8144021.249918, 854524.555451, -7990172.829397, 943996.173775]
         }),
         new ol.control.OverviewMap({
             className: 'ol-overviewmap ol-custom-overviewmap',
@@ -116,7 +116,7 @@ map = new ol.Map({
     target: document.getElementById('map'),
     // use the Canvas renderer
     renderer: 'canvas',
-    layers: [layerBase, layerPot2001, layerPot2011, layerBing, layerCatastro, ortofoto2017, sitios, layerValorizacion, highlight],
+    layers: [layerBase, layerPot2011, layerBing, layerCatastro, ortofoto2017, sitios, layerValorizacion, highlight],
     view: new ol.View({
         center: center,
         zoom: zoom,

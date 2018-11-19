@@ -466,24 +466,16 @@ function addressSource(requestString, responseFunc) {
         type: "GET",
         dataType: "json",
         success: function (data, status, xhr) {
-        /* var geojson = new ol.source.GeoJSON({
+        var geojson = new ol.source.GeoJSON({
                 object: data
-            });*/
+            });
             
-        var geojson = new ol.source.Vector({
+      /*  var geojson = new ol.source.Vector({
            format: new ol.format.GeoJSON({
                object: data
            })  
-        }); 
-           
-          
-            
-            
-            
-            
-            
-            
-       console.log(geojson);     
+        }); */
+     
             var arr = [];
             if (temp === "direccion") {
                 for (i = 0; i < data.features.length; i++) {
@@ -551,7 +543,6 @@ function addressSource(requestString, responseFunc) {
                         codigooriginal: requestString.codigooriginal
                     });
                 });
-                console.log("listo");
             }
             if (arr.length !== 0) {
                 //console.log(requestString.val);
@@ -1701,6 +1692,7 @@ function PlaceSelect(event, ui) {
     var markerSource = highlight.getSource();
     markerSource.clear();
     markerSource.addFeature(feat);
+    console.log(feat);
     var table = document.getElementById("tblatt");
     table.innerHTML = "";
     document.getElementById("panel_atr2").style.visibility = "hidden";
