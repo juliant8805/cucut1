@@ -375,6 +375,15 @@ var categoriasdelsuelourbano = new ol.layer.Tile({
 
 // WFS-T
 
+var poligonosedicion = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/prueba/wfs',
+        params: {LAYERS: 'prueba:wfs_prueba_xml', STYLES: ''}
+    }), name: 'Poligonos Edición'
+});
+
+
 var sourceWFS = new ol.source.Vector({
     loader: function (extent) {
         $.ajax('http://35.184.176.7:8081/geoserver/prueba/ows', {
@@ -406,14 +415,14 @@ var layerWFS = new ol.layer.Vector({
 });
 
 
-console.log(layerWFS);
+
 
 
 //CAPS GROUP
 
 
 var layerCatastro = new ol.layer.Group({
-    layers: [layerWFS, manzanas, predio, vias, construcciones, n_domiciliaria, heatmap, predios_campo, highlightfeatures],
+    layers: [poligonosedicion, layerWFS, manzanas, predio, vias, construcciones, n_domiciliaria, heatmap, predios_campo, highlightfeatures],
     name: 'Catastro'
 });
 

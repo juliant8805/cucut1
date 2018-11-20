@@ -335,15 +335,11 @@ function limpiar_consulta() {
     nomenclaturapot2011.setVisible(false);
     mapaconjuntoactualizado2015.setVisible(false);
     categoriasdelsuelourbano.setVisible(false); 
-         
-    
-    
-    
-    
-    
     predio.getSource().updateParams({'STYLES': 'predios_sin_consulta_cucuta', 'CQL_FILTER': null});
+    document.getElementById('divgetinfo').style.display = "none";
     document.getElementById('plano_01').style.display = "none";
     document.getElementById('plano_03').style.display = "none";
+    document.getElementById('plano_04').style.display = "none";
     document.getElementById("menu_coordenadas_wgs84").style.display = "none"; 
     document.getElementById("menu_coordenadas_3116").style.display = "none"; 
     document.getElementById("menu_coordenadas_3117").style.display = "none";
@@ -1201,11 +1197,11 @@ function medir() {
     var length;
     length = Math.round(line.getLength() * 100) / 100;
     var output;
-    if (length > 100) {
+    /*if (length > 100) {
         output = (Math.round(length / 1000 * 100) / 100) + ' ' + 'km';
-    } else {
+    } else {*/
         output = (Math.round(length * 100) / 100) + ' ' + 'm';
-    }
+    //}
     return output;
 };
     
@@ -1215,13 +1211,13 @@ function medir() {
       var area;
           area = Math.round(polygon.getArea() * 100) / 100;
         var output;
-        if (area > 10000) {
+       /* if (area > 10000) {
           output = (Math.round(area / 1000000 * 100) / 100) +
               ' ' + 'km<sup>2</sup>';
-        } else {
+        } else {*/
           output = (Math.round(area * 100) / 100) +
               ' ' + 'm<sup>2</sup>';
-        }
+      //  }
         return output;
       };
 
@@ -1358,7 +1354,8 @@ function medir_off() {
 function mostraredicion() {
    document.getElementById("boton_menuedicion_off").style.display = "block";
    document.getElementById("boton_menuedicion").style.display = "none";
-   document.getElementById("menu_edicion").style.display = "block"; 
+   document.getElementById("menu_edicion").style.display = "block";
+   poligonosedicion.setVisible(true);
 }
 
 function ocultaredicion() {

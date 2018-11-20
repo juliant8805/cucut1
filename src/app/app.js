@@ -17,7 +17,7 @@ var proj = new ol.proj.Projection({
 });
 var format = [];
 var wmsSource = [];
-
+ conteo = 1;
 /*var ddlItems = document.getElementById("selBarrio");
 var listaBarrios = search("cucuta:barriosGeo");
 for (var i = 0; i < listaBarrios.length; i++) {

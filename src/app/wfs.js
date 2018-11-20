@@ -1,32 +1,14 @@
-
-/*ol.interaction.Snap.prototype.writeGeometryCollectionGeometry_ = function(feature, geometry) {
-  var i, geometries = geometry.getGeometriesArray();
-  for (i = 0; i < geometries.length; ++i) {
-    this.SEGMENT_WRITERS_[geometries[i].getType()].call(
-        this, feature, geometries[i]);
-  }
-};*/
-
 var formatWFS = new ol.format.WFS();
-
 var formatGML = new ol.format.GML({
     featureNS: 'http://35.184.176.7:8081/geoserver/prueba',
     featureType: 'wfs_prueba_xml',
     srsName: 'EPSG:3857'
-});
-        
-        
+});       
 var xs = new XMLSerializer();
-
-
-
-
 var interaction;
-
 var interactionSelectPointerMove = new ol.interaction.Select({
     condition: ol.events.condition.pointerMove
 });
-
 var interactionSelect = new ol.interaction.Select({
     style: new ol.style.Style({
         stroke: new ol.style.Stroke({
@@ -34,20 +16,15 @@ var interactionSelect = new ol.interaction.Select({
         })
     })
 });
-
 /*var interactionSnap = new ol.interaction.Snap({
     source: layerWFS.getSource()
-});  */     
-        
-        
-        
-        
-        
- var dirty = {};
+});  */ 
+ 
+var dirty = {};
 var transactWFS = function (mode, f) {
+    
     var node;
-    switch (mode) {
-            
+    switch (mode) {     
         case 'insert':
             var longitud = f.values_.geometry.flatCoordinates.length;
             var coordinates1 = [f.values_.geometry.flatCoordinates[0], f.values_.geometry.flatCoordinates[1]];
@@ -77,15 +54,100 @@ var transactWFS = function (mode, f) {
             else if (longitud == 28){var coordinates = coordinates1 + " " + coordinates2 + " " + coordinates3 + " " + coordinates4 + " " + coordinates5 + " " + coordinates6 + " " + coordinates7 + " " + coordinates8 + " " + coordinates9 + " " + coordinates10 + " " + coordinates11 + " " + coordinates12 + " " + coordinates13 + " " + coordinates14;}
             node = formatWFS.writeTransaction([f], null, null, formatGML);
               
-           /* document.getElementById("tablawfs2").style.visibility = "visible";
-            document.getElementById("tablawfs").style.display = "block";
-            document.getElementById("tablawfs").style.display = "initial";
-            document.getElementById("tablawfs").style.visibility = "visible";*/
+         var payload = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:wfs="http://www.opengis.net/wfs" xmlns:prueba="http://prueba" xmlns:gml="http://www.opengis.net/gml"><wfs:Insert>                        <prueba:wfs_prueba_xml><prueba:geom><gml:MultiPolygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857"><gml:polygonMember><gml:Polygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857">                   <gml:outerBoundaryIs><gml:LinearRing><gml:coordinates decimal="." cs="," ts=" ">' + coordinates + '</gml:coordinates></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:polygonMember></gml:MultiPolygon></prueba:geom></prueba:wfs_prueba_xml></wfs:Insert></wfs:Transaction>';
+           
             
-            var payload = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:wfs="http://www.opengis.net/wfs" xmlns:prueba="http://prueba" xmlns:gml="http://www.opengis.net/gml"><wfs:Insert>                        <prueba:wfs_prueba_xml><prueba:geom><gml:MultiPolygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857"><gml:polygonMember><gml:Polygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857">                   <gml:outerBoundaryIs><gml:LinearRing><gml:coordinates decimal="." cs="," ts=" ">' + coordinates + /*" " + coordinates5 +*/ '</gml:coordinates></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:polygonMember></gml:MultiPolygon></prueba:geom></prueba:wfs_prueba_xml></wfs:Insert></wfs:Transaction>';
+          //poligonosedicion.getSource().updateParams({'STYLES':'', 'CQL_FILTER': "observaciones<>'er872'"});
+           
+            if (conteo == 1){
+            poligonosedicion.getSource().updateParams({CQL_FILTER:"1=1"});
+                conteo = conteo + 1;
+                }
+            else if (conteo == 2){
+              poligonosedicion.getSource().updateParams({CQL_FILTER:"2=2"});
+                conteo = conteo + 1;
+            }
+            else if (conteo == 3){
+              poligonosedicion.getSource().updateParams({CQL_FILTER:"3=3"});
+                conteo = conteo + 1;
+            }
+            else if (conteo == 4){
+              poligonosedicion.getSource().updateParams({CQL_FILTER:"4=4"});
+                conteo = conteo + 1;
+            }
+            else if (conteo == 5){
+              poligonosedicion.getSource().updateParams({CQL_FILTER:"5=5"});
+                conteo = conteo + 1;
+            }
+            else if (conteo == 6){
+              poligonosedicion.getSource().updateParams({CQL_FILTER:"6=6"});
+                conteo = conteo + 1;
+            }
+            else if (conteo == 7){
+              poligonosedicion.getSource().updateParams({CQL_FILTER:"7=7"});
+                conteo = conteo + 1;
+            }
+            else if (conteo == 8){
+              poligonosedicion.getSource().updateParams({CQL_FILTER:"8=8"});
+                conteo = conteo + 1;
+            }
+            else if (conteo == 9){
+              poligonosedicion.getSource().updateParams({CQL_FILTER:"9=9"});
+                conteo = conteo + 1;
+            }
             
-            //predio.setVisible(false);
-
+            
+            
+            //update funcionando
+         /*   var payload = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:prueba="http://prueba" xmlns:ogc="http://www.opengis.net/ogc" xmlns:wfs="http://www.opengis.net/wfs"><wfs:Update typeName="prueba:wfs_prueba_xml">    <wfs:Property><wfs:Name>observaciones</wfs:Name><wfs:Value>listocodigo</wfs:Value></wfs:Property><ogc:Filter><ogc:Filter><ogc:PropertyIsEqualTo><ogc:PropertyName>observaciones</ogc:PropertyName><ogc:Literal>listo</ogc:Literal></ogc:PropertyIsEqualTo></ogc:Filter></ogc:Filter></wfs:Update></wfs:Transaction>';*/
+            
+            document.getElementById("tblatt").style.visibility = "visible";
+            document.getElementById("tblatt").style.display = "initial";
+            document.getElementById("tblatt").style.height = "auto";
+            document.getElementById("panel_atr").style.visibility = "visible";
+            document.getElementById("panel_atr").style.display = "initial";
+            document.getElementById("panel_atr").style.height = "auto";
+            document.getElementById("contenedorg").style.display = "initial";
+            document.getElementById("contenedorg").style.visibility = "visible";
+            document.getElementById("contenedorg").style.height = "auto";
+            //document.getElementById("pestanas").style.display = "none";
+            
+            var table = document.getElementById("tblatt");
+            table.innerHTML = "";
+            var row = table.insertRow(0);
+            var cell1 = row.insertCell(0);
+            cell1.colSpan = 2;
+            cell1.innerHTML = "<H5><b>INFORMACION DEL PREDIO</b></H5>";
+            
+            
+            var row = table.insertRow(1);
+            var cell2 = row.insertCell(0);
+            cell2.colSpan = 2;
+            cell2.style = "background-color: white; border:0; margin:0;";
+            cell2.innerHTML = "<input type='text' id='observaciones' name='observaciones' style='background-color: #white; color:black; font-size: 15px; border-top:0px; border-left:0px; border-right:0px; border-bottom:1px solid #62BAD3; text-align:center; width:100%; height:3em;' placeholder='Escriba cualquier tipo de información adicional'>";
+            
+            
+            
+            var select = [];
+            var sel = [];
+            select[0] = "<b>ID</b>";
+            select[1] = "<b>OBSERVACIONES</b>";
+            sel[0] = "listo1";
+            sel[1] = "listo1";
+            
+            var campos = 2;
+                            for (i = 0; i < select.length; i++) {
+                                row = table.insertRow(i + 1);
+                                cell1 = row.insertCell(0);
+                                cell2 = row.insertCell(1);
+                                cell1.innerHTML = select[i];
+                                if (i === campos) {
+                                    cell2.appendChild(sel[i]);
+     
+                                } else {
+                                    cell2.innerHTML = sel[i];
+                                }
+                            }
             break;
         case 'update':
             //f.set('geom', f.getGeometry());
@@ -125,6 +187,7 @@ $('button').click(function () {
     map.removeInteraction(interaction);
     interactionSelect.getFeatures().clear();
     map.removeInteraction(interactionSelect);
+    
 
     switch ($(this).attr('id')) {
 
@@ -185,6 +248,8 @@ $('button').click(function () {
                 transactWFS('insert', e.feature);
             });
             map.addInteraction(interaction);
+            predio.setVisible(false);
+            construcciones.setVisible(false);
             break;
 
         case 'btnDelete':
