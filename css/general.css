@@ -1941,24 +1941,24 @@ height: auto;
   left: 80px;
 }
 
-#btnArea {
+#btnDelete {
   position: absolute;
-  top: 80px;
-  left: 150px;
+  top: 190px;
+  right: 50px;
   z-index: 2;
 }
 
 #btnEdit {
   position: absolute;
-  top: 80px;
-  left: 220px;
+  top: 190px;
+  right: 120px;
   z-index: 2;
 }
 
-#btnDelete {
+#btnArea {
   position: absolute;
-  top: 80px;
-  left: 290px;  
+  top: 190px;
+  right: 190px;  
   z-index: 2;
 }
 

@@ -1,3 +1,59 @@
+
+function loadobs(){
+   var obs = document.getElementById('observaciones').value;
+var payloadobs = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:prueba="http://prueba" xmlns:ogc="http://www.opengis.net/ogc" xmlns:wfs="http://www.opengis.net/wfs"><wfs:Update typeName="prueba:wfs_prueba_xml">   <wfs:Property><wfs:Name>observaciones</wfs:Name><wfs:Value>' + obs + '</wfs:Value></wfs:Property><ogc:Filter><ogc:FeatureId fid="'+ wfsupdate +'"/></ogc:Filter></wfs:Update></wfs:Transaction>';
+                    $.ajax('http://35.184.176.7:8081/geoserver/prueba/ows', {
+                            type: 'POST',
+                            dataType: 'xml',
+                            processData: false,
+                            contentType: 'text/xml',
+                            data: payloadobs,
+                            success: function (xml) {
+                                },
+                                error: function (xml) {
+                                    console.log('error');
+                                }
+                        }); 
+             if (conteo == 1){
+                            poligonosedicion.getSource().updateParams({CQL_FILTER:"1=1"});
+                                conteo = conteo + 1;
+                                }
+                            else if (conteo == 2){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"2=2"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 3){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"3=3"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 4){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"4=4"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 5){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"5=5"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 6){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"6=6"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 7){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"7=7"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 8){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"8=8"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 9){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"9=9"});
+                                conteo = conteo + 1;
+                            }
+    alert("informacion guardada exitosamente");
+}
+
+
 function mostrar(consulta) {
     document.getElementById("myDropdown").classList.toggle("show");
     document.getElementById('barra_sitio').style.display = 'none';
@@ -306,6 +362,7 @@ function limpiar_consulta() {
     y.body.style.display = "none";	
     globalstyle = "sinconsulta"; 
     predio.setVisible(true);
+    poligonosedicion.setVisible(false);
     barrios.setVisible(false);
     construcciones.setVisible(true);
     puntos_obras.setVisible(false);

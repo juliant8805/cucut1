@@ -15,9 +15,11 @@ var proj = new ol.proj.Projection({
     code: 'http://www.opengis.net/gml/srs/epsg.xml#4326',
     axis: 'enu'
 });
+conteo = 1;
+wfsupdate = "";
 var format = [];
 var wmsSource = [];
- conteo = 1;
+
 /*var ddlItems = document.getElementById("selBarrio");
 var listaBarrios = search("cucuta:barriosGeo");
 for (var i = 0; i < listaBarrios.length; i++) {
@@ -147,6 +149,7 @@ map.on('singleclick', function (evt) {
         document.getElementById("panel_atr2").style.height = "0px";
         document.getElementById("tablaP").style.visibility = "hidden";
     }
+     
     var viewResolution = map.getView().getResolution();
     var url = wmsSource[0].getGetFeatureInfoUrl(
             evt.coordinate, viewResolution, map.getView().getProjection(),
@@ -164,6 +167,7 @@ map.on('singleclick', function (evt) {
                 }
             },
             success: function (data) {
+                console.log(format[0])
                 var features = format[0].readFeatures(data);
                 if (features && features.length >= 1 && features[0]) {
                     var feature = features[0];
