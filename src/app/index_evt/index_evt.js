@@ -1,3 +1,59 @@
+
+function loadobs(){
+   var obs = document.getElementById('observaciones').value;
+var payloadobs = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:prueba="http://prueba" xmlns:ogc="http://www.opengis.net/ogc" xmlns:wfs="http://www.opengis.net/wfs"><wfs:Update typeName="prueba:wfs_prueba_xml">   <wfs:Property><wfs:Name>observaciones</wfs:Name><wfs:Value>' + obs + '</wfs:Value></wfs:Property><ogc:Filter><ogc:FeatureId fid="'+ wfsupdate +'"/></ogc:Filter></wfs:Update></wfs:Transaction>';
+                    $.ajax('http://35.184.176.7:8081/geoserver/prueba/ows', {
+                            type: 'POST',
+                            dataType: 'xml',
+                            processData: false,
+                            contentType: 'text/xml',
+                            data: payloadobs,
+                            success: function (xml) {
+                                },
+                                error: function (xml) {
+                                    console.log('error');
+                                }
+                        }); 
+             if (conteo == 1){
+                            poligonosedicion.getSource().updateParams({CQL_FILTER:"1=1"});
+                                conteo = conteo + 1;
+                                }
+                            else if (conteo == 2){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"2=2"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 3){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"3=3"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 4){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"4=4"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 5){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"5=5"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 6){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"6=6"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 7){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"7=7"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 8){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"8=8"});
+                                conteo = conteo + 1;
+                            }
+                            else if (conteo == 9){
+                              poligonosedicion.getSource().updateParams({CQL_FILTER:"9=9"});
+                                conteo = conteo + 1;
+                            }
+    alert("informacion guardada exitosamente");
+}
+
+
 function mostrar(consulta) {
     document.getElementById("myDropdown").classList.toggle("show");
     document.getElementById('barra_sitio').style.display = 'none';
@@ -306,6 +362,7 @@ function limpiar_consulta() {
     y.body.style.display = "none";	
     globalstyle = "sinconsulta"; 
     predio.setVisible(true);
+    poligonosedicion.setVisible(false);
     barrios.setVisible(false);
     construcciones.setVisible(true);
     puntos_obras.setVisible(false);
@@ -335,15 +392,11 @@ function limpiar_consulta() {
     nomenclaturapot2011.setVisible(false);
     mapaconjuntoactualizado2015.setVisible(false);
     categoriasdelsuelourbano.setVisible(false); 
-         
-    
-    
-    
-    
-    
     predio.getSource().updateParams({'STYLES': 'predios_sin_consulta_cucuta', 'CQL_FILTER': null});
+    document.getElementById('divgetinfo').style.display = "none";
     document.getElementById('plano_01').style.display = "none";
     document.getElementById('plano_03').style.display = "none";
+    document.getElementById('plano_04').style.display = "none";
     document.getElementById("menu_coordenadas_wgs84").style.display = "none"; 
     document.getElementById("menu_coordenadas_3116").style.display = "none"; 
     document.getElementById("menu_coordenadas_3117").style.display = "none";
@@ -1201,11 +1254,11 @@ function medir() {
     var length;
     length = Math.round(line.getLength() * 100) / 100;
     var output;
-    if (length > 100) {
+    /*if (length > 100) {
         output = (Math.round(length / 1000 * 100) / 100) + ' ' + 'km';
-    } else {
+    } else {*/
         output = (Math.round(length * 100) / 100) + ' ' + 'm';
-    }
+    //}
     return output;
 };
     
@@ -1215,13 +1268,13 @@ function medir() {
       var area;
           area = Math.round(polygon.getArea() * 100) / 100;
         var output;
-        if (area > 10000) {
+       /* if (area > 10000) {
           output = (Math.round(area / 1000000 * 100) / 100) +
               ' ' + 'km<sup>2</sup>';
-        } else {
+        } else {*/
           output = (Math.round(area * 100) / 100) +
               ' ' + 'm<sup>2</sup>';
-        }
+      //  }
         return output;
       };
 
@@ -1358,7 +1411,8 @@ function medir_off() {
 function mostraredicion() {
    document.getElementById("boton_menuedicion_off").style.display = "block";
    document.getElementById("boton_menuedicion").style.display = "none";
-   document.getElementById("menu_edicion").style.display = "block"; 
+   document.getElementById("menu_edicion").style.display = "block";
+   poligonosedicion.setVisible(true);
 }
 
 function ocultaredicion() {
