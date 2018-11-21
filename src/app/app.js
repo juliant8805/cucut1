@@ -15,6 +15,8 @@ var proj = new ol.proj.Projection({
     code: 'http://www.opengis.net/gml/srs/epsg.xml#4326',
     axis: 'enu'
 });
+conteo = 1;
+wfsupdate = "";
 var format = [];
 var wmsSource = [];
 
@@ -96,7 +98,7 @@ var tipoUsuario = validacionusuarios()[0][6];
 map = new ol.Map({
     controls: ol.control.defaults().extend([new ol.control.ScaleLine(), new ol.control.ZoomToExtent({
             //ajuste rural
-            //extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457]
+            extent: [-8144021.249918, 854524.555451, -7990172.829397, 943996.173775]
         }),
         new ol.control.OverviewMap({
             className: 'ol-overviewmap ol-custom-overviewmap',
@@ -116,7 +118,7 @@ map = new ol.Map({
     target: document.getElementById('map'),
     // use the Canvas renderer
     renderer: 'canvas',
-    layers: [layerBase, layerPot2001, layerPot2011, layerBing, layerCatastro, layerOrtofoto2017, sitios, layerValorizacion, highlight],
+    layers: [layerBase, layerPot2011, layerBing, layerCatastro, ortofoto2017, sitios, layerValorizacion, highlight],
     view: new ol.View({
         center: center,
         zoom: zoom,
@@ -147,13 +149,14 @@ map.on('singleclick', function (evt) {
         document.getElementById("panel_atr2").style.height = "0px";
         document.getElementById("tablaP").style.visibility = "hidden";
     }
+     
     var viewResolution = map.getView().getResolution();
     var url = wmsSource[0].getGetFeatureInfoUrl(
             evt.coordinate, viewResolution, map.getView().getProjection(),
             {'INFO_FORMAT': infoFormat}
     );
     var tamañopantalla = screen.width > 800;
-    if (url && predio.values_.visible == true && viewResolution < 2 && document.getElementById("medidas").style.display == "none") {
+    if (url && predio.values_.visible == true && viewResolution < 2 && document.getElementById("medidas").style.display == "none" && document.getElementById("menu_edicion").style.display == "none") {
         $.ajax({
             url: url,
             beforeSend: function () {
@@ -164,6 +167,7 @@ map.on('singleclick', function (evt) {
                 }
             },
             success: function (data) {
+                console.log(format[0])
                 var features = format[0].readFeatures(data);
                 if (features && features.length >= 1 && features[0]) {
                     var feature = features[0];

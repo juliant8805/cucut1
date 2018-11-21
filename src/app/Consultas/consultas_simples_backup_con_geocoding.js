@@ -466,16 +466,9 @@ function addressSource(requestString, responseFunc) {
         type: "GET",
         dataType: "json",
         success: function (data, status, xhr) {
-        var geojson = new ol.source.GeoJSON({
+            var geojson = new ol.source.GeoJSON({
                 object: data
             });
-            
-      /*  var geojson = new ol.source.Vector({
-           format: new ol.format.GeoJSON({
-               object: data
-           })  
-        }); */
-     
             var arr = [];
             if (temp === "direccion") {
                 for (i = 0; i < data.features.length; i++) {
@@ -865,10 +858,10 @@ function addressSelect(event, ui) {
 
                 }
                 if (tipoUsuario === "Catastro") {
-                    select[0] = "<b>Codigo Manzana</b>";
-                    select[1] = "<b>Codigo Catastral Nuevo</b>";
-                    select[2] = "<b>Codigo Catastral Anterior</b>";
-                    select[3] = "<b>Matricula Inmobiliaria</b>";
+                    select[0] = "<b>Código Manzana</b>";
+                    select[1] = "<b>Código Catastral Nuevo</b>";
+                    select[2] = "<b>Código Catastral Anterior</b>";
+                    select[3] = "<b>Matrícula Inmobiliaria</b>";
                     select[4] = "<b>Dirección</b>";
                     select[5] = "<b>Destino Económico Hacienda</b>";
                     select[6] = "<b>Uso Acueducto</b>";
@@ -882,11 +875,10 @@ function addressSelect(event, ui) {
                     select[14] = "<b>Empresa de Alcantarillado</b>";
                     select[15] = "<b>Empresa de Aseo</b>";
                     select[16] = "<b>Avalúo Catastral 2018</b>";
-
-                    select[17] = "<b>Area de Terreno</b>";
-                    select[18] = "<b>Area Construida</b>";
+                    select[17] = "<b>Área de Terreno</b>";
+                    select[18] = "<b>Área Construida</b>";
                     select[19] = "<b>Barrio</b>";
-                    select[20] = "<b>Fotografias</b>";
+                    select[20] = "<b>Fotografías</b>";
                     sel[0] = values.manzana_co;
                     sel[1] = cod_nacion["0"]["0"];
                     sel[2] = ui.item.codigooriginal;
@@ -952,8 +944,8 @@ function addressSelect(event, ui) {
                 //totem
                 else if (tipoUsuario === "Totem") {
                     //select[0] = "<b>Codigo Catastral Nuevo</b>";
-                    select[0] = "<b>Codigo Catastral</b>";
-                    select[1] = "<b>Matricula Inmobiliaria</b>";
+                    select[0] = "<b>Código Catastral</b>";
+                    select[1] = "<b>Matrícula Inmobiliaria</b>";
                     select[2] = "<b>Dirección</b>";
                     select[3] = "<b>Deuda</b>";
                     /*select[5] = "<b>Uso Alcantarillado</b>";sel[0] = "<FONT SIZE=2 color='red'><b>POR PAGAR</b></font>";
@@ -964,14 +956,14 @@ function addressSelect(event, ui) {
                      select[10] = "<b>Estrato Aseo</b>";*/
                     select[4] = "<b>Destino Económico</b>";
                     select[5] = "<b>Avalúo Catastral 2018</b>";
-                    select[6] = "<b>Area de Terreno</b>";
-                    select[7] = "<b>Area Construida</b>";
+                    select[6] = "<b>Área de Terreno</b>";
+                    select[7] = "<b>Área Construida</b>";
                     select[8] = "<b>Barrio</b>";
-                    select[8] = "<b>Codigo Postal</b>";
+                    select[8] = "<b>Código Postal</b>";
                     select[10] = "<b>Cuadrante CAI</b>";
                     select[11] = "<b>Nombre CAI</b>";
-                    select[12] = "<b>Telefono CAI</b>";
-                    select[13] = "<b>Fotografias</b>";
+                    select[12] = "<b>Teléfono CAI</b>";
+                    select[13] = "<b>Fotografías</b>";
                     //sel[0] = cod_nacion["0"]["0"];
                     sel[0] = ui.item.codigooriginal;
                     sel[1] = matricula;
@@ -1058,12 +1050,12 @@ function addressSelect(event, ui) {
                         var riesgo = search("cucuta:buscar_riesgo", ui.item.codigooriginal);
                         var riesgo = riesgo["0"]["0"];
                     } catch (err) {
-                        var riesgo = "Sin Informacion";
+                        var riesgo = "Sin Información";
                     }
-                    select[0] = "<b>Codigo Manzana</b>";
-                    select[1] = "<b>Codigo Catastral Nuevo</b>";
-                    select[2] = "<b>Codigo Catastral Anterior</b>";
-                    select[3] = "<b>Matricula</b>";
+                    select[0] = "<b>Código Manzana</b>";
+                    select[1] = "<b>Código Catastral Nuevo</b>";
+                    select[2] = "<b>Código Catastral Anterior</b>";
+                    select[3] = "<b>Matrícula</b>";
                     select[4] = "<b>Dirección</b>";
                     select[5] = "<b>Destino Económico Hacienda</b>";
                     select[6] = "<b>Uso Acueducto</b>";
@@ -1076,8 +1068,8 @@ function addressSelect(event, ui) {
                     select[13] = "<b>Empresa de Acueducto</b>";
                     select[14] = "<b>Empresa de Alcantarillado</b>";
                     select[15] = "<b>Empresa de Aseo</b>";
-                    select[16] = "<b>Area de Terreno</b>";
-                    select[17] = "<b>Area Construida</b>";
+                    select[16] = "<b>Área de Terreno</b>";
+                    select[17] = "<b>Área Construida</b>";
                     select[18] = "<b>Uso del Suelo Según Acuerdo</b>";
                     select[19] = "<b>Uso Actual del Suelo Urbano</b>";
                     select[20] = "<b>Suelo de Protección</b>";
@@ -1085,7 +1077,7 @@ function addressSelect(event, ui) {
                     select[22] = "<b>Tratamiento del Suelo</b>";
                     select[23] = "<b>Riesgo Remoción</b>";
                     select[24] = "<b>Barrio</b>";
-                    select[25] = "<b>Fotografias</b>";
+                    select[25] = "<b>Fotografías</b>";
                     sel[0] = values.manzana_co;
                     sel[1] = cod_nacion["0"]["0"];
                     sel[2] = ui.item.codigooriginal;
@@ -1251,18 +1243,18 @@ function addressSelect(event, ui) {
                     var stv = [];
                     var ig = [];
                     var arregloDeSubCadenas = enviarRef(eval("'" + ui.item.codigooriginal.toString() + "'"));
-                    select[0] = "<b>Codigo Catastral</b>";
+                    select[0] = "<b>Código Catastral</b>";
                     select[1] = "<b>Nombre del Propietario</b>";
                     select[2] = "<b>Dirección</b>";
                     select[3] = "<b>Destino</b>";
-                    select[4] = "<b>Matricula</b>";
-                    select[5] = "<b>Area de Terreno</b>";
-                    select[6] = "<b>Area de Construcción</b>";
-                    select[7] = "<b>Avaluo</b>";
+                    select[4] = "<b>Matrícula</b>";
+                    select[5] = "<b>Área de Terreno</b>";
+                    select[6] = "<b>Área de Construcción</b>";
+                    select[7] = "<b>Avalúo</b>";
                     select[8] = "<b>Estrato</b>";
                     select[9] = "<b>Clase de Predio</b>";
                     select[10] = "<b>Tipo de Predio</b>";
-                    select[11] = "<b>Fotografias</b>";
+                    select[11] = "<b>Fotografías</b>";
                     sel[0] = arregloDeSubCadenas[0][5];
                     sel[1] = arregloDeSubCadenas[0][7];
                     sel[2] = arregloDeSubCadenas[0][6];
@@ -1692,7 +1684,6 @@ function PlaceSelect(event, ui) {
     var markerSource = highlight.getSource();
     markerSource.clear();
     markerSource.addFeature(feat);
-    console.log(feat);
     var table = document.getElementById("tblatt");
     table.innerHTML = "";
     document.getElementById("panel_atr2").style.visibility = "hidden";

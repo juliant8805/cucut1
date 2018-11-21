@@ -13,11 +13,19 @@
         <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="src/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="src/ol3/ol.css">
+        <!--<link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css">-->
         <link rel="stylesheet" href="src/css/Popup.css">
         <link rel="stylesheet" href="src/css/LayersControl.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="icon" type="image/ico" href="http://www.ideepcucuta.com/imagenes/favicon.ico" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!--<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">-->
+        <!--<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/build/ol.js"></script>-->
         <script src="src/ol3/ol-debug.js"></script>
+        
+        <!--<script src="src/ol3/prueba/ol-debug.js"></script>-->
+
+        
         <script src="src/jquery/jquery.min.js"></script>
         <script src="src/bootstrap/js/bootstrap.min.js"></script>
         <script src="src/jquery/jquery-1.12.4.js"></script>
@@ -29,16 +37,23 @@
         <script src="src/app/index_evt/validaringreso.js"></script>
         <script src="export/export.js"></script>
         <script src="src/app/HeadMap.js"></script>
+        <script src="src/app/wfs.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.3/proj4.js"></script>-->
+        <!--<script src="src/ol3/coordenadas.js"></script>-->
+        <!--<script src="http://epsg.io/3116.js"></script>
+        <script src="http://epsg.io/3117.js"></script>
+        <script src="http://epsg.io/21897.js"></script>
+        <script src="http://epsg.io/21898.js"></script>-->
         <!--<script src="https://ajax.googleapis.com/ajax/lib/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
         <!--Highcharts-->
         <script src="src/highcharts/js/highcharts.js"></script>
         <script src="src/highcharts/js/modules/exporting.js"></script>
-        <!-- <script src="src/googlecharts/googlecharts.js"></script>-->
     <div id="carga2" hidden="hidden"><img id="imgprocess" src="./image/procesando.gif"></div>
     <div id="carga3" hidden="hidden"><img src="./image/cargando.png" style="top:30%; left:30%; width:auto; height:auto; position:absolute"></div>
-    <div id="completo" hidden="hidden">		
-    </div>
+    <div id="completo" hidden="hidden"></div>
+        
+      
 </head>
 <body>
 
@@ -48,9 +63,23 @@
     <header>
         <input type="checkbox" id="btn-menu">
         <label for = "btn-menu"><img src="imagenes/icono-menu.png" alt=""></label>
+        
+        
+        <div id="menu_edicion" style="display: none">
+        <button id="btnArea" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+        <i class="material-icons">signal_cellular_null</i>
+        </button>
+        <button id="btnEdit" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+        <i class="material-icons">build</i>
+        </button> 
+        <button id="btnDelete" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+        <i class="material-icons">delete</i>
+        </button>
+        </div>
+        
+        
         <nav class="menu" id="catastro" hidden="hidden">
             <ul>
-
                 <li><select style="background:#4E9AAB; height:100%;width:100%;" id="DiferenciaArea" name=DiferenciaArea onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
                         <option value="seleccione" disabled selected><a>Rango de Area</a>
                         <option value="AreaTerreno" style="font-weight: bold; color: white;  font-size:small;">Area Terreno
@@ -107,7 +136,7 @@
 </li> -->
 
 
-                <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2017)	
+                <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2018)	
                         <div id="barratransparencia">
                             <input type="range" min="0" max="1" step="0.1" value="0" onchange="ortofoto2017.setOpacity(Number(this.value));bing.setOpacity(Number(this.value))"/>
                         </div></a></li>
@@ -115,7 +144,7 @@
         </nav>
         <nav class="menu" id="totemmenu" hidden="hidden">
             <ul>
-                <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2017)	
+                <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2018)	
                         <div id="barratransparencia">
                             <input type="range" min="0" max="1" step="0.1" value="0" onchange="ortofoto2017.setOpacity(Number(this.value));bing.setOpacity(Number(this.value))"/>
                         </div>
@@ -150,7 +179,7 @@
                 <li id="Estratificacion" name="Estratificacion" ><a>Valorización</a></li>      
                 <li id="Estratificacion" name="Estratificacion" ><a>Corponor</a></li>
                 <li id="Área Construida Prestadores" name="AreaConstruidaPrestadores" onclick="rango(id, name)"><a>Área Construida vs Prestadores</a></li>
-                <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2017)	
+                <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2018)	
                         <div id="barratransparencia">
                             <input type="range" min="0" max="1" step="0.1" value="0" onchange="ortofoto2017.setOpacity(Number(this.value));bing.setOpacity(Number(this.value))"/>
                         </div></a></li>
@@ -184,10 +213,17 @@
                         <option value="Aseo" style="font-weight: bold; color: white;  font-size:small;">Aseo
                     </select>
                 </li>
-                <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2017)	
+                <li><select style="background:#4E9AAB;height:100%;width:100%;" id="planospot" name="planospot" onchange="planos(id)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
+                        <option value="seleccione" selected><a>Planos POT</a>
+                        <option value="EOR" style="font-weight: bold; color:white; font-size:small;">Estrategia de Ordenamiento Regional
+                        <option value="CSRCS" style="font-weight: bold; color:white; font-size:small;">Clasificación Suelo Rural
+                        <option value="CSUE" style="font-weight: bold; color:white; font-size:small;">Clases de Suelo Urbano y de Expansion
+                    </select>
+                </li>
+                <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2018)	
                         <div id="barratransparencia">
                             <input type="range" min="0" max="1" step="0.1" value="0" onchange="ortofoto2017.setOpacity(Number(this.value));bing.setOpacity(Number(this.value))"/>
-                        </div></a></li>
+                        </div></a></li>      
             </ul>
         </nav>
 
@@ -326,6 +362,27 @@
         <iframe name="marco" hidden="hidden" id="marco"></iframe>
         <iframe name="marco2" hidden="hidden" id="marco2"></iframe>
         <iframe name="marco3" hidden="hidden" id="marco3"></iframe>
+        
+        
+        <div hidden="hidden" id="divgetinfo" style="position: absolute; bottom: 2em; left: 2em; width: 95%; scrolling:auto; height: 30%; z-index: 5; padding-top: 2em; overflow:scroll; align:center;"> 
+        <table id="tabgetinfo" style="width: 100%; background-color: white; margin: 0px; align:center">
+            <tr><td><iframe id="marco4" width="100%" height= "120em" frameborder="0"></iframe></td></tr> 
+            <tr><td><iframe id="marco5" width="100%" height= "120em" frameborder="0"></iframe></td></tr>
+            <tr><td><iframe id="marco6" width="100%" height= "120em" frameborder="0"></iframe></td></tr>
+            <tr><td><iframe id="marco7" width="100%" height= "120em" frameborder="0"></iframe></td></tr>
+            <tr><td><iframe id="marco8" width="100%" height= "120em" frameborder="0"></iframe></td></tr>
+            <tr><td><iframe id="marco9" width="100%" height= "120em" frameborder="0"></iframe></td></tr>
+            <tr><td><iframe id="marco10" width="100%" height= "120em" frameborder="0"></iframe></td></tr>
+            <tr><td><iframe id="marco11" width="100%" height= "120em" frameborder="0"></iframe></td></tr>
+            <tr><td><iframe id="marco12" width="100%" height= "120em" frameborder="0"></iframe></td></tr>
+            <tr><td><iframe id="marco13" width="100%" height= "120em" frameborder="0"></iframe></td></tr>
+            <tr><td><iframe id="marco15" width="100%" height= "120em" frameborder="0"></iframe></td></tr>
+            <tr><td><iframe id="marco16" width="100%" height= "120em" frameborder="0"></iframe></td></tr>
+        </table>
+        </div>
+        
+        
+        <!--<iframe name="marco4" hidden="hidden" id="marco4"></iframe>-->
         <!-- <img id="botoncerrarstreetview" src="./imagenes/ocultar.png">-->
         <button id="botoncerrarstreetview" hidden="hidden" onclick="ocultarstreetview();" style="background:url('./imagenes/ocultar.png'); background-repeat:no-repeat; "></button>
         <button id="botonmostrarstreetview" hidden="hidden" onclick="mostrarstreetview();" style="background:url('./imagenes/mostrar.png'); background-repeat:no-repeat; "></button>
@@ -347,7 +404,8 @@
     <img id="boton_medir" hidden="hidden" name="boton_medir" src="imagenes/icono_medir.png" onclick="medir_off()">
     <img id="leyenda_actividades" hidden="hidden" src="imagenes/leyenda_actividades_suelo.png" style="position: absolute; top:5em; left: 1em; height: 90%">
 
-
+    <img id="boton_menuedicion" src="imagenes/icono_dibujar_off.png" onclick="mostraredicion()">
+    <img id="boton_menuedicion_off" hidden="hidden" src="imagenes/icono_dibujar.png" onclick="ocultaredicion()">  
 
 
     <form id="medidas" style="display: none">
@@ -363,7 +421,7 @@
     <nav class="menu" id="ortofotototem" hidden="hidden" style="position:absolute; top:0px; left:0px; height:34px; width:20%; background-color:#639bb3; padding: 0em;">
             <ul>
                 
-                <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2017)	
+                <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2018)	
                         <div id="barratransparencia">
                             <input type="range" min="0" max="1" step="0.1" value="0" onchange="ortofoto2017.setOpacity(Number(this.value));bing.setOpacity(Number(this.value))"/>
                         </div></a></li>
@@ -374,6 +432,12 @@
 
     <img id="gesstor" src="./imagenes/gesstor.png">
     <img id="sisepuede" src="./imagenes/sisepuedeprogresar.png">
+    
+    <!--leyendas-->
+    
+    <img hidden="hidden" id="plano_01" src="./imagenes/leyendas/plano_01.png" style="position:absolute; top: 10em; left: 2em; height: 60%;"/>
+    <img hidden="hidden" id="plano_03" src="./imagenes/leyendas/plano_03.png" style="position:absolute; top: 10em; left: 2em; height: 60%;"/>
+    <img hidden="hidden" id="plano_04" src="./imagenes/leyendas/plano_04.png" style="position:absolute; top: 10em; left: 2em; height: 60%;"/>
 
     <!--boton geocodificador-->
     <div class="contenedor" id="diry1" hidden="hidden">
@@ -604,6 +668,8 @@
             <button type="button" style="margin:0.5em" class="btn btn-danger btn-lg" onclick="limpiar_consulta()">Cerrar</button>
         </div>  
     </div>
+    
+    
 
     <script src="src/app/Consultas/consultas_simples.js"></script>
     <script src="src/app/Consultas/consulta_direccion_boton.js"></script>
@@ -611,6 +677,7 @@
     <script src="src/app/Consultas/sinconsulta.js"></script>
     <script src="src/app/Consultas/Estadistica.js"></script>
     <script src="src/app/ConsultasCatastro.js"></script>
+    <script src="src/app/planeacion/PlanosPot.js"></script>
     <!--<script src="src/app/ConsultasHacienda.js"></script>-->
     <script src="src/app/dinamicmap.js"></script>
     <script src="src/app/geocodificacion.js"></script>

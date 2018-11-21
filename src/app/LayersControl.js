@@ -175,8 +175,6 @@ var ejeobras = new ol.layer.Tile({
     }), name: 'Eje de Obras'
 });
 
-//CAPAS POT 2011
-
 var predios_campo = new ol.layer.Tile({
     //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
     visible: false,
@@ -186,7 +184,377 @@ var predios_campo = new ol.layer.Tile({
     }), name: 'Predios Campo'
 });
 
-var anillovialoccidental = new ol.layer.Tile({
+
+//CAPAS POT 2011
+
+
+var hidrografia = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_hidrografia', STYLES: ''}
+    }), name: 'Hidrografia'
+});
+
+var redvialrural = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_red_vial_rural', STYLES: ''}
+    }), name: 'Red Vial Rural'
+});
+
+var centrospoblados = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_centrospoblados', STYLES: ''}
+    }), name: 'Centros Poblados'
+});
+
+var nodosregionales = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_nodos_regionales', STYLES: ''}
+    }), name: 'Nodos Regionales'
+});
+
+var modelonodos = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_modelonodos', STYLES: ''}
+    }), name: 'Modelo Nodos'
+});
+
+var subsistemavialrural = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_subsistemavialrural', STYLES: ''}
+    }), name: 'Subsistema Vial Rural'
+});
+
+var ejesintegracionbinacional = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_ejesintegracionbinacional', STYLES: ''}
+    }), name: 'Ejes Integracion Binacional'
+});
+
+var ejesintegracionnacional = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_ejeintegracionnacional', STYLES: ''}
+    }), name: 'Ejes Integracion Nacional'
+});
+
+var ejesintegracionregional = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_ejesintegracionregional', STYLES: ''}
+    }), name: 'Ejes Integracion Regional'
+});
+
+var suelodeproteccion = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_suelodeproteccion', STYLES: ''}
+    }), name: 'Suelo de Proteccion'
+});
+
+var perimetro2015 = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_perimetro_2015', STYLES: ''}
+    }), name: 'Perimetro_Decreto_028_de_2012'
+});
+
+var cabecerasmunicipalesvecinas = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_cabeceras_municipales_vecinas', STYLES: ''}
+    }), name: 'Cabeceras Municipales Vecinas'
+});
+
+var perimetromunicipal = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_perimetromunicipal', STYLES: ''}
+    }), name: 'Perimetro Municipal'
+});
+
+var perimetrodeexpansion = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_perimetrodeexpansion', STYLES: ''}
+    }), name: 'Perimetro de Expansion'
+});
+
+var cuerposdeagua = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_cuerposdeagua', STYLES: ''}
+    }), name: 'Cuerpos de Agua'
+});
+
+var cabecerasmunicipalescolombia = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_cabecerasmunicipalescolombia', STYLES: ''}
+    }), name: 'Cabeceras Municipales Colombia'
+});
+
+var clasesdesuelo = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_clasesdesuelo', STYLES: ''}
+    }), name: 'Clases de Suelo'
+});
+
+var toponimiabarrios = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_toponimia_barrios', STYLES: ''}
+    }), name: 'Toponimia de Barrios'
+});
+
+var anillovial = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_anillo_vial', STYLES: ''}
+    }), name: 'Anillo Vial Occidental'
+});
+
+var lineascomplementarias2015 = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_lineas_complementarias_ano_2015', STYLES: ''}
+    }), name: 'Lineas Complementarias 2015'
+});
+
+var nomenclaturapot2011 = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_nomenclatura', STYLES: ''}
+    }), name: 'Nomenclatura POT 2011'
+});
+
+var mapaconjuntoactualizado2015 = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_mapa_conjunto_actualizado_2015', STYLES: ''}
+    }), name: 'Mapa Conjunto Actualizado 2015'
+});
+
+var categoriasdelsuelourbano = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_categoriasdelsuelourbano', STYLES: ''}
+    }), name: 'Categorias del Suelo Urbano'
+});
+
+
+// WFS-T
+
+var poligonosedicion = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/prueba/wfs',
+        params: {LAYERS: 'prueba:wfs_prueba_xml', STYLES: ''}
+    }), name: 'Poligonos Edición'
+});
+
+
+var sourceWFS = new ol.source.Vector({
+    loader: function (extent) {
+        $.ajax('http://35.184.176.7:8081/geoserver/prueba/ows', {
+            type: 'GET',
+            data: {
+                service: 'WFS',
+                version: '1.1.0',
+                request: 'GetFeature',
+                typename: 'wfs_prueba_xml',
+                srsname: 'EPSG:3857',
+                bbox: extent.join(',') + ',EPSG:3857'
+            }
+        }).done(function (response) {
+            sourceWFS.addFeatures(formatWFS.readFeatures(response));
+        });
+    }, 
+    //strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ()),
+    strategy: ol.loadingstrategy.bbox,
+    projection: 'EPSG:3857'
+});
+
+
+var layerWFS = new ol.layer.Vector({
+    
+  visible: true,
+  source: sourceWFS,
+  name: 'Poligonos Edicion'
+    //style: countryStyle
+});
+
+
+
+
+
+//CAPS GROUP
+
+
+var layerCatastro = new ol.layer.Group({
+    layers: [poligonosedicion, layerWFS, manzanas, predio, vias, construcciones, n_domiciliaria, heatmap, predios_campo, highlightfeatures],
+    name: 'Catastro'
+});
+
+
+var layerPot2011 = new ol.layer.Group({
+    layers: [toponimiabarrios, anillovial, lineascomplementarias2015, nomenclaturapot2011, mapaconjuntoactualizado2015, categoriasdelsuelourbano, cabecerasmunicipalesvecinas, perimetromunicipal, perimetrodeexpansion, cuerposdeagua, cabecerasmunicipalescolombia, clasesdesuelo, redvialrural, centrospoblados, nodosregionales, modelonodos, subsistemavialrural, ejesintegracionbinacional, ejesintegracionnacional, ejesintegracionregional, perimetro2015, suelodeproteccion, hidrografia, hidrografia],
+    name: 'POT_2011'
+});
+
+var layerBing = new ol.layer.Group({
+    layers: [bing, highlightfeatures],
+    name: 'Sat'
+});
+
+var layerOrtofoto2017 = new ol.layer.Group({
+    layers: [ortofoto2017, highlightfeatures],
+    name: 'Ortofoto 2017'
+});
+
+
+var layerBase = new ol.layer.Group({
+    layers: [streetmap, mapabase, ortofoto2012, highlightfeatures],
+    name: 'Capas Base'
+});
+
+var layerValorizacion = new ol.layer.Group({
+    layers: [puntos_obras, obras, ejeobras, bufferobras, puntos_obras],
+    name: 'Valorizacion'
+});
+
+
+function buildLayerTree(layer) {
+    var elem;
+    var name = layer.get('name') ? layer.get('name') : "Group";
+    if (name != 'Group') {
+        if (layer.values_.visible == true && layer.get('name') != 'CAPAS') {
+            var div = "<li data-layerid='" + name + "'>" + "<span><img src='image/" + layer.get('name') + ".jpg' alt='Smiley face' height='20' width='20' >" + layer.get('name') + "</span>" + "<i class='glyphicon glyphicon-check'></i> ";
+        } else if (layer.get('name') == 'CAPAS') {
+            var div = "<li data-layerid='" + name + "'>" + "<span><img src='image/" + layer.get('name') + ".png' alt='Smiley face' height='30' width='100'>" /*+ layer.get('name') */ + "</span>";
+        } else {
+            var div = "<li data-layerid='" + name + "'>" + "<span><img src='image/" + layer.get('name') + ".jpg' alt='Smiley face' height='20' width='20'>" + layer.get('name') + "</span>" + "<i class='glyphicon glyphicon-unchecked'></i> ";
+        }
+        if (layer.getLayers) {
+            var sublayersElem = '';
+            var layers = layer.getLayers().getArray(),
+                    len = layers.length;
+            for (var i = len - 2; i >= 0; i--) {
+                sublayersElem += buildLayerTree(layers[i]);
+            }
+            elem = div + " <ul>" + sublayersElem + "</ul></li>";
+        } else {
+            elem = div + " </li>";
+        }
+        return elem;
+    }
+}
+/**
+ * Initialize the tree from the map layers
+ * @returns {undefined}
+ */
+function initializeTree() {
+    var elem = buildLayerTree(map.getLayerGroup());
+    $('#layertree').empty().append(elem);
+    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+    var longitud = $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch').length
+    for (var i = 0; i < longitud; i++) {
+        var colapse = $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch')[i];
+        var colap = $(colapse).parent('li.parent_li').find(' > ul > li');
+        colap.hide('fast');
+    }
+    $('.tree li.parent_li > span').on('click', function (e) {
+        var children = $(this).parent('li.parent_li').find(' > ul > li');
+        if (children.is(":visible")) {
+            children.hide('fast');
+            $(this).attr('title', 'Expand this branch').find(' > i').addClass('glyphicon-plus').removeClass('glyphicon-minus');
+        } else {
+            children.show('fast');
+            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('glyphicon-minus').removeClass('glyphicon-plus');
+        }
+        e.stopPropagation();
+    });
+}
+/**
+ * Finds recursively the layer with the specified key and value.
+ * @param {ol.layer.Base} layer
+ * @param {String} key
+ * @param {any} value
+ * @returns {ol.layer.Base}
+ */
+function findBy(layer, key, value) {
+    if (layer.get(key) === value) {
+        return layer;
+    }
+    // Find recursively if it is a group
+    if (layer.getLayers) {
+        var layers = layer.getLayers().getArray(),
+                len = layers.length, result;
+        for (var i = 0; i < len; i++) {
+            result = findBy(layers[i], key, value);
+            if (result) {
+                return result;
+            }
+        }
+    }
+    return null;
+}
+$(document).ready(function () {
+    initializeTree();
+    // Handle opacity slider control
+    $('input.opacity').slider().on('slide', function (ev) {
+        var layername = $(this).closest('li').data('layerid');
+        var layer = findBy(map.getLayerGroup(), 'name', layername);
+        layer.setOpacity(ev.value);
+    });
+    // Handle visibility control
+    $('i').on('click', function () {
+        var layername = $(this).closest('li').data('layerid');
+        var layer = findBy(map.getLayerGroup(), 'name', layername);
+        layer.setVisible(!layer.getVisible());
+        if (layer.getVisible()) {
+            $(this).removeClass('glyphicon-unchecked').addClass('glyphicon-check');
+        } else {
+            $(this).removeClass('glyphicon-check').addClass('glyphicon-unchecked');
+        }
+    });
+});
+
+
+
+//CAPAS POT 2011
+
+/*var anillovialoccidental = new ol.layer.Tile({
     //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
     visible: false,
     source: new ol.source.TileWMS({
@@ -926,15 +1294,21 @@ var usoyactividades083de2001 = new ol.layer.Tile({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
         params: {LAYERS: 'cucuta:pot_2001_zonas_homogeneas_geoeconomica', STYLES: ''}
     }), name: 'Uso y Actividades 083 de 2001'
-});
+});*/
+
+/*var sourceWFS = new ol.layer.Tile({
+    //extent: [-8342085.395410, 1222896.318514, -8314873.686686, 1237419.421485],
+    //visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/prueba/ows',
+        params: {LAYERS: 'prueba:wfs_prueba_xml', STYLES: ''}
+    }), name: 'Poligonos Edicion'
+});*/
+
 
 //CAPS GROUP
-var layerCatastro = new ol.layer.Group({
-    layers: [manzanas, predio, vias, construcciones, n_domiciliaria, heatmap, predios_campo, highlightfeatures],
-    name: 'Catastro'
-});
 
-var layerPot2001 = new ol.layer.Group({
+/*var layerPot2001 = new ol.layer.Group({
     layers: [zonasderiesgoimproas, zonadeactividadresidencial, zonacondisponibilidaddeservicios, zonasderiesgo, zonashomogeneasgeoeconomicas, viascongestionadas, tratamientodelsuelo, pot_2001_puntos, usodelsuelozonaindustrial, usoactualdelsuelourbano, usodelsuelosegunacuerdo, usoactualdelsuelo, sistemapluvial, riesgosreto, riesgosestudios, parquerio, pasoselevados, perimetroalcantarillado, perimetrodeacueducto, programadegestion, sitiodeinteresurbano, nucleoseducativos, modelodeocupacion, limitedecomunaperimetro, limitedebarriotemporal, infraestructuraalcantarillado, geologiaurbana, gestionvial, fallasgeologicas, equipamentosmetropolitanos, estratificacionsocioeconomica, espaciopublico, conflictodeusourbano, comuna, cordondeproteccion, coberturadeaseo, centrogeneradordeempleo, centrosecundarioactividadmultiple, clasificaciondelsuelo, canalesycolectores, canales3y4, canalaguaslluvias, barrios2001, atipicas, asentamientossubnormales, areasmorfologicashomogeneas, areaterrenolibre, anticlinalesysinclinales, amoblamientourbano, barrios],
     name: 'POT_2001'
 });
@@ -942,122 +1316,4 @@ var layerPot2001 = new ol.layer.Group({
 var layerPot2011 = new ol.layer.Group({
     layers: [zonasgeoeconomicas2011, verticesperimetro202, toponimiabarrios, tratamientodelsuelourbano2011, usoactualdelsuelorural2011, usoactualdelsuelourbano2011, usoactualdelsuelo2011, unidadesdeplanificacionrural, sueloproteccion, suceptibilidaddeamenazasrural, rios2011, plusvalia2011, prediosincorporados020, perimetromunicipalpot2011, perimetroacuerdo20, nomenclaturavial2011, modeloocupacionurbano2011, conjuntoareaurbano, cabecerasvecinas, anillovialoccidental, propuestabarrios, indiceconts083, indiceocup083, indiceocup089, indiceconts089, indiceconst083vs089, indiceocup083vs089, indiceocup083vs089nores, indiceconst083vs089nores, barrioslegalizados, barrios, corregimientosrurales, clasificacionusosuelo2011, actividadesdelsuelourbano2011, barrios],
     name: 'POT_2011'
-});
-
-var layerBing = new ol.layer.Group({
-    layers: [bing, highlightfeatures],
-    name: 'Sat'
-});
-
-var layerOrtofoto2017 = new ol.layer.Group({
-    layers: [ortofoto2017, highlightfeatures],
-    name: 'Ortofoto 2017'
-});
-
-
-var layerBase = new ol.layer.Group({
-    layers: [streetmap, mapabase, ortofoto2012, highlightfeatures],
-    name: 'Capas Base'
-});
-
-var layerValorizacion = new ol.layer.Group({
-    layers: [puntos_obras, obras, ejeobras, bufferobras, puntos_obras],
-    name: 'Valorizacion'
-});
-
-
-function buildLayerTree(layer) {
-    var elem;
-    var name = layer.get('name') ? layer.get('name') : "Group";
-    if (name != 'Group') {
-        if (layer.values_.visible == true && layer.get('name') != 'CAPAS') {
-            var div = "<li data-layerid='" + name + "'>" + "<span><img src='image/" + layer.get('name') + ".jpg' alt='Smiley face' height='20' width='20' >" + layer.get('name') + "</span>" + "<i class='glyphicon glyphicon-check'></i> ";
-        } else if (layer.get('name') == 'CAPAS') {
-            var div = "<li data-layerid='" + name + "'>" + "<span><img src='image/" + layer.get('name') + ".png' alt='Smiley face' height='30' width='100'>" /*+ layer.get('name') */ + "</span>";
-        } else {
-            var div = "<li data-layerid='" + name + "'>" + "<span><img src='image/" + layer.get('name') + ".jpg' alt='Smiley face' height='20' width='20'>" + layer.get('name') + "</span>" + "<i class='glyphicon glyphicon-unchecked'></i> ";
-        }
-        if (layer.getLayers) {
-            var sublayersElem = '';
-            var layers = layer.getLayers().getArray(),
-                    len = layers.length;
-            for (var i = len - 2; i >= 0; i--) {
-                sublayersElem += buildLayerTree(layers[i]);
-            }
-            elem = div + " <ul>" + sublayersElem + "</ul></li>";
-        } else {
-            elem = div + " </li>";
-        }
-        return elem;
-    }
-}
-/**
- * Initialize the tree from the map layers
- * @returns {undefined}
- */
-function initializeTree() {
-    var elem = buildLayerTree(map.getLayerGroup());
-    $('#layertree').empty().append(elem);
-    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
-    var longitud = $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch').length
-    for (var i = 0; i < longitud; i++) {
-        var colapse = $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch')[i];
-        var colap = $(colapse).parent('li.parent_li').find(' > ul > li');
-        colap.hide('fast');
-    }
-    $('.tree li.parent_li > span').on('click', function (e) {
-        var children = $(this).parent('li.parent_li').find(' > ul > li');
-        if (children.is(":visible")) {
-            children.hide('fast');
-            $(this).attr('title', 'Expand this branch').find(' > i').addClass('glyphicon-plus').removeClass('glyphicon-minus');
-        } else {
-            children.show('fast');
-            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('glyphicon-minus').removeClass('glyphicon-plus');
-        }
-        e.stopPropagation();
-    });
-}
-/**
- * Finds recursively the layer with the specified key and value.
- * @param {ol.layer.Base} layer
- * @param {String} key
- * @param {any} value
- * @returns {ol.layer.Base}
- */
-function findBy(layer, key, value) {
-    if (layer.get(key) === value) {
-        return layer;
-    }
-    // Find recursively if it is a group
-    if (layer.getLayers) {
-        var layers = layer.getLayers().getArray(),
-                len = layers.length, result;
-        for (var i = 0; i < len; i++) {
-            result = findBy(layers[i], key, value);
-            if (result) {
-                return result;
-            }
-        }
-    }
-    return null;
-}
-$(document).ready(function () {
-    initializeTree();
-    // Handle opacity slider control
-    $('input.opacity').slider().on('slide', function (ev) {
-        var layername = $(this).closest('li').data('layerid');
-        var layer = findBy(map.getLayerGroup(), 'name', layername);
-        layer.setOpacity(ev.value);
-    });
-    // Handle visibility control
-    $('i').on('click', function () {
-        var layername = $(this).closest('li').data('layerid');
-        var layer = findBy(map.getLayerGroup(), 'name', layername);
-        layer.setVisible(!layer.getVisible());
-        if (layer.getVisible()) {
-            $(this).removeClass('glyphicon-unchecked').addClass('glyphicon-check');
-        } else {
-            $(this).removeClass('glyphicon-check').addClass('glyphicon-unchecked');
-        }
-    });
-});
+});*/
