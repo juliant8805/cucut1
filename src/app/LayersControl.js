@@ -433,18 +433,18 @@ var layerPot2011 = new ol.layer.Group({
 });
 
 var layerBing = new ol.layer.Group({
-    layers: [bing, highlightfeatures],
+    layers: [bing, puntos_obras],
     name: 'Sat'
 });
 
 var layerOrtofoto2017 = new ol.layer.Group({
     layers: [ortofoto2017, highlightfeatures],
-    name: 'Ortofoto 2017'
+    name: 'Ortofoto 2018'
 });
 
 
 var layerBase = new ol.layer.Group({
-    layers: [streetmap, mapabase, ortofoto2012, highlightfeatures],
+    layers: [streetmap, mapabase, ortofoto2012, puntos_obras],
     name: 'Capas Base'
 });
 
