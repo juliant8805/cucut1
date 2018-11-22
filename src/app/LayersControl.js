@@ -60,7 +60,7 @@ var ortofoto2017 = new ol.layer.Tile({
     opacity: 0,
     source: new ol.source.XYZ({
         url: "http://35.184.176.7:8081/dashboard/ortofoto2017/{z}/{x}/{y}.jpg"
-    }), name: 'Ortofoto 2017'
+    }), name: 'Ortofoto 2018'
 });
 
 var predio = new ol.layer.Tile({
@@ -433,18 +433,18 @@ var layerPot2011 = new ol.layer.Group({
 });
 
 var layerBing = new ol.layer.Group({
-    layers: [bing, highlightfeatures],
+    layers: [bing, puntos_obras],
     name: 'Sat'
 });
 
 var layerOrtofoto2017 = new ol.layer.Group({
     layers: [ortofoto2017, highlightfeatures],
-    name: 'Ortofoto 2017'
+    name: 'Ortofoto 2018'
 });
 
 
 var layerBase = new ol.layer.Group({
-    layers: [streetmap, mapabase, ortofoto2012, highlightfeatures],
+    layers: [streetmap, mapabase, ortofoto2012, puntos_obras],
     name: 'Capas Base'
 });
 
