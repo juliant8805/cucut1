@@ -410,7 +410,7 @@ var layerWFS = new ol.layer.Vector({
     
   visible: true,
   source: sourceWFS,
-  name: 'Poligonos Edicion'
+  name: 'Poligonos Edicion vector'
     //style: countryStyle
 });
 
