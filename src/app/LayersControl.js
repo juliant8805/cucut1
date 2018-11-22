@@ -60,7 +60,7 @@ var ortofoto2017 = new ol.layer.Tile({
     opacity: 0,
     source: new ol.source.XYZ({
         url: "http://35.184.176.7:8081/dashboard/ortofoto2017/{z}/{x}/{y}.jpg"
-    }), name: 'Ortofoto 2017'
+    }), name: 'Ortofoto 2018'
 });
 
 var predio = new ol.layer.Tile({
