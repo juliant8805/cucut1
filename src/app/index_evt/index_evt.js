@@ -1453,13 +1453,13 @@ function formcoordenadas2() {
         document.getElementById("menu_coordenadas_3116").style.display = "block"; 
      }
     if (button3.checked == true){
-        document.getElementById("menu_coordenadas_3117").style.display = "block"; 
+        document.getElementById("menu_coordenadas_3116").style.display = "block"; 
      }
     if (button4.checked == true){
-        document.getElementById("menu_coordenadas_21897").style.display = "block"; 
+        document.getElementById("menu_coordenadas_3116").style.display = "block"; 
      }
     if (button5.checked == true){
-        document.getElementById("menu_coordenadas_21898").style.display = "block"; 
+        document.getElementById("menu_coordenadas_3116").style.display = "block"; 
      }
 }
 
