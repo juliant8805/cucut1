@@ -9,8 +9,12 @@ $(document).on('ready', function () {
     if (select === null || select === undefined) {
         location.href = "index.html?ig=error";
     }
+    else {
+    	document.getElementById("catastro").style.display = "block";
+    }
+    
 //registro de ingreso de usuarios
-    else if (select[0][6]==="catastro"){
+   /* else if (select[0][6]==="catastro"){
 		//console.log(select);
         m="c";
 		document.getElementById("catastro").style.display = "block";
@@ -18,7 +22,7 @@ $(document).on('ready', function () {
 		//console.log(select);
 		document.getElementById("hacienda").style.display = "block";
         m="h";
-    }
+    }*/
 });
 function validacionusuarios() {
     var ca = document.cookie.split('=');
