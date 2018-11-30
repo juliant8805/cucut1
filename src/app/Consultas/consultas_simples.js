@@ -466,16 +466,16 @@ function addressSource(requestString, responseFunc) {
         type: "GET",
         dataType: "json",
         success: function (data, status, xhr) {
-        var geojson = new ol.source.GeoJSON({
+            var geojson = new ol.source.GeoJSON({
                 object: data
             });
-            
-      /*  var geojson = new ol.source.Vector({
-           format: new ol.format.GeoJSON({
-               object: data
-           })  
-        }); */
-     
+
+            /*  var geojson = new ol.source.Vector({
+             format: new ol.format.GeoJSON({
+             object: data
+             })  
+             }); */
+
             var arr = [];
             if (temp === "direccion") {
                 for (i = 0; i < data.features.length; i++) {
@@ -1281,7 +1281,7 @@ function addressSelect(event, ui) {
                     sel[11] = values.estrato_acueducto;
                     sel[12] = values.estrato_alcantarillado;
                     sel[13] = values.estrato_aseo;
-                    sel[14] = values.cod_barrio; 
+                    sel[14] = values.cod_barrio;
                     sel[15] = "<b>Fotografias</b>";
                     sel[15] = document.createElement("a");
                     sel[15].id = "img1";
@@ -1299,13 +1299,25 @@ function addressSelect(event, ui) {
                     stv[15].setAttribute("onclick", "open_streetview()");
                     ig[15] = document.createElement("img");
                     ig[15].src = "./imagenes/streetview.png";
-                    var campos = 15;
+                    var campos = 14;
+                    if (arregloDeSubCadenas[2].length > 1) {
+                        select[16] = "<b>Descargar Recibo</b>";
+                        sel[16] = document.createElement("a");
+                        sel[16].id = "img1";
+                        imag[16] = document.createElement("img");
+                        imag[16].id = "im1";
+                        stv[16] = document.createElement("a");
+                        stv[16].id = "imgstreet1";
+                        stv[16].href = "pdf/factura.php?ref=" + arregloDeSubCadenas[0][5].replace(/'/g, "") + "&estado=" + arregloDeSubCadenas[2] + "&ac=" + simplestabla["0"][2] + "&ultimo=" + arregloDeSubCadenas[3][5] + "&liq=" + arregloDeSubCadenas[1];
+                        ig[16] = document.createElement("img");
+                        ig[16].src = "./imagenes/pdf.jpg";
+                    }
                     for (i = 0; i < select.length; i++) {
                         row = tableP.insertRow(i + 1);
                         cell1 = row.insertCell(0);
                         cell2 = row.insertCell(1);
                         cell1.innerHTML = select[i];
-                        if (i === campos) {
+                        if (i > campos) {
                             cell2.appendChild(sel[i]);
                             sel[i].appendChild(imag[i]);
                             cell2.appendChild(stv[i]);
