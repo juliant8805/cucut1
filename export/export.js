@@ -313,7 +313,7 @@ function file() {
     
     var arr = JSON.stringify(select);
     arr = arr.replace(/\./g, ",");
-    //console.log(arr);
+    console.log(arr);
     //console.log(titulo);
     var url = "/export/export.php";
     var params = "arreglo=" + arr + "&titulos=" + titulo;
