@@ -1752,6 +1752,7 @@ function PlaceSelect(event, ui) {
 function PoligonSelect(event, ui) {
     //document.getElementById("exp1").style.display = "none";
     //document.getElementById("consultas_totem").style.display = "none";
+    construcciones.setVisible(false);
     var view = map.getView();
     var feat = ui.item.feature;
     values = feat.values_.codigo;

@@ -55,6 +55,25 @@ var transactWFS = function (mode, f) {
               
             var payload = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:wfs="http://www.opengis.net/wfs" xmlns:prueba="http://prueba" xmlns:gml="http://www.opengis.net/gml"><wfs:Insert>                        <prueba:wfs_prueba_xml><prueba:geom><gml:MultiPolygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857"><gml:polygonMember><gml:Polygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857">                   <gml:outerBoundaryIs><gml:LinearRing><gml:coordinates decimal="." cs="," ts=" ">' + coordinates + '</gml:coordinates></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:polygonMember></gml:MultiPolygon></prueba:geom></prueba:wfs_prueba_xml></wfs:Insert></wfs:Transaction>';
             
+      
+                var view = map.getView();
+                var feat = f;
+                var geom = feat.getGeometry();
+                highlight.setStyle(BarrioStyle);
+                var markerSource = highlight.getSource();
+                markerSource.clear();
+                markerSource.addFeature(feat);
+                ppExtent = geom.getExtent();
+                ppExtent[0] = ppExtent[0] - 200;
+                ppExtent[2] = ppExtent[2] + 200;
+                ppExtent[1] = ppExtent[1] - 200;
+                ppExtent[3] = ppExtent[3] + 200;
+                /*var featureCenter = ol.extent.getCenter(ppExtent);
+                view.setCenter(featureCenter);
+                view.fitExtent(ppExtent, map.getSize());*/
+                poligonosedicion.getSource().updateParams({'STYLES': 'poligonos_edicion2', 'CQL_FILTER': "10=10"});
+            
+            
             if (conteo == 1){
             poligonosedicion.getSource().updateParams({CQL_FILTER:"1=1"});
                 conteo = conteo + 1;
@@ -92,7 +111,7 @@ var transactWFS = function (mode, f) {
                 conteo = conteo + 1;
             }
                   
-           
+           predio.setVisible(true);
             
          
             break;
@@ -370,6 +389,7 @@ $('button').click(function () {
             break;
 
         case 'btnArea':
+            poligonosedicion.setVisible(true);
             interaction = new ol.interaction.Draw({
                 type: 'Polygon',
                 source: layerWFS.getSource()
@@ -393,7 +413,7 @@ $('button').click(function () {
                 interactionSelectPointerMove.getFeatures().clear();
                 interaction.getFeatures().clear();
             });*/
-            
+            poligonosedicion.setVisible(true);
             interaction = new ol.interaction.Draw({
                 type: 'Point',
                 source: layerWFS.getSource()

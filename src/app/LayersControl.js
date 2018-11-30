@@ -384,6 +384,7 @@ var poligonosedicion = new ol.layer.Tile({
 });
 
 
+
 var sourceWFS = new ol.source.Vector({
     loader: function (extent) {
         $.ajax('http://35.184.176.7:8081/geoserver/prueba/ows', {
