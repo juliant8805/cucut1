@@ -356,7 +356,8 @@ function herramientas() {
      document.getElementById('cerrar_submenu_verde').style.display = 'block';*/
 }
 function limpiar_consulta() {
-    var x = document.getElementById("marco2");
+    location.reload(true);
+  /*  var x = document.getElementById("marco2");
     var y = (x.contentWindow || x.contentDocument);
     if (y.document)y = y.document;
     y.body.style.display = "none";	
@@ -449,6 +450,7 @@ function limpiar_consulta() {
     document.getElementById("tabladir1").style.display = "none";
     document.getElementById("diry1").style.display = "none";
     document.getElementById("diry").style.display = "none";
+    */
 }
 function busqueda_personalizada() {
     if (document.getElementById('personalizada').style.display === "" || document.getElementById('personalizada').style.display === "none")
@@ -633,7 +635,11 @@ function changeImage(id) {
     else if (id === "valorizacion") {
         document.getElementById("valorizacion").style = "background-color:#366777;height:100%;width:100%;"; 
         document.getElementById("valorizacion").value = "seleccione";
-    }  
+    }
+    else if (id === "planospot") {
+        document.getElementById('planospot').style = "background-color:#366777;height:100%;width:100%;"; 
+        document.getElementById("planospot").value = "seleccione";
+    }
 }
 
 function normalImage(id) {
@@ -659,6 +665,9 @@ function normalImage(id) {
     else if (id === "valorizacion") {
         document.getElementById('valorizacion').style = "background-color:#4E9AAB;height:100%;width:100%;";
     } 
+    else if (id === "planospot") {
+        document.getElementById('planospot').style = "background-color:#4E9AAB;height:100%;width:100%;";
+    }
 }
 
 function comparacion_imagenes() {
@@ -1444,13 +1453,13 @@ function formcoordenadas2() {
         document.getElementById("menu_coordenadas_3116").style.display = "block"; 
      }
     if (button3.checked == true){
-        document.getElementById("menu_coordenadas_3117").style.display = "block"; 
+        document.getElementById("menu_coordenadas_3116").style.display = "block"; 
      }
     if (button4.checked == true){
-        document.getElementById("menu_coordenadas_21897").style.display = "block"; 
+        document.getElementById("menu_coordenadas_3116").style.display = "block"; 
      }
     if (button5.checked == true){
-        document.getElementById("menu_coordenadas_21898").style.display = "block"; 
+        document.getElementById("menu_coordenadas_3116").style.display = "block"; 
      }
 }
 

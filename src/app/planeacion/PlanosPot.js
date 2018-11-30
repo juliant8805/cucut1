@@ -1,6 +1,6 @@
 
 function planos(id) {
-   limpiar_consulta();   
+ // limpiar_consulta();   
    if (document.getElementById("planospot").value != "seleccione") {
    map.on('singleclick', function (evt1) {   
         var resolution = map.getView().getResolution();

@@ -118,7 +118,7 @@ map = new ol.Map({
     target: document.getElementById('map'),
     // use the Canvas renderer
     renderer: 'canvas',
-    layers: [layerBase, layerPot2011, layerBing, layerCatastro, ortofoto2017, sitios, layerValorizacion, highlight],
+    layers: [layerBase, layerPot2011, layerBing, layerCatastro, layerOrtofoto2017, sitios, layerValorizacion, highlight],
     view: new ol.View({
         center: center,
         zoom: zoom,
@@ -872,7 +872,11 @@ map.on('singleclick', function (evt) {
                             select[8] = "<b>Estrato</b>";
                             select[9] = "<b>Clase de Predio</b>";
                             select[10] = "<b>Tipo de Predio</b>";
-                            select[11] = "<b>Fotografías</b>";
+                            select[11] = "<b>Estrato Acueducto</b>";
+                            select[12] = "<b>Estrato Alcantarillado</b>";
+                            select[13] = "<b>Estrato Aseo</b>";
+                            select[14] = "<b>Barrio</b>";
+                            select[15] = "<b>Fotografías</b>";
                             
                             sel[0] = arregloDeSubCadenas[0][5];
                             sel[1] = arregloDeSubCadenas[0][7];
@@ -885,35 +889,39 @@ map.on('singleclick', function (evt) {
                             sel[8] = arregloDeSubCadenas[0][9];
                             sel[9] = arregloDeSubCadenas[0][3];
                             sel[10] = arregloDeSubCadenas[0][8];
-                            sel[11] = document.createElement("a");
-                            sel[11].id = "img1";
-                            sel[11].target = "marco2";
-                            sel[11].setAttribute("onclick", "open_streetview()");
-                            sel[11].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                            imag[11] = document.createElement("img");
-                            imag[11].id = "im1";
-                            imag[11].className = "pequeña";
-                            imag[11].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                            stv[11] = document.createElement("a");
-                            stv[11].id = "imgstreet1";
-                            stv[11].target = "marco";
-                            stv[11].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
-                            stv[11].setAttribute("onclick", "open_streetview()");
-                            ig[11] = document.createElement("img");
-                            ig[11].src = "./imagenes/streetview.png";
+                            sel[11] = values.estrato_acueducto;
+                            sel[12] = values.estrato_alcantarillado;
+                            sel[13] = values.estrato_aseo;
+                            sel[14] = values.cod_barrio;       
+                            sel[15] = document.createElement("a");
+                            sel[15].id = "img1";
+                            sel[15].target = "marco2";
+                            sel[15].setAttribute("onclick", "open_streetview()");
+                            sel[15].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            imag[15] = document.createElement("img");
+                            imag[15].id = "im1";
+                            imag[15].className = "pequeña";
+                            imag[15].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            stv[15] = document.createElement("a");
+                            stv[15].id = "imgstreet1";
+                            stv[15].target = "marco";
+                            stv[15].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
+                            stv[15].setAttribute("onclick", "open_streetview()");
+                            ig[15] = document.createElement("img");
+                            ig[15].src = "./imagenes/streetview.png";
+                            var campos = 14;
                             if (arregloDeSubCadenas[2].length > 1) {
-                                select[12] = "<b>Descargar Recibo</b>";
-                                sel[12] = document.createElement("a");
-                                sel[12].id = "img1";
-                                imag[12] = document.createElement("img");
-                                imag[12].id = "im1";
-                                stv[12] = document.createElement("a");
-                                stv[12].id = "imgstreet1";
-                                stv[12].href = "pdf/factura.php?ref="+ref_cat.replace(/'/g,"")+"&estado="+arregloDeSubCadenas[2]+"&ac="+simplestabla["0"][2]+"&ultimo="+arregloDeSubCadenas[3][5]+"&liq="+arregloDeSubCadenas[1];
-                                ig[12] = document.createElement("img");
-                                ig[12].src = "./imagenes/pdf.jpg";
+                                select[16] = "<b>Descargar Recibo</b>";
+                                sel[16] = document.createElement("a");
+                                sel[16].id = "img1";
+                                imag[16] = document.createElement("img");
+                                imag[16].id = "im1";
+                                stv[16] = document.createElement("a");
+                                stv[16].id = "imgstreet1";
+                                stv[16].href = "pdf/factura.php?ref="+ref_cat.replace(/'/g,"")+"&estado="+arregloDeSubCadenas[2]+"&ac="+simplestabla["0"][2]+"&ultimo="+arregloDeSubCadenas[3][5]+"&liq="+arregloDeSubCadenas[1];
+                                ig[16] = document.createElement("img");
+                                ig[16].src = "./imagenes/pdf.jpg";
                             }  
-                            var campos = 10;
                             for (i = 0; i < select.length; i++) {
                                 row = tableP.insertRow(i + 1);
                                 cell1 = row.insertCell(0);

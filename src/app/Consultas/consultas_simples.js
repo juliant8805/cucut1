@@ -466,16 +466,16 @@ function addressSource(requestString, responseFunc) {
         type: "GET",
         dataType: "json",
         success: function (data, status, xhr) {
-        var geojson = new ol.source.GeoJSON({
+            var geojson = new ol.source.GeoJSON({
                 object: data
             });
-            
-      /*  var geojson = new ol.source.Vector({
-           format: new ol.format.GeoJSON({
-               object: data
-           })  
-        }); */
-     
+
+            /*  var geojson = new ol.source.Vector({
+             format: new ol.format.GeoJSON({
+             object: data
+             })  
+             }); */
+
             var arr = [];
             if (temp === "direccion") {
                 for (i = 0; i < data.features.length; i++) {
@@ -1244,7 +1244,7 @@ function addressSelect(event, ui) {
                     var row = tableP.insertRow(0);
                     var cell1 = row.insertCell(0);
                     cell1.colSpan = 2;
-                    cell1.innerHTML = "<H5><b>INFORMACION DEL PREDIO PH</b></H5>";
+                    cell1.innerHTML = "<H5><b>INFORMACION DEL PREDIO</b></H5>";
                     var select = [];
                     var sel = [];
                     var imag = [];
@@ -1262,7 +1262,11 @@ function addressSelect(event, ui) {
                     select[8] = "<b>Estrato</b>";
                     select[9] = "<b>Clase de Predio</b>";
                     select[10] = "<b>Tipo de Predio</b>";
-                    select[11] = "<b>Fotografias</b>";
+                    select[11] = "<b>Estrato Acueducto</b>";
+                    select[12] = "<b>Estrato Alcantarillado</b>";
+                    select[13] = "<b>Estrato Aseo</b>";
+                    select[14] = "<b>Barrio</b>";
+                    select[15] = "<b>Fotografias</b>";
                     sel[0] = arregloDeSubCadenas[0][5];
                     sel[1] = arregloDeSubCadenas[0][7];
                     sel[2] = arregloDeSubCadenas[0][6];
@@ -1274,30 +1278,46 @@ function addressSelect(event, ui) {
                     sel[8] = arregloDeSubCadenas[0][9];
                     sel[9] = arregloDeSubCadenas[0][3];
                     sel[10] = arregloDeSubCadenas[0][8];
-                    sel[11] = "<b>Fotografias</b>";
-                    sel[11] = document.createElement("a");
-                    sel[11].id = "img1";
-                    sel[11].target = "marco2";
-                    sel[11].setAttribute("onclick", "open_streetview()");
-                    sel[11].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                    imag[11] = document.createElement("img");
-                    imag[11].id = "im1";
-                    imag[11].className = "pequeña";
-                    imag[11].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                    stv[11] = document.createElement("a");
-                    stv[11].id = "imgstreet1";
-                    stv[11].target = "marco";
-                    stv[11].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
-                    stv[11].setAttribute("onclick", "open_streetview()");
-                    ig[11] = document.createElement("img");
-                    ig[11].src = "./imagenes/streetview.png";
-                    var campos = 11;
+                    sel[11] = values.estrato_acueducto;
+                    sel[12] = values.estrato_alcantarillado;
+                    sel[13] = values.estrato_aseo;
+                    sel[14] = values.cod_barrio;
+                    sel[15] = "<b>Fotografias</b>";
+                    sel[15] = document.createElement("a");
+                    sel[15].id = "img1";
+                    sel[15].target = "marco2";
+                    sel[15].setAttribute("onclick", "open_streetview()");
+                    sel[15].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                    imag[15] = document.createElement("img");
+                    imag[15].id = "im1";
+                    imag[15].className = "pequeña";
+                    imag[15].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                    stv[15] = document.createElement("a");
+                    stv[15].id = "imgstreet1";
+                    stv[15].target = "marco";
+                    stv[15].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
+                    stv[15].setAttribute("onclick", "open_streetview()");
+                    ig[15] = document.createElement("img");
+                    ig[15].src = "./imagenes/streetview.png";
+                    var campos = 14;
+                    if (arregloDeSubCadenas[2].length > 1) {
+                        select[16] = "<b>Descargar Recibo</b>";
+                        sel[16] = document.createElement("a");
+                        sel[16].id = "img1";
+                        imag[16] = document.createElement("img");
+                        imag[16].id = "im1";
+                        stv[16] = document.createElement("a");
+                        stv[16].id = "imgstreet1";
+                        stv[16].href = "pdf/factura.php?ref=" + arregloDeSubCadenas[0][5].replace(/'/g, "") + "&estado=" + arregloDeSubCadenas[2] + "&ac=" + simplestabla["0"][2] + "&ultimo=" + arregloDeSubCadenas[3][5] + "&liq=" + arregloDeSubCadenas[1];
+                        ig[16] = document.createElement("img");
+                        ig[16].src = "./imagenes/pdf.jpg";
+                    }
                     for (i = 0; i < select.length; i++) {
                         row = tableP.insertRow(i + 1);
                         cell1 = row.insertCell(0);
                         cell2 = row.insertCell(1);
                         cell1.innerHTML = select[i];
-                        if (i === campos) {
+                        if (i > campos) {
                             cell2.appendChild(sel[i]);
                             sel[i].appendChild(imag[i]);
                             cell2.appendChild(stv[i]);
