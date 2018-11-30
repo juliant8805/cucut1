@@ -21,14 +21,14 @@ var format = [];
 var wmsSource = [];
 
 /*var ddlItems = document.getElementById("selBarrio");
-var listaBarrios = search("cucuta:barriosGeo");
-for (var i = 0; i < listaBarrios.length; i++) {
-    var opt = listaBarrios[i];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    ddlItems.appendChild(el);
-}*/
+ var listaBarrios = search("cucuta:barriosGeo");
+ for (var i = 0; i < listaBarrios.length; i++) {
+ var opt = listaBarrios[i];
+ var el = document.createElement("option");
+ el.textContent = opt;
+ el.value = opt;
+ ddlItems.appendChild(el);
+ }*/
 
 
 function putgif() {
@@ -140,7 +140,7 @@ map.on('singleclick', function (evt) {
     markerSource.clear();
     //markerSource.clear();
     coordinates = evt;
-    if (document.getElementById("boton_medir").style.display == "none"){
+    if (document.getElementById("boton_medir").style.display == "none") {
         document.getElementById("panel_atr").style.display = "none";
         document.getElementById("panel_atr2").style.display = "none";
     }
@@ -149,7 +149,7 @@ map.on('singleclick', function (evt) {
         document.getElementById("panel_atr2").style.height = "0px";
         document.getElementById("tablaP").style.visibility = "hidden";
     }
-     
+
     var viewResolution = map.getView().getResolution();
     var url = wmsSource[0].getGetFeatureInfoUrl(
             evt.coordinate, viewResolution, map.getView().getProjection(),
@@ -192,15 +192,15 @@ map.on('singleclick', function (evt) {
                             document.getElementById("panel_atr2").style.height = "auto";
                             document.getElementById("cpestana1").style.visibility = "visible";
                             document.getElementById("cpestana1").style.display = "initial";
-                            document.getElementById("cpestana1").style.height = "auto";                            
+                            document.getElementById("cpestana1").style.height = "auto";
                             document.getElementById("cpestana2").style.visibility = "visible";
                             document.getElementById("cpestana2").style.display = "initial";
-                            document.getElementById("cpestana2").style.height = "auto";                              
+                            document.getElementById("cpestana2").style.height = "auto";
                             document.getElementById("panel_atr2").style.display = "block";
-                            document.getElementById("panel_atr2").style.height = "0px";     
+                            document.getElementById("panel_atr2").style.height = "0px";
                             document.getElementById("contenedorg").style.display = "initial";
                             document.getElementById("contenedorg").style.visibility = "visible";
-                            document.getElementById("contenedorg").style.height = "auto";  
+                            document.getElementById("contenedorg").style.height = "auto";
                         } else if (tipoUsuario === "Hacienda") {
                             var table = document.getElementById("tablaP");
                             document.getElementById("tblatt").style.visibility = "hidden";
@@ -271,15 +271,15 @@ map.on('singleclick', function (evt) {
                         document.getElementById("panel_atr2").style.height = "auto";
                         document.getElementById("cpestana1").style.visibility = "visible";
                         document.getElementById("cpestana1").style.display = "initial";
-                        document.getElementById("cpestana1").style.height = "auto";                            
+                        document.getElementById("cpestana1").style.height = "auto";
                         document.getElementById("cpestana2").style.visibility = "visible";
                         document.getElementById("cpestana2").style.display = "initial";
-                        document.getElementById("cpestana2").style.height = "auto";                              
+                        document.getElementById("cpestana2").style.height = "auto";
                         document.getElementById("panel_atr2").style.display = "block";
-                        document.getElementById("panel_atr2").style.height = "0px";     
+                        document.getElementById("panel_atr2").style.height = "0px";
                         document.getElementById("contenedorg").style.display = "initial";
                         document.getElementById("contenedorg").style.visibility = "visible";
-                        document.getElementById("contenedorg").style.height = "auto";                          
+                        document.getElementById("contenedorg").style.height = "auto";
                         var table = document.getElementById("tblatt");
                         table.innerHTML = "";
                         var row = table.insertRow(0);
@@ -360,8 +360,8 @@ map.on('singleclick', function (evt) {
                             var matricula = "Sin Informacion";
                         }
 
-                       
-                        
+
+
                         if (tipoUsuario === "Catastro") {
                             select[0] = "<b>Código Manzana</b>";
                             select[1] = "<b>Código Catastral Nuevo</b>";
@@ -749,10 +749,10 @@ map.on('singleclick', function (evt) {
 
                         } else if (tipoUsuario === "Hacienda") {
                             try {
-                            var matricula = search("cucuta:consultamatricula", cod);
-                        } catch (err) {
-                            var matricula = "Sin Informacion";
-                        }
+                                var matricula = search("cucuta:consultamatricula", cod);
+                            } catch (err) {
+                                var matricula = "Sin Informacion";
+                            }
                             document.getElementById("tblatt").style.visibility = "visible";
                             document.getElementById("tblatt").style.display = "initial";
                             document.getElementById("tblatt").style.height = "auto";
@@ -873,6 +873,7 @@ map.on('singleclick', function (evt) {
                             select[9] = "<b>Clase de Predio</b>";
                             select[10] = "<b>Tipo de Predio</b>";
                             select[11] = "<b>Fotografías</b>";
+                            
                             sel[0] = arregloDeSubCadenas[0][5];
                             sel[1] = arregloDeSubCadenas[0][7];
                             sel[2] = arregloDeSubCadenas[0][6];
@@ -900,13 +901,25 @@ map.on('singleclick', function (evt) {
                             stv[11].setAttribute("onclick", "open_streetview()");
                             ig[11] = document.createElement("img");
                             ig[11].src = "./imagenes/streetview.png";
-                            var campos = 11;
+                            if (arregloDeSubCadenas[2].length > 1) {
+                                select[12] = "<b>Descargar Recibo</b>";
+                                sel[12] = document.createElement("a");
+                                sel[12].id = "img1";
+                                imag[12] = document.createElement("img");
+                                imag[12].id = "im1";
+                                stv[12] = document.createElement("a");
+                                stv[12].id = "imgstreet1";
+                                stv[12].href = "pdf/factura.php?ref="+ref_cat.replace(/'/g,"")+"&estado="+arregloDeSubCadenas[2]+"&ac="+simplestabla["0"][2]+"&ultimo="+arregloDeSubCadenas[3][5]+"&liq="+arregloDeSubCadenas[1];
+                                ig[12] = document.createElement("img");
+                                ig[12].src = "./imagenes/pdf.jpg";
+                            }  
+                            var campos = 10;
                             for (i = 0; i < select.length; i++) {
                                 row = tableP.insertRow(i + 1);
                                 cell1 = row.insertCell(0);
                                 cell2 = row.insertCell(1);
                                 cell1.innerHTML = select[i];
-                                if (i === campos) {
+                                if (i > campos) {
                                     cell2.appendChild(sel[i]);
                                     sel[i].appendChild(imag[i]);
                                     cell2.appendChild(stv[i]);
@@ -915,7 +928,6 @@ map.on('singleclick', function (evt) {
                                     cell2.innerHTML = sel[i];
                                 }
                             }
-
                             var table = document.getElementById("tblatt");
                             table.innerHTML = "";
                             var select = [];
@@ -1322,7 +1334,7 @@ map.on('singleclick', function (evt) {
                     }
                     feature.getGeometry().transform('EPSG:4326', 'EPSG:3857');
                     if (tipoUsuario === "Hacienda" && ph < 800) {
-                        if (arregloDeSubCadenas[1].length > 1 ) {
+                        if (arregloDeSubCadenas[1].length > 1) {
                             highlightfeatures.setStyle(PredioDebe);
                         } else {
                             highlightfeatures.setStyle(PredioStyle);
