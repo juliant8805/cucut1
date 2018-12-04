@@ -1301,6 +1301,19 @@ function addressSelect(event, ui) {
                     ig[15].src = "./imagenes/streetview.png";
                     var campos = 14;
                     if (arregloDeSubCadenas[2].length > 1) {
+                    	   var urlphp = 'sql/wsFactura.php';
+                        $.ajax({
+                        url: urlphp,
+                        data: {ref: arregloDeSubCadenas[0][5]},
+                        type: "POST",
+                        //dataType: "json",
+                        async: false,
+                        success: function (data, status, xhr) {},
+                        error: function (jqXHR, exception) {
+                        console.log(jqXHR);
+                        console.log(exception);
+                        }
+                        });
                         select[16] = "<b>Descargar Recibo</b>";
                         sel[16] = document.createElement("a");
                         sel[16].id = "img1";
@@ -1308,7 +1321,8 @@ function addressSelect(event, ui) {
                         imag[16].id = "im1";
                         stv[16] = document.createElement("a");
                         stv[16].id = "imgstreet1";
-                        stv[16].href = "pdf/factura.php?ref=" + arregloDeSubCadenas[0][5].replace(/'/g, "") + "&estado=" + arregloDeSubCadenas[2] + "&ac=" + simplestabla["0"][2] + "&ultimo=" + arregloDeSubCadenas[3][5] + "&liq=" + arregloDeSubCadenas[1];
+                        stv[16].href = "/facturas/factura.pdf";
+                        stv[16].target = "_blank";
                         ig[16] = document.createElement("img");
                         ig[16].src = "./imagenes/pdf.jpg";
                     }
