@@ -882,7 +882,6 @@ function addressSelect(event, ui) {
                     select[14] = "<b>Empresa de Alcantarillado</b>";
                     select[15] = "<b>Empresa de Aseo</b>";
                     select[16] = "<b>Avalúo Catastral 2018</b>";
-
                     select[17] = "<b>Area de Terreno</b>";
                     select[18] = "<b>Area Construida</b>";
                     select[19] = "<b>Barrio</b>";
@@ -966,6 +965,7 @@ function addressSelect(event, ui) {
                                 console.log(exception);
                             }
                         });
+                    }
                     var table = document.getElementById("tblatt");
                     table.innerHTML = "";
                     var row = table.insertRow(0);

@@ -156,7 +156,7 @@ map.on('singleclick', function (evt) {
             {'INFO_FORMAT': infoFormat}
     );
     var tamañopantalla = screen.width > 800;
-    if (url && predio.values_.visible == true && viewResolution < 2 && document.getElementById("medidas").style.display == "none" && document.getElementById("menu_edicion").style.display == "none") {
+    if (url && predio.values_.visible == true && viewResolution < 2 && document.getElementById("medidas").style.display == "none" && document.getElementById("menu_edicion").style.display == "none" && tipoUsuario !== "Totem") {
         $.ajax({
             url: url,
             beforeSend: function () {
@@ -179,7 +179,7 @@ map.on('singleclick', function (evt) {
                         direccion[0] = "Sin Información";
                     }
                     if (ph >= 800) {
-                        if (tipoUsuario === "Catastro" || tipoUsuario === "Planeacion" || tipoUsuario === "Totem") {
+                        if (tipoUsuario === "Catastro" || tipoUsuario === "Planeacion"/* || tipoUsuario === "Totem"*/) {
                             var table = document.getElementById("tblatt");
                             document.getElementById("tblatt").style.visibility = "visible";
                             document.getElementById("tblatt").style.display = "initial";
