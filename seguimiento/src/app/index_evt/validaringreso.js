@@ -10,10 +10,11 @@ $(document).on('ready', function () {
         location.href = "index.html?ig=error";
     }
     else {
-        document.getElementById("catastro").style.display = "block";
+    	document.getElementById("catastro").style.display = "block";
     }
+    
 //registro de ingreso de usuarios
-  /*  else if (select[0][6]==="catastro"){
+   /* else if (select[0][6]==="catastro"){
 		//console.log(select);
         m="c";
 		document.getElementById("catastro").style.display = "block";

@@ -950,109 +950,134 @@ function addressSelect(event, ui) {
                     document.getElementById("botonminimizar").style.display = "block";
                 }
                 //totem
-                else if (tipoUsuario === "Totem") {
-                    //select[0] = "<b>Codigo Catastral Nuevo</b>";
+                else if (tipoUsuario === "Totem") {  
+                    function enviarRef(referencia) {
+                        var ref = referencia;
+                        var urlphp = 'sql/wsDatosBasicos.php';
+                        var temp = $.ajax({
+                            url: urlphp,
+                            data: {ref: ref},
+                            type: "POST",
+                            //dataType: "json",
+                            async: false,
+                            success: function (data, status, xhr) {},
+                            error: function (jqXHR, exception) {
+                                console.log(jqXHR);
+                                console.log(exception);
+                            }
+                        });
+                    var table = document.getElementById("tblatt");
+                    table.innerHTML = "";
+                    var row = table.insertRow(0);
+                    var cell1 = row.insertCell(0);
+                    cell1.colSpan = 2;
+                    cell1.innerHTML = "<H5><b>INFORMACION DEL PREDIO</b></H5>";
+                    var select = [];
+                    var sel = [];
+                    var imag = [];
+                    var stv = [];
+                    var ig = [];
+  
+                    var arregloDeSubCadenas = enviarRef(eval("'" + ui.item.codigooriginal.toString() + "'"));
                     select[0] = "<b>Codigo Catastral</b>";
-                    select[1] = "<b>Matricula Inmobiliaria</b>";
-                    select[2] = "<b>Dirección</b>";
-                    select[3] = "<b>Deuda</b>";
-                    /*select[5] = "<b>Uso Alcantarillado</b>";sel[0] = "<FONT SIZE=2 color='red'><b>POR PAGAR</b></font>";
-                     select[6] = "<b>Uso Aseo</b>";
-                     select[7] = "<b>Estrato Hacienda</b>";
-                     select[8] = "<b>Estrato Acueducto</b>";
-                     select[9] = "<b>Estrato Alcantarillado</b>";
-                     select[10] = "<b>Estrato Aseo</b>";*/
-                    select[4] = "<b>Destino Económico</b>";
-                    select[5] = "<b>Avalúo Catastral 2018</b>";
-                    select[6] = "<b>Area de Terreno</b>";
-                    select[7] = "<b>Area Construida</b>";
+                    select[1] = "<b>Dirección</b>";
+                    select[2] = "<b>Destino</b>";
+                    select[3] = "<b>Area de Terreno</b>";
+                    select[4] = "<b>Area de Construcción</b>";
+                    select[5] = "<b>Avalúo Catastral</b>";
+                    select[6] = "<b>Estrato</b>";
+                    select[7] = "<b>Tipo de Predio</b>";
                     select[8] = "<b>Barrio</b>";
-                    select[8] = "<b>Codigo Postal</b>";
+                    select[9] = "<b>Codigo Postal</b>";
                     select[10] = "<b>Cuadrante CAI</b>";
                     select[11] = "<b>Nombre CAI</b>";
-                    select[12] = "<b>Telefono CAI</b>";
+                    select[12] = "<b>Telefono CAI</b>"; 
                     select[13] = "<b>Fotografias</b>";
-                    //sel[0] = cod_nacion["0"]["0"];
-                    sel[0] = ui.item.codigooriginal;
-                    sel[1] = matricula;
-                    sel[2] = ui.item.direccionoriginal;
-                    if (values.deuda_2018 > 0) {
-                        sel[3] = "<FONT SIZE=2 color='red'><b>POR PAGAR</b></font>";
-                    } else {
-                        sel[3] = "<FONT SIZE=2 color='green'><b>NO POSEE DEUDA CON EL MUNICIPIO</b></font>";
+                    select[14] = "<b>Información Impuestos</b>";
+                    sel[0] = arregloDeSubCadenas[0][5];
+                    sel[1] = arregloDeSubCadenas[0][6];
+                    sel[2] = arregloDeSubCadenas[0][4];
+                    sel[3] = Intl.NumberFormat().format(arregloDeSubCadenas[0][1]) + " M2";
+                    sel[4] = simplestabla["0"][2] + " M2";
+                    sel[5] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[0][2]);
+                    sel[6] = arregloDeSubCadenas[0][9];
+                    sel[7] = arregloDeSubCadenas[0][8];
+                    sel[8] = values.cod_barrio;
+                    sel[9] = values.cod_postal;
+                    sel[10] = values.cuadrante;
+                    sel[11] = values.nombre_cai;
+                    sel[12] = values.telefono;
+                    sel[13] = "<b>Fotografias</b>";
+                    sel[13] = document.createElement("a");
+                    sel[13].id = "img1";
+                    sel[13].target = "marco2";
+                    sel[13].setAttribute("onclick", "open_streetview()");
+                    sel[13].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                    imag[13] = document.createElement("img");
+                    imag[13].id = "im1";
+                    imag[13].className = "pequeña";
+                    imag[13].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                    stv[13] = document.createElement("a");
+                    stv[13].id = "imgstreet1";
+                    stv[13].target = "marco";
+                    stv[13].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
+                    stv[13].setAttribute("onclick", "open_streetview()");
+                    ig[13] = document.createElement("img");
+                    ig[13].src = "./imagenes/streetview.png";
+                    var campos = 14;
+                    if (arregloDeSubCadenas[2].length > 1) {
+                        sel[14] = "POSEE DEUDA CON EL MUNICIPIO";
+                        var urlphp = 'sql/wsFactura.php';
+                        $.ajax({
+                        url: urlphp,
+                        data: {ref: arregloDeSubCadenas[0][5]},
+                        type: "POST",
+                        //dataType: "json",
+                        async: false,
+                        success: function (data, status, xhr) {},
+                        error: function (jqXHR, exception) {
+                        console.log(jqXHR);
+                        console.log(exception);
+                        }
+                        });
+                        select[15] = "<b>Descargar Recibo</b>";
+                        sel[15] = document.createElement("a");
+                        sel[15].id = "img1";
+                        imag[15] = document.createElement("img");
+                        imag[15].id = "im1";
+                        stv[15] = document.createElement("a");
+                        stv[15].id = "imgstreet1";
+                        stv[15].href = "/facturas/factura.pdf";
+                        stv[15].target = "_blank";
+                        ig[15] = document.createElement("img");
+                        ig[15].src = "./imagenes/pdf.jpg";
                     }
-                    sel[4] = simplestabla["0"]["0"];
-                    /*sel[4] = uso_acueducto;
-                     sel[5] = uso_alcantarillado;
-                     sel[6] = uso_aseo;
-                     sel[7] = simplestabla["0"][5];
-                     sel[8] = estrato_acued;
-                     sel[9] = estrato_aseo;
-                     sel[10] = values.estrato_aseo;*/
-                    sel[11] = avaluo2018;
-                    sel[12] = simplestabla["0"][1] + "m2";
-                    sel[13] = simplestabla["0"][2] + "m2";
-                    sel[14] = values.cod_barrio;
-                    sel[15] = values.cod_postal;
-                    sel[16] = values.cuadrante;
-                    sel[17] = values.nombre_cai;
-                    sel[18] = values.telefono;
-                    sel[19] = document.createElement("a");
-                    sel[19].id = "img1";
-                    sel[19].style = "width: 30px; height: 50px;";
-                    sel[19].target = "marco2";
-                    sel[19].setAttribute("onclick", "open_streetview()");
-                    sel[19].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                    imag[19] = document.createElement("img");
-                    imag[19].id = "im1";
-                    imag[19].className = "pequeña";
-                    imag[19].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                    stv[19] = document.createElement("a");
-                    stv[19].id = "imgstreet1";
-                    stv[19].target = "marco";
-                    stv[19].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
-                    stv[19].setAttribute("onclick", "open_streetview()");
-                    ig[19] = document.createElement("img");
-                    ig[19].src = "./imagenes/streetview.png";
+                    else{
+                        sel[14] = "NO POSEE DEUDA CON EL MUNICIPIO";
+                    }
                     for (i = 0; i < select.length; i++) {
                         row = table.insertRow(i + 1);
                         cell1 = row.insertCell(0);
                         cell2 = row.insertCell(1);
                         cell1.innerHTML = select[i];
-                        if (i === 19) {
+                        if (i > campos) {
                             cell2.appendChild(sel[i]);
-                            //cell2.appendChild(imag[i]);
                             sel[i].appendChild(imag[i]);
                             cell2.appendChild(stv[i]);
-                            //cell2.appendChild(ig[i]);
                             stv[i].appendChild(ig[i]);
-
                         } else {
                             cell2.innerHTML = sel[i];
                         }
                     }
-                    try {
-                        document.getElementById("tablaP").deleteRow(0);
-                    } catch (err) {
-                    }
-                    var fila = "<tr><td><H5><b>IMPRIMIR FACTURA</b></H5></td><td>";
-                    var btn = document.createElement("TR");
-                    btn.innerHTML = fila;
-                    document.getElementById("tablaP").value = sel[0];
-                    document.getElementById("tablaP").setAttribute("onclick", "factura(this.value)");
-                    document.getElementById("tablaP").appendChild(btn);
                     document.getElementById("contenedorg").style.display = "block";
                     document.getElementById("panel_atr").style.display = "block";
                     document.getElementById("cpestana1").style.display = "block";
-                    document.getElementById("pestana2").style.display = "none";
                     document.getElementById("cpestana2").style.display = "none";
                     document.getElementById("pestana1").style.backgroundColor = "#EAC102";
                     document.getElementById("pestana2").style.backgroundColor = "#A9A9A9";
-                    document.getElementById("botonminimizar").style.display = "block";
+                    document.getElementById("botonminimizar").style.display = "block";    
                 }
-
                 //planeacion
-
                 else if (tipoUsuario === "Planeacion") {
                     try {
                         var riesgo = search("cucuta:buscar_riesgo", ui.item.codigooriginal);
@@ -1301,6 +1326,19 @@ function addressSelect(event, ui) {
                     ig[15].src = "./imagenes/streetview.png";
                     var campos = 14;
                     if (arregloDeSubCadenas[2].length > 1) {
+                    	   var urlphp = 'sql/wsFactura.php';
+                        $.ajax({
+                        url: urlphp,
+                        data: {ref: arregloDeSubCadenas[0][5]},
+                        type: "POST",
+                        //dataType: "json",
+                        async: false,
+                        success: function (data, status, xhr) {},
+                        error: function (jqXHR, exception) {
+                        console.log(jqXHR);
+                        console.log(exception);
+                        }
+                        });
                         select[16] = "<b>Descargar Recibo</b>";
                         sel[16] = document.createElement("a");
                         sel[16].id = "img1";
@@ -1308,7 +1346,8 @@ function addressSelect(event, ui) {
                         imag[16].id = "im1";
                         stv[16] = document.createElement("a");
                         stv[16].id = "imgstreet1";
-                        stv[16].href = "pdf/factura.php?ref=" + arregloDeSubCadenas[0][5].replace(/'/g, "") + "&estado=" + arregloDeSubCadenas[2] + "&ac=" + simplestabla["0"][2] + "&ultimo=" + arregloDeSubCadenas[3][5] + "&liq=" + arregloDeSubCadenas[1];
+                        stv[16].href = "/facturas/factura.pdf";
+                        stv[16].target = "_blank";
                         ig[16] = document.createElement("img");
                         ig[16].src = "./imagenes/pdf.jpg";
                     }
