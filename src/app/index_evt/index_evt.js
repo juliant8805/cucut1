@@ -1450,9 +1450,9 @@ function formcoordenadas2() {
      document.getElementById("menu_coordenadas_wgs84").style.display = "block"; 
      }
      if (button2.checked == true){
-        document.getElementById("menu_coordenadas_3116").style.display = "block"; 
+        document.getElementById("menu_coordenadas_decimales").style.display = "block"; 
      }
-    if (button3.checked == true){
+   /* if (button3.checked == true){
         document.getElementById("menu_coordenadas_3116").style.display = "block"; 
      }
     if (button4.checked == true){
@@ -1460,22 +1460,23 @@ function formcoordenadas2() {
      }
     if (button5.checked == true){
         document.getElementById("menu_coordenadas_3116").style.display = "block"; 
-     }
+     }*/
 }
 
 
 function input_coordinates() {
     //alert(button1.checked?"Button1 is checked":"Button2 is checked");
      document.getElementById("menu_coordenadas_wgs84").style.display = "none"; 
-     document.getElementById("menu_coordenadas_3116").style.display = "none"; 
+     document.getElementById("menu_coordenadas_decimales").style.display = "none"; 
+     /*document.getElementById("menu_coordenadas_3116").style.display = "none"; 
      document.getElementById("menu_coordenadas_3117").style.display = "none"; 
      document.getElementById("menu_coordenadas_21897").style.display = "none"; 
-     document.getElementById("menu_coordenadas_21898").style.display = "none"; 
+     document.getElementById("menu_coordenadas_21898").style.display = "none"; */
      var button1 = document.getElementById('button1a');
      var button2 = document.getElementById('button2b');
-     var button3 = document.getElementById('button3c');
-     var button4 = document.getElementById('button4d');
-     var button5 = document.getElementById('button5e');
+     //var button3 = document.getElementById('button3c');
+     /*var button4 = document.getElementById('button4d');
+     var button5 = document.getElementById('button5e');*/
      document.getElementById("opc_coord").style.display = "none";
      if (button1.checked == true){
             var view = map.getView();
@@ -1490,24 +1491,34 @@ function input_coordinates() {
             var long = parseInt(loggrados) + parseInt(logminutos) / 60 + parseInt(logsegundos) / 3600;
             var lat = parseInt(latgrados) + parseInt(latminutos) / 60 + parseInt(latsegundos) / 3600;
             var long = long * -1;
-
-            var x = 842061;
-            var y = 1364403;
-            //map.getView().setCenter([1364403, 842061]);
             map.getView().setCenter(ol.proj.transform([long, eval(lat)], 'EPSG:4326', 'EPSG:3857'));
-            //map.getView().setCenter(ol.proj.transform([842061, 1364403], 'EPSG:4326', 'EPSG:3857'));
             map.getView().setZoom(18); 
             var iconFeatures = [];
             var iconFeature = new ol.Feature({
             geometry: new ol.geom.Point(ol.proj.transform([long, eval(lat)], 'EPSG:4326',
               'EPSG:3857')),
-            name: 'Null Island',
+            name: 'wgs84gms',
             population: 4000,
             rainfall: 500
           });
             
      }
      if (button2.checked == true){
+            var view = map.getView();
+            var x = document.getElementById('ex15').value;
+            var y = document.getElementById('ex16').value;
+            map.getView().setCenter(ol.proj.transform([eval(y), eval(x)], 'EPSG:4326', 'EPSG:3857'));
+            map.getView().setZoom(18); 
+            var iconFeatures = [];
+            var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.transform([eval(y), eval(x)], 'EPSG:4326',
+              'EPSG:3857')),
+            name: 'wgs84d',
+            population: 4000,
+            rainfall: 500
+          });             
+     }
+    /*if (button3.checked == true){
             var view = map.getView();
             var x = document.getElementById('ex7').value;
             var y = document.getElementById('ex8').value;
@@ -1520,9 +1531,9 @@ function input_coordinates() {
             name: 'magnacolombiabogota',
             population: 4000,
             rainfall: 500
-          });             
-     }
-    if (button3.checked == true){
+          });       
+     }*/
+   /* if (button3.checked == true){
             var view = map.getView();
             var x = document.getElementById('ex9').value;
             var y = document.getElementById('ex10').value;
@@ -1566,7 +1577,7 @@ function input_coordinates() {
             population: 4000,
             rainfall: 500
           });       
-     }
+     }*/
       highlight.setStyle(flagStyle);
       var markerSource = highlight.getSource();
       markerSource.clear();

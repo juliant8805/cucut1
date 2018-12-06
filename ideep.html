@@ -559,10 +559,13 @@
         <h2>Seleccione el Sistema de Referencia</h2>
         <form>
         <div class="radio">
-          <label><input type="radio" id ="button1a" name="sel_src" value='1'>Coordenadas Geográficas(WGS84)</label>
+          <label><input type="radio" id ="button1a" name="sel_src" value='1'>Coordenadas Geográficas(grados, minutos y segundos)</label>
         </div>
         <div class="radio">
-          <label><input type="radio" id="button2b" name="sel_src" value='2'>Magna Colombia Bogota</label>
+          <label><input type="radio" id="button2b" name="sel_src" value='2'>Coordenadas Geográficas(decimales)</label>
+        </div>
+        <!--<div class="radio">
+          <label><input type="radio" id="button3c" name="sel_src" value='3'>Magna Colombia Bogotá(X,Y)</label>
         </div>
         <div class="radio">
           <label><input type="radio" id="button3c" name="sel_src" value='3'>Magna Colombia Este</label>
@@ -572,7 +575,7 @@
         </div> 
         <div class="radio">
           <label><input type="radio" id="button5e" name="sel_src" value='5'>Colombia Este Central</label>
-        </div> 
+        </div> -->
         <button type="button" onclick="formcoordenadas2()">Aceptar</button>
       </form>
        </div>  
@@ -609,6 +612,20 @@
             <input class="form-control" id="ex6" type="text" placeholder="50"> 
             <button type="button" style="margin:0.5em" class="btn btn-danger btn-lg" onclick="limpiar_consulta()">Cerrar</button>
         </div>
+    </div>
+    
+     <div id="menu_coordenadas_decimales" hidden="hidden" style="position:absolute; background-color: rgba(128,128,128,0.5); height:100%; width: 100%; top:0px;left:0px; z-index:100;">
+        <h3 style="position: absolute; top: 20%; left: 35%;">Coordenadas Geograficas(WGS84 decimales):</h3>      
+        <div class="col-xs-1" style="margin-top:15%; margin-left:35%;"> 
+            <label for="ex1">Latitud:</label>
+            <input class="form-control" id="ex15" type="text" placeholder="7.910277777777778">
+            <button type="button" style="margin-top:0.5em; margin-left:1em;" class="btn btn-primary btn-lg" onclick="input_coordinates()">Ir al Punto</button>
+        </div>
+        <div class="col-xs-1" style="margin-top:15%; margin-left: 5em;">
+            <label for="ex2">Longitud:</label>
+            <input class="form-control" id="ex16" type="text" placeholder="-72.49722222222222"> 
+            <button type="button" style="margin:0.5em" class="btn btn-danger btn-lg" onclick="limpiar_consulta()">Cerrar</button>
+        </div>      
     </div>
     
     
