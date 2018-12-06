@@ -965,6 +965,72 @@ function addressSelect(event, ui) {
                                 console.log(exception);
                             }
                         });
+                        var cadena1 = temp.responseText;
+                        separador = "%%"; // un espacio en blanco
+                        arregloDeSubCadenas1 = cadena1.split(separador);
+                        var urlphp = 'sql/wsLiquidacion.php';
+                        //var url = urlphp + "?ref=" + ref;  
+                        var temp = $.ajax({
+                            url: urlphp,
+                            data: {ref: ref},
+                            type: "POST",
+                            //dataType: "json",
+                            async: false,
+                            success: function (data, status, xhr) {},
+                            error: function (jqXHR, exception) {
+                                console.log(jqXHR);
+                                console.log(exception);
+                            }
+                        });
+                        var cadena2 = temp.responseText;
+                        arregloDeSubCadenas2 = cadena2.split(separador);
+                        var urlphp = 'sql/wsEstadoCuenta.php';
+                        var temp = $.ajax({
+                            url: urlphp,
+                            data: {ref: ref},
+                            type: "POST",
+                            //dataType: "json",
+                            async: false,
+                            success: function (data, status, xhr) {},
+                            error: function (jqXHR, exception) {
+                                console.log(jqXHR);
+                                console.log(exception);
+                            }
+                        });
+                        var cadena3 = temp.responseText;
+                        arregloDeSubCadenas3 = cadena3.split(separador);
+                        var urlphp = 'sql/wsHistoricoPagos.php';
+                        var temp = $.ajax({
+                            url: urlphp,
+                            data: {ref: ref},
+                            type: "POST",
+                            //dataType: "json",
+                            async: false,
+                            success: function (data, status, xhr) {},
+                            error: function (jqXHR, exception) {
+                                console.log(jqXHR);
+                                console.log(exception);
+                            }
+                        });
+                        var cadena4 = temp.responseText;
+                        arregloDeSubCadenas4 = cadena4.split(separador);
+                        //HistoricoAbonos
+                        var urlphp = 'sql/wsHistoricoAbonos.php';
+                        var temp = $.ajax({
+                            url: urlphp,
+                            data: {ref: ref},
+                            type: "POST",
+                            //dataType: "json",
+                            async: false,
+                            success: function (data, status, xhr) {},
+                            error: function (jqXHR, exception) {
+                                console.log(jqXHR);
+                                console.log(exception);
+                            }
+                        });
+                        var cadena5 = temp.responseText;
+                        arregloDeSubCadenas5 = cadena5.split(separador);
+                        return [arregloDeSubCadenas1, arregloDeSubCadenas2, arregloDeSubCadenas3, arregloDeSubCadenas4, arregloDeSubCadenas5];
                     }
                     var table = document.getElementById("tblatt");
                     table.innerHTML = "";
@@ -977,8 +1043,13 @@ function addressSelect(event, ui) {
                     var imag = [];
                     var stv = [];
                     var ig = [];
-  
                     var arregloDeSubCadenas = enviarRef(eval("'" + ui.item.codigooriginal.toString() + "'"));
+                    if (arregloDeSubCadenas[2].length > 1) {
+                        alert("GESSTOR INFORMA:</br></br>El predio REGISTRA DEUDA con el municipio, recuerde que puede descargar la factura correspondiente dando click en el icono descargar recibo</br></br>");
+                    }
+                    else{
+                    alert("GESSTOR INFORMA:</br></br>El predio NO REGISTRA DEUDA con el municipio por concepto de impuesto predial, gracias por contribuir al desarrollo de nuestra ciudad</br></br>");
+                    }
                     select[0] = "<b>Codigo Catastral</b>";
                     select[1] = "<b>Dirección</b>";
                     select[2] = "<b>Destino</b>";
@@ -992,8 +1063,8 @@ function addressSelect(event, ui) {
                     select[10] = "<b>Cuadrante CAI</b>";
                     select[11] = "<b>Nombre CAI</b>";
                     select[12] = "<b>Telefono CAI</b>"; 
-                    select[13] = "<b>Fotografias</b>";
-                    select[14] = "<b>Información Impuestos</b>";
+                    select[13] = "<b>Fotografías</b>";
+                    //select[14] = "<b>Factura Impuesto Predial</b>";
                     sel[0] = arregloDeSubCadenas[0][5];
                     sel[1] = arregloDeSubCadenas[0][6];
                     sel[2] = arregloDeSubCadenas[0][4];
@@ -1024,9 +1095,8 @@ function addressSelect(event, ui) {
                     stv[13].setAttribute("onclick", "open_streetview()");
                     ig[13] = document.createElement("img");
                     ig[13].src = "./imagenes/streetview.png";
-                    var campos = 14;
+                    var campos = 12;
                     if (arregloDeSubCadenas[2].length > 1) {
-                        sel[14] = "POSEE DEUDA CON EL MUNICIPIO";
                         var urlphp = 'sql/wsFactura.php';
                         $.ajax({
                         url: urlphp,
@@ -1040,21 +1110,32 @@ function addressSelect(event, ui) {
                         console.log(exception);
                         }
                         });
-                        select[15] = "<b>Descargar Recibo</b>";
-                        sel[15] = document.createElement("a");
-                        sel[15].id = "img1";
-                        imag[15] = document.createElement("img");
-                        imag[15].id = "im1";
-                        stv[15] = document.createElement("a");
-                        stv[15].id = "imgstreet1";
-                        stv[15].href = "/facturas/factura.pdf";
-                        stv[15].target = "_blank";
-                        ig[15] = document.createElement("img");
-                        ig[15].src = "./imagenes/pdf.jpg";
+                        select[14] = "<b>Descargar Recibo</b>";
+                        sel[14] = document.createElement("a");
+                        sel[14].id = "img1";
+                        imag[14] = document.createElement("img");
+                        imag[14].id = "im1";
+                        stv[14] = document.createElement("a");
+                        stv[14].id = "imgstreet1";
+                        stv[14].href = "/facturas/factura.pdf";
+                        stv[14].target = "_blank";
+                        ig[14] = document.createElement("img");
+                        ig[14].src = "./imagenes/pdf.jpg";
                     }
-                    else{
-                        sel[14] = "NO POSEE DEUDA CON EL MUNICIPIO";
-                    }
+                    /*else{
+                    	   select[14] = "<b>Información Impuesto Predial</b>";
+                        sel[14] = document.createElement("a");
+                        sel[14].id = "img1";
+                        imag[14] = document.createElement("img");
+                        imag[14].id = "im1";
+                        stv[14] = document.createElement("a");
+                        stv[14].id = "imgstreet1";
+                        stv[14].href = "/facturas/factura.pdf";
+                        stv[14].target = "_blank";
+                        ig[14] = document.createElement("img");
+                        ig[14].src = "./imagenes/pdf.jpg";
+                    }*/
+                    
                     for (i = 0; i < select.length; i++) {
                         row = table.insertRow(i + 1);
                         cell1 = row.insertCell(0);
