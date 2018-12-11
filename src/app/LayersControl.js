@@ -52,7 +52,7 @@ var ortofoto2012 = new ol.layer.Tile({
     visible: false,
     source: new ol.source.XYZ({
         url: "http://35.184.176.7:8081/dashboard/ortofoto2012/{z}/{x}/{y}.png"
-    }), name: 'Ortofoto 2012'
+    }), name: 'Ortofoto 2010'
 });
 
 var ortofoto2017 = new ol.layer.Tile({
@@ -272,8 +272,8 @@ var perimetro2015 = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS: 'cucuta:je_perimetro_2015', STYLES: ''}
-    }), name: 'Perimetro_Decreto_028_de_2012'
+        params: {LAYERS: 'cucuta:je_perimetro_urbano_acuerdo_020_de_2013', STYLES: ''}
+    }), name: 'Perimetro Urbano Acuerdo 020 de 2013'
 });
 
 var cabecerasmunicipalesvecinas = new ol.layer.Tile({
@@ -430,7 +430,7 @@ var layerCatastro = new ol.layer.Group({
 
 var layerPot2011 = new ol.layer.Group({
     layers: [toponimiabarrios, anillovial, lineascomplementarias2015, nomenclaturapot2011, mapaconjuntoactualizado2015, categoriasdelsuelourbano, cabecerasmunicipalesvecinas, perimetromunicipal, perimetrodeexpansion, cuerposdeagua, cabecerasmunicipalescolombia, clasesdesuelo, redvialrural, centrospoblados, nodosregionales, modelonodos, subsistemavialrural, ejesintegracionbinacional, ejesintegracionnacional, ejesintegracionregional, perimetro2015, suelodeproteccion, hidrografia, hidrografia],
-    name: 'POT_2011'
+    name: 'POT-ACUERDO 089 DE 2011'
 });
 
 var layerBing = new ol.layer.Group({
@@ -449,10 +449,10 @@ var layerBase = new ol.layer.Group({
     name: 'Capas Base'
 });
 
-var layerValorizacion = new ol.layer.Group({
+/*var layerValorizacion = new ol.layer.Group({
     layers: [puntos_obras, obras, ejeobras, bufferobras, puntos_obras],
     name: 'Valorizacion'
-});
+});*/
 
 
 function buildLayerTree(layer) {

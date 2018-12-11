@@ -118,7 +118,7 @@ map = new ol.Map({
     target: document.getElementById('map'),
     // use the Canvas renderer
     renderer: 'canvas',
-    layers: [layerBase, layerPot2011, layerBing, layerCatastro, layerOrtofoto2017, sitios, layerValorizacion, highlight],
+    layers: [layerBase, layerPot2011, layerBing, layerCatastro, layerOrtofoto2017, sitios, /*layerValorizacion, */highlight],
     view: new ol.View({
         center: center,
         zoom: zoom,
@@ -167,7 +167,6 @@ map.on('singleclick', function (evt) {
                 }
             },
             success: function (data) {
-                console.log(format[0])
                 var features = format[0].readFeatures(data);
                 if (features && features.length >= 1 && features[0]) {
                     var feature = features[0];

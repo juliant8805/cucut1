@@ -356,11 +356,11 @@ function herramientas() {
      document.getElementById('cerrar_submenu_verde').style.display = 'block';*/
 }
 function limpiar_consulta() {
-    location.reload(true);
+  //  location.reload(true);
   /*  var x = document.getElementById("marco2");
     var y = (x.contentWindow || x.contentDocument);
     if (y.document)y = y.document;
-    y.body.style.display = "none";	
+    y.body.style.display = "none";	*/
     globalstyle = "sinconsulta"; 
     predio.setVisible(true);
     poligonosedicion.setVisible(false);
@@ -450,7 +450,6 @@ function limpiar_consulta() {
     document.getElementById("tabladir1").style.display = "none";
     document.getElementById("diry1").style.display = "none";
     document.getElementById("diry").style.display = "none";
-    */
 }
 function busqueda_personalizada() {
     if (document.getElementById('personalizada').style.display === "" || document.getElementById('personalizada').style.display === "none")
