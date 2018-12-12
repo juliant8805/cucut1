@@ -277,6 +277,11 @@ $("#inputsitiototem").autocomplete({
     source: addressSource,
     select: PlaceSelect
 });
+$("#inputrefcatotemp").autocomplete({
+    minLength: 1,
+    source: addressSource,
+    select: addressSelect
+});
 $("#inputsitiostotemp").autocomplete({
     minLength: 1,
     source: addressSource,
@@ -403,7 +408,7 @@ function addressSource(requestString, responseFunc) {
         var temp = "address1";
     }
     //busqueda cod en reg 
-    else if ($("#codigo")["0"].value !== "") {
+    else if ($("#codigo")["0"].value !== "" || $("#inputrefcatotemp")["0"].value !== "") {
         var tempname = "cucuta:buscar_cod_hac";
         var temp = "cod";//no significa que este buscando por direccion; busqueda por codigo
     } else if ($("#matricula")["0"].value !== "") {

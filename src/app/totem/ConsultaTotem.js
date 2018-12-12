@@ -7,11 +7,12 @@ function mostrartotem(consulta) {
         document.getElementById('inputmanzanatotem').style.display = 'none';
         document.getElementById('inputsitiototem').style.display = 'none';
         document.getElementById('inputbarriototem').style.display = 'none';
+        document.getElementById('inputrefcatotemp').style.display = 'none';
         document.getElementById('inputdirecciontotem').style.display = 'block';
         document.getElementById('consultas_totem').style.display = 'block';
         //document.getElementById('exp1').style.display = 'block';
-        /*var x = document.getElementById("audiodireccion");
-         x.play();*/
+        var x = document.getElementById("audiodireccion");
+         x.play();
     } else if (consulta === 'referencia') {
         document.getElementById("inputsitiototem").value = "";
         document.getElementById("inputmanzanatotem").value = "";
@@ -20,9 +21,10 @@ function mostrartotem(consulta) {
         document.getElementById('inputmanzanatotem').style.display = 'none';
         document.getElementById('inputbarriototem').style.display = 'none';
         document.getElementById('inputdirecciontotem').style.display = 'none';
+        document.getElementById('inputsitiototem').style.display = 'none';
         //document.getElementById('exp1').style.display = 'none';
-        document.getElementById('buscar_dir').style.display = 'none';
-        document.getElementById('inputsitiototem').style.display = 'block';
+        //document.getElementById('buscar_dir').style.display = 'none';
+        document.getElementById('inputrefcatotemp').style.display = 'block';
         document.getElementById('consultas_totem').style.display = 'block';
         /*var x = document.getElementById("audiodireccion");
          x.play();*/
@@ -34,6 +36,7 @@ function mostrartotem(consulta) {
         document.getElementById('inputmanzanatotem').style.display = 'none';
         document.getElementById('inputbarriototem').style.display = 'none';
         document.getElementById('inputdirecciontotem').style.display = 'none';
+        document.getElementById('inputrefcatotemp').style.display = 'none';
         //document.getElementById('exp1').style.display = 'none';
         //document.getElementById('buscar_dir').style.display = 'none';
         document.getElementById('inputsitiototem').style.display = 'block';

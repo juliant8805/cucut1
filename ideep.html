@@ -536,7 +536,7 @@
     <div id="menu_totem" hidden="hidden">
         <ul>
             <li id="direcciontotem" onclick="mostrartotem(id)">Dirección</li>    
-            <!--<li id="referencia" onclick="mostrartotem(id)">Referencia Catastral</li>-->
+            <li id="referencia" onclick="mostrartotem(id)">Codigo Catastral</li>
             <li id="sitiototem" onclick="mostrartotem(id)">Sitio de Interés</li>
             <!--<li id="localidad" onclick="mostrartotem(id)">Localidad</li>-->
             <!--<li id="barrio" onclick="mostrartotem(id)">Barrio</li>-->
@@ -547,12 +547,16 @@
         <img id="cerrardir" style="position:absolute; top:0px; right:0px; width:7%; height:auto;" src="./imagenes/limpiar.png" onclick="cerrardirec()">
         <div>
             <!---<img id="giftotem" src="image/avatar_02.gif" style="width:150px; height:auto;">-->
-            <div class="input-group textarea" style="position:absolute; top:5%; left:0%; width:100%;"><input type="text" hidden="hidden" class="direccion" id="inputdirecciontotem" style="position:absolute; top:5%; left:30%; width:60%" placeholder="Ejem: C 19 22 21 ó K 24 56 32"></div>
+            <div class="input-group textarea" style="position:absolute; top:5%; left:0%; width:100%;"><input type="text" hidden="hidden" class="direccion" id="inputdirecciontotem" style="position:absolute; top:5%; left:30%; width:60%" placeholder="Ejem: C 29 1C 45 ó A 1D 27A 80"></div>
             <input type="text" hidden="hidden" id="inputsitiototem" style="position:absolute; top:23%; left:30%; width:60%" placeholder="Ejem: Alcaldía">
             <input type="text" hidden="hidden" id="inputbarriototem" style="position:absolute; top:23%; left:30%; width:60%" placeholder="Ejem: La Laguna">
             <input type="text" hidden="hidden" id="inputmanzanatotem" style="position:absolute; top:23%; left:30%; width:60%" placeholder="Ejem: 5400101....">
+            <input type="text" hidden="hidden" id="inputrefcatotemp" style="position:absolute; top:23%; left:30%; width:60%" placeholder="Ejem: 010701040021000">
         </div>
     </div>
+	 <audio id="audiodireccion"> 
+	 <source src="audios/buscardireccion.mp3" type="audio/mp3">
+	 </audio>      
     
     <div id="opc_coord" hidden="hidden" style="position:absolute; background-color: rgba(128,128,128,0.5); height:100%; width: 100%; top:0px;left:0px; z-index:100;">
         <div style="position: absolute; top:30%; left: 40%;">
