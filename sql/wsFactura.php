@@ -20,7 +20,7 @@ $wservice=$result['facturaResult'];
 header('Content-Length: $length');
 header('Content-Disposition: attachment; filename="factura.pdf"');*/
 
-$fichero = $_SERVER["DOCUMENT_ROOT"].'/facturas/factura.pdf';
+$fichero = $_SERVER["DOCUMENT_ROOT"].'/facturas/'.$ref.'factura.pdf';
 //$fichero = "/facturas/factura.pdf";
 file_put_contents($fichero, $servicio);
 

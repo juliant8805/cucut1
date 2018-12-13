@@ -255,7 +255,7 @@ var ubicacion = new ol.style.Style({
 $(".direccion").autocomplete({
     minLength: 1,
     source: addressSource,
-    select: addressSelect
+    select: addressSelectP
 });
 $("#address1").autocomplete({
     minLength: 1,
@@ -300,7 +300,7 @@ $("#direccion_gestor").autocomplete({
 $("#cedul").autocomplete({
     minLength: 1,
     source: addressSource,
-    select: addressSelect
+    select: addressSelectP
 });
 $("#barrio").autocomplete({
     minLength: 1,
@@ -335,12 +335,12 @@ $("#inputbarriototemp").autocomplete({
 $("#codigo").autocomplete({
     minLength: 1,
     source: addressSource,
-    select: addressSelect
+    select: addressSelectP
 });
 $("#matricula").autocomplete({
     minLength: 1,
     source: addressSource,
-    select: addressSelect
+    select: addressSelectP
 });
 $("#inputmatriculatotemp").autocomplete({
     minLength: 1,
@@ -350,12 +350,12 @@ $("#inputmatriculatotemp").autocomplete({
 $("#inputrefcatotemp").autocomplete({
     minLength: 1,
     source: addressSource,
-    select: addressSelect
+    select: addressSelectP
 });
 $("#propietarios").autocomplete({
     minLength: 1,
     source: addressSource,
-    select: addressSelect
+    select: addressSelectP
 });
 $("#input_ladomanzana").autocomplete({
     minLength: 1,
@@ -628,6 +628,78 @@ function addressSource(requestString, responseFunc) {
     });
 }
 
+function addressSelectP(event, ui) {
+    //console.log(event.target.attributes["0"].nodeValue);
+    var consultaregistro = new Object();
+    consultaregistro.term = ui.item.codigo;
+    consultaregistro.val = "direccion";
+    var codigo = ui.item.codigo;
+    if (ui.item.direccion) {
+        consultaregistro.direccionoriginal = ui.item.direccion;
+        consultaregistro.codigooriginal = ui.item.value;
+        dataprop = ui.item.feature.features["0"].properties.propietario;
+    } else {
+        consultaregistro.codigooriginal = ui.item.cod;
+        consultaregistro.direccionoriginal = ui.item.value;
+    }
+    if (event.target.attributes["0"].nodeValue == 'matricula'){
+        var cod = search("cucuta:buscodoriginal", ui.item.value);
+       consultaregistro.codigooriginal = cod;
+    }
+    if (event.target.attributes["0"].nodeValue == 'propietarios'){
+        var cod = search("cucuta:buscodoriginalp", ui.item.value);
+        var cod = cod["0"];
+        consultaregistro.codigooriginal = cod;
+    }
+    if (event.target.attributes["0"].nodeValue == 'cedul'){
+        var cod = search("cucuta:buscodoriginalid", ui.item.direccion);
+        var cod = cod["0"];
+        //if cod.length >
+        consultaregistro.codigooriginal = cod;
+    }
+        var viewParamsStr = viewparamsToStr({
+        query: codigo
+    }); 
+                var tempname = "cucuta:codigo_autocompletar";
+                var temp = "codigo";
+                var wfsParams = {
+                service: 'WFS',
+                version: '2.0.0',
+                request: 'GetFeature',
+                typeName: tempname,
+                outputFormat: 'application/json',
+                srsname: 'EPSG:3857',
+                viewparams: viewParamsStr
+            };
+                var url15 = 'http://35.184.176.7:8081/geoserver/ows?'
+    $.ajax({
+        url: url15,
+        data: wfsParams,
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            var geojson = new ol.source.GeoJSON({
+                object: data
+            });   
+            var arr = [];
+                geojson.forEachFeature(function (feat) {
+                    arr.push({
+                        label: feat.get(temp),
+                        value: feat.get(temp),
+                        feature: feat,
+                        direccionoriginal: consultaregistro.direccionoriginal,
+                        codigooriginal: consultaregistro.codigooriginal
+                    });
+                });
+            var arreglado = {};
+            arreglado.item = arr["0"]; 
+            addressSelect(1, arreglado);
+        }
+    });             
+} 
+
+
+
 function addressSelect(event, ui) {
     document.getElementById("direccion").value = "";
     document.getElementById("address1").value = "";
@@ -646,7 +718,7 @@ function addressSelect(event, ui) {
         consultaregistro.codigooriginal = ui.item.cod;
         consultaregistro.direccionoriginal = ui.item.value;
     }
-    try {
+    /*try {
         if (!ui.item.feature.features["0"].geometry) {
             //console.log(1);
             addressSource(consultaregistro);
@@ -654,7 +726,7 @@ function addressSelect(event, ui) {
         }
     } catch (err) {
         //console.log(2);
-    }
+    }*/
 
     globalstyle = "sinconsulta";
     var view = map.getView();
@@ -1122,7 +1194,7 @@ function addressSelect(event, ui) {
                         imag[14].id = "im1";
                         stv[14] = document.createElement("a");
                         stv[14].id = "imgstreet1";
-                        stv[14].href = "/facturas/factura.pdf";
+                        stv[14].href = "/facturas/" +arregloDeSubCadenas[0][5]+ "factura.pdf";
                         stv[14].target = "_blank";
                         ig[14] = document.createElement("img");
                         ig[14].src = "./imagenes/pdf.jpg";
@@ -1434,7 +1506,7 @@ function addressSelect(event, ui) {
                         imag[16].id = "im1";
                         stv[16] = document.createElement("a");
                         stv[16].id = "imgstreet1";
-                        stv[16].href = "/facturas/factura.pdf";
+                        stv[16].href = "/facturas/" +arregloDeSubCadenas[0][5]+ "factura.pdf";
                         stv[16].target = "_blank";
                         ig[16] = document.createElement("img");
                         ig[16].src = "./imagenes/pdf.jpg";

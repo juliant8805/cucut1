@@ -930,7 +930,7 @@ map.on('singleclick', function (evt) {
                                 imag[16].id = "im1";
                                 stv[16] = document.createElement("a");
                                 stv[16].id = "imgstreet1";
-                                stv[16].href = "/facturas/factura.pdf";
+                                stv[16].href = "/facturas/" +arregloDeSubCadenas[0][5]+ "factura.pdf";
                                 stv[16].target = "_blank";
                                 ig[16] = document.createElement("img");
                                 ig[16].src = "./imagenes/pdf.jpg";
