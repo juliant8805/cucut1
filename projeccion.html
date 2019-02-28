@@ -1,0 +1,108 @@
+<html lang="es">
+    <head>
+        <title>::GESSTOR::</title>
+        <!--<div id="carga"><img id="gifini" src="./image/gif_gestor_mediano.gif"><p></p></div>-->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="src/ol3/ol.css">
+        <link rel="stylesheet" href="css/general.css">
+        <script src="src/ol3/ol-debug.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.3/proj4.js"></script>
+        <script src="http://epsg.io/3116.js"></script>
+        <script src="http://epsg.io/3117.js"></script>
+        <script src="http://epsg.io/21897.js"></script>
+        <script src="http://epsg.io/21898.js"></script>
+
+      
+</head>
+<body>
+    <div id="map"> 
+    </div>
+    <header>
+             
+<script>
+    var streetmap = new ol.layer.Tile({
+    source: new ol.source.OSM(),
+    visible: true,
+    minResolution: 2,
+    //maxResolution:20,
+    name: 'Street Map'
+   });
+    var layerBase = new ol.layer.Group({
+    layers: [streetmap],
+    name: 'Capas Base'
+});
+    var map = new ol.Map({
+        layers: [layerBase],
+        target: 'map',
+        view: new ol.View({
+          center: [0, 0],
+          zoom: 2
+        })
+    });
+ function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                        results = regex.exec(location.search);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+            var xp = getParameterByName('var1');
+
+            var cc = xp.split(",", 2);
+            
+            var x = cc[0];
+            var y = cc[1];
+            //console.log(x);
+            //console.log(y);
+            
+            var view = map.getView();
+           
+            map.getView().setCenter(ol.proj.transform([x, y], 'EPSG:3116', 'EPSG:3857'));
+            geometry: new ol.geom.Point(ol.proj.transform([x, y], 'EPSG:3117',
+              'EPSG:3857')),
+             map.getView().setZoom(18); 
+            var iconFeatures = [];
+            var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.transform([x, y], 'EPSG:3116',
+              'EPSG:3857')),
+            name: 'magnacolombiabogota',
+            population: 4000,
+            rainfall: 500
+            });
+            //console.log(iconFeature);
+            var xp = iconFeature.values_.geometry.flatCoordinates[0];
+            var yp = iconFeature.values_.geometry.flatCoordinates[1];
+            //location.href = "ideep.html?var1=" + xp +"," + yp;
+            enviarCoord(xp);
+           function enviarCoord(referenciax) {
+               console.log(referenciax);
+      
+               var refx = referenciax;
+        
+               var urlphp = 'http://www.ideepcucuta.com/sql/GuardarCoordenadas.php';
+               var temp = $.ajax({
+                    url: urlphp,
+                    data: {ref: refx},
+                    type: "POST",
+                                    //dataType: "json",
+                    async: false,
+                    success: function (data, status, xhr) {},
+                    error: function (jqXHR, exception) {
+                    console.log(jqXHR);
+                    console.log(exception);
+                }
+                });
+            };
+       
+               
+               
+        </script>   
+   
+    
+
+    
+</body>
+</html>

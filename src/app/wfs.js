@@ -53,9 +53,23 @@ var transactWFS = function (mode, f) {
             else if (longitud == 28){var coordinates = coordinates1 + " " + coordinates2 + " " + coordinates3 + " " + coordinates4 + " " + coordinates5 + " " + coordinates6 + " " + coordinates7 + " " + coordinates8 + " " + coordinates9 + " " + coordinates10 + " " + coordinates11 + " " + coordinates12 + " " + coordinates13 + " " + coordinates14;}
             node = formatWFS.writeTransaction([f], null, null, formatGML);
               
-            var payload = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:wfs="http://www.opengis.net/wfs" xmlns:prueba="http://prueba" xmlns:gml="http://www.opengis.net/gml"><wfs:Insert>                        <prueba:wfs_prueba_xml><prueba:geom><gml:MultiPolygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857"><gml:polygonMember><gml:Polygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857">                   <gml:outerBoundaryIs><gml:LinearRing><gml:coordinates decimal="." cs="," ts=" ">' + coordinates + '</gml:coordinates></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:polygonMember></gml:MultiPolygon></prueba:geom></prueba:wfs_prueba_xml></wfs:Insert></wfs:Transaction>';
+          //  var payload = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:wfs="http://www.opengis.net/wfs" xmlns:prueba="http://prueba" xmlns:gml="http://www.opengis.net/gml"><wfs:Insert><prueba:wfs_prueba_xml><prueba:geom><gml:MultiPolygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857"><gml:polygonMember><gml:Polygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857"><gml:outerBoundaryIs><gml:LinearRing><gml:coordinates decimal="." cs="," ts=" ">' + coordinates + '</gml:coordinates></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:polygonMember></gml:MultiPolygon></prueba:geom></prueba:wfs_prueba_xml></wfs:Insert></wfs:Transaction>';
+         
+         
+			var usob = document.cookie.split('=');
+			var usob = usob[0];     
+			
+	//	 var payloadobs = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:prueba="http://prueba" xmlns:ogc="http://www.opengis.net/ogc" xmlns:wfs="http://www.opengis.net/wfs"><wfs:Update typeName="prueba:wfs_prueba_xml"><wfs:Property><wfs:Name>usuario</wfs:Name><wfs:Value>' + usob + '</wfs:Value></wfs:Property><ogc:Filter><ogc:PropertyIsNull><ogc:PropertyName>usuario</ogc:PropertyName></ogc:PropertyIsNull></ogc:Filter></wfs:Update></wfs:Transaction>';
+          
             
-      
+		 var payload = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:wfs="http://www.opengis.net/wfs" xmlns:prueba="http://prueba" xmlns:gml="http://www.opengis.net/gml"><wfs:Insert><prueba:wfs_prueba_xml><prueba:geom><gml:MultiPolygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857"><gml:polygonMember><gml:Polygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857"><gml:outerBoundaryIs><gml:LinearRing><gml:coordinates decimal="." cs="," ts=" ">' + coordinates + '</gml:coordinates></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:polygonMember></gml:MultiPolygon></prueba:geom></prueba:wfs_prueba_xml></wfs:Insert></wfs:Transaction>';
+     		
+     		
+     	          
+              
+              
+              
+              
                 var view = map.getView();
                 var feat = f;
                 var geom = feat.getGeometry();
@@ -71,10 +85,17 @@ var transactWFS = function (mode, f) {
                 /*var featureCenter = ol.extent.getCenter(ppExtent);
                 view.setCenter(featureCenter);
                 view.fitExtent(ppExtent, map.getSize());*/
-                poligonosedicion.getSource().updateParams({'STYLES': 'poligonos_edicion2', 'CQL_FILTER': "10=10"});
+                
+                
+                
+                var usob = document.cookie.split('=');
+					 var usob = usob[0];
+                var valor = "'" + usob + "'";
+					 var filtro = '"usuario=' + valor + '"';
+					 poligonosedicion.getSource().updateParams({'CQL_FILTER': eval(filtro)});   
             
             
-            if (conteo == 1){
+         /*   if (conteo == 1){
             poligonosedicion.getSource().updateParams({CQL_FILTER:"1=1"});
                 conteo = conteo + 1;
                 }
@@ -109,8 +130,8 @@ var transactWFS = function (mode, f) {
             else if (conteo == 9){
               poligonosedicion.getSource().updateParams({CQL_FILTER:"9=9"});
                 conteo = conteo + 1;
-            }
-                  
+            }*/
+                 
            predio.setVisible(true);
             
          
@@ -278,7 +299,12 @@ var transactWFS = function (mode, f) {
                         }).done(function() {
                             sourceWFS.clear();
                         });
-                    if (conteo == 1){
+                        var usob = document.cookie.split('=');
+					         var usob = usob[0];
+                        var valor = "'" + usob + "'";
+					         var filtro = '"usuario=' + valor + '"';
+					         poligonosedicion.getSource().updateParams({'CQL_FILTER': eval(filtro)}); 
+                    /*if (conteo == 1){
                             poligonosedicion.getSource().updateParams({CQL_FILTER:"1=1"});
                                 conteo = conteo + 1;
                                 }
@@ -313,7 +339,7 @@ var transactWFS = function (mode, f) {
                             else if (conteo == 9){
                               poligonosedicion.getSource().updateParams({CQL_FILTER:"9=9"});
                                 conteo = conteo + 1;
-                            }
+                            }*/
 
                     }
             });     
@@ -338,6 +364,24 @@ var transactWFS = function (mode, f) {
     }).done(function() {
         sourceWFS.clear();
     });
+    
+		for (i=0; i < 50; i++)	{	
+		console.log("");																																															      
+       var payloadobs = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:prueba="http://prueba" xmlns:ogc="http://www.opengis.net/ogc" xmlns:wfs="http://www.opengis.net/wfs"><wfs:Update typeName="prueba:wfs_prueba_xml"><wfs:Property><wfs:Name>usuario</wfs:Name><wfs:Value>' + usob + '</wfs:Value></wfs:Property><ogc:Filter><ogc:PropertyIsNull><ogc:PropertyName>usuario</ogc:PropertyName></ogc:PropertyIsNull></ogc:Filter></wfs:Update></wfs:Transaction>';
+             } 
+	 $.ajax('http://35.184.176.7:8081/geoserver/prueba/ows', {
+                            type: 'POST',
+                            dataType: 'xml',
+                            processData: false,
+                            contentType: 'text/xml',
+                            data: payloadobs,
+                            success: function (xml) {
+                                },
+                                error: function (xml) {
+                                    console.log('error');
+                                }
+                        });     
+       
 };       
         
 $(document).ready(function(){        

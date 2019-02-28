@@ -118,7 +118,7 @@ map = new ol.Map({
     target: document.getElementById('map'),
     // use the Canvas renderer
     renderer: 'canvas',
-    layers: [layerBase, layerPot2011, layerBing, layerCatastro, layerOrtofoto2017, sitios, /*layerValorizacion, */highlight],
+    layers: [layerBase, layerPot2011, layerBing, layerCatastro, layerRestitucion, layerOrtofoto2017, sitios, /*layerValorizacion, */highlight],
     view: new ol.View({
         center: center,
         zoom: zoom,
@@ -178,7 +178,7 @@ map.on('singleclick', function (evt) {
                         direccion[0] = "Sin Información";
                     }
                     if (ph >= 800) {
-                        if (tipoUsuario === "Catastro" || tipoUsuario === "Planeacion"/* || tipoUsuario === "Totem"*/) {
+                        if (tipoUsuario === "Catastro" || tipoUsuario === "Planeacion" || tipoUsuario === "PlaneacionS") {
                             var table = document.getElementById("tblatt");
                             document.getElementById("tblatt").style.visibility = "visible";
                             document.getElementById("tblatt").style.display = "initial";
@@ -746,7 +746,190 @@ map.on('singleclick', function (evt) {
                                 }
                             }
 
-                        } else if (tipoUsuario === "Hacienda") {
+                        } 
+
+                        else if (tipoUsuario === "PlaneacionS") {
+                        	
+								/*var row = table.insertRow(1);
+                        var cell11 = row.insertCell(0);
+                        cell11.colSpan = 2;
+                        cell11.style = "background-color: white; border:0; margin:0;";
+                        cell11.innerHTML = "<select style='background-color: #white; color:black; font-size: 15px; border-top:0px; border-left:0px; border-right:0px; border-bottom:1px; solid #62BAD3; text-align:center; width:100%; height:3em;' id='tipohallazgo' name='tipohallazgo'><option value ='cambioarea'>Cambio de Área</option><option value ='destino'>Cambio de Destino</option><option value ='areaydestino'>Cambio de Área y Destino</option></select>";
+                        */
+                        var row = table.insertRow(1);
+                        var cell11 = row.insertCell(0);
+                        cell11.colSpan = 2;
+                        cell11.style = "background-color: white; border:0; margin:0;";
+                        cell11.innerHTML = "<input type='text' id='observacionespredio' name='observacionespredio' style='background-color: #white; color:black; font-size: 15px; border-top:0px; border-left:0px; border-right:0px; border-bottom:1px solid #62BAD3; text-align:center; width:100%; height:5em;' placeholder='Diligencie cualquier tipo de información adicional'>";
+								
+						      var cod2 = "9" + cod;
+                        var row = table.insertRow(2);
+                        var cell12 = row.insertCell(0);
+                        cell12.colSpan = 2;
+                        cell12.style = "background-color: white; border:0; margin:0;";
+                        cell12.innerHTML = "<button id='editarinfo' name='editarinfo' onclick='agregarinfopredio(" + cod2 + ");' class='btn btn-primary btn-lg'>Guardar</button>";                        	
+                       
+                        	
+                        	
+                            try {
+                                var riesgo = search("cucuta:buscar_riesgo", cod);
+                                var riesgo = riesgo["0"]["0"];
+                            } catch (err) {
+                                var riesgo = "Sin Informacion";
+                            }
+                            try {
+                                var destino = simplestabla["0"]["0"];
+                            } catch (err) {
+                                var destino = "Sin Informacion";
+                            }
+										
+								    try {
+								       var obs = search("cucuta:buscar_observaciones", cod);
+								    }	catch (err) {
+                                var obs = "Sin Observaciones";
+                            }									
+										
+                            select[0] = "<b>Codigo Manzana</b>";
+                            select[1] = "<b>Codigo Catastral Nuevo</b>";
+                            select[2] = "<b>Codigo Catastral Anterior</b>";
+                            select[3] = "<b>Matrícula</b>";
+                            select[4] = "<b>Dirección</b>";
+                            select[5] = "<b>Destino Económico Hacienda</b>";
+                            select[6] = "<b>Uso Acueducto</b>";
+                            select[7] = "<b>Uso Alcantarillado</b>";
+                            select[8] = "<b>Uso Aseo</b>";
+                            select[9] = "<b>Estrato Hacienda</b>";
+                            select[10] = "<b>Estrato Acueducto</b>";
+                            select[11] = "<b>Estrato Alcantarillado</b>";
+                            select[12] = "<b>Estrato Aseo</b>";
+                            select[13] = "<b>Empresa de Acueducto</b>";
+                            select[14] = "<b>Empresa de Alcantarillado</b>";
+                            select[15] = "<b>Empresa de Aseo</b>";
+                            select[16] = "<b>Area de Terreno</b>";
+                            select[17] = "<b>Area Construida</b>";
+                            select[18] = "<b>Uso del Suelo Según Acuerdo</b>";
+                            select[19] = "<b>Uso Actual del Suelo Urbano</b>";
+                            select[20] = "<b>Suelo de Protección</b>";
+                            select[21] = "<b>Conflictos de Uso Urbano</b>";
+                            select[22] = "<b>Tratamiento del Suelo</b>";
+                            select[23] = "<b>Riesgo Remoción</b>";
+                            select[24] = "<b>Barrio</b>";
+                            select[25] = "<b>Observaciones</b>";
+                            select[26] = "<b>Fotografias</b>";
+                            sel[0] = values.manzana_co;
+                            sel[1] = values.codigo;
+                            sel[2] = cod;
+                            sel[3] = matricula;
+                            sel[4] = direccion[0];
+                            sel[5] = destino;
+                            sel[6] = uso_acueducto;
+                            sel[7] = uso_alcantarillado;
+                            sel[8] = uso_aseo;
+                            sel[9] = simplestabla["0"][5];
+                            sel[10] = values.estrato_acueducto;
+                            sel[11] = values.estrato_alcantarillado;
+                            sel[12] = values.estrato_aseo;
+                            sel[13] = values.disp_acued;
+                            sel[14] = values.disp_alc;
+                            sel[15] = values.disp_aseo;
+                            sel[16] = simplestabla["0"][1] + "m2";
+                            sel[17] = simplestabla["0"][2] + "m2";
+                            sel[18] = values.uso_del_suelo_segun_acuerdo;
+                            sel[19] = values.uso_actual_del_suelo_urbano;
+                            sel[20] = values.suelo_de_proteccion;
+                            sel[21] = values.conflictos_de_uso_urbano;
+                            sel[22] = values.tratamiento_del_suelo;
+                            sel[23] = riesgo;
+                            sel[24] = values.cod_barrio;
+                            sel[25] = obs;
+                            sel[26] = document.createElement("a");
+                            sel[26].id = "img1";
+                            sel[26].target = "marco2";
+                            sel[26].setAttribute("onclick", "open_streetview()");
+                            sel[26].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            imag[26] = document.createElement("img");
+                            imag[26].id = "im1";
+                            imag[26].className = "pequeña";
+                            imag[26].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            stv[26] = document.createElement("a");
+                            stv[26].id = "imgstreet1";
+                            stv[26].target = "marco";
+                            stv[26].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
+                            stv[26].setAttribute("onclick", "open_streetview()");
+                            ig[26] = document.createElement("img");
+                            ig[26].src = "./imagenes/streetview.png";
+
+
+                            if (values.campo == 'CAPTURADO') {
+                                stv3[26] = document.createElement("a");
+                                stv3[26].id = "img";
+                                stv3[26].target = "marco2";
+                                stv3[26].setAttribute("onclick", "open_streetview()");
+                                stv3[26].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" + values.codigo + "_1.jpg";
+                                ig3[26] = document.createElement("img");
+                                ig3[26].id = "im3";
+                                ig3[26].className = "pequeña";
+                                ig3[26].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" + values.codigo + "_1.jpg";
+
+                                stv4[26] = document.createElement("a");
+                                stv4[26].id = "img";
+                                stv4[26].target = "marco2";
+                                stv4[26].setAttribute("onclick", "open_streetview()");
+                                stv4[26].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" + values.codigo + "_2.jpg";
+                                ig4[26] = document.createElement("img");
+                                ig4[26].id = "im4";
+                                ig4[26].className = "pequeña";
+                                ig4[26].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" + values.codigo + "_2.jpg";
+
+                                stv5[26] = document.createElement("a");
+                                stv5[26].id = "img";
+                                stv5[26].target = "marco2";
+                                stv5[26].setAttribute("onclick", "open_streetview()");
+                                stv5[26].href = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" + values.codigo + "_5.jpg";
+                                ig5[26] = document.createElement("img");
+                                ig5[26].id = "im4";
+                                ig5[26].className = "pequeña";
+                                ig5[26].src = "http://www.ideepcucuta.com/formulario/principal/fotos/" + values.codigo + "/" + values.codigo + "_5.jpg";
+                            }
+
+
+
+                            var campos = 26;
+                            for (i = 0; i < select.length; i++) {
+                                row = table.insertRow(i + 1);
+                                cell1 = row.insertCell(0);
+                                cell2 = row.insertCell(1);
+                                cell1.innerHTML = select[i];
+                                if (i === campos) {
+                                    cell2.appendChild(sel[i]);
+                                    //cell2.appendChild(imag[i]);
+                                    sel[i].appendChild(imag[i]);
+                                    cell2.appendChild(stv[i]);
+                                    //cell2.appendChild(ig[i]);
+                                    stv[i].appendChild(ig[i]);
+
+                                    if (values.campo == 'CAPTURADO') {
+                                        cell2.appendChild(stv3[i]);
+                                        cell2.appendChild(ig3[i]);
+                                        stv3[i].appendChild(ig3[i]);
+
+                                        cell2.appendChild(stv4[i]);
+                                        cell2.appendChild(ig4[i]);
+                                        stv4[i].appendChild(ig4[i]);
+
+                                        cell2.appendChild(stv5[i]);
+                                        cell2.appendChild(ig5[i]);
+                                        stv5[i].appendChild(ig5[i]);
+                                    }
+
+
+                                } else {
+                                    cell2.innerHTML = sel[i];
+                                }
+                            }
+
+                        }
+                        else if (tipoUsuario === "Hacienda") {
                             try {
                                 var matricula = search("cucuta:consultamatricula", cod);
                             } catch (err) {
@@ -1221,7 +1404,498 @@ map.on('singleclick', function (evt) {
                                     }
                                 }
                             }
-                        } else if (tipoUsuario === "Demo") {
+                        } 
+                        
+								else if (tipoUsuario === "HaciendaS") {
+							/*		var row = table.insertRow(1);
+                        var cell11 = row.insertCell(0);
+                        cell11.colSpan = 2;
+                        cell11.style = "background-color: white; border:0; margin:0;";
+                        cell11.innerHTML = "<input type='text' id='observacionespredio' name='observacionespredio' style='background-color: #white; color:black; font-size: 15px; border-top:0px; border-left:0px; border-right:0px; border-bottom:1px solid #62BAD3; text-align:center; width:100%; height:5em;' placeholder='Diligencie cualquier tipo de información adicional'>";
+								
+						      var cod2 = "9" + cod;
+                        var row = table.insertRow(2);
+                        var cell12 = row.insertCell(0);
+                        cell12.colSpan = 2;
+                        cell12.style = "background-color: white; border:0; margin:0;";
+                        cell12.innerHTML = "<button id='editarinfo' name='editarinfo' onclick='agregarinfopredio(" + cod2 + ");' class='btn btn-primary btn-lg'>Guardar</button>";                        	
+                       */
+                            try {
+                                var matricula = search("cucuta:consultamatricula", cod);
+                            } catch (err) {
+                                var matricula = "Sin Informacion";
+                            }
+                            document.getElementById("tblatt").style.visibility = "visible";
+                            document.getElementById("tblatt").style.display = "initial";
+                            document.getElementById("tblatt").style.height = "auto";
+                            document.getElementById("panel_atr").style.visibility = "visible";
+                            document.getElementById("panel_atr").style.display = "initial";
+                            document.getElementById("panel_atr").style.height = "auto";
+                            document.getElementById("panel_atr2").style.visibility = "visible";
+                            document.getElementById("panel_atr2").style.display = "initial";
+                            document.getElementById("panel_atr2").style.height = "auto";
+                            document.getElementById("tablaP").style.visibility = "visible";
+                            document.getElementById("tablaP").style.display = "initial";
+                            document.getElementById("tablaP").style.height = "auto";
+                            ref_cat = values.codigo_ant.substring(5, 21);
+                            ref_cat = "'" + ref_cat + "'";
+                            function enviarRef(referencia) {
+                                var ref = referencia;
+                                var urlphp = 'sql/wsDatosBasicos.php';
+                                var temp = $.ajax({
+                                    url: urlphp,
+                                    data: {ref: ref},
+                                    type: "POST",
+                                    //dataType: "json",
+                                    async: false,
+                                    success: function (data, status, xhr) {},
+                                    error: function (jqXHR, exception) {
+                                        console.log(jqXHR);
+                                        console.log(exception);
+                                    }
+                                });
+                                var cadena1 = temp.responseText;
+                                separador = "%%"; // un espacio en blanco
+                                arregloDeSubCadenas1 = cadena1.split(separador);
+                                var urlphp = 'sql/wsLiquidacion.php';
+                                //var url = urlphp + "?ref=" + ref;  
+                                var temp = $.ajax({
+                                    url: urlphp,
+                                    data: {ref: ref},
+                                    type: "POST",
+                                    //dataType: "json",
+                                    async: false,
+                                    success: function (data, status, xhr) {},
+                                    error: function (jqXHR, exception) {
+                                        console.log(jqXHR);
+                                        console.log(exception);
+                                    }
+                                });
+                                var cadena2 = temp.responseText;
+                                arregloDeSubCadenas2 = cadena2.split(separador);
+                                var urlphp = 'sql/wsEstadoCuenta.php';
+                                var temp = $.ajax({
+                                    url: urlphp,
+                                    data: {ref: ref},
+                                    type: "POST",
+                                    //dataType: "json",
+                                    async: false,
+                                    success: function (data, status, xhr) {},
+                                    error: function (jqXHR, exception) {
+                                        console.log(jqXHR);
+                                        console.log(exception);
+                                    }
+                                });
+                                var cadena3 = temp.responseText;
+                                arregloDeSubCadenas3 = cadena3.split(separador);
+                                var urlphp = 'sql/wsHistoricoPagos.php';
+                                var temp = $.ajax({
+                                    url: urlphp,
+                                    data: {ref: ref},
+                                    type: "POST",
+                                    //dataType: "json",
+                                    async: false,
+                                    success: function (data, status, xhr) {},
+                                    error: function (jqXHR, exception) {
+                                        console.log(jqXHR);
+                                        console.log(exception);
+                                    }
+                                });
+                                var cadena4 = temp.responseText;
+                                arregloDeSubCadenas4 = cadena4.split(separador);
+                                var urlphp = 'sql/wsHistoricoAbonos.php';
+                                var temp = $.ajax({
+                                    url: urlphp,
+                                    data: {ref: ref},
+                                    type: "POST",
+                                    //dataType: "json",
+                                    async: false,
+                                    success: function (data, status, xhr) {},
+                                    error: function (jqXHR, exception) {
+                                        console.log(jqXHR);
+                                        console.log(exception);
+                                    }
+                                });
+                                var cadena5 = temp.responseText;
+                                arregloDeSubCadenas5 = cadena5.split(separador);
+                                return [arregloDeSubCadenas1, arregloDeSubCadenas2, arregloDeSubCadenas3, arregloDeSubCadenas4, arregloDeSubCadenas5];
+                            }
+
+                            var tableP = document.getElementById("tablaP");
+                            tableP.innerHTML = "";
+                            var row = tableP.insertRow(0);
+                            var cell1 = row.insertCell(0);
+                            cell1.colSpan = 2;
+                            cell1.innerHTML = "<H5><b>INFORMACION DEL PREDIO</b></H5>";
+                            var select = [];
+                            var sel = [];
+                            var imag = [];
+                            var stv = [];
+                            var ig = [];
+                            var arregloDeSubCadenas = enviarRef(eval(ref_cat));
+                            select[0] = "<b>Código Catastral</b>";
+                            select[1] = "<b>Nombre del Propietario</b>";
+                            select[2] = "<b>Dirección</b>";
+                            select[3] = "<b>Destino</b>";
+                            select[4] = "<b>Matrícula</b>";
+                            select[5] = "<b>Área de Terreno</b>";
+                            select[6] = "<b>Área de Construcción</b>";
+                            select[7] = "<b>Avalúo</b>";
+                            select[8] = "<b>Estrato</b>";
+                            select[9] = "<b>Clase de Predio</b>";
+                            select[10] = "<b>Tipo de Predio</b>";
+                            select[11] = "<b>Estrato Acueducto</b>";
+                            select[12] = "<b>Estrato Alcantarillado</b>";
+                            select[13] = "<b>Estrato Aseo</b>";
+                            select[14] = "<b>Barrio</b>";
+                            select[15] = "<b>Fotografías</b>";
+                            
+                            sel[0] = arregloDeSubCadenas[0][5];
+                            sel[1] = arregloDeSubCadenas[0][7];
+                            sel[2] = arregloDeSubCadenas[0][6];
+                            sel[3] = arregloDeSubCadenas[0][4];
+                            sel[4] = matricula;
+                            sel[5] = Intl.NumberFormat().format(arregloDeSubCadenas[0][1]) + " M2";
+                            sel[6] = simplestabla["0"][2] + " M2";
+                            sel[7] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[0][2]);
+                            sel[8] = arregloDeSubCadenas[0][9];
+                            sel[9] = arregloDeSubCadenas[0][3];
+                            sel[10] = arregloDeSubCadenas[0][8];
+                            sel[11] = values.estrato_acueducto;
+                            sel[12] = values.estrato_alcantarillado;
+                            sel[13] = values.estrato_aseo;
+                            sel[14] = values.cod_barrio;       
+                            sel[15] = document.createElement("a");
+                            sel[15].id = "img1";
+                            sel[15].target = "marco2";
+                            sel[15].setAttribute("onclick", "open_streetview()");
+                            sel[15].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            imag[15] = document.createElement("img");
+                            imag[15].id = "im1";
+                            imag[15].className = "pequeña";
+                            imag[15].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                            stv[15] = document.createElement("a");
+                            stv[15].id = "imgstreet1";
+                            stv[15].target = "marco";
+                            stv[15].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
+                            stv[15].setAttribute("onclick", "open_streetview()");
+                            ig[15] = document.createElement("img");
+                            ig[15].src = "./imagenes/streetview.png";
+                            var campos = 14;
+                            if (arregloDeSubCadenas[2].length > 1) {
+                            	  var urlphp = 'sql/wsFactura.php';
+                                $.ajax({
+                                    url: urlphp,
+                                    data: {ref: arregloDeSubCadenas[0][5]},
+                                    type: "POST",
+                                    //dataType: "json",
+                                    async: false,
+                                    success: function (data, status, xhr) {},
+                                    error: function (jqXHR, exception) {
+                                        console.log(jqXHR);
+                                        console.log(exception);
+                                    }
+                                });
+                                select[16] = "<b>Descargar Recibo</b>";
+                                sel[16] = document.createElement("a");
+                                sel[16].id = "img1";
+                                imag[16] = document.createElement("img");
+                                imag[16].id = "im1";
+                                stv[16] = document.createElement("a");
+                                stv[16].id = "imgstreet1";
+                                stv[16].href = "/facturas/" +arregloDeSubCadenas[0][5]+ "factura.pdf";
+                                stv[16].target = "_blank";
+                                ig[16] = document.createElement("img");
+                                ig[16].src = "./imagenes/pdf.jpg";
+                            }  
+                            for (i = 0; i < select.length; i++) {
+                                row = tableP.insertRow(i + 1);
+                                cell1 = row.insertCell(0);
+                                cell2 = row.insertCell(1);
+                                cell1.innerHTML = select[i];
+                                if (i > campos) {
+                                    cell2.appendChild(sel[i]);
+                                    sel[i].appendChild(imag[i]);
+                                    cell2.appendChild(stv[i]);
+                                    stv[i].appendChild(ig[i]);
+                                } else {
+                                    cell2.innerHTML = sel[i];
+                                }
+                            }
+                            var table = document.getElementById("tblatt");
+                            table.innerHTML = "";
+                            var select = [];
+                            var sel = [];
+                            var imag = [];
+                            var stv = [];
+                            var ig = [];
+                            if (arregloDeSubCadenas[1].length == 1) {
+                                row1 = table.insertRow(select.length);
+                                cellMas = row1.insertCell(0);
+                                cellMas.colSpan = 2;
+                                cellMas.innerHTML = "<H5><b>LIQUIDACIÓN DEL PREDIO</b></H5>";
+                                row1 = table.insertRow(select.length + 1);
+                                cellMas = row1.insertCell(0);
+                                cellMas.colSpan = 2;
+                                cellMas.innerHTML = "<FONT SIZE=2 color='green'><b>NO POSEE DEUDA CON EL MUNICIPIO</b></font>";
+                                row1 = table.insertRow(select.length + 2);
+                                cellMas = row1.insertCell(0);
+                                cellMas.colSpan = 2;
+                                cellMas.innerHTML = "<H5><b>HISTÓRICO DE PAGOS</b></H5>";
+                                if (arregloDeSubCadenas[3].length <= 6) {
+                                    row1 = table.insertRow(select.length + 3);
+                                    cellMas = row1.insertCell(0);
+                                    cellMas.colSpan = 2;
+                                    cellMas.innerHTML = "<b>No se encuentran pagos en el sistema</b>";
+                                }
+                                if (arregloDeSubCadenas[3].length > 6) {
+                                    arreglo1 = [];
+                                    arreglo2 = [];
+                                    for (i = 1; i < parseInt(arregloDeSubCadenas[3][1]) + 1; i++) {
+                                        if (arregloDeSubCadenas[3][3 + 6 * (i - 1)] == arregloDeSubCadenas[3][4 + 6 * (i - 1)]) {
+                                            periodoPago = arregloDeSubCadenas[3][3 + 6 * (i - 1)];
+                                        }
+                                        if (arregloDeSubCadenas[3][3 + 6 * (i - 1)] != arregloDeSubCadenas[3][4 + 6 * (i - 1)]) {
+                                            periodoPago = arregloDeSubCadenas[3][3 + 6 * (i - 1)] + " - " + arregloDeSubCadenas[3][4 + 6 * (i - 1)];
+                                        }
+                                        arreglo1[i - 1] = "<b>Pago " + i + "</b>";
+                                        arreglo2[i - 1] = "# de Factura: " + arregloDeSubCadenas[3][2 + 6 * (i - 1)] + "</br>Periodo de pago: " + periodoPago + "</br>Valor pagado: $" + Intl.NumberFormat().format(arregloDeSubCadenas[3][5 + 6 * (i - 1)]) + "</br>Fecha de pago: " + arregloDeSubCadenas[3][6 + 6 * (i - 1)].slice(0, -9) + "</br>Banco: " + arregloDeSubCadenas[3][7 + 6 * (i - 1)];
+                                    }
+                                    for (i = 2; i < 2 + parseInt(arregloDeSubCadenas[3][1]); i++) {
+                                        row = table.insertRow(i + 1);
+                                        cell1 = row.insertCell(0);
+                                        cell2 = row.insertCell(1);
+                                        cell1.innerHTML = arreglo1[i - 2];
+                                        cell2.innerHTML = arreglo2[i - 2];
+                                    }
+                                }
+                                row1 = table.insertRow(3 + parseInt(arregloDeSubCadenas[3][1]));
+                                cellMas = row1.insertCell(0);
+                                cellMas.colSpan = 2;
+                                cellMas.innerHTML = "<H5><b>HISTÓRICO DE ABONOS</b></H5>";
+                                if (arregloDeSubCadenas[4].length <= 6) {
+                                    row1 = table.insertRow(4 + parseInt(arregloDeSubCadenas[3][1]));
+                                    cellMas = row1.insertCell(0);
+                                    cellMas.colSpan = 2;
+                                    cellMas.innerHTML = "<b>No se encuentran abonos en el sistema</b>";
+                                }
+                                if (arregloDeSubCadenas[4].length > 6) {
+                                    arreglo1 = [];
+                                    arreglo2 = [];
+                                    for (i = 1; i < parseInt(arregloDeSubCadenas[4][1]) + 1; i++) {
+                                        if (arregloDeSubCadenas[4][3 + 6 * (i - 1)] == arregloDeSubCadenas[4][4 + 6 * (i - 1)]) {
+                                            periodoPago = arregloDeSubCadenas[4][3 + 6 * (i - 1)];
+                                        }
+                                        if (arregloDeSubCadenas[4][3 + 6 * (i - 1)] != arregloDeSubCadenas[4][4 + 6 * (i - 1)]) {
+                                            periodoPago = arregloDeSubCadenas[4][3 + 6 * (i - 1)] + " - " + arregloDeSubCadenas[4][4 + 6 * (i - 1)];
+                                        }
+                                        arreglo1[i - 1] = "<b>Abono " + i + "</b>";
+                                        arreglo2[i - 1] = "# de Recibo: " + arregloDeSubCadenas[4][2 + 6 * (i - 1)] + "</br>Periodo de abono: " + periodoPago + "</br>Valor abonado: $" + Intl.NumberFormat().format(arregloDeSubCadenas[4][5 + 6 * (i - 1)]) + "</br>Fecha de abono: " + arregloDeSubCadenas[4][6 + 6 * (i - 1)].slice(0, -9) + "</br>Banco: " + arregloDeSubCadenas[4][7 + 6 * (i - 1)];
+                                    }
+                                    for (i = parseInt(arregloDeSubCadenas[3][1]) + 3; i < parseInt(arregloDeSubCadenas[3][1]) + 3 + parseInt(arregloDeSubCadenas[4][1]); i++) {
+                                        row = table.insertRow(i + 1);
+                                        cell1 = row.insertCell(0);
+                                        cell2 = row.insertCell(1);
+                                        cell1.innerHTML = arreglo1[i - (parseInt(arregloDeSubCadenas[3][1]) + 3)];
+                                        cell2.innerHTML = arreglo2[i - (parseInt(arregloDeSubCadenas[3][1]) + 3)];
+                                    }
+                                }
+                            }
+                            if (arregloDeSubCadenas[1].length > 1) {
+                                row1 = table.insertRow(0);
+                                cellMas = row1.insertCell(0);
+                                cellMas.colSpan = 2;
+                                cellMas.innerHTML = "<H5><b>DATOS DE FACTURACIÓN</b></H5>";
+                                select[0] = "<b>Estado de Factura</b>";
+                                select[1] = "<b># de Factura</b>";
+                                select[2] = "<b>Fecha de vencimiento</b>";
+                                select[3] = "<b>Información del pago</b>";
+                                select[4] = "<b>Tarifa</b>";
+                                select[5] = "<b>Vigencia actual</b>";
+                                sel[0] = "<FONT SIZE=2 color='red'><b>POR PAGAR</b></font>";
+                                sel[1] = arregloDeSubCadenas[1][1];
+                                sel[2] = arregloDeSubCadenas[1][2].slice(0, -9);
+                                sel[3] = arregloDeSubCadenas[1][3];
+                                sel[4] = arregloDeSubCadenas[1][4];
+                                sel[5] = arregloDeSubCadenas[1][5];
+                                for (i = 0; i <= 5; i++) {
+                                    row = table.insertRow(i + 1);
+                                    cell1 = row.insertCell(0);
+                                    cell2 = row.insertCell(1);
+                                    cell1.innerHTML = select[i];
+                                    cell2.innerHTML = sel[i];
+                                }
+                                row1 = table.insertRow(select.length + 1);
+                                cellMas = row1.insertCell(0);
+                                cellMas.colSpan = 2;
+                                cellMas.innerHTML = "<H5><b>ESTADO DE CUENTA</b></H5>";
+                                row1 = table.insertRow(select.length + 2);
+                                cellMas = row1.insertCell(0);
+                                cellMas.colSpan = 2;
+                                cellMas.innerHTML = "<FONT SIZE=2><b>Impuesto Predial</b></font>";
+                                select[9] = "<b>Deuda (+)</b>";
+                                select[10] = "<b>Interés (+)</b>";
+                                select[11] = "<b>Descuento (-)</b>";
+                                select[12] = "<FONT SIZE=2><b>Total Impuesto Predial</b></font>";
+                                sel[9] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][1]);
+                                sel[10] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][2]);
+                                sel[11] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][3]);
+                                sel[12] = "<FONT SIZE=2>$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][4]) + "</font>";
+                                for (i = 9; i <= 12; i++) {
+                                    row = table.insertRow(i);
+                                    cell1 = row.insertCell(0);
+                                    cell2 = row.insertCell(1);
+                                    cell1.innerHTML = select[i];
+                                    cell2.innerHTML = sel[i];
+                                }
+                                row1 = table.insertRow(select.length);
+                                cellMas = row1.insertCell(0);
+                                cellMas.colSpan = 2;
+                                cellMas.innerHTML = "<FONT SIZE=2><b>Corponor</b></font>";
+                                select[14] = "<b>Deuda (+)</b>";
+                                select[15] = "<b>Interés (+)</b>";
+                                select[16] = "<b>Descuento (-)</b>";
+                                select[17] = "<FONT SIZE=2><b>Total Corponor</b></font>";
+                                sel[14] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][9]);
+                                sel[15] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][10]);
+                                sel[16] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][11]);
+                                sel[17] = "<FONT SIZE=2>$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][12]) + "</font>";
+                                for (i = 14; i <= 17; i++) {
+                                    row = table.insertRow(i);
+                                    cell1 = row.insertCell(0);
+                                    cell2 = row.insertCell(1);
+                                    cell1.innerHTML = select[i];
+                                    cell2.innerHTML = sel[i];
+                                }
+                                row1 = table.insertRow(select.length);
+                                cellMas = row1.insertCell(0);
+                                cellMas.colSpan = 2;
+                                cellMas.innerHTML = "<FONT SIZE=2><b>Valorización</b></font>";
+                                select[19] = "<b>Deuda (+)</b>";
+                                select[20] = "<b>Interés (+)</b>";
+                                select[21] = "<b>Descuento (-)</b>";
+                                select[22] = "<FONT SIZE=2><b>Total Valorización</b></font>";
+                                sel[19] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][5]);
+                                sel[20] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][6]);
+                                sel[21] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][7]);
+                                sel[22] = "<FONT SIZE=2>$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][8]) + "</font>";
+                                for (i = 19; i <= 22; i++) {
+                                    row = table.insertRow(i);
+                                    cell1 = row.insertCell(0);
+                                    cell2 = row.insertCell(1);
+                                    cell1.innerHTML = select[i];
+                                    cell2.innerHTML = sel[i];
+                                }
+                                row1 = table.insertRow(select.length);
+                                cellMas = row1.insertCell(0);
+                                cellMas.colSpan = 2;
+                                cellMas.innerHTML = "<H5><b>LIQUIDACIÓN DEL PREDIO</b></H5>";
+                                select[24] = "<b>Total Impuestos y Contribuciones (+)</b>";
+                                select[25] = "<b>Total Interés (+)</b>";
+                                select[26] = "<b>Total Descuento (-)</b>";
+                                select[27] = "<b>Costo Facturación (+)</b>";
+                                select[28] = "<FONT SIZE=2><b>Total a Pagar Predio</b></font>";
+                                sel[24] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][13]);
+                                sel[25] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][14]);
+                                sel[26] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][15]);
+                                sel[27] = "$2.600";
+                                sel[28] = "<FONT SIZE=2 color='red'><b>$" + Intl.NumberFormat().format(arregloDeSubCadenas[2][16]) + "</b></font>";
+                                for (i = 24; i <= 28; i++) {
+                                    row = table.insertRow(i);
+                                    cell1 = row.insertCell(0);
+                                    cell2 = row.insertCell(1);
+                                    cell1.innerHTML = select[i];
+                                    cell2.innerHTML = sel[i];
+                                }
+                                if (arregloDeSubCadenas[2][17] == arregloDeSubCadenas[1][5]) {
+                                    periodoDeuda = "Los datos anteriores corresponden a los impuestos y contribuciones del año " + arregloDeSubCadenas[1][5];
+                                }
+                                if (arregloDeSubCadenas[2][17] != arregloDeSubCadenas[1][5]) {
+                                    periodoDeuda = "Los datos anteriores corresponden a la suma de impuestos y contribuciones desde el año " + arregloDeSubCadenas[2][17] + " hasta el año " + arregloDeSubCadenas[1][5];
+                                }
+                                row1 = table.insertRow(select.length);
+                                cellMas = row1.insertCell(0);
+                                cellMas.colSpan = 2;
+                                cellMas.innerHTML = periodoDeuda;
+                                row1 = table.insertRow(select.length + 1);
+                                cellMas = row1.insertCell(0);
+                                cellMas.colSpan = 2;
+                                cellMas.innerHTML = "<H5><b>HISTÓRICO DE PAGOS</b></H5>";
+                                if (arregloDeSubCadenas[3].length <= 6) {
+                                    row1 = table.insertRow(select.length + 2);
+                                    cellMas = row1.insertCell(0);
+                                    cellMas.colSpan = 2;
+                                    cellMas.innerHTML = "<b>No se encuentran pagos en el sistema</b>";
+                                    if (arregloDeSubCadenas[4].length <= 6) {
+                                        row1 = table.insertRow(select.length + 3);
+                                        cellMas = row1.insertCell(0);
+                                        cellMas.colSpan = 2;
+                                        cellMas.innerHTML = "<H5><b>HISTÓRICO DE ABONOS</b></H5>";
+                                        row1 = table.insertRow(select.length + 4);
+                                        cellMas = row1.insertCell(0);
+                                        cellMas.colSpan = 2;
+                                        cellMas.innerHTML = "<b>No se encuentran abonos en el sistema</b>";
+                                    }
+                                }
+                                if (arregloDeSubCadenas[3].length > 6) {
+                                    arreglo1 = [];
+                                    arreglo2 = [];
+                                    for (i = 1; i < parseInt(arregloDeSubCadenas[3][1]) + 1; i++) {
+                                        if (arregloDeSubCadenas[3][3 + 6 * (i - 1)] == arregloDeSubCadenas[3][4 + 6 * (i - 1)]) {
+                                            periodoPago = arregloDeSubCadenas[3][3 + 6 * (i - 1)];
+                                        }
+                                        if (arregloDeSubCadenas[3][3 + 6 * (i - 1)] != arregloDeSubCadenas[3][4 + 6 * (i - 1)]) {
+                                            periodoPago = arregloDeSubCadenas[3][3 + 6 * (i - 1)] + " - " + arregloDeSubCadenas[3][4 + 6 * (i - 1)];
+                                        }
+                                        arreglo1[i - 1] = "<b>Pago " + i + "</b>";
+                                        arreglo2[i - 1] = "# de Factura: " + arregloDeSubCadenas[3][2 + 6 * (i - 1)] + "</br>Periodo de pago: " + periodoPago + "</br>Valor pagado: $" + Intl.NumberFormat().format(arregloDeSubCadenas[3][5 + 6 * (i - 1)]) + "</br>Fecha de pago: " + arregloDeSubCadenas[3][6 + 6 * (i - 1)].slice(0, -9) + "</br>Banco: " + arregloDeSubCadenas[3][7 + 6 * (i - 1)];
+                                    }
+                                    for (i = 31; i < 31 + parseInt(arregloDeSubCadenas[3][1]); i++) {
+                                        row = table.insertRow(i);
+                                        cell1 = row.insertCell(0);
+                                        cell2 = row.insertCell(1);
+                                        cell1.innerHTML = arreglo1[i - 31];
+                                        cell2.innerHTML = arreglo2[i - 31];
+                                    }
+                                    if (arregloDeSubCadenas[4].length <= 6) {
+                                        row1 = table.insertRow(31 + parseInt(arregloDeSubCadenas[3][1]));
+                                        cellMas = row1.insertCell(0);
+                                        cellMas.colSpan = 2;
+                                        cellMas.innerHTML = "<H5><b>HISTÓRICO DE ABONOS</b></H5>";
+                                        row1 = table.insertRow(32 + parseInt(arregloDeSubCadenas[3][1]));
+                                        cellMas = row1.insertCell(0);
+                                        cellMas.colSpan = 2;
+                                        cellMas.innerHTML = "<b>No se encuentran abonos en el sistema</b>";
+                                    }
+                                }
+                                if (arregloDeSubCadenas[4].length > 6) {
+                                    row1 = table.insertRow(31 + parseInt(arregloDeSubCadenas[3][1]));
+                                    cellMas = row1.insertCell(0);
+                                    cellMas.colSpan = 2;
+                                    cellMas.innerHTML = "<H5><b>HISTÓRICO DE ABONOS</b></H5>";
+                                    arreglo1 = [];
+                                    arreglo2 = [];
+                                    for (i = 1; i < parseInt(arregloDeSubCadenas[4][1]) + 1; i++) {
+                                        if (arregloDeSubCadenas[4][3 + 6 * (i - 1)] == arregloDeSubCadenas[4][4 + 6 * (i - 1)]) {
+                                            periodoPago = arregloDeSubCadenas[4][3 + 6 * (i - 1)];
+                                        }
+                                        if (arregloDeSubCadenas[4][3 + 6 * (i - 1)] != arregloDeSubCadenas[4][4 + 6 * (i - 1)]) {
+                                            periodoPago = arregloDeSubCadenas[4][3 + 6 * (i - 1)] + " - " + arregloDeSubCadenas[4][4 + 6 * (i - 1)];
+                                        }
+                                        arreglo1[i - 1] = "<b>Abono " + i + "</b>";
+                                        arreglo2[i - 1] = "# de Recibo: " + arregloDeSubCadenas[4][2 + 6 * (i - 1)] + "</br>Periodo de abono: " + periodoPago + "</br>Valor abonado: $" + Intl.NumberFormat().format(arregloDeSubCadenas[4][5 + 6 * (i - 1)]) + "</br>Fecha de abono: " + arregloDeSubCadenas[4][6 + 6 * (i - 1)].slice(0, -9) + "</br>Banco: " + arregloDeSubCadenas[4][7 + 6 * (i - 1)];
+                                    }
+                                    for (i = parseInt(arregloDeSubCadenas[3][1]) + 32; i < parseInt(arregloDeSubCadenas[3][1]) + 32 + parseInt(arregloDeSubCadenas[4][1]); i++) {
+                                        row = table.insertRow(i);
+                                        cell1 = row.insertCell(0);
+                                        cell2 = row.insertCell(1);
+                                        cell1.innerHTML = arreglo1[i - (parseInt(arregloDeSubCadenas[3][1]) + 32)];
+                                        cell2.innerHTML = arreglo2[i - (parseInt(arregloDeSubCadenas[3][1]) + 32)];
+                                    }
+                                }
+                            }
+                        }                        
+                        else if (tipoUsuario === "Demo") {
                             try {
                                 var riesgo = search("cucuta:buscar_riesgo", cod);
                                 var riesgo = riesgo["0"]["0"];

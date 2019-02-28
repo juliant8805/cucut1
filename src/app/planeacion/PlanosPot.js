@@ -154,6 +154,89 @@ function planos(id) {
         categoriasdelsuelourbano.setVisible(true); 
     }
     
+    else if (document.getElementById("planospot").value === "EEPSR") {
+        var pgetextent = [-8144021.249918, 854524.555451, -7990172.829397, 943996.173775];
+        map.getView().fitExtent(pgetextent, map.getSize());
+        document.getElementById('plano_05').style.display = 'block';
+        predio.setVisible(false);
+        areamanejoespecial.setVisible(true);
+        areamanejoespecial.getSource().updateParams({'STYLES': 'areamanejoespecial_plano_05'});
+        clasesdesuelo.setVisible(true);
+        clasesdesuelo.getSource().updateParams({'STYLES': 'clasesdesuelo_plano_05'});
+        cabecerasmunicipalesvecinas.setVisible(true);
+        cabecerasmunicipalesvecinas.getSource().updateParams({'STYLES': 'cabeceras_municipales_vecinas'});
+        centrospoblados.setVisible(true);
+        centrospoblados.getSource().updateParams({'STYLES': 'centros_poblado_pot_2011'});
+        parquesdeborde.setVisible(true);
+        parquesdeborde.getSource().updateParams({'STYLES': 'parques_de_borde'});
+        perimetro2015.setVisible(true);
+        perimetro2015.getSource().updateParams({'STYLES': 'Perimetro_Decreto_028_de_2012'});
+        perimetromunicipal.setVisible(true);
+        perimetromunicipal.getSource().updateParams({'STYLES': 'perimetro_municipal_plano_05'});
+        perimetrodeexpansion.setVisible(true);
+        perimetrodeexpansion.getSource().updateParams({'STYLES': 'perimetro_de_expansion_plano_05'});
+        prediosadquiridosmunicipio.setVisible(true);
+        prediosadquiridosmunicipio.getSource().updateParams({'STYLES': 'predios_adquiridos_municipio_plano_05'});
+        redvialrural.setVisible(true);
+        redvialrural.getSource().updateParams({'STYLES': 'red_vial_rural_plano_05'});
+        hidrografia.setVisible(true);
+        riospoligono.setVisible(true);
+        riospoligono.getSource().updateParams({'STYLES': 'rios_poligono_plano_05'});
+        rondasrio.setVisible(true);
+        rondasrio.getSource().updateParams({'STYLES': 'rondas_rio_plano_05'});
+       
+    }  
+    
+    else if (document.getElementById("planospot").value === "RE") {
+        var pgetextent = [-8086065, 874885, -8056192, 890166];
+        map.getView().fitExtent(pgetextent, map.getSize());
+        document.getElementById('plano_06').style.display = 'block';
+        predio.setVisible(false);
+        riesgosurbanos.setVisible(true);
+        riesgosurbanos.getSource().updateParams({'STYLES': 'riesgosurbanos_plano06'});
+        mapaconjuntoactualizado2015.setVisible(true);
+        mapaconjuntoactualizado2015.getSource().updateParams({'STYLES': 'mapaconjuntoactualizado2015_plano_06'});
+        subsistemavialurbano.setVisible(true);
+        subsistemavialurbano.getSource().updateParams({'STYLES': 'subsistema_vial_urbano_plano_06'});
+        perimetro2015.setVisible(true);
+        perimetro2015.getSource().updateParams({'STYLES': 'Perimetro_Decreto_028_de_2012'});
+        perimetromunicipal.setVisible(true);
+        perimetromunicipal.getSource().updateParams({'STYLES': 'perimetro_municipal_plano_05'});
+        perimetrodeexpansion.setVisible(true);
+        perimetrodeexpansion.getSource().updateParams({'STYLES': 'perimetro_de_expansion_plano_05'});
+        hidrografia.setVisible(true); 
+        cabecerasmunicipalesvecinas.setVisible(true);
+        cabecerasmunicipalesvecinas.getSource().updateParams({'STYLES': 'cabeceras_municipales_vecinas'});
+        redvialrural.setVisible(true);
+        redvialrural.getSource().updateParams({'STYLES': 'red_vial_rural_plano_05'});
+        anillovial.setVisible(true);
+    }  
+    
+    else if (document.getElementById("planospot").value === "SSVR") {
+        predio.setVisible(false);
+        perimetro2015.setVisible(true);
+        perimetro2015.getSource().updateParams({'STYLES': 'Perimetro_Decreto_028_de_2012'});
+        interseccionesrurales.setVisible(true);
+        interseccionesrurales.getSource().updateParams({'STYLES': 'interseccionesrural_plano_07'});
+        subsistemavialrural.setVisible(true);
+        subsistemavialrural.getSource().updateParams({'STYLES': 'subsistema_vial_rural_plano_07'});
+        perimetrodeexpansion.setVisible(true);
+        perimetrodeexpansion.getSource().updateParams({'STYLES': 'perimetro_de_expansion_plano_05'});
+        redvialrural.setVisible(true);
+        redvialrural.getSource().updateParams({'STYLES': 'red_vial_rural_plano_05'});
+        hidrografia.setVisible(true); 
+        perimetromunicipal.setVisible(true);
+        perimetromunicipal.getSource().updateParams({'STYLES': 'perimetro_municipal_plano_05'});
+        cabecerasmunicipalesvecinas.setVisible(true);
+        cabecerasmunicipalesvecinas.getSource().updateParams({'STYLES': 'cabeceras_municipales_vecinas'});
+        riospoligono.setVisible(true);
+        riospoligono.getSource().updateParams({'STYLES': 'rios_poligono_plano_05'});
+        cabecerasmunicipalesvecinas.setVisible(true);
+        cabecerasmunicipalesvecinas.getSource().updateParams({'STYLES': 'cabeceras_municipales_vecinas'});
+        clasesdesuelo.setVisible(true);
+        clasesdesuelo.getSource().updateParams({'STYLES': 'clasesdesuelo_plano_05'});
+    }
+    
 }
     
     

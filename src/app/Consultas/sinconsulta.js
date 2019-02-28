@@ -14,12 +14,15 @@ function general() {
         document.getElementById("panel_atr2").style.height = "0px";
         document.getElementById("tablaP").style.visibility = "hidden";
         document.getElementById("tablaP").style.height = "0px";
+        restitucion_arbol.setVisible(true);
         var valor = "'" + values + "'";
         var filtro = '"cod_barrio=' + valor + '"';
         predio.getSource().updateParams({'STYLES': 'predios_sin_consulta_localidad', 'CQL_FILTER': eval(filtro)});
+        restitucion_arbol.getSource().updateParams({'STYLES': '', 'CQL_FILTER': eval(filtro)});
         var totalprediosbarrio = search("cucuta:TotalPrediosSinConsulta", values);
         var areabarrios = search("cucuta:AreaBarrio", values);
         var manzanasbarrio = search("cucuta:TotalManzanasBarrio", values);
+        var arbolesbarrio = search("cucuta:TotalArbolesBarrio", values);
         var table = document.getElementById("tblatt");
         table.innerHTML = "";
         var row = table.insertRow(0);
@@ -46,7 +49,7 @@ function general() {
         sel[5] = "PENDIENTE";
         sel[6] = "PENDIENTE";
         sel[7] = "PENDIENTE";
-        sel[8] = "PENDIENTE";
+        sel[8] = arbolesbarrio;
         sel[9] = "PENDIENTE";
 
         for (i = 0; i < select.length; i++) {

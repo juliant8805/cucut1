@@ -87,6 +87,18 @@ var heatmap = new ol.layer.Image({
     }), name: 'heatmap'
 });
 
+var u_terreno_obs = new ol.layer.Image({
+    visible: true,
+    //preload: Infinity,
+    //minResolution: -0.420066992284,
+    //maxResolution: 56.5679014489,
+    //extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457],
+    source: new ol.source.ImageWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:u_terreno_point', STYLES: ''}
+    }), name: 'Predio Observaciones'
+});
+
 var construcciones = new ol.layer.Tile({
     visible: true,
     source: new ol.source.TileWMS({
@@ -272,8 +284,8 @@ var perimetro2015 = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS: 'cucuta:je_perimetro_urbano_acuerdo_020_de_2013', STYLES: ''}
-    }), name: 'Perimetro Urbano Acuerdo 020 de 2013'
+        params: {LAYERS: 'cucuta:je_perimetro_2015', STYLES: ''}
+    }), name: 'Perimetro_Decreto_028_de_2012'
 });
 
 var cabecerasmunicipalesvecinas = new ol.layer.Tile({
@@ -372,17 +384,86 @@ var categoriasdelsuelourbano = new ol.layer.Tile({
     }), name: 'Categorias del Suelo Urbano'
 });
 
+var interseccionesrurales = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_intersecciones_rural', STYLES: ''}
+    }), name: 'Intersecciones Rurales'
+});
+
+var areamanejoespecial = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_areas_de_manejo_especial', STYLES: ''}
+    }), name: 'Area de Manejo Especial'
+});
+
+var parquesdeborde = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_parques_de_borde', STYLES: ''}
+    }), name: 'Parques de Borde'
+});
+
+var prediosadquiridosmunicipio = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_predios_adquiridos_municipio_cucuta', STYLES: 'predios_adquiridos_municipio_plano_05'}
+    }), name: 'Predios Adquiridos Municipio'
+});
+
+var riospoligono = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_rios_poligonos', STYLES: 'predios_adquiridos_municipio_plano_05'}
+    }), name: 'Rios Poligono'
+});
+
+var rondasrio = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_rondas', STYLES: 'rondas_rio_plano_05'}
+    }), name: 'Rondas Rio'
+});
+
+var riesgosurbanos = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_riesgos_urbanos', STYLES: 'riesgosurbanos_plano06'}
+    }), name: 'Riesgos Urbanos'
+});
+
+var subsistemavialurbano = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_subsistemavialurbano', STYLES: 'subsistema_vial_urbano_plano_06'}
+    }), name: 'Subsistema Vial Urbano'
+});
+
+
+
 
 // WFS-T
+var usob = document.cookie.split('=');
+var usob = usob[0];
+var valor = "'" + usob + "'";
+var filtro = '"usuario=' + valor + '"';
 
 var poligonosedicion = new ol.layer.Tile({
     visible: false,
     source: new ol.source.TileWMS({
-        url: 'http://35.184.176.7:8081/geoserver/prueba/wfs',
-        params: {LAYERS: 'prueba:wfs_prueba_xml', STYLES: ''}
+        url: 'http://35.184.176.7:8081/geoserver/prueba/wms',
+        params: {LAYERS: 'prueba:wfs_prueba_xml', STYLES: '', CQL_FILTER : eval(filtro)}
     }), name: 'Poligonos Edición'
 });
-
 
 
 var sourceWFS = new ol.source.Vector({
@@ -406,7 +487,6 @@ var sourceWFS = new ol.source.Vector({
     projection: 'EPSG:3857'
 });
 
-
 var layerWFS = new ol.layer.Vector({
     
   visible: true,
@@ -415,22 +495,278 @@ var layerWFS = new ol.layer.Vector({
     //style: countryStyle
 });
 
+var restitucion_antena = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_antena', STYLES: ''}
+    }), name: 'Antena'
+});
 
+var restitucion_arbol = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_arbol', STYLES: ''}
+    }), name: 'Arbol'
+});
 
+var restitucion_bosque = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_bosque_grupo_arboles', STYLES: ''}
+    }), name: 'Grupo de Arboles'
+});
 
+var restitucion_cerca = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_cerca', STYLES: ''}
+    }), name: 'Cerca'
+});
+
+var restitucion_construccion_agua_l = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_construccion_agua_l', STYLES: ''}
+    }), name: 'Construccion Agua L'
+});
+
+var restitucion_construccion_agua_p = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_construccion_agua_p', STYLES: ''}
+    }), name: 'Construccion Agua P'
+});
+
+var restitucion_construccion_agua_r = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_construccion_agua_r', STYLES: ''}
+    }), name: 'Construccion Agua R'
+});
+
+var restitucion_construccion_p = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_construccion_p', STYLES: ''}
+    }), name: 'Construccion P'
+});
+
+var restitucion_construccion_r = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_construccion_r', STYLES: ''}
+    }), name: 'Construccion R'
+});
+
+var restitucion_curva_nivel = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_curva_nivel', STYLES: ''}
+    }), name: 'Curva de Nivel'
+});
+
+var restitucion_helipuerto_r = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_helipuerto_r', STYLES: ''}
+    }), name: 'Helipuerto'
+});
+
+var restitucion_linea_demarcacion = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_linea_demarcacion', STYLES: ''}
+    }), name: 'Linea de Demarcación'
+});
+
+var restitucion_matorral = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_matorral', STYLES: ''}
+    }), name: 'Matorral'
+});
+
+var restitucion_mina_r = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_mina_r', STYLES: ''}
+    }), name: 'Mina R'
+});
+
+var restitucion_muro = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_muro', STYLES: ''}
+    }), name: 'Muro'
+});
+
+var restitucion_paramento = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_paramento', STYLES: ''}
+    }), name: 'Paramento'
+});
+
+var restitucion_piscina = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_piscina', STYLES: ''}
+    }), name: 'Piscina'
+});
+
+var restitucion_pista_aterrizaje_r = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_pista_aterrizaje_r', STYLES: ''}
+    }), name: 'Pista Aterrizaje'
+});
+
+var restitucion_poste = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_poste', STYLES: ''}
+    }), name: 'Poste'
+});
+
+var restitucion_puente_l = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_puente_l', STYLES: ''}
+    }), name: 'Puente L'
+});
+
+var restitucion_puerte_r = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_puerto_r', STYLES: ''}
+    }), name: 'Puerto R'
+});
+
+var restitucion_red_alta_tension = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_red_alta_tension', STYLES: ''}
+    }), name: 'Red de Alta Tensión'
+});
+
+var restitucion_tapa_camara = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_tapa_camara', STYLES: ''}
+    }), name: 'Tapa Camara'
+});
+
+var restitucion_terminal_r = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_terminal_r', STYLES: ''}
+    }), name: 'Terminal R'
+});
+
+var restitucion_terraplen = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_terraplen', STYLES: ''}
+    }), name: 'Terraplen'
+});
+
+var restitucion_torre = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_torre', STYLES: ''}
+    }), name: 'Torre'
+});
+
+var restitucion_tuberia = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_tuberia', STYLES: ''}
+    }), name: 'Tuberia'
+});
+
+var restitucion_tunel = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_tunel', STYLES: ''}
+    }), name: 'Tunel'
+});
+
+var restitucion_zona_deportiva = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_zona_deportiva', STYLES: ''}
+    }), name: 'Zona Deportiva'
+});
+
+var restitucion_zona_dura = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_zona_dura', STYLES: ''}
+    }), name: 'Zona Dura'
+});
+
+var restitucion_zona_verde = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:restitucion_zona_verde', STYLES: ''}
+    }), name: 'Zona Verde'
+});
+
+var u_terreno_obs = new ol.layer.Tile({
+    visible: true,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/prueba/wms',
+        params: {LAYERS: 'prueba:u_terreno_obs', STYLES: ''}
+    }), name: 'Observaciones'
+});
 
 //CAPS GROUP
 
+var layerRestitucion = new ol.layer.Group({
+    layers: [restitucion_zona_verde, restitucion_zona_dura, restitucion_zona_deportiva, restitucion_tunel, restitucion_tuberia, restitucion_torre, restitucion_terraplen, restitucion_terminal_r, restitucion_tapa_camara, restitucion_red_alta_tension, restitucion_puerte_r, restitucion_puente_l, restitucion_poste, restitucion_pista_aterrizaje_r, restitucion_piscina, restitucion_paramento, restitucion_muro, restitucion_mina_r, restitucion_matorral, restitucion_linea_demarcacion, restitucion_helipuerto_r, restitucion_curva_nivel, restitucion_construccion_r, restitucion_construccion_p, restitucion_construccion_agua_r, restitucion_construccion_agua_p, restitucion_construccion_agua_l, restitucion_cerca, restitucion_bosque, restitucion_arbol, restitucion_antena],
+    name: 'Restitucion'
+});
 
 var layerCatastro = new ol.layer.Group({
-    layers: [poligonosedicion, layerWFS, manzanas, predio, vias, construcciones, n_domiciliaria, heatmap, predios_campo, highlightfeatures],
+    layers: [poligonosedicion, layerWFS, manzanas, predio, vias, construcciones, n_domiciliaria, heatmap, predios_campo, u_terreno_obs, highlightfeatures],
     name: 'Catastro'
 });
 
 
 var layerPot2011 = new ol.layer.Group({
-    layers: [toponimiabarrios, anillovial, lineascomplementarias2015, nomenclaturapot2011, mapaconjuntoactualizado2015, categoriasdelsuelourbano, cabecerasmunicipalesvecinas, perimetromunicipal, perimetrodeexpansion, cuerposdeagua, cabecerasmunicipalescolombia, clasesdesuelo, redvialrural, centrospoblados, nodosregionales, modelonodos, subsistemavialrural, ejesintegracionbinacional, ejesintegracionnacional, ejesintegracionregional, perimetro2015, suelodeproteccion, hidrografia, hidrografia],
-    name: 'POT-ACUERDO 089 DE 2011'
+    layers: [rondasrio, riospoligono, subsistemavialurbano, parquesdeborde, toponimiabarrios, anillovial, lineascomplementarias2015, nomenclaturapot2011, mapaconjuntoactualizado2015, riesgosurbanos, categoriasdelsuelourbano, cabecerasmunicipalesvecinas, perimetromunicipal, perimetrodeexpansion, cuerposdeagua, cabecerasmunicipalescolombia, clasesdesuelo, redvialrural, centrospoblados, nodosregionales, modelonodos, subsistemavialrural, ejesintegracionbinacional, ejesintegracionnacional, ejesintegracionregional, perimetro2015, suelodeproteccion, hidrografia, areamanejoespecial, prediosadquiridosmunicipio, interseccionesrurales, hidrografia],
+    name: 'POT_2011'
 });
 
 var layerBing = new ol.layer.Group({

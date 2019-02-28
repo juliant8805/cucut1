@@ -1,7 +1,9 @@
 
 function loadobs(){
+	var usob = document.cookie.split('=');
+	var usob = usob[0];
    var obs = document.getElementById('observaciones').value;
-var payloadobs = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:prueba="http://prueba" xmlns:ogc="http://www.opengis.net/ogc" xmlns:wfs="http://www.opengis.net/wfs"><wfs:Update typeName="prueba:wfs_prueba_xml">   <wfs:Property><wfs:Name>observaciones</wfs:Name><wfs:Value>' + obs + '</wfs:Value></wfs:Property><ogc:Filter><ogc:FeatureId fid="'+ wfsupdate +'"/></ogc:Filter></wfs:Update></wfs:Transaction>';
+   var payloadobs = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:prueba="http://prueba" xmlns:ogc="http://www.opengis.net/ogc" xmlns:wfs="http://www.opengis.net/wfs"><wfs:Update typeName="prueba:wfs_prueba_xml"><wfs:Property><wfs:Name>observaciones</wfs:Name><wfs:Value>' + obs + '</wfs:Value></wfs:Property><wfs:Property><wfs:Name>usuario</wfs:Name><wfs:Value>' + usob + '</wfs:Value></wfs:Property><ogc:Filter><ogc:FeatureId fid="'+ wfsupdate +'"/></ogc:Filter></wfs:Update></wfs:Transaction>';
                     $.ajax('http://35.184.176.7:8081/geoserver/prueba/ows', {
                             type: 'POST',
                             dataType: 'xml',
@@ -14,7 +16,12 @@ var payloadobs = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:prueba="h
                                     console.log('error');
                                 }
                         }); 
-             if (conteo == 1){
+                        
+var valor = "'" + usob + "'";
+var filtro = '"usuario=' + valor + '"';
+poligonosedicion.getSource().updateParams({'CQL_FILTER': eval(filtro)});                        
+                        
+            /* if (conteo == 1){
                             poligonosedicion.getSource().updateParams({CQL_FILTER:"1=1"});
                                 conteo = conteo + 1;
                                 }
@@ -49,7 +56,7 @@ var payloadobs = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:prueba="h
                             else if (conteo == 9){
                               poligonosedicion.getSource().updateParams({CQL_FILTER:"9=9"});
                                 conteo = conteo + 1;
-                            }
+                            }*/
     alert("informacion guardada exitosamente");
 }
 
@@ -181,6 +188,7 @@ function limpiar_consulta() {
     y.body.style.display = "none";	*/
     globalstyle = "sinconsulta"; 
     predio.setVisible(true);
+    restitucion_arbol.setVisible(false);
     poligonosedicion.setVisible(false);
     barrios.setVisible(false);
     construcciones.setVisible(true);
@@ -188,7 +196,7 @@ function limpiar_consulta() {
     obras.setVisible(false);
     ejeobras.setVisible(false);
     heatmap.setVisible(false);
-    redvialrural.setVisible(false);
+    /*redvialrural.setVisible(false);
     centrospoblados.setVisible(false);
     nodosregionales.setVisible(false);
     modelonodos.setVisible(false);
@@ -210,12 +218,15 @@ function limpiar_consulta() {
     lineascomplementarias2015.setVisible(false);
     nomenclaturapot2011.setVisible(false);
     mapaconjuntoactualizado2015.setVisible(false);
-    categoriasdelsuelourbano.setVisible(false); 
+    categoriasdelsuelourbano.setVisible(false);*/ 
+    layerPot2011.setVisible(false);
     predio.getSource().updateParams({'STYLES': 'predios_sin_consulta_cucuta', 'CQL_FILTER': null});
     document.getElementById('divgetinfo').style.display = "none";
     document.getElementById('plano_01').style.display = "none";
     document.getElementById('plano_03').style.display = "none";
     document.getElementById('plano_04').style.display = "none";
+    document.getElementById('plano_05').style.display = "none";
+    document.getElementById('plano_06').style.display = "none";
     document.getElementById("menu_coordenadas_wgs84").style.display = "none"; 
     document.getElementById("menu_coordenadas_3116").style.display = "none"; 
     document.getElementById("menu_coordenadas_3117").style.display = "none";
@@ -1269,10 +1280,10 @@ function formcoordenadas2() {
      if (button2.checked == true){
         document.getElementById("menu_coordenadas_decimales").style.display = "block"; 
      }
-   /* if (button3.checked == true){
+   if (button3.checked == true){
         document.getElementById("menu_coordenadas_3116").style.display = "block"; 
      }
-    if (button4.checked == true){
+    /* if (button4.checked == true){
         document.getElementById("menu_coordenadas_3116").style.display = "block"; 
      }
     if (button5.checked == true){
@@ -1291,7 +1302,7 @@ function input_coordinates() {
      document.getElementById("menu_coordenadas_21898").style.display = "none"; */
      var button1 = document.getElementById('button1a');
      var button2 = document.getElementById('button2b');
-     //var button3 = document.getElementById('button3c');
+     var button3 = document.getElementById('button3c');
      /*var button4 = document.getElementById('button4d');
      var button5 = document.getElementById('button5e');*/
      document.getElementById("opc_coord").style.display = "none";
@@ -1335,11 +1346,12 @@ function input_coordinates() {
             rainfall: 500
           });             
      }
-    /*if (button3.checked == true){
+    if (button3.checked == true){
             var view = map.getView();
             var x = document.getElementById('ex7').value;
             var y = document.getElementById('ex8').value;
-            map.getView().setCenter(ol.proj.transform([x, y], 'EPSG:3116', 'EPSG:3857'));
+            window.open("projeccion.html?var1=" + x + "," + y, target='_blank');
+            /*map.getView().setCenter(ol.proj.transform([x, y], 'EPSG:3116', 'EPSG:3857'));
             map.getView().setZoom(18); 
             var iconFeatures = [];
             var iconFeature = new ol.Feature({
@@ -1347,9 +1359,9 @@ function input_coordinates() {
               'EPSG:3857')),
             name: 'magnacolombiabogota',
             population: 4000,
-            rainfall: 500
-          });       
-     }*/
+            rainfall: 500*/
+       //   });       
+     }
    /* if (button3.checked == true){
             var view = map.getView();
             var x = document.getElementById('ex9').value;
@@ -1399,4 +1411,28 @@ function input_coordinates() {
       var markerSource = highlight.getSource();
       markerSource.clear();
       markerSource.addFeature(iconFeature);  
+}
+
+function agregarinfopredio(cod2) {
+	var cod2 = cod2.toString();
+	var cod2 = cod2.substr(1, 15);
+
+var observaciones = document.getElementById('observacionespredio').value;
+var payload3 = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:prueba="http://prueba" xmlns:ogc="http://www.opengis.net/ogc" xmlns:wfs="http://www.opengis.net/wfs"><wfs:Update typeName="prueba:u_terreno_obs"><wfs:Property><wfs:Name>observacio</wfs:Name><wfs:Value>' + observaciones + '</wfs:Value></wfs:Property><ogc:Filter><ogc:PropertyIsEqualTo><ogc:PropertyName>cod</ogc:PropertyName><ogc:Literal>' + cod2 + '</ogc:Literal></ogc:PropertyIsEqualTo></ogc:Filter></wfs:Update></wfs:Transaction>';
+$.ajax('http://35.184.176.7:8081/geoserver/prueba/ows', {
+        type: 'POST',
+        dataType: 'xml',
+        processData: false,
+        contentType: 'text/xml',
+        data: payload3,
+        success: function (xml) {
+            },
+                error: function (xml) {
+                        console.log('error');
+            }
+        }).done(function() {
+                sourceWFS.clear();
+    });
+    //predio.getSource().updateParams({'STYLES': 'predios_hallazgos'})
+    alert("Información guardada exitosamente</br>");
 }
