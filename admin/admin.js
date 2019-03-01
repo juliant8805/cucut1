@@ -244,7 +244,6 @@ function SelectUser(event, ui) {
         var a = Object.keys(ui.item)[j];
         select[0][j] = ui.item[a];
     }
-    console.log(select[0]);
     userid = select[0][3];
     document.getElementById('usu').disabled = true;
     document.getElementById('group').style.display = 'block';

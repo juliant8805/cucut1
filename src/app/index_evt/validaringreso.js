@@ -9,8 +9,71 @@ $(document).on('ready', function () {
     if (select === null || select === undefined) {
         location.href = "index.html?ig=error";
     }
+     else {
+        var ca = document.cookie.split('=');
+        //var select1 = select_query("SELECT count(*) AS count FROM reguser WHERE usuario = '" + ca[0] + "'");
+        var select1 = search("cucuta:activUser", ca[0]);
+        if (select1[0][0] === 0) {
+            document.getElementById("completo").style.display = 'block';
+            document.getElementById("termin").style.display = 'block';
+        }
+        var f = new Date();
+        //var hora = f.getHours
+        if ((f.getMonth() + 1) < 10) {
+            var month = '0' + (f.getMonth() + 1);
+        } else {
+            var month = (f.getMonth() + 1);
+        }
+        if (f.getDate() < 10) {
+            var day = '0' + f.getDate();
+        } else {
+            var day = f.getDate();
+        }
+        if (f.getHours() + 5 < 10) {
+            var hour = '0' + (f.getHours());
+        } else {
+            var hour = f.getHours();
+        }
+        if (f.getMinutes() < 10) {
+            var minute = '0' + f.getMinutes();
+        } else {
+            var minute = f.getMinutes();
+        }
+        if (f.getSeconds() < 10) {
+            var second = '0' + f.getSeconds();
+        } else {
+            var second = f.getSeconds();
+        }
+        var fecha = f.getFullYear() + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "Z";
+        var arrayResult = '<Transaction xmlns="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:user="http://user.co" xmlns:gml="http://www.opengis.net/gml" version="1.1.0" service="WFS" xsi:schemaLocation="http://35.184.176.7:8081/geoserver">\
+            <Insert xmlns="http://www.opengis.net/wfs">\
+                <user:reguser>\
+                    <usuario>' + select[0][2] + '</usuario>\
+                    <fecha>' + fecha + '</fecha>\
+                    <actividad>Ingreso al sistema</actividad>\
+                </user:reguser>\
+            </Insert>\
+        </Transaction>';
+        rooturl = 'http://35.184.176.7:8081/geoserver/user/ows?';
+        var res = $.ajax({
+            type: "POST",
+            url: rooturl,
+            dataType: "xml",
+            contentType: "text/xml",
+            async: false,
+            data: arrayResult,
+            success: function (xml) {
+                //console.log(xml);
+                //alert('success');
+            },
+            error: function (xml) {
+                console.log('error');
+            }
+            //console.log(arrayResult);
+        });
+    }
 //registro de ingreso de usuarios
-    else if (select[0][6] === "Catastro") {
+    if (select[0][6] === "Catastro") {
     	  document.getElementById("tipo_usuario").style.display = "block";
         //console.log(select);
         document.getElementById("catastro").style.display = "block";
@@ -33,7 +96,7 @@ $(document).on('ready', function () {
         document.getElementById("totemmenu").style.display = "block";
         importarScript("src/app/totem/ConsultaTotem.js");
     } else if (select[0][6] === "Planeacion") {
-    	  document.getElementById("tipo_usuario").style.display = "block";
+        document.getElementById("tipo_usuario").style.display = "block";
         document.getElementById("planeacion").style.display = "block";
         document.getElementById("posicionbarra").style.display = "block";
     } else if (select[0][6] === "PlaneacionS") {

@@ -52,7 +52,16 @@
         <script src="js/md5.inc.js"></script>
     <div id="carga2" hidden="hidden"><img id="imgprocess" src="./image/procesando.gif"></div>
     <div id="carga3" hidden="hidden"><img src="./image/cargando.png" style="top:30%; left:30%; width:auto; height:auto; position:absolute"></div>
-    <div id="completo" hidden="hidden"></div>
+    <div id="completo" hidden="hidden"><div id="condiciones" >
+            <img id="gesstor" src="./imagenes/imagen_condiciones.png" style="top:5%; left:10%; width:80%; height:auto">
+            <div style="margin-left:8em;  margin-top:13em"><a href="http://www.gesstorbarranquilla.com/barranquilla/image/CONDICIONES_DE_USO.pdf" target="_blank" style="color:blue; text-decoration: underline">Condiciones de Uso</a></div>
+
+            <div style="margin-left:1em;  margin-top:0.1em">
+                <input type="checkbox" value="1" name="termin" id="termin"/><label><font size="2">&nbspAcepto los T&eacute;rminos y Condiciones&nbsp&nbsp</font></label>
+                <input type="button" onclick="marcado()" id="botoncondiciones" value="Aceptar">
+            </div>
+        </div> 
+    </div>
         
       
 </head>

@@ -429,6 +429,7 @@ window.onclick = function (event) {
 function marcado() {
     if (document.getElementById("termin").checked === true) {
         document.getElementById('completo').style.display = 'none';
+        document.getElementById('termin').style.display = 'none';
     } else {
         alert("Debes aceptar los términos y condiciones");
         return false;
