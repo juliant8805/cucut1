@@ -39,7 +39,7 @@
         <script src="src/app/HeadMap.js"></script>
         <script src="src/app/wfs.js"></script>
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.3/proj4.js"></script>-->
-        <!--<script src="src/ol3/coordenadas.js"></script>-->
+        
         <!--<script src="http://epsg.io/3116.js"></script>
         <script src="http://epsg.io/3117.js"></script>
         <script src="http://epsg.io/21897.js"></script>
@@ -54,7 +54,7 @@
     <div id="carga3" hidden="hidden"><img src="./image/cargando.png" style="top:30%; left:30%; width:auto; height:auto; position:absolute"></div>
     <div id="completo" hidden="hidden"><div id="condiciones" >
             <img id="gesstor" src="./imagenes/imagen_condiciones.png" style="top:5%; left:10%; width:80%; height:auto">
-            <div style="margin-left:8em;  margin-top:13em"><a href="http://www.gesstorbarranquilla.com/barranquilla/image/CONDICIONES_DE_USO.pdf" target="_blank" style="color:blue; text-decoration: underline">Condiciones de Uso</a></div>
+            <div style="margin-left:8em;  margin-top:13em"><a href="http://www.ideepcucuta.com/documentos/terminos_de_uso.pdf" target="_blank" style="color:blue; text-decoration: underline">Condiciones de Uso</a></div>
 
             <div style="margin-left:1em;  margin-top:0.1em">
                 <input type="checkbox" value="1" name="termin" id="termin"/><label><font size="2">&nbspAcepto los T&eacute;rminos y Condiciones&nbsp&nbsp</font></label>
@@ -89,9 +89,9 @@
         
         <nav class="menu" id="catastro" hidden="hidden">
             <ul>
-                <li><select style="background:#4E9AAB; height:100%;width:100%;" id="DiferenciaArea" name=DiferenciaArea onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
+                <li><select style="background:#4E9AAB; height:100%;width:100%;" id="DiferenciaArea" name='DiferenciaArea' onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
                         <option value="seleccione" disabled selected><a>Rango de Area</a>
-                        <option value="AreaTerreno" style="font-weight: bold; color: white;  font-size:small;">Area Terreno
+                        <option value="AreaTerreno" style="font-weight: bold; color: white;  font-size:small;">Predios del Municipio
                     </select> 
                 </li>                
 
@@ -116,17 +116,7 @@
                 </li>	
 
 
-                <li><select style="background:#4E9AAB;height:100%;width:100%;" id="Avaluo Catastral" name="Avaluo Catastral" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
-                        <option value="seleccione" disabled selected><a>Impuesto Predial</a>
-                        <option value="avaluoporrangos" style="font-weight: bold; color:white; font-size:small;">Avaluo por Rangos
-                        <option value="crecimientobase" style="font-weight: bold; color: white;  font-size:small;">Crecimiento Base Predial
-                        <option value="pagopredial" style="font-weight: bold; color: white;  font-size:small;">Pago Predial 2017
-                        <option value="pagopredial2018" disabled style="font-weight: bold; color: white;  font-size:small;">Pago Predial 2018
-                        <option value="cambiosavaluo2017" style="font-weight: bold; color: white;  font-size:small;">Resoluciones Cambios Avaluo
-                        <option value="cambiosavaluo" style="font-weight: bold; color: white;  font-size:small;">Cambios Avaluo Catastral
-                        <option value="prediosmunicipio" style="font-weight: bold; color: white;  font-size:small;">Predios Municipio                    
-                    </select>
-                </li>
+              
 
                 <!--	<li><select style="background:#4E9AAB;height:100%;width:100%;" id="oficial_vs_AAA" name=prestadores onchange="rangoarea(id, name)" >
         <option value="seleccione" selected><a>Comparacion Estrato</a>
@@ -197,6 +187,17 @@
 
         <nav class="menu" id="planeacion" hidden="hidden">
             <ul>
+            	   <li><select style="background:#4E9AAB;height:100%;width:100%;" id="Avaluo Catastral" name="Avaluo Catastral" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
+                     <!--   <option value="seleccione" disabled selected><a>Impuesto Predial</a>
+                        <option value="avaluoporrangos" style="font-weight: bold; color:white; font-size:small;">Avaluo por Rangos
+                        <option value="crecimientobase" style="font-weight: bold; color: white;  font-size:small;">Crecimiento Base Predial
+                        <option value="pagopredial" style="font-weight: bold; color: white;  font-size:small;">Pago Predial 2017
+                        <option value="pagopredial2018" disabled style="font-weight: bold; color: white;  font-size:small;">Pago Predial 2018
+                        <option value="cambiosavaluo2017" style="font-weight: bold; color: white;  font-size:small;">Resoluciones Cambios Avaluo
+                        <option value="cambiosavaluo" style="font-weight: bold; color: white;  font-size:small;">Cambios Avaluo Catastral-->
+                        <option value="prediosmunicipio" style="font-weight: bold; color: white;  font-size:small;">Predios Municipio                    
+                    </select>
+                </li>
                 <li id="Estratificacion" name="Estratificacion" onclick="rango(id, name)"><a>Estratificacion Oficial</a></li>
                 <li id="Remoción en Masa" name="Remoción en Masa" onclick="rango(id, name)"><a>Riesgo Remoción en Masa</a></li>
 
@@ -586,15 +587,15 @@
         <div class="radio">
           <label><input type="radio" id="button3c" name="sel_src" value='3'>Magna Colombia Bogotá(X,Y)</label>
         </div>
-        <!--<div class="radio">
-          <label><input type="radio" id="button3c" name="sel_src" value='3'>Magna Colombia Este</label>
+        <div class="radio">
+          <label><input type="radio" id="button6f" name="sel_src" value='6'>Magna Colombia Este</label>
         </div> 
         <div class="radio">
           <label><input type="radio" id="button4d" name="sel_src" value='4'>Colombia Bogota Zone</label>
         </div> 
         <div class="radio">
           <label><input type="radio" id="button5e" name="sel_src" value='5'>Colombia Este Central</label>
-        </div> -->
+        </div>
         <button type="button" onclick="formcoordenadas2()">Aceptar</button>
       </form>
        </div>  
@@ -666,12 +667,12 @@
         <h3 style="position: absolute; top: 20%; left: 35%;">Magna Colombia Este:</h3>      
         <div class="col-xs-1" style="margin-top:15%; margin-left:35%;"> 
             <label for="ex1">Coordenada X:</label>
-            <input class="form-control" id="ex9" type="text" placeholder="842090">
+            <input class="form-control" id="ex20" type="text" placeholder="842090">
             <button type="button" style="margin-top:0.5em; margin-left:1em;" class="btn btn-primary btn-lg" onclick="input_coordinates()">Ir al Punto</button>
         </div>
         <div class="col-xs-1" style="margin-top:15%; margin-left: 5em;">
             <label for="ex2">Coordenada Y:</label>
-            <input class="form-control" id="ex10" type="text" placeholder="1364946"> 
+            <input class="form-control" id="ex21" type="text" placeholder="1364946"> 
             <button type="button" style="margin:0.5em" class="btn btn-danger btn-lg" onclick="limpiar_consulta()">Cerrar</button>
         </div>  
     </div>
@@ -742,6 +743,15 @@
             </div>
         </div>
     
+    
+    <div id="documentos" hidden="hidden" style="position:absolute; top:5em; right:5em; width:auto; background-color:white; text-aling:center; font-size:16px;">
+    		</br></br><a href="http://www.ideepcucuta.com/documentos/manual.pdf" target="_blank">Manual de usuario</a>
+    		</br></br><a href="http://www.ideepcucuta.com/documentos/guia-rapida-inicio.pdf" target="_blank">    Guía rápida de inicio</a>
+    		</br></br><a href="http://www.ideepcucuta.com/documentos/terminos_de_uso.pdf" target="_blank">Términos y condiciones</a>
+    		</br></br><a href="http://www.ideepcucuta.com/documentos/acuerdo-de-soporte.pdf" target="_blank">Acuerdo de soporte</a>
+			</br></br><button class="btn" data-dismiss="modal" aria-hidden="true" onclick="cerrar_documentos()">Cerrar</button>
+    </div>
+			      
 
     <script src="src/app/Consultas/consultas_simples.js"></script>
     <script src="src/app/Consultas/consulta_direccion_boton.js"></script>

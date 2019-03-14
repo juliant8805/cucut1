@@ -751,7 +751,26 @@ var u_terreno_obs = new ol.layer.Tile({
     }), name: 'Observaciones'
 });
 
+
+// OTROS
+
+var union_prediales = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:union_prediales_varias_fuentes', STYLES: ''}
+    }), name: 'Unión Prediales'
+});
+
+
+
 //CAPS GROUP
+
+var layerOtros = new ol.layer.Group({
+    layers: [union_prediales, union_prediales],
+    name: 'Otros'
+});
+
 
 var layerRestitucion = new ol.layer.Group({
     layers: [restitucion_zona_verde, restitucion_zona_dura, restitucion_zona_deportiva, restitucion_tunel, restitucion_tuberia, restitucion_torre, restitucion_terraplen, restitucion_terminal_r, restitucion_tapa_camara, restitucion_red_alta_tension, restitucion_puerte_r, restitucion_puente_l, restitucion_poste, restitucion_pista_aterrizaje_r, restitucion_piscina, restitucion_paramento, restitucion_muro, restitucion_mina_r, restitucion_matorral, restitucion_linea_demarcacion, restitucion_helipuerto_r, restitucion_curva_nivel, restitucion_construccion_r, restitucion_construccion_p, restitucion_construccion_agua_r, restitucion_construccion_agua_p, restitucion_construccion_agua_l, restitucion_cerca, restitucion_bosque, restitucion_arbol, restitucion_antena],

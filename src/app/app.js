@@ -118,7 +118,7 @@ map = new ol.Map({
     target: document.getElementById('map'),
     // use the Canvas renderer
     renderer: 'canvas',
-    layers: [layerBase, layerPot2011, layerBing, layerCatastro, layerRestitucion, layerOrtofoto2017, sitios, /*layerValorizacion, */highlight],
+    layers: [layerBase, layerPot2011, layerBing, layerCatastro, layerRestitucion, layerOrtofoto2017, sitios, layerOtros,/*layerValorizacion, */highlight],
     view: new ol.View({
         center: center,
         zoom: zoom,
@@ -644,15 +644,30 @@ map.on('singleclick', function (evt) {
                             sel[6] = uso_acueducto;
                             sel[7] = uso_alcantarillado;
                             sel[8] = uso_aseo;
+                            try{
                             sel[9] = simplestabla["0"][5];
+                            }
+                            catch (err) {
+                            	sel[9] = "Sin Información";
+                            }
                             sel[10] = values.estrato_acueducto;
                             sel[11] = values.estrato_alcantarillado;
                             sel[12] = values.estrato_aseo;
                             sel[13] = values.disp_acued;
                             sel[14] = values.disp_alc;
                             sel[15] = values.disp_aseo;
+                            try {
                             sel[16] = simplestabla["0"][1] + "m2";
+                            }
+                            catch (err) {
+                            	sel[16] = "Sin Información";
+                            }
+                            try {
                             sel[17] = simplestabla["0"][2] + "m2";
+                            }
+                            catch (err) {
+                            	sel[17] = "Sin Información";
+                            }
                             sel[18] = values.uso_del_suelo_segun_acuerdo;
                             sel[19] = values.uso_actual_del_suelo_urbano;
                             sel[20] = values.suelo_de_proteccion;
@@ -749,7 +764,6 @@ map.on('singleclick', function (evt) {
                         } 
 
                         else if (tipoUsuario === "PlaneacionS") {
-                        	
 								/*var row = table.insertRow(1);
                         var cell11 = row.insertCell(0);
                         cell11.colSpan = 2;
@@ -825,15 +839,30 @@ map.on('singleclick', function (evt) {
                             sel[6] = uso_acueducto;
                             sel[7] = uso_alcantarillado;
                             sel[8] = uso_aseo;
+                             try {
                             sel[9] = simplestabla["0"][5];
+                            }
+                            catch (err) {
+                            sel[9] = "Sin Información";	
+                            	}
                             sel[10] = values.estrato_acueducto;
                             sel[11] = values.estrato_alcantarillado;
                             sel[12] = values.estrato_aseo;
                             sel[13] = values.disp_acued;
                             sel[14] = values.disp_alc;
                             sel[15] = values.disp_aseo;
+                            try {
                             sel[16] = simplestabla["0"][1] + "m2";
+                            }
+                            catch (err) {
+                            sel[16] = "Sin Información";		
+                            	}
+                            try {
                             sel[17] = simplestabla["0"][2] + "m2";
+                            }
+                            catch (err) {
+                            sel[17] = "Sin Información";		
+                            	}
                             sel[18] = values.uso_del_suelo_segun_acuerdo;
                             sel[19] = values.uso_actual_del_suelo_urbano;
                             sel[20] = values.suelo_de_proteccion;
@@ -960,8 +989,8 @@ map.on('singleclick', function (evt) {
                                     async: false,
                                     success: function (data, status, xhr) {},
                                     error: function (jqXHR, exception) {
-                                        console.log(jqXHR);
-                                        console.log(exception);
+                                      //  console.log(jqXHR);
+                                       // console.log(exception);
                                     }
                                 });
                                 var cadena1 = temp.responseText;
@@ -1066,7 +1095,12 @@ map.on('singleclick', function (evt) {
                             sel[3] = arregloDeSubCadenas[0][4];
                             sel[4] = matricula;
                             sel[5] = Intl.NumberFormat().format(arregloDeSubCadenas[0][1]) + " M2";
+                            try {
                             sel[6] = simplestabla["0"][2] + " M2";
+                            }
+                            catch (err) {
+                            sel[6] = "Sin Información";
+                            }
                             sel[7] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[0][2]);
                             sel[8] = arregloDeSubCadenas[0][9];
                             sel[9] = arregloDeSubCadenas[0][3];
@@ -1407,19 +1441,7 @@ map.on('singleclick', function (evt) {
                         } 
                         
 								else if (tipoUsuario === "HaciendaS") {
-							/*		var row = table.insertRow(1);
-                        var cell11 = row.insertCell(0);
-                        cell11.colSpan = 2;
-                        cell11.style = "background-color: white; border:0; margin:0;";
-                        cell11.innerHTML = "<input type='text' id='observacionespredio' name='observacionespredio' style='background-color: #white; color:black; font-size: 15px; border-top:0px; border-left:0px; border-right:0px; border-bottom:1px solid #62BAD3; text-align:center; width:100%; height:5em;' placeholder='Diligencie cualquier tipo de información adicional'>";
 								
-						      var cod2 = "9" + cod;
-                        var row = table.insertRow(2);
-                        var cell12 = row.insertCell(0);
-                        cell12.colSpan = 2;
-                        cell12.style = "background-color: white; border:0; margin:0;";
-                        cell12.innerHTML = "<button id='editarinfo' name='editarinfo' onclick='agregarinfopredio(" + cod2 + ");' class='btn btn-primary btn-lg'>Guardar</button>";                        	
-                       */
                             try {
                                 var matricula = search("cucuta:consultamatricula", cod);
                             } catch (err) {
@@ -1527,6 +1549,23 @@ map.on('singleclick', function (evt) {
                             var cell1 = row.insertCell(0);
                             cell1.colSpan = 2;
                             cell1.innerHTML = "<H5><b>INFORMACION DEL PREDIO</b></H5>";
+                            
+				/*				var row = tableP.insertRow(1);
+                        var cell2 = row.insertCell(0);
+                        cell2.colSpan = 2;
+                        cell2.style = "background-color: white; border:0; margin:0;";
+                        cell2.innerHTML = "<input type='text' id='observacionespredio' name='observacionespredio' style='background-color: #white; color:black; font-size: 15px; border-top:0px; border-left:0px; border-right:0px; border-bottom:1px solid #62BAD3; text-align:center; width:100%; height:5em;' placeholder='Diligencie cualquier tipo de información adicional'>";
+								
+						      var cod2 = "9" + cod;
+                        var row = tableP.insertRow(2);
+                        var cell3 = row.insertCell(0);
+                        cell3.colSpan = 2;
+                        cell3.style = "background-color: white; border:0; margin:0;";
+                        cell3.innerHTML = "<button id='editarinfo' name='editarinfo' onclick='agregarinfopredio(" + cod2 + ");' class='btn btn-primary btn-lg'>Guardar</button>";                        	
+                                                   
+                            */
+                            
+                            
                             var select = [];
                             var sel = [];
                             var imag = [];

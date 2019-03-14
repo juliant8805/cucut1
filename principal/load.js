@@ -1,4 +1,4 @@
-function resetpass() {
+function resetpass() {/*
     //console.log(document.getElementById("email").value);
     var select = search("preproduccion:mailUser", document.getElementById("email").value);
     // console.log(select[0]);
@@ -43,7 +43,8 @@ function resetpass() {
         alert("Se le ha enviado una nueva contraseña a su dirección de email registrado en la plataforma. Por favor ingrese con los datos enviados a su correo.");
     } else {
         alert("La dirección de email ingresada no se encuentra registrada en al plataforma.");
-    }
+    }*/
+    alert("Función deshabilitada temporalmente");
 }
 function onload() {
     var cookies = document.cookie.split(";");

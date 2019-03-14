@@ -1,6 +1,5 @@
 $(document).on('ready', function () {
 //codigo aquí
-    //alert(1);
     var select = validacionusuarios();
     //console.log(select[0][6]);
     if (navigator.vendor !== "Google Inc.") {
@@ -45,7 +44,15 @@ $(document).on('ready', function () {
             var second = f.getSeconds();
         }
         var fecha = f.getFullYear() + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "Z";
-        var arrayResult = '<Transaction xmlns="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:user="http://user.co" xmlns:gml="http://www.opengis.net/gml" version="1.1.0" service="WFS" xsi:schemaLocation="http://35.184.176.7:8081/geoserver">\
+       // console.log(fecha);
+       // console.log(select[0][2]);
+        
+		 //var arrayResult = '<wfs:Transaction service="WFS" version="1.0.0" xmlns:wfs="http://www.opengis.net/wfs" xmlns:user="http://user.co" xmlns:gml="http://www.opengis.net/gml"><wfs:Insert><user:reguser><user:usuario>prueba99</user:usuario></user:reguser></wfs:Insert></wfs:Transaction>';        
+        
+        
+        
+        
+       var arrayResult = '<Transaction xmlns="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:user="http://user.co" xmlns:gml="http://www.opengis.net/gml" version="1.1.0" service="WFS" xsi:schemaLocation="http://35.184.176.7:8081/geoserver">\
             <Insert xmlns="http://www.opengis.net/wfs">\
                 <user:reguser>\
                     <usuario>' + select[0][2] + '</usuario>\
@@ -53,7 +60,7 @@ $(document).on('ready', function () {
                     <actividad>Ingreso al sistema</actividad>\
                 </user:reguser>\
             </Insert>\
-        </Transaction>';
+        </Transaction>'; 
         rooturl = 'http://35.184.176.7:8081/geoserver/user/ows?';
         var res = $.ajax({
             type: "POST",
