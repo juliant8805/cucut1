@@ -187,7 +187,7 @@
 
         <nav class="menu" id="planeacion" hidden="hidden">
             <ul>
-            	   <li><select style="background:#4E9AAB;height:100%;width:100%;" id="Avaluo Catastral" name="Avaluo Catastral" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
+            	  <!-- <li><select style="background:#4E9AAB;height:100%;width:100%;" id="Avaluo Catastral" name="Avaluo Catastral" onchange="rangoarea(id, name)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
                      <!--   <option value="seleccione" disabled selected><a>Impuesto Predial</a>
                         <option value="avaluoporrangos" style="font-weight: bold; color:white; font-size:small;">Avaluo por Rangos
                         <option value="crecimientobase" style="font-weight: bold; color: white;  font-size:small;">Crecimiento Base Predial
@@ -195,9 +195,12 @@
                         <option value="pagopredial2018" disabled style="font-weight: bold; color: white;  font-size:small;">Pago Predial 2018
                         <option value="cambiosavaluo2017" style="font-weight: bold; color: white;  font-size:small;">Resoluciones Cambios Avaluo
                         <option value="cambiosavaluo" style="font-weight: bold; color: white;  font-size:small;">Cambios Avaluo Catastral-->
-                        <option value="prediosmunicipio" style="font-weight: bold; color: white;  font-size:small;">Predios Municipio                    
+                    <!--    <option value="prediosmunicipio" style="font-weight: bold; color: white;  font-size:small;">Predios Municipio                    
                     </select>
-                </li>
+                </li> -->
+                
+						<li id="prediosmunicipio" name="prediosmunicipio" onclick="rango(id, name)"><a>Predios Municipio</a></li>                
+                
                 <li id="Estratificacion" name="Estratificacion" onclick="rango(id, name)"><a>Estratificacion Oficial</a></li>
                 <li id="Remoción en Masa" name="Remoción en Masa" onclick="rango(id, name)"><a>Riesgo Remoción en Masa</a></li>
 
@@ -225,13 +228,33 @@
                 </li>
                 <li><select style="background:#4E9AAB;height:100%;width:100%;" id="planospot" name="planospot" onchange="planos(id)" onmouseover='changeImage(this.id)' onmouseout='normalImage(this.id)'>
                         <option value="seleccione" selected><a>Planos POT</a>
-                        <option value="EOR" style="font-weight: bold; color:white; font-size:small;">Estrategia de Ordenamiento Regional
-                        <option value="CSRCS" style="font-weight: bold; color:white; font-size:small;">Clasificación Suelo Rural
-                        <option value="CSUE" style="font-weight: bold; color:white; font-size:small;">Clases de Suelo Urbano y de Expansion
-                        <option value="EEPSR" style="font-weight: bold; color:white; font-size:small;">Estructura Ecologica Principal Suelo Rural
-                        <option value="RE" style="font-weight: bold; color:white; font-size:small;">Riesgos Ecologicos
-                        <option value="SSVR" style="font-weight: bold; color:white; font-size:small;">Subsistema Vial Rural
-                    </select>
+                        <option value="EOR" style="font-weight: bold; color:white; font-size:small;">1). Estrategia de Ordenamiento Regional
+                        <option value="CSRCS" style="font-weight: bold; color:white; font-size:small;">2). Clasificación Suelo Rural
+                        <option value="CSUE" style="font-weight: bold; color:white; font-size:small;">3). Clases de Suelo Urbano y de Expansion
+                        <option value="EEPSR" style="font-weight: bold; color:white; font-size:small;">4). Estructura Ecologica Principal Suelo Rural
+                        <option value="RE" style="font-weight: bold; color:white; font-size:small;">5). Riesgos Ecologicos
+                        <option value="SSVR" style="font-weight: bold; color:white; font-size:small;">6). Subsistema Vial Rural
+                        <option value="SSVU" style="font-weight: bold; color:white; font-size:small;">7). Subsistema Vial Urbano
+                        <option value="SST" style="font-weight: bold; color:white; font-size:small;">8). Subsistema de Transporte
+                        <option value="SSVSV" style="font-weight: bold; color:white; font-size:small;">9). Subsistema Vial Secciones Viales 
+                        <option value="SEP" style="font-weight: bold; color:white; font-size:small;">10). Espacio Público
+                        <option value="SER" style="font-weight: bold; color:white; font-size:small;">11). Equipamientos Área Rural
+                        <option value="SEU" style="font-weight: bold; color:white; font-size:small;">12). Equipamientos Área Urbana
+                        <option value="SAU" style="font-weight: bold; color:white; font-size:small;">13). Acueducto Área Urbana
+                        <option value="SATU" style="font-weight: bold; color:white; font-size:small;">14). Alcantarillado Área Urbana
+                        <option value="USU" style="font-weight: bold; color:white; font-size:small;">15). Uso Suelo Urbano
+                        <option value="ZASU" style="font-weight: bold; color:white; font-size:small;">16). Zonas de Actividad del Suelo Urbano
+                        <option value="TSUE" style="font-weight: bold; color:white; font-size:small;">17). Tratamientos del Suelo Urbano y de Expansión
+                        <option value="PECPOE" style="font-weight: bold; color:white; font-size:small;">18). Plan de Ejecución Corto Plazo
+                        <option value="USR" style="font-weight: bold; color:white; font-size:small;">19). Uso Suelo Rural
+                        <option value="MEM" style="font-weight: bold; color:white; font-size:small;">20). Minero Energético Municipal
+                        <option value="UPR" style="font-weight: bold; color:white; font-size:small;">21). Unidades de Planificación Rural
+                        <option value="DTM1" style="font-weight: bold; color:white; font-size:small;">22). División Territorial Municipal 2001
+                        <option value="SAG1" style="font-weight: bold; color:white; font-size:small;">23). Susceptibilidad de Amenaza Geológica 2001
+                        <option value="CUS1" style="font-weight: bold; color:white; font-size:small;">24). Clasificación Unidades del Suelo 2001 
+                        <option value="CH1" style="font-weight: bold; color:white; font-size:small;">25). Cuencas Hidrográficas 2001
+                        <option value="DPAU1" style="font-weight: bold; color:white; font-size:small;">26). División Político Administrativa Urbana 2001
+                     </select>
                 </li>
                 <li><a style="text-align:center;padding: 0px 0px 0px 0px;">Mapa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ortofoto(2018)	
                         <div id="barratransparencia">
@@ -453,6 +476,31 @@
     <img hidden="hidden" id="plano_04" src="./imagenes/leyendas/plano_04.png" style="position:absolute; top: 10em; left: 2em; height: 60%;"/>
     <img hidden="hidden" id="plano_05" src="./imagenes/leyendas/plano_05.png" style="position:absolute; top: 7em; left: 2em; height: 80%;"/>
     <img hidden="hidden" id="plano_06" src="./imagenes/leyendas/plano_06.png" style="position:absolute; top: 7em; left: 2em; height: 60%;"/>
+    <img hidden="hidden" id="plano_07" src="./imagenes/leyendas/plano_07.jpg" style="position:absolute; top: 7em; left: 2em; height: 60%;"/>
+    <img hidden="hidden" id="plano_08" src="./imagenes/leyendas/plano_08.png" style="position:absolute; top: 7em; left: 2em; height: 80%;"/>
+    <img hidden="hidden" id="plano_09" src="./imagenes/leyendas/plano_09.jpg" style="position:absolute; top: 5em; left: 2em; height: 80%;"/>
+    <img hidden="hidden" id="plano_10" src="./imagenes/leyendas/plano_10.jpg" style="position:absolute; top: 7em; left: 2em; height: 80%;"/>
+    <img hidden="hidden" id="plano_11" src="./imagenes/leyendas/plano_11.jpg" style="position:absolute; top: 7em; left: 2em; height: 70%;"/>
+    <img hidden="hidden" id="plano_12" src="./imagenes/leyendas/plano_12.jpg" style="position:absolute; top: 4em; left: 2em; height: 90%;"/>
+    <img hidden="hidden" id="plano_13" src="./imagenes/leyendas/plano_13.jpg" style="position:absolute; top: 7em; left: 2em; height: 70%;"/>
+    <img hidden="hidden" id="plano_14" src="./imagenes/leyendas/plano_14.jpg" style="position:absolute; top: 5em; left: 2em; height: 85%;"/>
+    <img hidden="hidden" id="plano_15" src="./imagenes/leyendas/plano_15.jpg" style="position:absolute; top: 7em; left: 2em; height: 80%;"/>
+    <img hidden="hidden" id="plano_16" src="./imagenes/leyendas/plano_16.jpg" style="position:absolute; top: 7em; left: 2em; height: 80%;"/>
+    <img hidden="hidden" id="plano_17" src="./imagenes/leyendas/plano_17.jpg" style="position:absolute; top: 4em; left: 2em; height: 87%;"/>
+    <img hidden="hidden" id="plano_18" src="./imagenes/leyendas/plano_18.jpg" style="position:absolute; top: 7em; left: 2em; height: 80%;"/>
+    <img hidden="hidden" id="plano_19" src="./imagenes/leyendas/plano_19.jpg" style="position:absolute; top: 4em; left: 2em; height: 87%;"/>
+    <img hidden="hidden" id="plano_20" src="./imagenes/leyendas/plano_20.jpg" style="position:absolute; top: 4em; left: 2em; height: 85%;"/>
+    <img hidden="hidden" id="plano_21" src="./imagenes/leyendas/plano_21.jpg" style="position:absolute; top: 5em; left: 2em; height: 80%;"/>
+    <img hidden="hidden" id="plano_22" src="./imagenes/leyendas/plano_22.jpg" style="position:absolute; top: 5em; left: 2em; height: 80%;"/>
+    <img hidden="hidden" id="plano_23" src="./imagenes/leyendas/plano_23.jpg" style="position:absolute; top: 7em; left: 2em; height: 80%;"/>
+    <img hidden="hidden" id="plano_24" src="./imagenes/leyendas/plano_24.jpg" style="position:absolute; top: 7em; left: 2em; height: 70%;"/>
+    <img hidden="hidden" id="plano_25" src="./imagenes/leyendas/plano_25.jpg" style="position:absolute; top: 7em; left: 2em; height: 80%;"/>
+    <img hidden="hidden" id="plano_26" src="./imagenes/leyendas/plano_26.jpg" style="position:absolute; top: 7em; left: 2em; height: 60%;"/>
+    <img hidden="hidden" id="plano_27" src="./imagenes/leyendas/plano_27.jpg" style="position:absolute; top: 7em; left: 2em; height: 70%;"/>
+   
+    
+    
+    
     
     <!--boton geocodificador-->
     <div class="contenedor" id="diry1" hidden="hidden">
@@ -751,7 +799,165 @@
     		</br></br><a href="http://www.ideepcucuta.com/documentos/acuerdo-de-soporte.pdf" target="_blank">Acuerdo de soporte</a>
 			</br></br><button class="btn" data-dismiss="modal" aria-hidden="true" onclick="cerrar_documentos()">Cerrar</button>
     </div>
-			      
+		
+		
+	<div id="botondescarga" hidden="hidden" style="position: absolute;
+top:5.5em; left:1.5em;"><button class="btn"
+onclick="downloadpot();"><i class="fa fa-download"></i>&nbsp Descargar
+POT</button></div>
+
+
+    <div id="tabla_descarga" hidden="hidden" class="container"
+style="position: absolute; top:15em; left: 10em; background-color:
+white; width: 80em; height: 30em; overflow: auto">
+
+
+  <table class="table table-striped">
+    <thead >
+      <tr>
+        <th style="text-align: center">Nombre de Capa Geográfica</th>
+        <th style="text-align: center">Descargar en formato Shape File</th>
+        <th style="text-align: center">Web Map Service (WMS)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>pot_2011_rural_red_vial_rural</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_rural_red_vial_rural&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+        <tr>
+        <td>urbano_categoriasdelsuelourbano</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_urbano_categoriasdelsuelourbano&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+        <tr>
+        <td>rural_perimetrodeexpansion</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_rural_perimetrodeexpansion&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+        <tr>
+        <td>urbano_riesgos_urbanos</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_urbano_riesgos_urbanos&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+        <tr>
+        <td>urbano_parques_de_borde</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_urbano_parques_de_borde&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+        <tr>
+        <td>pot_2011_nomenclatura</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_nomenclatura&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+        <tr>
+        <td>rural_subsistemavialrural</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_rural_subsistemavialrural&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+        <tr>
+        <td>rural_cabecerasmunicipalescolombia</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_rural_cabecerasmunicipalescolombia&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+        <tr>
+        <td>pot_2011_anillo_vial</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_anillo_vial&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+      <tr>
+        <td>rural_clasesdesuelo</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_rural_clasesdesuelo&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+      <tr>
+        <td>rural_intersecciones_rural</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_rural_intersecciones_rural&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+      <tr>
+        <td>perimetro_2015</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_perimetro_2015&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+      <tr>
+        <td>rural_perimetromunicipal</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_rural_perimetromunicipal&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+<tr>
+        <td>rural_rondas</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_rural_rondas&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+       <tr>
+        <td>rural_cuerposdeagua</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_rural_cuerposdeagua&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+      <tr>
+        <td>lineas_complementarias_año_2015</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_lineas_complementarias_ano_2015&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+      <tr>
+        <td>subsistemavialurbano</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_subsistemavialurbano&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+      <tr>
+        <td>rural_areas_de_manejo_especial</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_rural_areas_de_manejo_especial&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+       <tr>
+        <td>toponimia_barrios</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_toponimia_barrios&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+      <tr>
+        <td>rural_predios_adquiridos_municipio_cucuta</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_rural_predios_adquiridos_municipio_cucuta&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+       <tr>
+        <td>rural_hidrografia</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_rural_hidrografia&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+       <tr>
+        <td>mapa_conjunto_actualizado_2015</td>
+        <td><a href="http://35.184.176.7:8081/geoserver/cucuta/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cucuta:je_pot_2011_mapa_conjunto_actualizado_2015&maxFeatures=500&outputFormat=SHAPE-ZIP">SHP</a></td>
+        <td style="font-size:
+12px">http://35.184.176.7:8081/geoserver/cucuta/wms?service=WMS&version=1.1.0&request=GetMap&layers=cucuta:</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>	
+		      
 
     <script src="src/app/Consultas/consultas_simples.js"></script>
     <script src="src/app/Consultas/consulta_direccion_boton.js"></script>

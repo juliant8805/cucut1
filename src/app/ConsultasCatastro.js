@@ -16,7 +16,8 @@ var rangoarea = async function (x) { // async function expression assigned to a 
     await quitgif();
 };
 function rango(style, id) {
-    //console.log(style);
+   // console.log(style);
+   // console.log(id);
     puntos_obras.setVisible(false);
     obras.setVisible(false);
     ejeobras.setVisible(false);
@@ -666,7 +667,7 @@ function rango(style, id) {
      }   
      } */
 
-    else if (document.getElementById("Avaluo Catastral").value === "avaluoporrangos") {
+ /*  else if (document.getElementById("Avaluo Catastral").value === "avaluoporrangos") {
         document.getElementById("statistics").style.display = "none";
         document.getElementById("botonocultarstatistics").style.display = "none";
         document.getElementById("botonmostrarstatistics").style.display = "none";
@@ -943,7 +944,11 @@ function rango(style, id) {
             predio.getSource().updateParams({'STYLES': 'PrediosMunicipio', 'CQL_FILTER': eval(filtro)});
             queryexport = style + ' prediosmunicipioF';
         }
-    } else if (style === "Estratificacion") {
+    } */
+    
+    
+    
+    else if (style === "Estratificacion") {
         predio.setVisible(true);
         construcciones.setVisible(false);
         if (document.getElementById("barrio").value === '' && document.getElementById("manzana").value === '') {
@@ -985,7 +990,57 @@ function rango(style, id) {
             queryexport = style + ' F';
             ;
         }
-    } else if (document.getElementById("DiferenciaArea").value === "AreaTerreno") {
+    } 
+    
+    
+    else if (style === "prediosmunicipio") {
+        document.getElementById("statistics").style.display = "none";
+        document.getElementById("botonocultarstatistics").style.display = "none";
+        document.getElementById("botonmostrarstatistics").style.display = "none";
+        //document.getElementById("icono_ver_resumen").style.display = "block";
+        construcciones.setVisible(false);
+        predio.setVisible(true);
+        //alert("GESSTOR INFORMA:</br></br>Para el caso de esta consulta se suman las mejoras al total de predios debido a que son objeto de AvalÃºo Catastral.</br></br>");
+        if (document.getElementById("barrio").value === '' && document.getElementById("manzana").value === '') {
+            var select = search("cucuta:TotalPrediosHacienda");
+            var param = [['Predios Municipio'], ['Otro Propietario'], ['Sin Informacion']];
+            var total1 = search("cucuta:PrediosMunicipio", 'Municipio');
+            var total2 = search("cucuta:PrediosMunicipio", 'Otro');
+            var total3 = search("cucuta:PrediosMunicipio", 'Sin Informacion');
+            var titulo = "Predios del Municipio";
+            var totales = total1.concat(total2, total3);
+            predio.getSource().updateParams({'STYLES': 'PrediosMunicipio'});
+            estdistica(select, titulo, param, totales, id);
+            map.getView().fitExtent(pgetextent, map.getSize());
+            queryexport = style + ' prediosmunicipioG';
+        } else {
+            var select = search("cucuta:TotalPrediosSinConsulta", values);
+            var param = [['Predios Municipio'], ['Otro Propietario'], ['Sin Informacion']];
+            var total1 = search("cucuta:PrediosMunicipioFiltro", values, 'Municipio');
+            var total2 = search("cucuta:PrediosMunicipioFiltro", values, 'Otro');
+            var total3 = search("cucuta:PrediosMunicipioFiltro", values, 'Sin Informacion');
+            var titulo = "Predios del Municipio";
+            var totales = total1.concat(total2, total3);
+            var valor = "'" + values + "'";
+            estdistica(select, titulo, param, totales, id);
+            if (document.getElementById("barrio").value !== '') {
+                var filtro = '"cod_barrio=' + valor + '"';
+            } else if (document.getElementById("manzana").value !== '') {
+                var filtro = '"manzana_co=' + valor + '"';
+            }
+            predio.getSource().updateParams({'STYLES': 'PrediosMunicipio', 'CQL_FILTER': eval(filtro)});
+            queryexport = style + ' prediosmunicipioF';
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+       else if (document.getElementById("DiferenciaArea").value === "AreaTerreno") {
         document.getElementById("statistics").style.display = "none";
         document.getElementById("botonocultarstatistics").style.display = "none";
         document.getElementById("botonmostrarstatistics").style.display = "none";

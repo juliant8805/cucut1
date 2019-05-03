@@ -1245,80 +1245,137 @@ function addressSelect(event, ui) {
                     } catch (err) {
                         var riesgo = "Sin Informacion";
                     }
+                    function enviarRef(referencia) {
+                                var ref = referencia;
+                                var urlphp = 'sql/wsDatosBasicos.php';
+                                var temp = $.ajax({
+                                    url: urlphp,
+                                    data: {ref: ref},
+                                    type: "POST",
+                                    //dataType: "json",
+                                    async: false,
+                                    success: function (data, status, xhr) {},
+                                    error: function (jqXHR, exception) {
+                                      //  console.log(jqXHR);
+                                       // console.log(exception);
+                                    }
+                                });
+                                var cadena1 = temp.responseText;
+                                separador = "%%"; // un espacio en blanco
+                                arregloDeSubCadenas1 = cadena1.split(separador);
+                                var urlphp = 'sql/wsLiquidacion.php';
+                                //var url = urlphp + "?ref=" + ref;  
+                                var temp = $.ajax({
+                                    url: urlphp,
+                                    data: {ref: ref},
+                                    type: "POST",
+                                    //dataType: "json",
+                                    async: false,
+                                    success: function (data, status, xhr) {},
+                                    error: function (jqXHR, exception) {
+                                        console.log(jqXHR);
+                                        console.log(exception);
+                                    }
+                                });
+                                
+                                return [arregloDeSubCadenas1];
+                            }  
+                   
+                    var arregloDeSubCadenas = enviarRef(eval("'" + ui.item.codigooriginal.toString() + "'"));
+
                     select[0] = "<b>Codigo Manzana</b>";
                     select[1] = "<b>Codigo Catastral Nuevo</b>";
                     select[2] = "<b>Codigo Catastral Anterior</b>";
-                    select[3] = "<b>Matricula</b>";
-                    select[4] = "<b>Dirección</b>";
-                    select[5] = "<b>Destino Económico Hacienda</b>";
-                    select[6] = "<b>Uso Acueducto</b>";
-                    select[7] = "<b>Uso Alcantarillado</b>";
-                    select[8] = "<b>Uso Aseo</b>";
-                    select[9] = "<b>Estrato Hacienda</b>";
-                    select[10] = "<b>Estrato Acueducto</b>";
-                    select[11] = "<b>Estrato Alcantarillado</b>";
-                    select[12] = "<b>Estrato Aseo</b>";
-                    select[13] = "<b>Empresa de Acueducto</b>";
-                    select[14] = "<b>Empresa de Alcantarillado</b>";
-                    select[15] = "<b>Empresa de Aseo</b>";
-                    select[16] = "<b>Area de Terreno</b>";
-                    select[17] = "<b>Area Construida</b>";
-                    select[18] = "<b>Uso del Suelo Según Acuerdo</b>";
-                    select[19] = "<b>Uso Actual del Suelo Urbano</b>";
-                    select[20] = "<b>Suelo de Protección</b>";
-                    select[21] = "<b>Conflictos de Uso Urbano</b>";
-                    select[22] = "<b>Tratamiento del Suelo</b>";
-                    select[23] = "<b>Riesgo Remoción</b>";
-                    select[24] = "<b>Barrio</b>";
-                    select[25] = "<b>Fotografias</b>";
+                    select[3] = "<b>Propietario</b>";
+                    select[4] = "<b>Avalúo Catastral</b>";
+                    select[5] = "<b>Matricula Inmobiliaria</b>";
+                    select[6] = "<b>Dirección</b>";
+                    select[7] = "<b>Destino Económico Hacienda</b>";
+                    select[8] = "<b>Uso Acueducto</b>";
+                    select[9] = "<b>Uso Alcantarillado</b>";
+                    select[10] = "<b>Uso Aseo</b>";
+                    select[11] = "<b>Estrato Hacienda</b>";
+                    select[12] = "<b>Estrato Acueducto</b>";
+                    select[13] = "<b>Estrato Alcantarillado</b>";
+                    select[14] = "<b>Estrato Aseo</b>";
+                    select[15] = "<b>Empresa de Acueducto</b>";
+                    select[16] = "<b>Empresa de Alcantarillado</b>";
+                    select[17] = "<b>Empresa de Aseo</b>";
+                    select[18] = "<b>Area de Terreno</b>";
+                    select[19] = "<b>Area Construida</b>";
+                    select[20] = "<b>Uso del Suelo Según Acuerdo</b>";
+                    select[21] = "<b>Uso Actual del Suelo Urbano</b>";
+                    select[22] = "<b>Suelo de Protección</b>";
+                    select[23] = "<b>Conflictos de Uso Urbano</b>";
+                    select[24] = "<b>Tratamiento del Suelo</b>";
+                    select[25] = "<b>Riesgo Remoción</b>";
+                    select[26] = "<b>Barrio</b>";
+                    select[27] = "<b>Fotografias</b>";
                     sel[0] = values.manzana_co;
                     sel[1] = cod_nacion["0"]["0"];
                     sel[2] = ui.item.codigooriginal;
-                    sel[3] = matricula;
-                    sel[4] = ui.item.direccionoriginal;
-                    sel[5] = simplestabla["0"]["0"];
-                    sel[6] = uso_acueducto;
-                    sel[7] = uso_alcantarillado;
-                    sel[8] = uso_aseo;
-                    sel[9] = simplestabla["0"][5];
-                    sel[10] = values.estrato_acueducto;
-                    sel[11] = values.estrato_alcantarillado;
-                    sel[12] = values.estrato_aseo;
-                    sel[13] = values.disp_acued;
-                    sel[14] = values.disp_alc;
-                    sel[15] = values.disp_aseo;
-                    sel[16] = simplestabla["0"][1] + "m2";
-                    sel[17] = simplestabla["0"][2] + "m2";
-                    sel[18] = values.uso_del_suelo_segun_acuerdo;
-                    sel[19] = values.uso_actual_del_suelo_urbano;
-                    sel[20] = values.suelo_de_proteccion;
-                    sel[21] = values.conflictos_de_uso_urbano;
-                    sel[22] = values.tratamiento_del_suelo;
-                    sel[23] = riesgo;
-                    sel[24] = values.cod_barrio;
-                    sel[25] = document.createElement("a");
-                    sel[25].id = "img1";
-                    sel[25].target = "marco2";
-                    sel[25].setAttribute("onclick", "open_streetview()");
-                    sel[25].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                    imag[25] = document.createElement("img");
-                    imag[25].id = "im1";
-                    imag[25].className = "pequeña";
-                    imag[25].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                    stv[25] = document.createElement("a");
-                    stv[25].id = "imgstreet1";
-                    stv[25].target = "marco";
-                    stv[25].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
-                    stv[25].setAttribute("onclick", "open_streetview()");
-                    ig[25] = document.createElement("img");
-                    ig[25].src = "./imagenes/streetview.png";
+                    sel[3] = arregloDeSubCadenas[0][7];
+                    sel[4] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[0][2]);
+                    sel[5] = matricula;
+                    sel[6] = ui.item.direccionoriginal;
+                    sel[7] = simplestabla["0"]["0"];
+                    sel[8] = uso_acueducto;
+                    sel[9] = uso_alcantarillado;
+                    sel[10] = uso_aseo;
+                    try {
+                    sel[11] = simplestabla["0"][5];
+                    }
+                    catch (err) {
+                    sel[11] = "Sin Información";
+                    }
+                    sel[12] = values.estrato_acueducto;
+                    sel[13] = values.estrato_alcantarillado;
+                    sel[14] = values.estrato_aseo;
+                    sel[15] = values.disp_acued;
+                    sel[16] = values.disp_alc;
+                    sel[17] = values.disp_aseo;
+                    try {
+                    sel[18] = simplestabla["0"][1] + "m2";
+                    }
+                    catch (err) {
+                    sel[18] = "Sin Información";
+                    }
+                    try {
+                    sel[19] = simplestabla["0"][2] + "m2";
+                    }
+                    catch (err) {
+                    sel[19] = "Sin Información";
+                    }
+                    sel[20] = values.uso_del_suelo_segun_acuerdo;
+                    sel[21] = values.uso_actual_del_suelo_urbano;
+                    sel[22] = values.suelo_de_proteccion;
+                    sel[23] = values.conflictos_de_uso_urbano;
+                    sel[24] = values.tratamiento_del_suelo;
+                    sel[25] = riesgo;
+                    sel[26] = values.cod_barrio;
+                    sel[27] = document.createElement("a");
+                    sel[27].id = "img1";
+                    sel[27].target = "marco2";
+                    sel[27].setAttribute("onclick", "open_streetview()");
+                    sel[27].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                    imag[27] = document.createElement("img");
+                    imag[27].id = "im1";
+                    imag[27].className = "pequeña";
+                    imag[27].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                    stv[27] = document.createElement("a");
+                    stv[27].id = "imgstreet1";
+                    stv[27].target = "marco";
+                    stv[27].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
+                    stv[27].setAttribute("onclick", "open_streetview()");
+                    ig[27] = document.createElement("img");
+                    ig[27].src = "./imagenes/streetview.png";
 
                     for (i = 0; i < select.length; i++) {
                         row = table.insertRow(i + 1);
                         cell1 = row.insertCell(0);
                         cell2 = row.insertCell(1);
                         cell1.innerHTML = select[i];
-                        if (i === 25) {
+                        if (i === 27) {
                             cell2.appendChild(sel[i]);
                             //cell2.appendChild(imag[i]);
                             sel[i].appendChild(imag[i]);
@@ -1346,80 +1403,136 @@ function addressSelect(event, ui) {
                     } catch (err) {
                         var riesgo = "Sin Informacion";
                     }
+                    function enviarRef(referencia) {
+                                var ref = referencia;
+                                var urlphp = 'sql/wsDatosBasicos.php';
+                                var temp = $.ajax({
+                                    url: urlphp,
+                                    data: {ref: ref},
+                                    type: "POST",
+                                    //dataType: "json",
+                                    async: false,
+                                    success: function (data, status, xhr) {},
+                                    error: function (jqXHR, exception) {
+                                      //  console.log(jqXHR);
+                                       // console.log(exception);
+                                    }
+                                });
+                                var cadena1 = temp.responseText;
+                                separador = "%%"; // un espacio en blanco
+                                arregloDeSubCadenas1 = cadena1.split(separador);
+                                var urlphp = 'sql/wsLiquidacion.php';
+                                //var url = urlphp + "?ref=" + ref;  
+                                var temp = $.ajax({
+                                    url: urlphp,
+                                    data: {ref: ref},
+                                    type: "POST",
+                                    //dataType: "json",
+                                    async: false,
+                                    success: function (data, status, xhr) {},
+                                    error: function (jqXHR, exception) {
+                                        console.log(jqXHR);
+                                        console.log(exception);
+                                    }
+                                });
+                                
+                                return [arregloDeSubCadenas1];
+                            }  
+                   
+                    var arregloDeSubCadenas = enviarRef(eval("'" + ui.item.codigooriginal.toString() + "'"));
                     select[0] = "<b>Codigo Manzana</b>";
                     select[1] = "<b>Codigo Catastral Nuevo</b>";
                     select[2] = "<b>Codigo Catastral Anterior</b>";
-                    select[3] = "<b>Matricula</b>";
-                    select[4] = "<b>Dirección</b>";
-                    select[5] = "<b>Destino Económico Hacienda</b>";
-                    select[6] = "<b>Uso Acueducto</b>";
-                    select[7] = "<b>Uso Alcantarillado</b>";
-                    select[8] = "<b>Uso Aseo</b>";
-                    select[9] = "<b>Estrato Hacienda</b>";
-                    select[10] = "<b>Estrato Acueducto</b>";
-                    select[11] = "<b>Estrato Alcantarillado</b>";
-                    select[12] = "<b>Estrato Aseo</b>";
-                    select[13] = "<b>Empresa de Acueducto</b>";
-                    select[14] = "<b>Empresa de Alcantarillado</b>";
-                    select[15] = "<b>Empresa de Aseo</b>";
-                    select[16] = "<b>Area de Terreno</b>";
-                    select[17] = "<b>Area Construida</b>";
-                    select[18] = "<b>Uso del Suelo Según Acuerdo</b>";
-                    select[19] = "<b>Uso Actual del Suelo Urbano</b>";
-                    select[20] = "<b>Suelo de Protección</b>";
-                    select[21] = "<b>Conflictos de Uso Urbano</b>";
-                    select[22] = "<b>Tratamiento del Suelo</b>";
-                    select[23] = "<b>Riesgo Remoción</b>";
-                    select[24] = "<b>Barrio</b>";
-                    select[25] = "<b>Fotografias</b>";
+                    select[3] = "<b>Propietario</b>";
+                    select[4] = "<b>Avalúo Catastral</b>";
+                    select[5] = "<b>Matricula Inmobiliaria</b>";
+                    select[6] = "<b>Dirección</b>";
+                    select[7] = "<b>Destino Económico Hacienda</b>";
+                    select[8] = "<b>Uso Acueducto</b>";
+                    select[9] = "<b>Uso Alcantarillado</b>";
+                    select[10] = "<b>Uso Aseo</b>";
+                    select[11] = "<b>Estrato Hacienda</b>";
+                    select[12] = "<b>Estrato Acueducto</b>";
+                    select[13] = "<b>Estrato Alcantarillado</b>";
+                    select[14] = "<b>Estrato Aseo</b>";
+                    select[15] = "<b>Empresa de Acueducto</b>";
+                    select[16] = "<b>Empresa de Alcantarillado</b>";
+                    select[17] = "<b>Empresa de Aseo</b>";
+                    select[18] = "<b>Area de Terreno</b>";
+                    select[19] = "<b>Area Construida</b>";
+                    select[20] = "<b>Uso del Suelo Según Acuerdo</b>";
+                    select[21] = "<b>Uso Actual del Suelo Urbano</b>";
+                    select[22] = "<b>Suelo de Protección</b>";
+                    select[23] = "<b>Conflictos de Uso Urbano</b>";
+                    select[24] = "<b>Tratamiento del Suelo</b>";
+                    select[25] = "<b>Riesgo Remoción</b>";
+                    select[26] = "<b>Barrio</b>";
+                    select[27] = "<b>Fotografias</b>";
                     sel[0] = values.manzana_co;
                     sel[1] = cod_nacion["0"]["0"];
                     sel[2] = ui.item.codigooriginal;
-                    sel[3] = matricula;
-                    sel[4] = ui.item.direccionoriginal;
-                    sel[5] = simplestabla["0"]["0"];
-                    sel[6] = uso_acueducto;
-                    sel[7] = uso_alcantarillado;
-                    sel[8] = uso_aseo;
-                    sel[9] = simplestabla["0"][5];
-                    sel[10] = values.estrato_acueducto;
-                    sel[11] = values.estrato_alcantarillado;
-                    sel[12] = values.estrato_aseo;
-                    sel[13] = values.disp_acued;
-                    sel[14] = values.disp_alc;
-                    sel[15] = values.disp_aseo;
-                    sel[16] = simplestabla["0"][1] + "m2";
-                    sel[17] = simplestabla["0"][2] + "m2";
-                    sel[18] = values.uso_del_suelo_segun_acuerdo;
-                    sel[19] = values.uso_actual_del_suelo_urbano;
-                    sel[20] = values.suelo_de_proteccion;
-                    sel[21] = values.conflictos_de_uso_urbano;
-                    sel[22] = values.tratamiento_del_suelo;
-                    sel[23] = riesgo;
-                    sel[24] = values.cod_barrio;
-                    sel[25] = document.createElement("a");
-                    sel[25].id = "img1";
-                    sel[25].target = "marco2";
-                    sel[25].setAttribute("onclick", "open_streetview()");
-                    sel[25].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                    imag[25] = document.createElement("img");
-                    imag[25].id = "im1";
-                    imag[25].className = "pequeña";
-                    imag[25].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
-                    stv[25] = document.createElement("a");
-                    stv[25].id = "imgstreet1";
-                    stv[25].target = "marco";
-                    stv[25].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
-                    stv[25].setAttribute("onclick", "open_streetview()");
-                    ig[25] = document.createElement("img");
-                    ig[25].src = "./imagenes/streetview.png";
+                    sel[3] = arregloDeSubCadenas[0][7];
+                    sel[4] = "$" + Intl.NumberFormat().format(arregloDeSubCadenas[0][2]);
+                    sel[5] = matricula;
+                    sel[6] = ui.item.direccionoriginal;
+                    sel[7] = simplestabla["0"]["0"];
+                    sel[8] = uso_acueducto;
+                    sel[9] = uso_alcantarillado;
+                    sel[10] = uso_aseo;
+                    try {
+                    sel[11] = simplestabla["0"][5];
+                    }
+                    catch (err) {
+                    sel[11] = "Sin Información";
+                    }
+                    sel[12] = values.estrato_acueducto;
+                    sel[13] = values.estrato_alcantarillado;
+                    sel[14] = values.estrato_aseo;
+                    sel[15] = values.disp_acued;
+                    sel[16] = values.disp_alc;
+                    sel[17] = values.disp_aseo;
+                    try {
+                    sel[18] = simplestabla["0"][1] + "m2";
+                    }
+                    catch (err) {
+                    sel[18] = "Sin Información";
+                    }
+                    try {
+                    sel[19] = simplestabla["0"][2] + "m2";
+                    }
+                    catch (err) {
+                    sel[19] = "Sin Información";
+                    }
+                    sel[20] = values.uso_del_suelo_segun_acuerdo;
+                    sel[21] = values.uso_actual_del_suelo_urbano;
+                    sel[22] = values.suelo_de_proteccion;
+                    sel[23] = values.conflictos_de_uso_urbano;
+                    sel[24] = values.tratamiento_del_suelo;
+                    sel[25] = riesgo;
+                    sel[26] = values.cod_barrio;
+                    sel[27] = document.createElement("a");
+                    sel[27].id = "img1";
+                    sel[27].target = "marco2";
+                    sel[27].setAttribute("onclick", "open_streetview()");
+                    sel[27].href = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                    imag[27] = document.createElement("img");
+                    imag[27].id = "im1";
+                    imag[27].className = "pequeña";
+                    imag[27].src = "http://www.ideepcucuta.com/fotografias/" + values.codigo_ant + ".jpg";
+                    stv[27] = document.createElement("a");
+                    stv[27].id = "imgstreet1";
+                    stv[27].target = "marco";
+                    stv[27].href = "street_view.html?coordenadas=" + values.geom.flatCoordinates;
+                    stv[27].setAttribute("onclick", "open_streetview()");
+                    ig[27] = document.createElement("img");
+                    ig[27].src = "./imagenes/streetview.png";
 
                     for (i = 0; i < select.length; i++) {
                         row = table.insertRow(i + 1);
                         cell1 = row.insertCell(0);
                         cell2 = row.insertCell(1);
                         cell1.innerHTML = select[i];
-                        if (i === 25) {
+                        if (i === 27) {
                             cell2.appendChild(sel[i]);
                             //cell2.appendChild(imag[i]);
                             sel[i].appendChild(imag[i]);

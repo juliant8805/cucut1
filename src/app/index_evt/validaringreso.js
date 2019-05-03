@@ -107,6 +107,7 @@ $(document).on('ready', function () {
         document.getElementById("planeacion").style.display = "block";
         document.getElementById("posicionbarra").style.display = "block";
     } else if (select[0][6] === "PlaneacionS") {
+    	  document.getElementById("botondescarga").style.display = "block";
     	  document.getElementById("tipo_usuario").style.display = "block";
         document.getElementById("planeacion").style.display = "block";
         document.getElementById("posicionbarra").style.display = "block";

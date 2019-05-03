@@ -71,7 +71,7 @@ var predio = new ol.layer.Tile({
     //extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457],
     source: new ol.source.TileWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS: 'preproduccion:u_terreno', STYLES: ''}
+        params: {LAYERS: 'cucuta:u_terreno', STYLES: ''}
     }), name: 'Predios'
 });
 
@@ -83,7 +83,7 @@ var heatmap = new ol.layer.Image({
     //extent: [-8095392.391925, 870144.331783, -8046973.877366, 894653.608457],
     source: new ol.source.ImageWMS({
         url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
-        params: {LAYERS: 'preproduccion:u_terreno_point', STYLES: ''}
+        params: {LAYERS: 'cucuta:u_terreno_point', STYLES: ''}
     }), name: 'heatmap'
 });
 
@@ -448,6 +448,193 @@ var subsistemavialurbano = new ol.layer.Tile({
     }), name: 'Subsistema Vial Urbano'
 });
 
+var canalbogotaproyectado = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_canal_proyectado_bogota', STYLES: 'canal_bogota_proyectado_plano_06'}
+    }), name: 'Canal Bogotá Proyectado'
+});
+
+var canalchivera = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_canal_chivera', STYLES: 'canal_chivera_plano_06'}
+    }), name: 'Canal Chivera'
+});
+
+var nucleosurbanosinternacionales = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_nucleos_urbanos_internacionales', STYLES: 'nucleos_urbanos_internacionales_plano_06'}
+    }), name: 'Nucleos Urbanos Internacionales'
+});
+
+var interseccionesssvurbano = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_intersecciones_ssv_urbano', STYLES: 'Intersecciones_SSV_Urbano_1'}
+    }), name: 'Intersecciones SSV Urbano'
+});
+
+var espaciopublicoproyectado = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_espacio_publico_proyectado', STYLES: 'espacio_publico_proyectado_plano_11'}
+    }), name: 'Espacio Público Proyectado'
+});
+
+var espaciopublicoverificado = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_espacio_publico_verificado', STYLES: 'espacio_publico_verificado_plano_11'}
+    }), name: 'Espacio Público Verificado'
+});
+
+var espaciopublicosinverificar = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_espacio_publico_sin_verificar', STYLES: ''}
+    }), name: 'Espacio Público sin Verificar'
+});
+
+var ejesespaciopublico = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_ejes_espacio_publico', STYLES: ''}
+    }), name: 'Ejes Espacio Público'
+});
+
+var suelodeproteccionurbana = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_suelo_proteccion_urbana', STYLES: ''}
+    }), name: 'Suelo de Protección Urbana'
+});
+
+var equipamientosmunicipales = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_Equipamientos_municipales', STYLES: ''}
+    }), name: 'Equipamientos Municipales'
+});
+
+var equipamientosmetropolitanos2001 = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_equipamientosmetropolitanos2001', STYLES: ''}
+    }), name: 'Equipamientos Metropolitanos 2001'
+});
+
+var tanques = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_tanques', STYLES: ''}
+    }), name: 'Tanques'
+});
+
+var red_acueducto = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_red_acueducto_nogeoreferenciado', STYLES: ''}
+    }), name: 'Red de Acueducto'
+});
+
+var areas_reserva_PTARS = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_areas_de_resrva_ptars', STYLES: ''}
+    }), name: 'Area Reserva PTARS'
+});
+
+var red_alcantarillado = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_red_alcantarillado_nogeoreferenciado', STYLES: ''}
+    }), name: 'Red Alcantarillado'
+});
+
+var usosdelsuelourbano = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_usos_del_suelo_urbano', STYLES: ''}
+    }), name: 'Usos del Suelo Urbano'
+});
+
+var sitminfraestructurapoint = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_sitm_infraestructura_point', STYLES: ''}
+    }), name: 'Sitm Infraestructura Point'
+});
+
+
+var sitminfraestructuraline = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_sitm_corredores', STYLES: ''}
+    }), name: 'Sitm Infraestructura Line'
+});
+
+
+var operacionesestrategicas = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_urbano_operacionesestrategicas', STYLES: ''}
+    }), name: 'Operaciones Estrategicas'
+});
+
+var oleoducto1 = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_oleoducto_1', STYLES: ''}
+    }), name: 'Oleoducto'
+});
+
+var areasestrategicas = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:je_pot_2011_rural_areas_estrategicas', STYLES: ''}
+    }), name: 'Áreas Estrategicas'
+});
+
+var usodelsuelorural = new ol.layer.Tile({
+    visible: false,
+    source: new ol.source.TileWMS({
+        url: 'http://35.184.176.7:8081/geoserver/cucuta/wms',
+        params: {LAYERS: 'cucuta:pot_2011_uso_del_suelo_rural', STYLES: ''}
+    }), name: 'Uso del Suelo Rural'
+});
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -784,7 +971,7 @@ var layerCatastro = new ol.layer.Group({
 
 
 var layerPot2011 = new ol.layer.Group({
-    layers: [rondasrio, riospoligono, subsistemavialurbano, parquesdeborde, toponimiabarrios, anillovial, lineascomplementarias2015, nomenclaturapot2011, mapaconjuntoactualizado2015, riesgosurbanos, categoriasdelsuelourbano, cabecerasmunicipalesvecinas, perimetromunicipal, perimetrodeexpansion, cuerposdeagua, cabecerasmunicipalescolombia, clasesdesuelo, redvialrural, centrospoblados, nodosregionales, modelonodos, subsistemavialrural, ejesintegracionbinacional, ejesintegracionnacional, ejesintegracionregional, perimetro2015, suelodeproteccion, hidrografia, areamanejoespecial, prediosadquiridosmunicipio, interseccionesrurales, hidrografia],
+    layers: [usodelsuelorural, areasestrategicas, oleoducto1, operacionesestrategicas, sitminfraestructuraline, sitminfraestructurapoint, usosdelsuelourbano, red_alcantarillado, areas_reserva_PTARS, red_acueducto, tanques, equipamientosmetropolitanos2001, equipamientosmunicipales, suelodeproteccionurbana, espaciopublicosinverificar, espaciopublicoverificado, ejesespaciopublico, espaciopublicoproyectado, interseccionesssvurbano, nucleosurbanosinternacionales, canalchivera, canalbogotaproyectado, rondasrio, riospoligono, subsistemavialurbano, parquesdeborde, toponimiabarrios, anillovial, lineascomplementarias2015, nomenclaturapot2011, mapaconjuntoactualizado2015, riesgosurbanos, categoriasdelsuelourbano, cabecerasmunicipalesvecinas, perimetromunicipal, perimetrodeexpansion, cuerposdeagua, cabecerasmunicipalescolombia, clasesdesuelo, redvialrural, centrospoblados, nodosregionales, modelonodos, subsistemavialrural, ejesintegracionbinacional, ejesintegracionnacional, ejesintegracionregional, perimetro2015, suelodeproteccion, hidrografia, areamanejoespecial, prediosadquiridosmunicipio, interseccionesrurales, hidrografia],
     name: 'POT_2011'
 });
 

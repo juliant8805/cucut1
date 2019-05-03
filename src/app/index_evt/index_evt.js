@@ -227,6 +227,27 @@ function limpiar_consulta() {
     document.getElementById('plano_04').style.display = "none";
     document.getElementById('plano_05').style.display = "none";
     document.getElementById('plano_06').style.display = "none";
+    document.getElementById('plano_07').style.display = "none";
+    document.getElementById('plano_08').style.display = "none";
+    document.getElementById('plano_09').style.display = "none";
+    document.getElementById('plano_10').style.display = "none";
+    document.getElementById('plano_11').style.display = "none";
+    document.getElementById('plano_12').style.display = "none";
+    document.getElementById('plano_13').style.display = "none";
+    document.getElementById('plano_14').style.display = "none";
+    document.getElementById('plano_15').style.display = "none";
+    document.getElementById('plano_16').style.display = "none";
+    document.getElementById('plano_17').style.display = "none";
+    document.getElementById('plano_18').style.display = "none";
+    document.getElementById('plano_19').style.display = "none";
+    document.getElementById('plano_20').style.display = "none";
+    document.getElementById('plano_21').style.display = "none";
+    document.getElementById('plano_22').style.display = "none";
+    document.getElementById('plano_23').style.display = "none";
+    document.getElementById('plano_24').style.display = "none";
+    document.getElementById('plano_25').style.display = "none";
+    document.getElementById('plano_26').style.display = "none";
+    document.getElementById('plano_27').style.display = "none";
     document.getElementById("menu_coordenadas_decimales").style.display = "none"; 
     document.getElementById("menu_coordenadas_wgs84").style.display = "none"; 
     document.getElementById("menu_coordenadas_3116").style.display = "none"; 
@@ -280,6 +301,7 @@ function limpiar_consulta() {
     document.getElementById("tabladir1").style.display = "none";
     document.getElementById("diry1").style.display = "none";
     document.getElementById("diry").style.display = "none";
+    document.getElementById("tabla_descarga").style.display = "none";
 }
 function busqueda_personalizada() {
     if (document.getElementById('personalizada').style.display === "" || document.getElementById('personalizada').style.display === "none")
@@ -1484,3 +1506,13 @@ $.ajax('http://35.184.176.7:8081/geoserver/prueba/ows', {
     //predio.getSource().updateParams({'STYLES': 'predios_hallazgos'})
     alert("Información guardada exitosamente</br>");
 }
+function downloadpot() {
+document.getElementById("tabla_descarga").style.display = "block";
+}
+
+
+
+
+
+
+
